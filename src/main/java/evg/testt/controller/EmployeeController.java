@@ -45,6 +45,15 @@ public class EmployeeController{
         return "redirect:/dep";
     }
 
+    /**
+     * Updates ore existing employee or creates the new one.
+     *
+     * @param department_id department id
+     * @param id            employee id
+     * @return              model and view
+     * @throws              SQLException
+     * @see                 Employee
+     */
     @RequestMapping(value = "/employeeEdit", method = RequestMethod.POST)
     public ModelAndView updateOne(@RequestParam(required = true) Integer department_id, @RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.EMPLOYEE_EDIT);
