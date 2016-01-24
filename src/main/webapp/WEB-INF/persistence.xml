@@ -1,0 +1,7 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="1.0">
+    <persistence-unit name="test">
+        <class>evg.testt.model.Department</class>
+        <class>evg.testt.model.Employee</class>
+    </persistence-unit>
+</persistence>
