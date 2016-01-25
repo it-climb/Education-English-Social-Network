@@ -55,7 +55,7 @@ public class EmployeeController{
      * @see                 Employee
      */
     @RequestMapping(value = "/employeeEdit", method = RequestMethod.POST)
-    public ModelAndView updateOne(@RequestParam(required = true) Integer department_id, @RequestParam(required = false) Integer id) throws SQLException {
+    public ModelAndView updateOne(@RequestParam(required = false) Integer department_id, @RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.EMPLOYEE_EDIT);
         Employee employee;
         if(id!=null) {
