@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class TranslatorServiceTestImpl implements TranslatorServise {
 
     public TranslatorDto translate(TranslatorDto translatorDto) {
-        translatorDto.setTextOut("Якось так ми i перекладаемо...");
+        translatorDto.setTextOut("Якось так ми i перекладаемо...");// test
         return translatorDto;
     }
 
