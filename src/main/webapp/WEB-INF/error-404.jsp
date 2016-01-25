@@ -1,3 +1,4 @@
+<%--This code is a body of error page--%>
 <%@ page isErrorPage="true"%>
 <html>
 <font color="WHITE"/>
