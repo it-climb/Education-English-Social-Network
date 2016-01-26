@@ -1,23 +1,27 @@
 package evg.testt.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "employees")
+@Entity
+@Table(name = "employees")
 public class Employee extends BaseModel{
 
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @Column(name = "firstName", unique = true, nullable = false, length = 255)
     private String firstName;
 
+    @Column(name = "secondName", unique = true, nullable = false, length = 255)
     private String secondName;
 
+    @Column(name = "age", nullable = false)
     private Integer age;
 
+    @Column(name = "birthday", nullable = false)
+    @Temporal(value=TemporalType.DATE)
     private Date birthday;
 
     public Department getDepartment() {

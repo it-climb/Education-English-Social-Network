@@ -1,13 +1,13 @@
 package evg.testt.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "departments")
+@Entity
+@Table(name = "departments")
 public class Department extends BaseModel{
 
+    @Column(name = "name", unique = true, nullable = false, length = 255)
     private String name;
 
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department")
