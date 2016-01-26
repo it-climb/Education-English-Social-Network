@@ -6,5 +6,6 @@
 </head>
 <body>
 Incorrect email !
+<a href="/login">Try again</a>
 </body>
 </html>
