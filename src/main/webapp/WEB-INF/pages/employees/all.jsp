@@ -17,6 +17,7 @@
         <td>
             <form method="post" action="/employeeDelete">
                 <input type="hidden" name="id" value=${employee.id}>
+                <input type="hidden" name="department_id" value=${department.id}>
                 <input type="submit" value="Delete">
             </form>
         </td>
