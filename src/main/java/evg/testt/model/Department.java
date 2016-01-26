@@ -2,6 +2,7 @@ package evg.testt.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ public class Department extends BaseModel{
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department", fetch = FetchType.EAGER)
     private Set<Employee> employees;
 
     public String getName() {

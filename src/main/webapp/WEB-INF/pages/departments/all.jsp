@@ -37,8 +37,10 @@
     </td>
   </tr>
 </table>
-
 <br>
-<a href="/">Home</a>
+
+<nav>
+  <a href="/">Home</a>
+</nav>
 </body>
 </html>

@@ -25,11 +25,18 @@ public class EmployeeController{
     DepartmentService departmentService;
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
-    public ModelAndView showAll(@RequestParam(required = true) Integer id) throws SQLException {
+    public ModelAndView showAll(@RequestParam(required = true) Integer id,
+                                @RequestParam(required = false) String toDel) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.EMPLOYEE_ALL);
         Department department = departmentService.getById(id);
         modelAndView.addObject("department", department);
         modelAndView.addObject("employees", employeeService.getByDepartment(department));
+        String warning = "";
+        if (toDel!=null && toDel.equals("yes")) {
+            warning = "You can't delete department <b>"+department.getName()+"</b> becose it is not empty !<br>You must" +
+                    " delete all emploees before!<br>";
+        }
+        modelAndView.addObject("warning", warning);
         return modelAndView;
     }
 
