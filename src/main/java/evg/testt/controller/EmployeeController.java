@@ -37,7 +37,7 @@ public class EmployeeController{
     public String addNewOne(@ModelAttribute Employee employee, @RequestParam(required = true) Integer departmentId) throws SQLException {
         Department department = departmentService.getById(departmentId);
         employee.setDepartment(department);
-        if(employee.getId()!=null){
+        if(employee.getId()==null){
             employeeService.insert(employee);
         }else{
             employeeService.update(employee);
