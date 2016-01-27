@@ -15,6 +15,8 @@ import java.sql.SQLException;
 @Controller
 public class DepartmentController{
 
+    //Log will be weathe
+
     @Autowired
     DepartmentService departmentService;
 
