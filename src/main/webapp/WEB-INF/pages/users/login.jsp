@@ -5,16 +5,17 @@
     <title>Login</title>
 </head>
 <body>
-<form:form method="post" action="/login">
+<form:form method="post" action="/validate">
     <div align="right"><strong>${email}</strong></div>
     <table>
         <tr>
             <td>Email:</td>
-            <td><input type="text" name="email"/></td>
+            <td><input type="text" name="email" value="${user.email}"/></td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit"/>
+                <input type="hidden" name="id" value="${user.id}">
+                <input type="submit" value="Ok">
             </td>
         </tr>
     </table>

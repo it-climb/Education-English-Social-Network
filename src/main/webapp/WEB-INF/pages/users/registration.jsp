@@ -10,11 +10,7 @@
         <tr>
             <td>Email:</td>
             <td><input type="text" name="email"/></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit"/>
-            </td>
+            <td colspan="2"><input type="submit" value="OK"/></td>
         </tr>
     </table>
 </form:form>
