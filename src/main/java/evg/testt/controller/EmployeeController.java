@@ -24,6 +24,13 @@ public class EmployeeController{
     @Autowired
     DepartmentService departmentService;
 
+    /**
+     * Shows all employees in selected department
+     *
+     * @param id            department id
+     * @return              model and view
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public ModelAndView showAll(@RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.EMPLOYEE_ALL);
@@ -33,6 +40,14 @@ public class EmployeeController{
         return modelAndView;
     }
 
+    /**
+     * Creates new employee or updates selected employee in the department
+     *
+     * @param employee      Employee
+     * @param departmentId  department id
+     * @return              show all departments after changes
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/employeeSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@ModelAttribute Employee employee, @RequestParam(required = true) Integer departmentId) throws SQLException {
         Department department = departmentService.getById(departmentId);
@@ -46,7 +61,7 @@ public class EmployeeController{
     }
 
     /**
-     * Updates ore existing employee or creates the new one.
+     * Calls addNewOne method and gives to it new employee's first and second name
      *
      * @param department_id department id
      * @param id            employee id
@@ -68,6 +83,13 @@ public class EmployeeController{
         return modelAndView;
     }
 
+    /**
+     * Delete a selected employee in the department
+     *
+     * @param id            employee id
+     * @return              show all departments after changes
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/employeeDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id) throws SQLException {
         Employee employee = employeeService.getById(id);

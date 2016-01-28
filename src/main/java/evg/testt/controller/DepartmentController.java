@@ -21,7 +21,7 @@ public class DepartmentController{
     /**
      * Shows all departments
      *
-     * @return              all departments
+     * @return              model and view
      * @throws              SQLException
      */
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class DepartmentController{
     }
 
     /**
-     * Calls addNewOne method an gives to it new department's name
+     * Calls addNewOne method and gives to it new department's name
      *
      * @param id            department id
      * @return              model amd view
