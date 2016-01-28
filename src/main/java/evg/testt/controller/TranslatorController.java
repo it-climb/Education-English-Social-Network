@@ -2,8 +2,8 @@ package evg.testt.controller;
 
 import evg.testt.dto.TranslatorDto;
 import evg.testt.model.Language;
-import evg.testt.service.LanguageServise;
-import evg.testt.service.TranslatorServise;
+import evg.testt.service.LanguageService;
+import evg.testt.service.TranslatorService;
 import evg.testt.util.JspPath;
 import evg.testt.util.LanguageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,24 +22,24 @@ import java.util.Set;
 public class TranslatorController {
 
     @Autowired
-    LanguageServise languageServise;
+    LanguageService languageService;
 
     @Autowired
-    TranslatorServise translatorServise;
+    TranslatorService translatorService;
 
 //    @RequestMapping(value = "/translate", method = RequestMethod.GET)
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws SQLException {
-        Set<Language> languages = new HashSet<>(languageServise.getAll());
+        Set<Language> languages = new HashSet<>(languageService.getAll());
         if (languages.size() == 0) {
             List<String> langs = LanguageUtil.fillLanguages();
             for (int i = 0; i < langs.size(); i++) {
                 Language language = new Language();
                 language.setLanguageName(langs.get(i));
                 language.setId(i+1);
-                languageServise.update(language);
+                languageService.update(language);
             }
-            languages = new HashSet<>(languageServise.getAll());
+            languages = new HashSet<>(languageService.getAll());
         }
         TranslatorDto translatorDto = new TranslatorDto();
         translatorDto.setLanguageIn(LanguageUtil.defaultLangIn("English"));
@@ -60,9 +60,9 @@ public class TranslatorController {
         translatorDto.setLanguageIn(LanguageUtil.defaultLangIn(languageIn));
         translatorDto.setLanguageOut(LanguageUtil.defaultLangOut(languageOut));
         translatorDto.setTextIn(textIn);
-        Set<Language> languages = new HashSet<>(languageServise.getAll());
+        Set<Language> languages = new HashSet<>(languageService.getAll());
         translatorDto.setLanguages(languages);
-        translatorDto = translatorServise.translate(translatorDto);
+        translatorDto = translatorService.translate(translatorDto);
         return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
     }
 
