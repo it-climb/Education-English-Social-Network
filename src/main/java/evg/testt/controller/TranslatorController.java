@@ -27,6 +27,7 @@ public class TranslatorController {
     @Autowired
     TranslatorServise translatorServise;
 
+//    @RequestMapping(value = "/translate", method = RequestMethod.GET)
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws SQLException {
         Set<Language> languages = new HashSet<>(languageServise.getAll());

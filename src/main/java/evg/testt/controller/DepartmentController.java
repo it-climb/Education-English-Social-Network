@@ -18,12 +18,6 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    @RequestMapping(value = "/dep", method = RequestMethod.GET)
-    public ModelAndView showAll() throws SQLException {
-        return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
-    }
-
-
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).build();
