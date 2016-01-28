@@ -11,5 +11,6 @@ public class JspPath {
     public static final String EMPLOYEE_ALL = "employees/all";
     public static final String EMPLOYEE_EDIT = "employees/edit";
     public static final String TRANSLATOR_HOME = "translator/translate";
+    public static final String DEFAULT_ERROR_VIEW = "error-404";
 
 }

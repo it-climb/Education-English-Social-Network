@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--This code is a body of error page--%>
 <%@ page isErrorPage="true"%>
 <html>
@@ -5,6 +6,13 @@
 <head>
     <title>404 Error</title>
 </head>
+<!--
+Failed URL: ${url}
+Exception: ${exception.message}
+<c:forEach items="${exception.stackTrace}" var="stackTrace">
+    ${stackTrace}
+</c:forEach>
+-->
 <body background="http://technocratos.ru/wp-content/uploads/2015/11/github.jpg">
 <img src="http://www.haba.nl/images/404.png">
 <p class=""> Sorry but this web-page not found..</p>
