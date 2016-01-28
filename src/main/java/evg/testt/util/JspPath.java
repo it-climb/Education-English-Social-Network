@@ -11,5 +11,9 @@ public class JspPath {
     public static final String EMPLOYEE_ALL = "employees/all";
     public static final String EMPLOYEE_EDIT = "employees/edit";
     public static final String TRANSLATOR_HOME = "translator/translate";
+    public static final String WORD_ALL = "words/all";
+    public static final String WORD_EDIT = "words/edit";
+    public static final String DESCRIPTION_ALL = "descriptions/all";
+    public static final String DESCRIPTION_EDIT = "descriptions/edit";
 
 }
