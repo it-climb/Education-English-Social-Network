@@ -13,12 +13,6 @@ import java.sql.SQLException;
 @Controller
 public class HomeController {
 
-    @Autowired
-    DepartmentService departmentService;
 
-    @RequestMapping(value = "/dep", method = RequestMethod.GET)
-    public ModelAndView showAll() throws SQLException {
-        return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
-    }
 
 }
