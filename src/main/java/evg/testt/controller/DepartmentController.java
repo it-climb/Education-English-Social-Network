@@ -19,16 +19,24 @@ public class DepartmentController{
     DepartmentService departmentService;
 
     /**
+     * Shows all departments
      *
-     * @return
-     * @throws SQLException
+     * @return              all departments
+     * @throws              SQLException
      */
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
     }
 
-
+    /**
+     * Creates new department or updates selected department
+     *
+     * @param id            department id
+     * @param name          department name
+     * @return              show all departments after changes
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).build();
@@ -40,12 +48,27 @@ public class DepartmentController{
         return "redirect:/dep";
     }
 
+    /**
+     * Deletes a selected department
+     *
+     * @param id            department id
+     * @return              show all departments after changes
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id) throws SQLException {
         departmentService.delete(Department.newBuilder().setId(id).build());
         return "redirect:/dep";
     }
 
+    /**
+     * Calls addNewOne method an gives to it new department's name
+     *
+     * @param id            department id
+     * @return              model amd view
+     * @throws              SQLException
+     * @see                 Department
+     */
     @RequestMapping(value = "/depEdit", method = RequestMethod.POST)
     public ModelAndView updateOne(@RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_EDIT);
