@@ -18,6 +18,11 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
