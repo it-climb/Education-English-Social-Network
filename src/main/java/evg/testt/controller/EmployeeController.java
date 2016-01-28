@@ -59,8 +59,7 @@ public class EmployeeController{
         if(id!=null) {
             employee = employeeService.getById(id);
         }else{
-            Department department = departmentService.getById(department_id);
-            employee = Employee.newBuilder().setDepartment(department).build();
+            employee = Employee.newBuilder().setDepartment(departmentService.getById(department_id)).build();
         }
         modelAndView.addObject("employee", employee);
         return modelAndView;
@@ -68,8 +67,7 @@ public class EmployeeController{
 
     @RequestMapping(value = "/employeeDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id, @RequestParam(required = true) Integer department_id) throws SQLException {
-        Employee employee = employeeService.getById(id);
-        employeeService.delete(employee);
+        employeeService.delete(Employee.newBuilder().setId(id).build());
         return "redirect:/employees?id="+department_id;
     }
 
