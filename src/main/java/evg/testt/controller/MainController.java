@@ -29,7 +29,7 @@ public class MainController {
     public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
         //ModelAndView modelAndView = new ModelAndView("contacts/all");
         //modelAndView.addObject("contacts", contactService.getAll());
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         return new ModelAndView(JspPath.HOME);
     }
 
