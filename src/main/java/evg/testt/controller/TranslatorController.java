@@ -1,6 +1,9 @@
 package evg.testt.controller;
 
 import evg.testt.dto.TranslatorDto;
+import evg.testt.exception.TranslateServiceException;
+import evg.testt.service.impl.translateserviceimpl.TranslateServiceImpl;
+import evg.testt.service.translateservice.Language;
 import evg.testt.service.translateservice.TranslateService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "translate")
@@ -20,11 +25,20 @@ public class TranslatorController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView mainView() throws SQLException {
+    public ModelAndView mainView() throws TranslateServiceException {
         TranslatorDto translatorDto = new TranslatorDto();
-        //translatorDto.setLanguageIn(LanguageUtil.defaultLangIn("English"));
-        //translatorDto.setLanguageOut(LanguageUtil.defaultLangOut("Ukranian"));
-        translatorDto.setLanguages(translateService.getAvailableLanguages());
+        Set<Language> languages = translateService.getAvailableLanguages();
+        if (languages.size() > 1) {
+            Iterator<Language> languageIterator = languages.iterator();
+            languageIterator.hasNext();
+            translatorDto.setLanguageIn(languageIterator.next());
+            languageIterator.hasNext();
+            translatorDto.setLanguageOut(languageIterator.next());
+        } else {
+            throw new TranslateServiceException("Too less avaible languages for transleting (less then two).");
+        }
+        translatorDto.setLanguages(languages);
+
         translatorDto.setTextIn("This is the most perfect translator in the world I have ever seen!");
         return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
     }
