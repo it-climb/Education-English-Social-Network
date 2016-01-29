@@ -30,10 +30,8 @@ public class TranslatorController {
         Set<Language> languages = translateService.getAvailableLanguages();
         if (languages.size() > 1) {
             Iterator<Language> languageIterator = languages.iterator();
-            languageIterator.hasNext();
-            translatorDto.setLanguageIn(languageIterator.next());
-            languageIterator.hasNext();
             translatorDto.setLanguageOut(languageIterator.next());
+            translatorDto.setLanguageIn(languageIterator.next());
         } else {
             throw new TranslateServiceException("Too less avaible languages for transleting (less then two).");
         }
