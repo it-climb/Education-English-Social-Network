@@ -5,12 +5,16 @@
     <title>Login</title>
 </head>
 <body>
-<form:form method="post" action="/validate">
+<form:form method="post" action="/userLogin">
     <div align="right"><strong>${email}</strong></div>
     <table>
         <tr>
             <td>Email:</td>
             <td><input type="text" name="email" value="${user.email}"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="text" name="password" value="${user.password}"/></td>
         </tr>
         <tr>
             <td colspan="2">

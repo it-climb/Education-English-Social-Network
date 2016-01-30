@@ -5,6 +5,9 @@ import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,11 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.sql.SQLException;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
+    /*@Autowired
+    UserValidator userValidator;*/
     @Autowired
     UserService userService;
 
@@ -38,18 +45,19 @@ public class UserController {
 
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
-    public String addNewUser(@RequestParam(required = true) String email, HttpServletRequest request) throws SQLException{
-        HttpSession session = request.getSession();
-        User addUser = User.newBuilder().setEmail(email).build();
-        if(email != null) {
-            userService.insert(addUser);
-            session.setAttribute("user", addUser);
+    public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
+       if(result.hasErrors()){
+           return "redirect:/loginProblems";
+       }else {
+            HttpSession session = request.getSession();
+            userService.insert(user);
+            session.setAttribute("user", user);
         }
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "/validate", method = RequestMethod.POST)
-    public String updateOne(@RequestParam(required = true) String email, HttpServletRequest request) throws SQLException {
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
+    public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
             if(user!=null) {
@@ -57,6 +65,8 @@ public class UserController {
                 return "redirect:/success";
             }else return "redirect:/loginProblems";
     }
+
+
 
     @RequestMapping(value = "/loginProblems", method = RequestMethod.GET)
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
