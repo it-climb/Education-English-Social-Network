@@ -14,5 +14,9 @@ public class JspPath {
     public static final String USER_LOGIN = "users/login";
     public static final String USER_REGISTRATION = "users/registration";
     public static final String USER_LOGI_PROBLEM = "users/loginProblems";
-
+    public static final String WORD_ALL = "words/all";
+    public static final String WORD_EDIT = "words/edit";
+    public static final String DESCRIPTION_ALL = "descriptions/all";
+    public static final String DESCRIPTION_EDIT = "descriptions/edit";
+    
 }

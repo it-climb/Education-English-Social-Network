@@ -6,6 +6,7 @@
 </head>
 <body>
 <form:form method="post" action="/employeeSaveOrUpdate" modelAttribute="employee">
+
     <input type="hidden" name="departmentId" value="${employee.department.id}">
     <table>
         <tr>
