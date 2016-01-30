@@ -20,11 +20,13 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private static final Logger LOGGER = LogManager.getLogger(DepartmentController.class);
+    private static final Logger DEBUG_LOGGER = LogManager.getLogger("gebugLogger");
+    private static final Logger INFO_LOGGER = LogManager.getLogger("infoLogger");
+    private static final Logger WARN_LOGGER = LogManager.getLogger("warnLogger");
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
-        LOGGER.info("info");
+        INFO_LOGGER.info("info");
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
     }
 
@@ -33,17 +35,20 @@ public class DepartmentController{
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name)
             throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).build();
+        DEBUG_LOGGER.debug("add new one department");
         if(id==null){
             departmentService.insert(department);
         }else{
             departmentService.update(department);
         }
+        WARN_LOGGER.warn("warn");
         return "redirect:/dep";
     }
 
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id) throws SQLException {
         departmentService.delete(Department.newBuilder().setId(id).build());
+        DEBUG_LOGGER.debug("delete one department");
         return "redirect:/dep";
     }
 
@@ -54,6 +59,7 @@ public class DepartmentController{
             Department department = departmentService.getById(id);
             modelAndView.addObject("department", department);
         }
+        DEBUG_LOGGER.debug("update one department");
         return modelAndView;
     }
 
