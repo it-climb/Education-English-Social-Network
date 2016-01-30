@@ -3,6 +3,8 @@ package evg.testt.controller;
 import evg.testt.model.Department;
 import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,19 +17,21 @@ import java.sql.SQLException;
 @Controller
 public class DepartmentController{
 
-    //Log will be weathe
-
     @Autowired
     DepartmentService departmentService;
 
+    private static final Logger LOGGER = LogManager.getLogger(DepartmentController.class);
+
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
+        LOGGER.info("info");
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
     }
 
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
-    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
+    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name)
+            throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).build();
         if(id==null){
             departmentService.insert(department);
