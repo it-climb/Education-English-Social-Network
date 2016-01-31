@@ -26,7 +26,7 @@ public class DepartmentController{
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
-        INFO_LOGGER.info("info");
+        INFO_LOGGER.info("Welcome page Departments");
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
     }
 
