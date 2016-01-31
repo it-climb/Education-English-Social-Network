@@ -1,0 +1,29 @@
+<ehcache
+        xsi:noNamespaceSchemaLocation="ehcache.xsd"
+        updateCheck="true"
+        monitoring="autodetect"
+        dynamicConfig="true"
+        maxBytesLocalHeap="400M"
+>
+
+    <cache name="departmentsCache"
+           maxBytesLocalHeap="75M"
+           eternal="true"
+           memoryStoreEvictionPolicy="LRU"/>
+
+    <cache name="employeesCache"
+           maxBytesLocalHeap="75M"
+           eternal="true"
+           memoryStoreEvictionPolicy="LRU"/>
+
+    <cache name="departmentsAllCache"
+           maxBytesLocalHeap="100M"
+           eternal="true"
+           memoryStoreEvictionPolicy="LRU"/>
+
+    <cache name="employeesAllCache"
+           maxBytesLocalHeap="100M"
+           eternal="true"
+           memoryStoreEvictionPolicy="LRU"/>
+
+</ehcache>
