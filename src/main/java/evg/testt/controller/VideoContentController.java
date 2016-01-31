@@ -16,6 +16,8 @@ import java.net.URL;
 @Controller
 public class VideoContentController {
 
+
+
     @RequestMapping(value = "/video", method = RequestMethod.GET)
     public ModelAndView videoHome() throws MalformedURLException {
 
