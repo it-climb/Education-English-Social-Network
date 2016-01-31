@@ -6,8 +6,8 @@
 <body>
   <p>Success</p>
 <tr>
-  <td><a href="/" value="Home"/></td>
-  <td><a href="/dep" value="Departments"/></td>
+  <td><a href="/">Home</a></td>
+  <td><a href="/dep">Dep's</a></td>
 </tr>
 </body>
 </html>
