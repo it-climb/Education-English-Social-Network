@@ -49,13 +49,17 @@ public class TranslatorController {
     @RequestMapping(value = "/doTransl", method = RequestMethod.POST)
     public ModelAndView doTranslate(String languageIn, String languageOut, String textIn) throws SQLException {
         TranslatorDto translatorDto = new TranslatorDto();
-        //translatorDto.setLanguageIn(LanguageUtil.defaultLangIn(languageIn));
-        //translatorDto.setLanguageOut(LanguageUtil.defaultLangOut(languageOut));
         translatorDto.setTextIn(textIn);
-        translatorDto.setLanguages(translateService.getAvailableLanguages());
-        //Set<evg.testt.model.Language> languages = new HashSet<>(languageService.getAll());
-        //translatorDto.setLanguages(languages);
-        //translatorDto = translatorService.translate(translatorDto);
+        Set<Language> languages = translateService.getAvailableLanguages();
+        translatorDto.setLanguages(languages);
+        for (Language language: languages) {
+            if (language.getShortName().equals(languageIn)) {
+                translatorDto.setLanguageIn(language);
+            }
+            if (language.getShortName().equals(languageOut)) {
+                translatorDto.setLanguageOut(language);
+            }
+        }
         try {
             translatorDto.setTextOut(translateService.translate(textIn,languageIn,languageOut).translation());
         } catch (Exception e) {
