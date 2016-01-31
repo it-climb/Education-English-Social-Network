@@ -12,4 +12,9 @@ public class UserServiceImp extends BaseService<User, UserDao> implements UserSe
     public User getByEmail(String email) {
         return dao.findByEmail(email);
     }
+
+    @Override
+    public User getByPassword(String password) {
+        return dao.findByPassword(password);
+    }
 }

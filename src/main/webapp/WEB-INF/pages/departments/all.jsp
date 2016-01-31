@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
   <title>All</title>
   <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
+<div align="right"><strong>${email}</strong></div>
 <table id="menu" width="1000px">
   <tr>
     <td><b>Name</b></td>
