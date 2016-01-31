@@ -1,0 +1,2 @@
+*.log
+/src/main/resources/database_rdbms.dev.properties
