@@ -16,7 +16,7 @@
 
            <h5><b>We are will translate here !!</b></h5>
 
-           <form action="/doTransl" method="post">
+           <form action="/translate/doTransl" method="post">
             <c:set var="translatorDto2" value="${translatorDto}" scope="request"/>
             Input Language:
             <jsp:include page="chooseLang.jsp">
@@ -33,8 +33,8 @@
             <textarea rows="7" cols="70" name="textOut" readonly>${translatorDto.textOut}</textarea><br><br>
             <input type="submit" value="Translate !">
         </form>
-    <%--</div>--%>
-<%--</div>--%>
+    </div>
+</div>
 </body>
 </html>
 
