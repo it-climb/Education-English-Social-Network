@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface EmployeeService extends Service<Employee> {
 
-    //@Override
-    //List<Employee> getAll() throws SQLException;
+    @Override
+    @Cacheable(value = "employeesAllCache", key = "#root.methodName")
+    List<Employee> getAll() throws SQLException;
 
     @Override
     @Cacheable(value = "employeesCache", key = "#id")
@@ -20,10 +21,6 @@ public interface EmployeeService extends Service<Employee> {
     @Override
     @CacheEvict(value = "employeesCache", key = "#p0.id")
     void delete(Employee o) throws SQLException;
-
-    //@Override
-    //@CacheEvict(value = "employeesCache", key = "#p0.id")
-    //void insert(Employee o) throws SQLException;
 
     @Override
     @CacheEvict(value = "employeesCache", key = "#p0.id")
