@@ -4,6 +4,7 @@
   <title>All</title>
 </head>
 <body class="no-js">
+<div align="right"><strong>${email}</strong></div>
 <table width="600px">
   <tr>
     <td><b>Name</b></td>
