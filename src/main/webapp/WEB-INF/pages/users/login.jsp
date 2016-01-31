@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="text" name="password" value="${user.password}"/></td>
+            <td><input type="password" name="password" value="${user.password}"/></td>
         </tr>
         <tr>
             <td colspan="2">

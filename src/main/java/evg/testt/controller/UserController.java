@@ -60,13 +60,11 @@ public class UserController {
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
-            if(user!=null) {
+            if(user!=null && user.getPassword().equals(password)) {
                 session.setAttribute("user", user);
                 return "redirect:/success";
             }else return "redirect:/loginProblems";
     }
-
-
 
     @RequestMapping(value = "/loginProblems", method = RequestMethod.GET)
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
