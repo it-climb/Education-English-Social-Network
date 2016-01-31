@@ -7,7 +7,6 @@
   <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
-<div align="right"><strong>${email}</strong></div>
 <table id="menu" width="1000px">
   <tr>
     <td><b>Name</b></td>
@@ -42,6 +41,7 @@
   </tr>
 </table>
 
+<div align="right"><strong>${email}</strong></div>
 <div id="chat">
   <form:form method="post" action="/chatAdd">
     <div id="containerChat">
@@ -53,9 +53,21 @@
         <%="<tr><td>" + chat.getUser().getEmail() + ":" + chat.getMessage() + "</td></tr>"%>
         <% } %>--%>
   <c:forEach var="chat" items="${chat}">
+    <c:if test="${chat.receiver == null}">
+      <tr>
+        <td>${chat.getUser().email}:${chat.message}</td>
+      </tr>
+    </c:if>
+    <c:if test="${chat.receiver == email}">
     <tr>
-    <td>${chat.getUser().email}:${chat.message}</td>
+    <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
     </tr>
+    </c:if>
+    <c:if test="${chat.user.email == email}">
+      <tr>
+        <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
+      </tr>
+    </c:if>
   </c:forEach>
         </table>
     </div>
@@ -65,10 +77,14 @@
     <input width="30%" type="text" name="message">
   </td>
   <td colspan="5">
-      <%--<input type="hidden" name="user" value="${user.email}">--%>
+      <input type="hidden" name="email" value="${email}">
       <input type="submit" value="Send">
   </td>
     </tr>
+      <tr>
+        <td>(not required)Receiver:</td>
+        <td><input type="text" name="receiver"></td>
+      </tr>
       </table>
   </form:form>
 </div>

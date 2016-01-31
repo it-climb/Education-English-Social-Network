@@ -302,6 +302,20 @@ padding: 5px;
     float: left;
 }
 
+.whisperF{
+    color: white;
+    background-color: purple;
+    border-radius: 10%;
+    padding: 2px;
+}
+
+.whisperT{
+    color: white;
+    background-color: peachpuff;
+    border-radius: 10%;
+    padding: 2px;
+}
+
 #chat{
     float: right;
     width: 30%;

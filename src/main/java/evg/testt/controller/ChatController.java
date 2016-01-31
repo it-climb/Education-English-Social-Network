@@ -29,13 +29,13 @@ public class ChatController {
     UserService userService;
 
     @RequestMapping(value = "/chatAdd", method = RequestMethod.POST)
-    public String showAll(@ModelAttribute Chat chat,@RequestParam(required = false) String email,@RequestParam(required = false) String receiver, @RequestParam(required = false) String message) throws SQLException {
+    public String showAll(/*@ModelAttribute Chat chat,*/@RequestParam(required = true) String email,@RequestParam(required = false) String receiver, @RequestParam(required = true) String message) throws SQLException {
         User user = userService.getByEmail(email);
-        chat = chat.newBuilder().setUser(user).setMessage(message).build();
+        Chat chat = Chat.newBuilder().setUser(user).setMessage(message).build();
         if(receiver == null){
             chatService.insert(chat);
         }else{
-            chat = chat.setReceiver(receiver);
+            chat.setReceiver(receiver);
             chatService.insert(chat);
         }
         return "redirect:/dep";
