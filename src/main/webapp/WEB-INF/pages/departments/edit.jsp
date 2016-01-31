@@ -9,7 +9,7 @@
     <table>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" value="${department.name}"/></td>
+            <td><input maxlength="20" type="text" name="name" value="${department.name}"/></td>
         </tr>
         <tr>
             <td colspan="2">

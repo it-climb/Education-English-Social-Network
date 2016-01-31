@@ -10,7 +10,7 @@ public class Department extends BaseModel{
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private Set<Employee> employees;
 
     public String getName() {
