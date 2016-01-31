@@ -20,7 +20,7 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private static final Logger DEBUG_LOGGER = LogManager.getLogger("gebugLogger");
+    private static final Logger DEBUG_LOGGER = LogManager.getLogger("debugLogger");
     private static final Logger INFO_LOGGER = LogManager.getLogger("infoLogger");
     private static final Logger WARN_LOGGER = LogManager.getLogger("warnLogger");
 
