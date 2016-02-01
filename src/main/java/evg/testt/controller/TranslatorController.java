@@ -26,6 +26,7 @@ public class TranslatorController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws TranslateServiceException {
+        ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME);
         TranslatorDto translatorDto = new TranslatorDto();
         Set<Language> languages = translateService.getAvailableLanguages();
         if (languages.size() > 1) {
@@ -33,12 +34,14 @@ public class TranslatorController {
             translatorDto.setLanguageOut(languageIterator.next());
             translatorDto.setLanguageIn(languageIterator.next());
         } else {
-            throw new TranslateServiceException("Too less avaible languages for transleting (less then two).");
+            String errorMassage = "We can't do translating. Too less available languages for translating (less then two). Please try again later.";
+            modelAndView.addObject("errorMassage", errorMassage);
+            throw new TranslateServiceException("Too less available languages for translating (less then two).");
         }
         translatorDto.setLanguages(languages);
-
         translatorDto.setTextIn("This is the most perfect translator in the world I have ever seen!");
-        return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
+        modelAndView.addObject("translatorDto", translatorDto);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/doTransl", method = RequestMethod.GET)
@@ -60,11 +63,17 @@ public class TranslatorController {
                 translatorDto.setLanguageOut(language);
             }
         }
+        ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
         try {
             translatorDto.setTextOut(translateService.translate(textIn,languageIn,languageOut).translation());
-        } catch (Exception e) {
+        } catch (TranslateServiceException e) {
+            e.printStackTrace();
+            String errorMassage = "We can't translate this text because you choose the same language! Please chose different language!";
+            modelAndView.addObject("errorMassage", errorMassage);
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
-        return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
+        return modelAndView;
     }
 }
