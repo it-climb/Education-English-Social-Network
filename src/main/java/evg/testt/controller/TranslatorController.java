@@ -1,8 +1,9 @@
 package evg.testt.controller;
 
 import evg.testt.dto.TranslatorDto;
-import evg.testt.exception.TranslateServiceException;
-import evg.testt.service.impl.translateserviceimpl.TranslateServiceImpl;
+import evg.testt.exception.translateexceptions.EmptyFieldException;
+import evg.testt.exception.translateexceptions.TheSameLanguageException;
+import evg.testt.exception.translateexceptions.TranslateServiceException;
 import evg.testt.service.translateservice.Language;
 import evg.testt.service.translateservice.TranslateService;
 import evg.testt.util.JspPath;
@@ -65,13 +66,28 @@ public class TranslatorController {
         }
         ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
         try {
+            if (translatorDto.getTextIn().isEmpty()) {
+                throw new EmptyFieldException();
+            }
+            if (languageIn.equals(languageOut)) {
+                throw new TheSameLanguageException();
+            }
             translatorDto.setTextOut(translateService.translate(textIn,languageIn,languageOut).translation());
-        } catch (TranslateServiceException e) {
+        } catch (EmptyFieldException e) {
+            String errorMassage = "Please fill expression for translating.";
+            modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
+        } catch (TheSameLanguageException e) {
             String errorMassage = "We can't translate this text because you choose the same language! Please chose different language!";
             modelAndView.addObject("errorMassage", errorMassage);
-        }
-        catch (Exception e) {
+            e.printStackTrace();
+        } catch (TranslateServiceException e) {
+            String errorMassage = "We can't translate this expression. Please try change your query.";
+            modelAndView.addObject("errorMassage", errorMassage);
+            e.printStackTrace();
+        } catch (Exception e) {
+            String errorMassage = e.getMessage();
+            modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
         }
         return modelAndView;

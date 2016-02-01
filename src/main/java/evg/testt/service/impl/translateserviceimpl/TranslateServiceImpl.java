@@ -1,6 +1,6 @@
 package evg.testt.service.impl.translateserviceimpl;
 
-import evg.testt.exception.TranslateServiceException;
+import evg.testt.exception.translateexceptions.TranslateServiceException;
 import evg.testt.service.translateservice.Language;
 import evg.testt.service.translateservice.TranslateResult;
 import evg.testt.service.translateservice.TranslateService;

@@ -1,4 +1,4 @@
-package evg.testt.exception;
+package evg.testt.exception.translateexceptions;
 
 public class TranslateServiceException extends RuntimeException {
     public TranslateServiceException() {
