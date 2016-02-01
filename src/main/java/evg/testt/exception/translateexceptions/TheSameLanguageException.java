@@ -1,8 +1,7 @@
 package evg.testt.exception.translateexceptions;
 
-/**
- * Created by alex on 01.02.16.
- */
+
+
 public class TheSameLanguageException extends TranslateServiceException {
 
     public TheSameLanguageException() {
