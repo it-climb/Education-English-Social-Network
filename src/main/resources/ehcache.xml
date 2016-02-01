@@ -1,5 +1,4 @@
 <ehcache
-        xsi:noNamespaceSchemaLocation="ehcache.xsd"
         updateCheck="true"
         monitoring="autodetect"
         dynamicConfig="true"
@@ -22,7 +21,7 @@
            memoryStoreEvictionPolicy="LRU"/>
 
     <cache name="employeesAllCache"
-           maxBytesLocalHeap="100M"
+           maxBytesLocalHeap="150M"
            eternal="true"
            memoryStoreEvictionPolicy="LRU"/>
 
