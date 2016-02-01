@@ -1,5 +1,7 @@
 package evg.testt.service.impl.translateserviceimpl;
 
+import evg.testt.exception.translateexceptions.EmptyFieldException;
+import evg.testt.exception.translateexceptions.TheSameLanguageException;
 import evg.testt.exception.translateexceptions.TranslateServiceException;
 import evg.testt.service.translateservice.Language;
 import evg.testt.service.translateservice.TranslateResult;
@@ -139,14 +141,21 @@ public class TranslateServiceImpl implements TranslateService {
 
     @Override
     public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) {
-        TranslateParams translateParams = new TranslateParams(textToTranslate,sourceLang,targetLang);
-        TranslateResultImpl translateResult = executeAndProcessResponseForMainURL(translateParams);
+        TranslateResultImpl translateResult = new TranslateResultImpl();
+        if (textToTranslate.isEmpty()) {
+            throw new EmptyFieldException("No data to translate. Please fill expression for translating.");
+        } else if (sourceLang.equals(targetLang)) {
+            throw new TheSameLanguageException("We can't translate this text because you choose the same language!" +
+                    " Please chose different language!");
+        } else {
+            TranslateParams translateParams = new TranslateParams(textToTranslate,sourceLang,targetLang);
+            translateResult = executeAndProcessResponseForMainURL(translateParams);
 
-        if(sourceLang.equals(LANG_ENGLISH_EN.getShortName()) && targetLang.equals(LANG_RUSSIAN_RU.getShortName())) {
-            TranslateResultImpl additionTranslateResult = executeAndProcessResponseForAddURL(translateParams);
-            updateTranslateResult(translateResult,additionTranslateResult);
+            if(sourceLang.equals(LANG_ENGLISH_EN.getShortName()) && targetLang.equals(LANG_RUSSIAN_RU.getShortName())) {
+                TranslateResultImpl additionTranslateResult = executeAndProcessResponseForAddURL(translateParams);
+                updateTranslateResult(translateResult,additionTranslateResult);
+            }
         }
-
         return translateResult;
     }
 

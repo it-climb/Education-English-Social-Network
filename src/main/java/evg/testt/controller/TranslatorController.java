@@ -66,14 +66,7 @@ public class TranslatorController {
         }
         ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
         try {
-            if (translatorDto.getTextIn().isEmpty()) {
-                throw new EmptyFieldException("No data to translate. Please fill expression for translating.");
-            }
-            if (languageIn.equals(languageOut)) {
-                throw new TheSameLanguageException("We can't translate this text because you choose the same language!" +
-                        " Please chose different language!");
-            }
-            translatorDto.setTextOut(translateService.translate(textIn,languageIn,languageOut).translation());
+            translatorDto.setTextOut(translateService.translate(textIn, languageIn, languageOut).translation());
         } catch (EmptyFieldException e) {
             String errorMassage = e.getMessage();
             modelAndView.addObject("errorMassage", errorMassage);
