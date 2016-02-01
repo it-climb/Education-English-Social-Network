@@ -25,11 +25,11 @@ public class DepartmentController{
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
-        ModelAndView qqq = new ModelAndView(JspPath.DEPARTMENT_ALL);
-        qqq.addObject("email", sessionUser.getEmail());
-        qqq.addObject("departments", departmentService.getAll());
-        return qqq;
 
+        ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_ALL);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("departments", departmentService.getAll());
+        return modelAndView;
     }
 
 

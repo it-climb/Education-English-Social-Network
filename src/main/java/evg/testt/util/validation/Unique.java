@@ -4,12 +4,14 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Constraint(validatedBy = EmailValidation.class)
+
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = EmailValidation.class)
 @Documented
 public @interface Unique {
-    String message() default "{org.hibernate.validator.constraints.Unique.message}";
+
+    String message() default "{email}";
 
     Class<?>[] groups() default { };
 
