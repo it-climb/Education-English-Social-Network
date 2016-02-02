@@ -1,16 +1,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html>
 <head>
-    <link href="resources/assets/css/stylepages.css" rel="stylesheet">
+    <%--<link href="resources/assets/css/stylepages.css" rel="stylesheet">--%>
     <title>Edit Department</title>
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <%@ include file="/resources/assets/jsp/navigationbar.jsp"%>
-    </div>
-    <div id="content">
         <form:form method="post" action="/depSaveOrUpdate">
             <table>
                 <tr>
@@ -32,7 +28,7 @@
                 </tr>
             </table>
         </form:form>
-    </div>
-</div>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 </html>

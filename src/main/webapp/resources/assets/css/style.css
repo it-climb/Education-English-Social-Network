@@ -21,7 +21,7 @@ body {
 }
 
 .pad-adjust {
-    padding-top: 5px; 
+    padding-top: 5px;
     padding-bottom: 5px;
 }
 
@@ -120,7 +120,7 @@ border-color: rgba(20, 173, 124, 1)
 .head-main {
     font-size:50px ;
     font-weight:900;
-    
+
 }
 
 .head-last {
@@ -130,7 +130,7 @@ border-color: rgba(20, 173, 124, 1)
 }
 
 .btn-lg, .btn-group-lg > .btn {
-border-radius: 0px; 
+border-radius: 0px;
 
 }
 
@@ -156,7 +156,7 @@ border-radius: 0px;
     line-height: 16px;
     padding: 15px 0;
     position: absolute;
-    text-align: center;  
+    text-align: center;
     width: 100%;
    line-height:25px;
 }
@@ -206,12 +206,12 @@ padding: 5px;
 
 
 .plan {
-   
+
     padding: 0 0 15px 0;
     margin: 30px 0px;
     list-style: none;
     text-align: center;
-  
+
 }
 
 .plan li {
@@ -260,10 +260,10 @@ padding: 5px;
 #add {
     font-size:30px;
     line-height:40px;
-    
+
 }
 #contact-inner .form-control {
-   
+
     height: 55px;
 }
 
@@ -273,7 +273,7 @@ padding: 5px;
 
 .scl {
     background:rgba(20, 173, 124, 1);
-    
+
     color:#fff;
 }
     .scl h4 {

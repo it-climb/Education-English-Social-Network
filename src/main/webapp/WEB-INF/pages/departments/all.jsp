@@ -1,24 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <head>
-  <link href="resources/assets/css/stylepages.css" rel="stylesheet">
+  <%--<link href="resources/assets/css/stylepages.css" rel="stylesheet">--%>
   <title>All</title>
 </head>
 <body>
-<div id="container">
-  <div id="header">
-      <%@ include file="/resources/assets/jsp/navigationbar.jsp"%>
-  </div>
-<div id="content">
+
   <table width="200px">
     <tr>
       <td width="200"><b>Departments:</b></td>
     </tr>
   </table>
-  <table width="500" border="2">
+  <table width="500" border="2" valign="middle">
 
     <tr>
-      <td width="50" align="center"><b>ID</b></td>
+      <td width="50" align="center" ><b>ID</b></td>
       <td width="100" align="center" ><b>Name</b></td>
       <td colspan="3" align="center"><b>Actions</b></td>
     </tr>
@@ -55,7 +53,7 @@
         </c:forEach>
     <br>
     </table>
-    <table width=300px>
+    <table width=300px valign="middle">
       <tr>
         <td align="center" valign="middle">
           <form method="post" action="/depEdit">
@@ -64,7 +62,6 @@
         </td>
       </tr>
     </table>
-  </div>
-</div>
+
 </body>
 </html>

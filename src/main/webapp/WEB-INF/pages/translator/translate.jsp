@@ -1,18 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <link href="resources/assets/css/stylepages.css" rel="stylesheet">
     <title>Translate</title>
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <%@ include file="/resources/assets/jsp/navigationbar.jsp"%>
-  </div>
-    <div id="content">
 
            <h5><b>We are will translate here !!</b></h5>
 
@@ -33,8 +27,6 @@
             <textarea rows="7" cols="70" name="textOut" readonly>${translatorDto.textOut}</textarea><br><br>
             <input type="submit" value="Translate !">
         </form>
-    </div>
-</div>
 </body>
 </html>
 

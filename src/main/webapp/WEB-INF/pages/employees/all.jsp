@@ -1,16 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html>
 <head>
-    <link href="resources/assets/css/stylepages.css" rel="stylesheet">
     <title>AllEmployee</title>
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <%@ include file="/resources/assets/jsp/navigationbar.jsp"%>
-    </div>
-    <div id="content">
         <table width="200px">
             <tr>
                 <td width="200" height="50"> Departmet <b>${department.name}:</b></td>
@@ -58,7 +53,6 @@
                 </td>
             </tr>
         </table>
-    </div>
-</div>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%--<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-
+<%--<tiles:insertDefinition name="base-template" />--%>
         <select name="${param.selectName}">
             <c:forEach var="language" items="${translatorDto2.languages}">
                 <c:choose>

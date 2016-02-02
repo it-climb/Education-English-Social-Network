@@ -4,6 +4,7 @@ import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,5 +23,12 @@ public class HomeController {
         //HttpSession session = request.getSession();
         return new ModelAndView(JspPath.HOME);
     }
+//
+//        @RequestMapping(value = "/page2", method = RequestMethod.GET)
+//        public String secondPage(Model model) {
+//            model.addAttribute("secondPageMessage", "This is the second page");
+//            return "secondpage";
+//        }
 
-}
+    }
+
