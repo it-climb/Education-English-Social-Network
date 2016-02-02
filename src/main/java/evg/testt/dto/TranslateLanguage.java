@@ -1,8 +1,8 @@
-package evg.testt.service.impl.translateserviceimpl;
+package evg.testt.dto;
 
 import evg.testt.service.translateservice.Language;
 
-class TranslateLanguage implements Language {
+public class TranslateLanguage implements Language {
 
     private final String shortName;
 

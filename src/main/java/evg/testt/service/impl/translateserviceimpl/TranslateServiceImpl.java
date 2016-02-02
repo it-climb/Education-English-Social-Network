@@ -1,5 +1,7 @@
 package evg.testt.service.impl.translateserviceimpl;
 
+import evg.testt.dto.TranslateLanguage;
+import evg.testt.dto.TranslateResultImpl;
 import evg.testt.exception.translateexceptions.EmptyFieldException;
 import evg.testt.exception.translateexceptions.TheSameLanguageException;
 import evg.testt.exception.translateexceptions.TranslateServiceException;
@@ -141,7 +143,7 @@ public class TranslateServiceImpl implements TranslateService {
 
     @Override
     public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) {
-        TranslateResultImpl translateResult = new TranslateResultImpl();
+        TranslateResultImpl translateResult;
         if (textToTranslate.isEmpty()) {
             throw new EmptyFieldException("No data to translate. Please fill expression for translating.");
         } else if (sourceLang.equals(targetLang)) {
