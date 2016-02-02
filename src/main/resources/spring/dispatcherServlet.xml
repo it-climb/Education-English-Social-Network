@@ -27,12 +27,6 @@
     </bean>
 
 
-    <bean id="validator"
-          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-    <property name= "validationMessageSource" ref="messageSource"/>
-    </bean>
-
-
     <bean class="org.springframework.context.support.ResourceBundleMessageSource"
           id="messageSource">
         <property name="basename" value="messages" />

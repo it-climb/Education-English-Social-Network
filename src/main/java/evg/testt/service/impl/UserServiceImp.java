@@ -5,12 +5,18 @@ import evg.testt.model.User;
 import evg.testt.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImp extends BaseService<User, UserDao> implements UserService {
 
     @Override
     public User getByEmail(String email) {
-        return dao.findByEmail(email);
+       return dao.findByEmail(email);
     }
 
+   /* @Override
+    public List<User> getByEmails(String email) {
+        return dao.findByEmails(email);
+    }*/
 }
