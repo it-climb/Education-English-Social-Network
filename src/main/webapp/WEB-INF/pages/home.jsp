@@ -14,7 +14,8 @@
 
   <h4>Home</h4>
   <a href="/dep">Departments</a><br><br>
-  <a href="/translate">Translator</a>
+  <a href="/translate">Translator</a><br><br>
+  <a href="/login">Login</a>
 
 </body>
 </html>
