@@ -14,8 +14,8 @@ import javax.validation.constraints.Size;
 @Entity(name = "users")
 public class User extends BaseModel {
 
-    @Unique(message = "Thi Email use somfing else")
-    @Email(message = "Yor email incorrect")
+    @Unique(message = "This email already exists")
+    @Email(message = "Invalid email")
     private String email;
 
     @NotEmpty(message = "Please enter your password")
