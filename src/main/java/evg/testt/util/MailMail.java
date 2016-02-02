@@ -1,4 +1,4 @@
-package evg.testt;
+package evg.testt.util;
 
 
 import org.springframework.mail.MailSender;
