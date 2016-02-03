@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.sql.SQLException;
 
 @Controller
@@ -20,19 +19,24 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private static final Logger DEBUG_LOGGER = LogManager.getLogger("debugLogger");
-    private static final Logger INFO_LOGGER = LogManager.getLogger("infoLogger");
-    private static final Logger WARN_LOGGER = LogManager.getLogger("warnLogger");
-    private static final Logger ERROR_LOGGER = LogManager.getLogger("errorLogger");
+//    private static final Logger LOGGER = LogManager.getRootLogger();
+
+//    private static final Logger DEBUG_LOGGER = LogManager.getLogger("debugLogger");
+//    private static final Logger INFO_LOGGER = LogManager.getLogger("infoLogger");
+//    private static final Logger WARN_LOGGER = LogManager.getLogger("warnLogger");
+//    private static final Logger ERROR_LOGGER = LogManager.getLogger("errorLogger");
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
         try {
-            INFO_LOGGER.info("Welcome page Departments");
+//            INFO_LOGGER.info("Welcome page Departments");
+//            LOGGER.info("Welcome page Departments");
             return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
         } catch (SQLException e) {
-            ERROR_LOGGER.error("Home Department does not open\n" +
-                    "exception type: ", e);
+//            ERROR_LOGGER.error("Home Department does not open\n" +
+//                    "exception type: ", e);
+//            LOGGER.error("Home Department does not open\n" +
+//                    "exception type: ", e);
             throw e;
         }
     }
@@ -43,10 +47,13 @@ public class DepartmentController{
 //        if(id==null){
             try {
                 departmentService.insert(department);
-                DEBUG_LOGGER.debug("add new one department: " + department.getName());
+//                DEBUG_LOGGER.debug("add new one department: " + department.getName());
+//                LOGGER.debug("add new one department: " + department.getName());
             } catch (SQLException e) {
-                ERROR_LOGGER.error("failed to add a new Department\n" +
-                        "exception type: ", e);
+//                ERROR_LOGGER.error("failed to add a new Department\n" +
+//                        "exception type: ", e);
+//                LOGGER.error("failed to add a new Department\n" +
+//                        "exception type: ", e);
             }
 //        }else{
 //            try {
@@ -58,7 +65,8 @@ public class DepartmentController{
 //                        "exception type: ", e);
 //            }
 //        }
-        WARN_LOGGER.warn("method addNewOne was used!");
+//        WARN_LOGGER.warn("method addNewOne was used!");
+//        LOGGER.warn("method addNewOne was used!");
         return "redirect:/dep";
     }
 
@@ -67,13 +75,18 @@ public class DepartmentController{
         Department department = Department.newBuilder().setId(id).build();
         try {
             departmentService.delete(department);
-            DEBUG_LOGGER.debug("delete department of");
+//            DEBUG_LOGGER.debug("delete department of");
+//            LOGGER.debug("delete department of");
         } catch (SQLException e) {
-            ERROR_LOGGER.error("Remove Department failed " +
-                    department.getName() + "\n" +
-                    "exception type: ", e);
+//            ERROR_LOGGER.error("Remove Department failed " +
+//                    department.getName() + "\n" +
+//                    "exception type: ", e);
+//            LOGGER.error("Remove Department failed " +
+//                    department.getName() + "\n" +
+//                    "exception type: ", e);
         }
-        DEBUG_LOGGER.debug("delete one department");
+//        DEBUG_LOGGER.debug("delete one department");
+//        LOGGER.debug("delete one department");
         return "redirect:/dep";
     }
 
@@ -85,11 +98,15 @@ public class DepartmentController{
             try {
                 department = departmentService.getById(id);
                 modelAndView.addObject("department", department);
-                DEBUG_LOGGER.debug("update department of " + department.getName());
+//                DEBUG_LOGGER.debug("update department of " + department.getName());
+//                LOGGER.debug("update department of " + department.getName());
             } catch (SQLException e) {
-                ERROR_LOGGER.error("failed to update the Department of " +
-                        department.getName() + "\n" +
-                        "exception type: ", e);
+//                ERROR_LOGGER.error("failed to update the Department of " +
+//                        department.getName() + "\n" +
+//                        "exception type: ", e);
+//                LOGGER.error("failed to update the Department of " +
+//                        department.getName() + "\n" +
+//                        "exception type: ", e);
             }
 
         }

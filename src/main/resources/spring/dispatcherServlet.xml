@@ -2,17 +2,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop">
 
     <mvc:annotation-driven/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />
+    <!--<mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />-->
 
     <context:component-scan base-package="evg.testt">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
@@ -23,4 +25,15 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean id="departmentService" class="evg.testt.controller.DepartmentController"/>
+    <bean id="logger" class="evg.testt.aop.logger.LoggerController"/>
+    <aop:config>
+        <aop:aspect ref="logger">
+            <aop:pointcut id="delete" expression="execution(* evg.testt.controller.DepartmentController.deleteOne(..))"/>
+            <aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>
+            <aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>
+        </aop:aspect>
+    </aop:config>
+
 </beans>
