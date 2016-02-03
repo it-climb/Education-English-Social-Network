@@ -6,27 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
 
-public class EmailValidation  implements ConstraintValidator<Unique, Object> {
+
+public class EmailValidation  implements ConstraintValidator<Unique, String> {
 
     @Autowired
     UserService userService;
 
+    private String message;
+
     @Override
     public void initialize(Unique unique) {
-        //TODO
+        this.message = unique.message();
     }
 
     @Override
-    public boolean isValid(Object target, ConstraintValidatorContext context) {
-        User user = (User) target;
-
-        /*List<User> users = userService.getByEmails(user.getEmail());
-        if (users.size() !=0) return users.get(0).getId() == user.getId();*/
-
-        User userValid = userService.getByEmail(user.getEmail());
-        if(userValid != null) return userValid.getId() == user.getId();
+    public boolean isValid(String target, ConstraintValidatorContext context) {
+        try {
+            User user = userService.getByEmail(target);
+            if(user != null) return false;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return true;
     }
 }

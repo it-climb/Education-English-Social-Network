@@ -16,4 +16,12 @@ public @interface Unique {
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    @interface List{
+        Unique[] value();
+    }
+
 }

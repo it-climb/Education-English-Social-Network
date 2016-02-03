@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.sql.SQLException;
 
 @Controller
@@ -43,8 +44,8 @@ public class UserController {
 
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
-    public String addNewUser(@ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
-        userValid.validate(user, result);
+    public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
+       // userValid.validate(user, result);
 
         if(result.hasErrors()){
            return "redirect:/loginProblems";
