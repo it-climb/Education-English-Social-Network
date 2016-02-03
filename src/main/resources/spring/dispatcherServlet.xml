@@ -10,12 +10,12 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <mvc:annotation-driven/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <!--<mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />-->
+    <mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />
 
     <context:component-scan base-package="evg.testt">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
@@ -27,7 +27,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="departmentService" class="evg.testt.controller.DepartmentController"/>
+    <bean id="controller" class="evg.testt.controller.DepartmentController"/>
     <bean id="logger" class="evg.testt.aop.logger.LoggerController"/>
     <aop:config>
         <aop:aspect ref="logger">
