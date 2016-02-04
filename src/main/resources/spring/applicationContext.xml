@@ -4,6 +4,7 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -13,12 +14,28 @@
         http://www.springframework.org/schema/data/jpa
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         http://www.springframework.org/schema/data/mongo
-        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:annotation-config/>
 
     <context:component-scan base-package="evg.testt"/>
 
+    <aop:aspectj-autoproxy/>
+
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
+
+    <bean id="controller" class="evg.testt.controller.DepartmentController"/>
+    <bean id="logger" class="evg.testt.aop.logger.LoggerController"/>
+    <bean id="customerServiceProxy"
+          class="org.springframework.aop.framework.ProxyFactoryBean"/>
+    <aop:config>
+        <aop:aspect ref="logger">
+            <aop:pointcut id="delete" expression="execution(* evg.testt.controller.DepartmentController.deleteOne(..))"/>
+            <aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>
+            <aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
