@@ -19,12 +19,7 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-//    private static final Logger LOGGER = LogManager.getRootLogger();
-
-//    private static final Logger DEBUG_LOGGER = LogManager.getLogger("debugLogger");
-//    private static final Logger INFO_LOGGER = LogManager.getLogger("infoLogger");
-//    private static final Logger WARN_LOGGER = LogManager.getLogger("warnLogger");
-//    private static final Logger ERROR_LOGGER = LogManager.getLogger("errorLogger");
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
@@ -34,8 +29,8 @@ public class DepartmentController{
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) {
         Department department = Department.newBuilder().setName(name).setId(id).build();
-//        if(id==null){
             try {
+                if(id==null)
                 departmentService.insert(department);
 //                DEBUG_LOGGER.debug("add new one department: " + department.getName());
 
