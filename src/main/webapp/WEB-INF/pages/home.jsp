@@ -63,8 +63,10 @@
       <h3 class="head-last">Bla bla bla bla</h3>
       <a href="/dep" class="btn btn-primary btn-lg ">Departments</a>
       <a href="/translate" class="btn btn-primary btn-lg ">Translator</a>
+      <a href="/login" class="btn btn-primary btn-lg ">Login</a>
 
-      <%--<a href="/dep">Departments</a><br><br>--%>
+
+    <%--<a href="/dep">Departments</a><br><br>--%>
       <%--<a href="/translate">Translator</a>--%>
 
     </div>
