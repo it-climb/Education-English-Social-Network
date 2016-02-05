@@ -7,5 +7,4 @@ import java.util.List;
 public interface UserService extends Service<User> {
 
     User getByEmail (String email);
-    //List<User> getByEmails (String email);
 }
