@@ -11,7 +11,7 @@ public class Department extends BaseModel{
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 
     public String getName() {
