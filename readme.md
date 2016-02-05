@@ -21,9 +21,6 @@ To run project:
  - Double check for not existing of any exceptions
 
  - Observe 'hello world' message from browser (https://localhost:8080)
- 
- - create mysql command 'insert into hibernate_sequence(next_val) values (0)'
-
 
 github link https://github.com/Ievgen-Grabets/TestT
 

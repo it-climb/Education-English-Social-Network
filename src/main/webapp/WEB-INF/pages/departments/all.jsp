@@ -38,9 +38,7 @@
   </tr>
 </table>
 <br>
-
-<nav>
-  <a href="/">Home</a>
-</nav>
+<a href="/">Home</a>
+<a href="/mail">Mail</a>
 </body>
 </html>
