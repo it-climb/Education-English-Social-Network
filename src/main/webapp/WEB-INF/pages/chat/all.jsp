@@ -16,12 +16,12 @@
             <td>${user.email}</td>
             <td>
                 <form method="get" action="/writeTo">
-                    <input type="hidden" name="email" value=${user.email}>
+                    <input type="hidden" name="recEmail" value=${user.email}>
                     <input type="submit" value="Write">
                 </form>
             </td>
             <td><form method="get" action="/messages">
-                <input type="hidden" name="email" value=${user.email}>
+                <input type="hidden" name="recEmail" value=${user.email}>
                 <input type="submit" value="OneToOne">
             </form>
         </tr>
@@ -34,7 +34,7 @@
         <div id="containerChat">
             <table>
                 <c:forEach var="chat" items="${chat}">
-                    <c:if test="${chat.receiver == '' || chat.receiver == null}">
+                    <c:if test="${chat.receiver == null}">
                         <tr>
                             <td>${chat.getUser().email}:${chat.message}</td>
                         </tr>
@@ -44,7 +44,7 @@
                             <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
                         </tr>
                     </c:if>
-                    <c:if test="${chat.user.email == email && (chat.receiver != '' || chat.receiver != null)}">
+                    <c:if test="${chat.user.email == email && (chat.receiver != null)}">
                         <tr>
                             <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
                         </tr>
@@ -60,6 +60,7 @@
                 <td colspan="5">
                     <input type="hidden" name="is121" value="false">
                     <input type="hidden" name="email" value="${email}">
+                    <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
             </tr>

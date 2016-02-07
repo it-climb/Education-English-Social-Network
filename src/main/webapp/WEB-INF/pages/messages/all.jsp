@@ -15,7 +15,7 @@
         <tr>
             <td>${user.email}</td>
             <td><form method="get" action="/messages">
-                <input type="hidden" name="email" value=${user.email}>
+                <input type="hidden" name="recEmail" value=${user.email}>
                 <input type="submit" value="OneToOne">
             </form>
         </tr>
@@ -27,13 +27,14 @@
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
+                <tr><td>My companion : ${receiver}</td></tr>
                 <c:forEach var="chat" items="${chat}">
-                    <c:if test="${chat.receiver == email}">
+                    <c:if test="${chat.receiver == email && receiver == chat.user.email}">
                         <tr>
                             <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
                         </tr>
                     </c:if>
-                    <c:if test="${chat.user.email == email && chat.receiver != ''}">
+                    <c:if test="${chat.user.email == email && receiver == chat.receiver}">
                         <tr>
                             <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
                         </tr>
@@ -47,8 +48,9 @@
                     <input width="30%" type="text" name="message">
                 </td>
                 <td colspan="5">
-                    <input type="hidden" name="email" value="${email}">
                     <input type="hidden" name="is121" value="true">
+                    <input type="hidden" name="email" value="${email}">
+                    <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
             </tr>

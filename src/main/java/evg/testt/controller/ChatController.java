@@ -48,33 +48,45 @@ public class ChatController {
     }
 
     @RequestMapping(value = "/writeTo", method = RequestMethod.GET)
-    public ModelAndView writeTo(@RequestParam(required = true) String email, HttpServletRequest request) throws SQLException {
+    public ModelAndView writeTo(@RequestParam(required = true) String recEmail, HttpServletRequest request) throws SQLException {
         ModelAndView modelAndView = chatPage(request, JspPath.CHAT_ALL);
-        modelAndView.addObject("receiver", email);
+        modelAndView.addObject("receiver", recEmail);
         return modelAndView;
     }
 
     @RequestMapping(value = "/chatAdd", method = RequestMethod.POST)
-    public String showAll(/*@ModelAttribute Chat chat,*/@RequestParam(required = true) String email,@RequestParam(required = false) String receiver, @RequestParam(required = true) String message, @RequestParam(required = false) boolean is121) throws SQLException {
+    public ModelAndView showAll(/*@ModelAttribute Chat chat,*/
+                                @RequestParam(required = true) String email,
+                                @RequestParam(required = false) String recEmail,
+                                @RequestParam(required = true) String message,
+                                @RequestParam(required = false) boolean is121,
+                                HttpServletRequest request) throws SQLException {
         User user = userService.getByEmail(email);
-        Chat chat = Chat.newBuilder().setUser(user).setMessage(message).build();
-        if (receiver == "" || receiver == null) {
-            chatService.insert(chat);
-        } else {
-            chat.setReceiver(receiver);
-            chatService.insert(chat);
+        if (recEmail == ""){
+            recEmail = null;
         }
-        if (is121 == true) {
+        Chat chat = Chat.newBuilder().setUser(user).setMessage(message).setReceiver(recEmail).build();
+        chatService.insert(chat);
+        if(is121 == true){
+            ModelAndView modelAndView = chatPage(request, JspPath.MESSAGES);
+            modelAndView.addObject("receiver", recEmail);
+            return modelAndView;
+        }else{
+            ModelAndView modelAndView = chatPage(request, JspPath.CHAT_ALL);
+            modelAndView.addObject("receiver", recEmail);
+            return modelAndView;
+        }
+        /*if (is121 == true) {
             return "redirect:/messages";
         }else{
             return "redirect:/chat";
-        }
+        }*/
     }
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
-    public ModelAndView show121/*show one to one*/(HttpServletRequest request,@RequestParam(required = true) String email) throws SQLException {
+    public ModelAndView show121/*show one to one*/(HttpServletRequest request,@RequestParam(required = false) String recEmail) throws SQLException {
         ModelAndView modelAndView = chatPage(request, JspPath.MESSAGES);
-        modelAndView.addObject("receiver", email);
+        modelAndView.addObject("receiver", recEmail);
         return modelAndView;
     }
 }
