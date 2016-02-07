@@ -1,11 +1,12 @@
 package evg.testt.controller;
 
 import evg.testt.dto.TranslatorDto;
-import evg.testt.model.Language;
-import evg.testt.service.LanguageService;
-import evg.testt.service.TranslatorService;
+import evg.testt.exception.translateexceptions.EmptyFieldException;
+import evg.testt.exception.translateexceptions.TheSameLanguageException;
+import evg.testt.exception.translateexceptions.TranslateServiceException;
+import evg.testt.service.translateservice.Language;
+import evg.testt.service.translateservice.TranslateService;
 import evg.testt.util.JspPath;
-import evg.testt.util.LanguageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Set;
 
 @Controller
@@ -22,31 +22,28 @@ import java.util.Set;
 public class TranslatorController {
 
     @Autowired
-    LanguageService languageService;
+    TranslateService translateService;
 
-    @Autowired
-    TranslatorService translatorService;
 
 //    @RequestMapping(value = "/translate", method = RequestMethod.GET)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView mainView() throws SQLException {
-        Set<Language> languages = new HashSet<>(languageService.getAll());
-        if (languages.size() == 0) {
-            List<String> langs = LanguageUtil.fillLanguages();
-            for (int i = 0; i < langs.size(); i++) {
-                Language language = new Language();
-                language.setLanguageName(langs.get(i));
-                language.setId(i+1);
-                languageService.update(language);
-            }
-            languages = new HashSet<>(languageService.getAll());
-        }
+    public ModelAndView mainView() throws TranslateServiceException {
+        ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME);
         TranslatorDto translatorDto = new TranslatorDto();
-        translatorDto.setLanguageIn(LanguageUtil.defaultLangIn("English"));
-        translatorDto.setLanguageOut(LanguageUtil.defaultLangOut("Ukranian"));
+        Set<Language> languages = translateService.getAvailableLanguages();
+        if (languages.size() > 1) {
+            Iterator<Language> languageIterator = languages.iterator();
+            translatorDto.setLanguageOut(languageIterator.next());
+            translatorDto.setLanguageIn(languageIterator.next());
+        } else {
+            String errorMassage = "We can't do translating. Too less available languages for translating (less then two). Please try again later.";
+            modelAndView.addObject("errorMassage", errorMassage);
+            throw new TranslateServiceException("Too less available languages for translating (less then two).");
+        }
         translatorDto.setLanguages(languages);
-        translatorDto.setTextIn("This is the most perfect translator in the world I ever seen !");
-        return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
+        translatorDto.setTextIn("This is the most perfect translator in the world I have ever seen!");
+        modelAndView.addObject("translatorDto", translatorDto);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/doTransl", method = RequestMethod.GET)
@@ -57,14 +54,37 @@ public class TranslatorController {
     @RequestMapping(value = "/doTransl", method = RequestMethod.POST)
     public ModelAndView doTranslate(String languageIn, String languageOut, String textIn) throws SQLException {
         TranslatorDto translatorDto = new TranslatorDto();
-        translatorDto.setLanguageIn(LanguageUtil.defaultLangIn(languageIn));
-        translatorDto.setLanguageOut(LanguageUtil.defaultLangOut(languageOut));
         translatorDto.setTextIn(textIn);
-        Set<Language> languages = new HashSet<>(languageService.getAll());
+        Set<Language> languages = translateService.getAvailableLanguages();
         translatorDto.setLanguages(languages);
-        translatorDto = translatorService.translate(translatorDto);
-        return new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
+        for (Language language: languages) {
+            if (language.getShortName().equals(languageIn)) {
+                translatorDto.setLanguageIn(language);
+            }
+            if (language.getShortName().equals(languageOut)) {
+                translatorDto.setLanguageOut(language);
+            }
+        }
+        ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
+        try {
+            translatorDto.setTextOut(translateService.translate(textIn, languageIn, languageOut).translation());
+        } catch (EmptyFieldException e) {
+            String errorMassage = e.getMessage();
+            modelAndView.addObject("errorMassage", errorMassage);
+            e.printStackTrace();
+        } catch (TheSameLanguageException e) {
+            String errorMassage = e.getMessage();
+            modelAndView.addObject("errorMassage", errorMassage);
+            e.printStackTrace();
+        } catch (TranslateServiceException e) {
+            String errorMassage = "We can't translate this expression. Please try change your query.";
+            modelAndView.addObject("errorMassage", errorMassage);
+            e.printStackTrace();
+        } catch (Exception e) {
+            String errorMassage = e.getMessage();
+            modelAndView.addObject("errorMassage", errorMassage);
+            e.printStackTrace();
+        }
+        return modelAndView;
     }
-
-
 }

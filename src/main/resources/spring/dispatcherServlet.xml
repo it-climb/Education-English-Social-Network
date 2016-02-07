@@ -1,15 +1,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <mvc:annotation-driven/>
+
+    <cache:annotation-driven/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />
@@ -18,10 +22,29 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
+
     <!-- Указываем Spring MVC где будут лежать наши Viewшки, в данном случае это "/WEB-INF/pages/" -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- *******************************
+	 ***** CACHE CONFIGURATION *****
+	 ******************************* -->
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcache"/>
+    </bean>
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+        <property name="shared" value="true"/>
+    </bean>
+
+
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource"
+          id="messageSource">
+        <property name="basename" value="messages" />
     </bean>
 
     <beans:beans xmlns:beans="http://www.springframework.org/schema/beans">
@@ -47,46 +70,3 @@
 
     </beans:beans>
 </beans>
-
-
-<!--&lt;!&ndash;______________________________________________________________________&ndash;&gt;-->
-<!--<beans:beans xmlns="http://www.springframework.org/schema/mvc"-->
-             <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-             <!--xmlns:beans="http://www.springframework.org/schema/beans"-->
-             <!--xmlns:context="http://www.springframework.org/schema/context"-->
-             <!--xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd-->
-		<!--http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd-->
-		<!--http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">-->
-
-<!--&lt;!&ndash; DispatcherServlet Context: defines this servlet's request-processing infrastructure &ndash;&gt;-->
-
-<!--&lt;!&ndash; Enables the Spring MVC @Controller programming model &ndash;&gt;-->
-<!--<annotation-driven />-->
-
-<!--&lt;!&ndash; Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory &ndash;&gt;-->
-<!--<resources mapping="/resources/**" location="/resources/" />-->
-
-<!--&lt;!&ndash; Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory &ndash;&gt;-->
-<!--<beans:bean id="tilesConfigurer"-->
-            <!--class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">-->
-    <!--<beans:property name="definitions">-->
-        <!--<beans:list>-->
-            <!--<beans:value>/WEB-INF/tiles.xml</beans:value>-->
-            <!--<beans:value>/WEB-INF/views/**/views.xml</beans:value>-->
-        <!--</beans:list>-->
-    <!--</beans:property>-->
-<!--</beans:bean>-->
-<!--<beans:bean id="tilesViewResolver"-->
-            <!--class="org.springframework.web.servlet.view.UrlBasedViewResolver">-->
-    <!--<beans:property name="viewClass">-->
-        <!--<beans:value>-->
-            <!--org.springframework.web.servlet.view.tiles3.TilesView-->
-        <!--</beans:value>-->
-    <!--</beans:property>-->
-    <!--<beans:property name="order" value="0"/>-->
-<!--</beans:bean>-->
-
-<!--<context:component-scan base-package="com.frameworkonly.tilesapp" />-->
-
-<!--</beans:beans>-->
-<!--&lt;!&ndash;________________________________________________________&ndash;&gt;-->

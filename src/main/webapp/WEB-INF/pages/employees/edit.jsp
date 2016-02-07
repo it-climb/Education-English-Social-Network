@@ -7,27 +7,25 @@
     <title>Edit Employee</title>
 </head>
 <body>
-        <form:form method="post" action="/employeeSaveOrUpdate" modelAttribute="employee">
-            <input type="hidden" name="departmentId" value="${employee.department.id}">
-            <table>
-                <tr>
-                    <td width="150" height="50">First Name:</td>
-                    <td height="50"><input type="text" name="firstName" value="${employee.firstName}"/></td>
-                </tr>
-                <tr>
-                    <td width="150" height="50">Second Name:</td>
-                    <td height="50"><input type="text" name="secondName" value="${employee.secondName}"/></td>
-                </tr>
-                </table>
-            <table width="200">
-                <tr>
-                    <td width="50" align="center" height="50">
-                        <input type="submit" value="Add">
-                    </td>
-                </tr>
-            </table>
-        </form:form>
+<form:form method="post" action="/employeeSaveOrUpdate" modelAttribute="employee">
 
+    <input type="hidden" name="departmentId" value="${employee.department.id}">
+    <input type="hidden" name="id" value="${employee.id}">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" name="firstName" value="${employee.firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Second Name:</td>
+            <td><input type="text" name="secondName" value="${employee.secondName}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save">
+            </td>
+        </tr>
+    </table>
+</form:form>
 </body>
 </html>
-

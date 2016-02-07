@@ -6,7 +6,6 @@ package evg.testt.util;
 public class JspPath {
 
     public static final String HOME = "home";
-
     public static final String DEPARTMENT_ALL = "allDep";
     public static final String DEPARTMENT_EDIT = "depEdit";
     public static final String EMPLOYEE_ALL = "allEmp";
@@ -17,8 +16,9 @@ public class JspPath {
     public static final String USER_LOGI_PROBLEM = "logProblem"; // Беда в слове LOGIN
     public static final String DESCRIPTION_ALL = "descAll";
     public static final String DESCRIPTION_EDIT = "descEdit";
-
     public static final String WORD_ALL = "words/all";
     public static final String WORD_EDIT = "words/edit";
-    
+    public static final String ACCOUNT_SHOW = "account/show";
+    public static final String DEFAULT_ERROR_VIEW = "error-404";
+
 }
