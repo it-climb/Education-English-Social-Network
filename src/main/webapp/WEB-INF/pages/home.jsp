@@ -30,7 +30,7 @@
   <![endif]-->
 </head>
 <body>
-<img src="resources/assets/img/1.jpg" style="position: fixed; left: 0px; top: -190.654px; width: 1375px; height: 916.309px; bottom: auto; right: auto;" class="vegas-background"><div style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(&quot;resources/assets/plugins/vegas/overlays/02.png&quot;);" class="vegas-overlay"></div>
+<img src="resources/assets/img/1.jpg" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; bottom: auto; right: auto;" class="vegas-background"><div style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(&quot;resources/assets/plugins/vegas/overlays/02.png&quot;);" class="vegas-overlay"></div>
 <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
   <div class="container">
     <div class="navbar-header">
