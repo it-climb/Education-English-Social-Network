@@ -11,6 +11,14 @@
     <tr>
         <td><b>Users List</b></td>
     </tr>
+    <tr>
+        <td>
+            <form method="get" action="/writeTo">
+                <input type="hidden" name="recEmail" value="">
+                <input type="submit" value="Write to all">
+            </form>
+        </td>
+    </tr>
     <c:forEach var="user" items="${users}">
         <tr>
             <td>${user.email}</td>
