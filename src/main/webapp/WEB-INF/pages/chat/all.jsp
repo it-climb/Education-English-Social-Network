@@ -78,7 +78,6 @@
                     <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
-                <td>to: ${receiver}</td>
             </tr>
             <tr>
                 <td><input type="hidden" name="receiver" value="${receiver}"></td>
