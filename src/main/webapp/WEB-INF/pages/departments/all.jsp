@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <head>
   <title>All</title>
 </head>
@@ -38,8 +40,5 @@
     </td>
   </tr>
 </table>
-<br>
-<a href="/">Home</a>
-<a href="/mail">Mail</a>
 </body>
 </html>

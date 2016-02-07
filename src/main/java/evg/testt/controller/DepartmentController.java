@@ -21,6 +21,7 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
+
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
@@ -31,7 +32,6 @@ public class DepartmentController{
         modelAndView.addObject("departments", departmentService.getAll());
         return modelAndView;
     }
-
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
@@ -68,5 +68,4 @@ public class DepartmentController{
         }
         return modelAndView;
     }
-
 }

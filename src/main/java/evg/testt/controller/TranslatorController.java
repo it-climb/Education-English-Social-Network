@@ -25,6 +25,7 @@ public class TranslatorController {
     TranslateService translateService;
 
 
+//    @RequestMapping(value = "/translate", method = RequestMethod.GET)
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws TranslateServiceException {
         ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME);
