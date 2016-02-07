@@ -3,11 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
@@ -23,7 +18,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
+                <li><a href="/login">LOGIN</a></li>
                 <li><a href="/dep">DEPARTMENTS</a></li>
                 <li><a href="/translate">TRANSLATOR</a></li>
                 <li><a href="#contact">CONTACT</a></li>

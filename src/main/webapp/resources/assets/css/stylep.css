@@ -16,9 +16,8 @@
 
 html, body {
     height: 100%;
-    /*font-family:'Open Sans', sans-serif;*/
-    /*font-size:14px;*/
-    padding-bottom: 50px;
+    font-family:'Open Sans', sans-serif;
+    font-size:14px;
 }
 
 .pad-adjust {
@@ -291,18 +290,26 @@ h4 i{
     FOOTER STYLES
 ==================================================*/
 
+#telo {
+    padding-left: 50px;
+    padding-top: 80px ;
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -100px;
+}
+
+#telo:after {
+    content: "";
+    display: block;
+}
+
+#footer, #telo:after {
+    /*height: 100px;*/
+}
 
 #footer {
     color:#fff;
     padding:20px 50px 20px 50px;
     text-align:right;
     background-color:rgba(20, 173, 124, 1);
-    /*height: 50px;*/
-}
-
-
-#telo {
-    height: 100%;
-    padding-left: 50px;
-    padding-top: 80px ;
 }

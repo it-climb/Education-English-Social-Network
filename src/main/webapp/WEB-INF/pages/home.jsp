@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,12 +39,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">EESN</a>
+      <a class="navbar-brand"   href="/">EESN</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li><a href="#about">ABOUT</a></li>
+        <li><a href="/login">LOGIN</a></li>
         <li><a href="/dep">DEPARTMENTS</a></li>
         <li><a href="/translate">TRANSLATOR</a></li>
         <li><a href="#contact">CONTACT</a></li>
@@ -60,12 +60,6 @@
     <div class="col-md-12">
       <span class="head-main">EDUCATION ENGLISH SOCIAL NETWORK </span>
       <h3 class="head-last">Bla bla bla bla</h3>
-      <%--<a href="/dep" class="btn btn-primary btn-lg ">Departments</a>--%>
-      <%--<a href="/translate" class="btn btn-primary btn-lg ">Translator</a>--%>
-
-      <%--<a href="/dep">Departments</a><br><br>--%>
-      <%--<a href="/translate">Translator</a>--%>
-
     </div>
   </div>
 </div>

@@ -5,10 +5,8 @@
 <tiles-definitions>
     <definition name="base.definition" template="/WEB-INF/views/layout.jsp">
         <put-attribute name="title" value="FrameworkOnly | Apache Tiles 3 + Spring 4 MVC"></put-attribute>
-        <!--<put-attribute name="stylecss" value="/WEB-INF/views/firststylecss.jsp"></put-attribute>-->
         <put-attribute name="header" value="/WEB-INF/templates/navigation.jsp"></put-attribute>
         <put-attribute name="body" value=""></put-attribute>
         <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp"></put-attribute>
-        <!--<put-attribute name="scriptjs" value="/WEB-INF/views/firstscriptjs.jsp"></put-attribute>-->
     </definition>
 </tiles-definitions>

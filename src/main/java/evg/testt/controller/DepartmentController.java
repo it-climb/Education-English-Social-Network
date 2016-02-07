@@ -5,7 +5,6 @@ import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,12 +23,6 @@ public class DepartmentController{
     public ModelAndView showAll() throws SQLException {
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
     }
-
-//    @RequestMapping(value = "/dep", method = RequestMethod.GET)
-//    public String viewAll() {
-//        return "AllDep";
-//    }
-
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
@@ -57,5 +50,4 @@ public class DepartmentController{
         }
         return modelAndView;
     }
-
 }
