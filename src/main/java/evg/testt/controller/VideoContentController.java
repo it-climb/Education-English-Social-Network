@@ -2,6 +2,7 @@ package evg.testt.controller;
 
 import evg.testt.model.VideoContent;
 import evg.testt.util.JspPath;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import java.net.URL;
 @Controller
 public class VideoContentController {
 
+    @Autowired
 
 
     @RequestMapping(value = "/video", method = RequestMethod.GET)

@@ -1,9 +1,18 @@
 package evg.testt.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 import java.net.URL;
 
+@Document(collection = VideoContent.COLLECTION_NAME)
+public class VideoContent implements Serializable {
 
-public class VideoContent extends BaseModel {
+    public static final String COLLECTION_NAME = "videocontent";
+
+    @Id
+    private Long id;
 
     private URL url;
     private String name;
@@ -11,6 +20,14 @@ public class VideoContent extends BaseModel {
     private String describe;
     private String season;
     private String series;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

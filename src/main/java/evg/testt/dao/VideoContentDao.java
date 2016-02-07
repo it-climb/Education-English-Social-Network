@@ -18,8 +18,8 @@ public class VideoContentDao{
     @Autowired
     private MongoOperations mongoOperations;
 
-    public void save(Contact contact) {
-        mongoOperations.save(contact);
+    public void save(VideoContent videoContent) {
+        mongoOperations.save(videoContent);
     }
 
     public VideoContent get(Long id) {
