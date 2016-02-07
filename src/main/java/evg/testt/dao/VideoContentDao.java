@@ -7,12 +7,14 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by alex on 31.01.16.
  */
+@Repository
 public class VideoContentDao{
 
     @Autowired

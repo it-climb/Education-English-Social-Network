@@ -10,7 +10,6 @@ import java.net.URL;
 public class VideoContent implements Serializable {
 
     public static final String COLLECTION_NAME = "videocontent";
-
     @Id
     private Long id;
 

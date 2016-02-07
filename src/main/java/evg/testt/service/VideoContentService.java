@@ -14,7 +14,6 @@ public class VideoContentService {
 
     @Autowired
     private SequenceDao sequenceDao;
-
     @Autowired
     private VideoContentDao videoContentDao;
 
