@@ -19,7 +19,7 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private static final Logger LOGGER = LogManager.getRootLogger();
+    private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
@@ -32,6 +32,7 @@ public class DepartmentController{
             try {
                 if(id==null)
                 departmentService.insert(department);
+                LOGGER.info("in method addNewOne");
 //                DEBUG_LOGGER.debug("add new one department: " + department.getName());
 
             } catch (SQLException e) {

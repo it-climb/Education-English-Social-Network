@@ -184,6 +184,13 @@
             <version>1.2</version>
         </dependency>
 
+        <!-- Proxy class need this library -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.2.0</version>
+            </dependency>
+
         <!-- Logging -->
         <dependency>
             <groupId>log4j</groupId>

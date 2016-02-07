@@ -22,20 +22,22 @@
 
     <context:component-scan base-package="evg.testt"/>
 
-    <aop:aspectj-autoproxy/>
+    <aop:aspectj-autoproxy>
+        <aop:include name="aspectLoggerController"/>
+    </aop:aspectj-autoproxy>
 
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
-    <bean id="controller" class="evg.testt.controller.DepartmentController"/>
-    <bean id="logger" class="evg.testt.aop.logger.LoggerController"/>
-    <bean id="customerServiceProxy"
-          class="org.springframework.aop.framework.ProxyFactoryBean"/>
+    <bean id="departmentController" class="evg.testt.controller.DepartmentController" />
+    <bean id="aspectLoggerController" class="evg.testt.aop.logger.AspectLoggerController" />
+    <bean id="departmentServiceImpl"
+          class="evg.testt.service.impl.DepartmentServiceImpl" />
     <aop:config>
-        <aop:aspect ref="logger">
-            <aop:pointcut id="delete" expression="execution(* evg.testt.controller.DepartmentController.deleteOne(..))"/>
-            <aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>
-            <aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>
-        </aop:aspect>
+        <!--<aop:aspect ref="aspectLoggerController">-->
+        <aop:pointcut id="aspectLoggerControllerPointcutDelete" expression="execution(* evg.testt..*.delete*(..))"/>
+        <aop:advisor advice-ref="aspectLoggerController" pointcut-ref="aspectLoggerControllerPointcutDelete"
+                     id="aspectLoggerControllerAdvisorDelete"/>
+        <!--<aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>-->
+        <!--<aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>-->
     </aop:config>
-
 </beans>
