@@ -8,20 +8,30 @@
 </head>
 <body class="no-js">
 <table class="menu" width="1000px">
-    <tr>
-        <td><b>Users List</b></td>
+        <td>
+            <b>Users List</b>
+        </td>
+        <td>
+            <form method="get" action="/chat">
+                <input type="hidden" name="recEmail" value=${user.email}>
+                <input type="submit" value="All chat">
+            </form>
+        </td>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
-            <td>${user.email}</td>
-            <td><form method="get" action="/messages">
-                <input type="hidden" name="recEmail" value=${user.email}>
-                <input type="submit" value="OneToOne">
-            </form>
+            <td>
+                ${user.email}
+            </td>
+            <td>
+                <form method="get" action="/messages">
+                    <input type="hidden" name="recEmail" value=${user.email}>
+                    <input type="submit" value="OneToOne">
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
-
 <div align="right"><strong>${email}</strong></div>
 <div id="chat">
     <form:form method="post" action="/chatAdd">

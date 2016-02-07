@@ -12,12 +12,14 @@
         <td><b>Users List</b></td>
     </tr>
     <tr>
+        <td><td>
         <td>
             <form method="get" action="/writeTo">
                 <input type="hidden" name="recEmail" value="">
                 <input type="submit" value="Write to all">
             </form>
         </td>
+        <td></td>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -71,10 +73,10 @@
                     <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
+                <td>to: ${receiver}</td>
             </tr>
             <tr>
-                <td>(not required)Receiver:</td>
-                <td><input type="text" name="receiver" value="${receiver}"></td>
+                <td><input type="hidden" name="receiver" value="${receiver}"></td>
             </tr>
         </table>
     </form:form>
