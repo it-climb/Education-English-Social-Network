@@ -22,6 +22,12 @@ public class DepartmentController{
     DepartmentService departmentService;
 
 
+    /**
+     * Test Name
+     * @param request
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
