@@ -9,5 +9,5 @@ public interface UserService extends Service<User> {
     User getByEmail (String email);
 
     @Override
-    void insert(User o) throws SQLException;
+    User insert(User o) throws SQLException;
 }
