@@ -1,16 +1,21 @@
 package evg.testt.model;
 
+import evg.testt.util.validation.Unique;
+import org.hibernate.annotations.Columns;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 @Entity(name = "users")
 public class User extends BaseModel {
 
-    @Email(message = "Yor email incorrect")
+    @Unique(message = "This email already exists")
+    @Email(message = "Invalid email")
     private String email;
 
     @NotEmpty(message = "Please enter your password")
