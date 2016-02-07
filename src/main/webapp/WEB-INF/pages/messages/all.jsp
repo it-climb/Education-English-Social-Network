@@ -17,8 +17,12 @@
                 <input type="submit" value="All chat">
             </form>
         </td>
-    </tr>
+    <form method="get" action="/writeTo">
+        <input type="hidden" name="recEmail" value="">
+        <input type="submit" value="Write to all">
+    </form>
     <c:forEach var="user" items="${users}">
+        <c:if test="${email != user.email}">
         <tr>
             <td>
                 ${user.email}
@@ -30,6 +34,7 @@
                 </form>
             </td>
         </tr>
+        </c:if>
     </c:forEach>
 </table>
 <div align="right"><strong>${email}</strong></div>
@@ -69,7 +74,15 @@
                 <td><input type="hidden" name="receiver" value="${receiver}"></td>
             </tr>
         </table>
-    </form:form>
+    </form:form><%--
+    <tr>
+        <td colspan="5">
+            <input type="button" href="/chat" value="Chat for all"/>
+        </td>
+        <td colspan="5">
+            <input type="button" href="/" value="Home"/>
+        </td>
+    </tr>--%>
 </div>
 <a href="/">Home</a>
 </body>

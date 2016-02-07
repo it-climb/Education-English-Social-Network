@@ -23,6 +23,7 @@
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
+            <c:if test="${email != user.email}">
             <td>${user.email}</td>
             <td>
                 <form method="get" action="/writeTo">
@@ -30,10 +31,13 @@
                     <input type="submit" value="Write">
                 </form>
             </td>
-            <td><form method="get" action="/messages">
+            <td>
+                <form method="get" action="/messages">
                 <input type="hidden" name="recEmail" value=${user.email}>
                 <input type="submit" value="OneToOne">
-            </form>
+                </form>
+            </td>
+            </c:if>
         </tr>
     </c:forEach>
 </table>
@@ -43,6 +47,7 @@
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
+                <tr><td>My companion : ${receiver}</td></tr>
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == null}">
                         <tr>

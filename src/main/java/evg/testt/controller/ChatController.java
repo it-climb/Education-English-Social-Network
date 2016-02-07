@@ -31,6 +31,14 @@ public class ChatController {
     @Autowired
     UserService userService;
 
+    /**
+     * this model uses in another methods to not copy code
+     *
+     * @param request it must be to get user from session
+     * @param jspPath it's path of your jsp page
+     * @return
+     * @throws SQLException
+     */
     private ModelAndView chatPage(HttpServletRequest request, String jspPath) throws SQLException {
         List<Chat> chat = chatService.getAll();
         HttpSession session = request.getSession();
@@ -42,11 +50,26 @@ public class ChatController {
         return modelAndView;
     }
 
+    /**
+     * show chat
+     *
+     * @param request it must be to get user from session
+     * @return chatPage with JspPath.CHAT_ALL
+     * @throws SQLException
+     */
     @RequestMapping(value = "/chat", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         return chatPage(request, JspPath.CHAT_ALL);
     }
 
+    /**
+     * writeTo method that used to write someone in chat for all
+     *
+     * @param recEmail it's receiver's email
+     * @param request it must be to get user from session
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/writeTo", method = RequestMethod.GET)
     public ModelAndView writeTo(@RequestParam(required = true) String recEmail, HttpServletRequest request) throws SQLException {
         ModelAndView modelAndView = chatPage(request, JspPath.CHAT_ALL);
@@ -54,6 +77,17 @@ public class ChatController {
         return modelAndView;
     }
 
+    /**
+     * this code add messages in chat
+     *
+     * @param email yours email
+     * @param recEmail receiver's email
+     * @param message
+     * @param is121 (is one to one) it's boolean that shows your page
+     * @param request it must be to get user from session
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/chatAdd", method = RequestMethod.POST)
     public ModelAndView showAll(/*@ModelAttribute Chat chat,*/
                                 @RequestParam(required = true) String email,
@@ -83,6 +117,14 @@ public class ChatController {
         }*/
     }
 
+    /**
+     * show 121 messages
+     *
+     * @param request it must be to get user from session
+     * @param recEmail receivers email
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public ModelAndView show121/*show one to one*/(HttpServletRequest request,@RequestParam(required = false) String recEmail) throws SQLException {
         ModelAndView modelAndView = chatPage(request, JspPath.MESSAGES);
