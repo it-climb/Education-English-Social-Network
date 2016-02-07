@@ -5,10 +5,14 @@
     <title>AllEmployee</title>
 </head>
 <body>
+<p style="color:red">${warning}</p>
+<p><ins>Department : </ins>${department.name}</p>
 <table>
     <tr>
-        <td>Department: ${department.name}</td>
+        <td><b>FirstName</b></td>
+        <td><b>SecondName</b></td>
     </tr>
+
 <c:forEach var="employee" items="${employees}">
     <tr>
         <td>${employee.firstName}</td>
@@ -17,6 +21,7 @@
         <td>
             <form method="post" action="/employeeDelete">
                 <input type="hidden" name="id" value=${employee.id}>
+                <input type="hidden" name="department_id" value=${department.id}>
                 <input type="submit" value="Delete">
             </form>
         </td>
@@ -38,7 +43,9 @@
     </tr>
 </table>
 
-<br>
-<a href="/">Home</a>
+<nav>
+    <a href="dep">Departments</a><br><br>
+    <a href="/">Home</a>
+</nav>
 </body>
 </html>

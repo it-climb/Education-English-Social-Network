@@ -13,14 +13,16 @@
 
         Input Language:
         <jsp:include page="chooseLang.jsp">
-            <jsp:param name="languageFlag" value="${translatorDto.languageIn.languageName}" />
+            <jsp:param name="languageFlag" value="${translatorDto.languageIn.fullName}" />
             <jsp:param name="selectName" value="languageIn" />
         </jsp:include>
         <textarea rows="7" cols="70" name="textIn" autofocus maxlength="350">${translatorDto.textIn}</textarea><br><br>
-        
+        <p style="color: red">
+            ${errorMassage}
+        </p>
         Output Language:
         <jsp:include page="chooseLang.jsp">
-            <jsp:param name="languageFlag" value="${translatorDto.languageOut.languageName}" />
+            <jsp:param name="languageFlag" value="${translatorDto.languageOut.fullName}" />
             <jsp:param name="selectName" value="languageOut" />
         </jsp:include>
         <textarea rows="7" cols="70" name="textOut" readonly>${translatorDto.textOut}</textarea><br><br>

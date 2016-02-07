@@ -38,8 +38,8 @@
     </td>
   </tr>
 </table>
-
 <br>
 <a href="/">Home</a>
+<a href="/mail">Mail</a>
 </body>
 </html>
