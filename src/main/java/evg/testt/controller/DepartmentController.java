@@ -37,8 +37,17 @@ public class DepartmentController{
 
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id) throws SQLException {
-        departmentService.delete(Department.newBuilder().setId(id).build());
-        return "redirect:/dep";
+        String direct = "";
+        Department department; //= Department.newBuilder().setId(id).build();
+        department = departmentService.getById(id);
+        if (department.getEmployees().size() == 0) {
+            departmentService.delete(department);
+            direct = "redirect:/dep";
+        } else {
+            direct = "redirect:/employees?id="+department.getId()+"&toDel=yes";
+        }
+
+        return direct;
     }
 
     @RequestMapping(value = "/depEdit", method = RequestMethod.POST)
