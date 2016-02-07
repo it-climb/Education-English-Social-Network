@@ -1,6 +1,7 @@
 package evg.testt.controller;
 
 import evg.testt.model.Department;
+import evg.testt.model.User;
 import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -19,8 +22,14 @@ public class DepartmentController{
     DepartmentService departmentService;
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
-    public ModelAndView showAll() throws SQLException {
-        return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
+    public ModelAndView showAll(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+
+        ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_ALL);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("departments", departmentService.getAll());
+        return modelAndView;
     }
 
 
