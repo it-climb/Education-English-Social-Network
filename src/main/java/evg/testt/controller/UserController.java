@@ -44,11 +44,11 @@ public class UserController {
 
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
-    public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
-       // userValid.validate(user, result);
+    public String addNewUser(@ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
+       userValid.validate(user, result);
 
         if(result.hasErrors()){
-           return "redirect:/loginProblems";
+           return "redirect:/registration";
         } else {
             HttpSession session = request.getSession();
             userService.insert(user);
@@ -69,7 +69,7 @@ public class UserController {
 
     @RequestMapping(value = "/loginProblems", method = RequestMethod.GET)
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGI_PROBLEM);
+        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGIN_PROBLEM);
         return modelAndView;
     }
 
