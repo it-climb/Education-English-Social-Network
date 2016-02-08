@@ -23,7 +23,7 @@
             </td>
         </tr>
     </table>
-    <a href="/registration">Registration</a>
+    <a href="/regSave">Registration</a>
 </form:form>
 </body>
 </html>
