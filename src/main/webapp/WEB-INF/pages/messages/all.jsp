@@ -7,7 +7,7 @@
     <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
-<table class="menu" width="1000px">
+<table class="menu">
     <tr>
         <td>
             <b>Users List</b>
@@ -23,33 +23,37 @@
         <c:if test="${email != user.email}">
         <tr>
             <td>
-                ${user.email}
+                <a href="/messages?recEmail=${user.email}">${user.email}</a>
             </td>
+            <!--
             <td>
                 <form method="get" action="/messages">
                     <input type="hidden" name="recEmail" value=${user.email}>
                     <input type="submit" value="OneToOne">
                 </form>
             </td>
+            -->
         </tr>
         </c:if>
     </c:forEach>
 </table>
-<div align="right"><strong>${email}</strong></div>
-<div id="chat" style="float:right">
+<div align="right"><strong>${email}</strong><a href="/">   Home</a></div>
+<div id="chat">
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
-                <tr><td>My companion : ${receiver}</td></tr>
+                <tr>
+                    <td><span style="background: grey; color: white">My companion: ${receiver}</span></td>
+                </tr>
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == email && receiver == chat.user.email}">
                         <tr>
-                            <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
+                            <td><span class="pWhisperF">To me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                     <c:if test="${chat.user.email == email && receiver == chat.receiver}">
                         <tr>
-                            <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
+                            <td><span class="pWhisperT">From me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                 </c:forEach>
@@ -58,10 +62,10 @@
         <div id = "containerSender">
         <table>
             <tr>
-                <td>
-                    <input width="30%" type="text" name="message">
+                <td width="70%">
+                    <input type="text" name="message">
                 </td>
-                <td colspan="5">
+                <td>
                     <input type="hidden" name="is121" value="true">
                     <input type="hidden" name="email" value="${email}">
                     <input type="hidden" name="recEmail" value="${receiver}">
@@ -84,6 +88,16 @@
         </td>
     </tr>--%>
 </div>
-<a href="/">Home</a>
+
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var height = $('#containerChat')[0].scrollHeight;
+        $('#containerChat').scrollTop(height);
+    });
+</script>
+
 </body>
 </html>

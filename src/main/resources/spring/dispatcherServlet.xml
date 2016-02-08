@@ -13,7 +13,7 @@
 
     <mvc:annotation-driven/>
 
-    <cache:annotation-driven/>
+    <!--<cache:annotation-driven/>-->
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/robots.txt" location="/robots.txt" order="0" />
@@ -31,7 +31,7 @@
 
     <!-- *******************************
 	 ***** CACHE CONFIGURATION *****
-	 ******************************* -->
+	 *******************************
 
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehcache"/>
@@ -39,7 +39,7 @@
     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml"/>
         <property name="shared" value="true"/>
-    </bean>
+    </bean>-->
 
 
     <bean class="org.springframework.context.support.ResourceBundleMessageSource"
