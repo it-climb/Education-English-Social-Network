@@ -15,6 +15,7 @@
         </p>
     </nav>
     <p>${content.id}</p>
+
     <p>${videoUrl}</p>
     <iframe width="560" height="315" src="${videoUrl}" frameborder="3" allowfullscreen></iframe>
 

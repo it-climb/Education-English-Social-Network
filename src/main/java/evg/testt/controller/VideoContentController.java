@@ -1,6 +1,8 @@
 package evg.testt.controller;
 
+import evg.testt.model.Contact;
 import evg.testt.model.VideoContent;
+import evg.testt.service.ContactService;
 import evg.testt.service.VideoContentService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +23,30 @@ public class VideoContentController {
 
     @Autowired
     VideoContentService videoContentService;
+    @Autowired
+    ContactService contactService;
+
 
     @RequestMapping(value = "/video", method = RequestMethod.GET)
     public ModelAndView videoHome() throws MalformedURLException {
+
+        ModelAndView modelAndView = new ModelAndView();
 
         VideoContent videoContent = new VideoContent();
 
         videoContent.setUrl(new URL("https://www.youtube.com/embed/VNq9GqHxl6w"));
         videoContent.setName("film_1");
         videoContent.setType("movie");
-        videoContentService.save(videoContent);
 
+        /*Contact contact = new Contact("scA", "asc", "ASC");
+        contactService.save(contact);*/
+
+        videoContentService.save(videoContent);
         List<VideoContent> contentList = videoContentService.getAll();
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("content", contentList.get(0));
+
         String videoUrl = videoContent.getUrl().toString();
         modelAndView.addObject("videoUrl", videoUrl);
-
-
 
         return new ModelAndView(JspPath.VIDEO_ALL, "videoUrl", videoUrl);
     }
