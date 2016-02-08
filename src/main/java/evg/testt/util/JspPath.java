@@ -18,6 +18,9 @@ public class JspPath {
     public static final String WORD_EDIT = "words/edit";
     public static final String DESCRIPTION_ALL = "descriptions/all";
     public static final String DESCRIPTION_EDIT = "descriptions/edit";
+
+    public static final String DEFAULT_ERROR_VIEW = "error-404";
+
     public static final String VIDEO_ALL = "video/all";
-    
+
 }
