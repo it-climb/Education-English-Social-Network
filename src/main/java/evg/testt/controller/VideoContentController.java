@@ -5,8 +5,10 @@ import evg.testt.model.VideoContent;
 import evg.testt.service.ContactService;
 import evg.testt.service.VideoContentService;
 import evg.testt.util.JspPath;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,9 +55,22 @@ public class VideoContentController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editContent(@RequestParam(required = true) String id) {
-        VideoContent videoContent = videoContentService.get(Long.parseLong(id));
-        return new ModelAndView(JspPath.VIDEO_EDIT, "content", videoContent);
+    public ModelAndView editContent(@RequestParam(required = false) String id) {
+
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
+        if (id != null) {
+            VideoContent videoContent = videoContentService.get(Long.parseLong(id));
+            modelAndView.addObject("content", videoContent);
+            modelAndView.addObject("contenturl", videoContent.getUrl().toString());
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveContent(@ModelAttribute VideoContent videoContent) {
+        videoContentService.save(videoContent);
+        return "redirect:/video/admin";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

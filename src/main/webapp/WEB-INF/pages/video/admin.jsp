@@ -33,7 +33,7 @@
     </c:forEach>
 
 </table>
-
+<br>
 <form:form action="/video/edit" method="post">
     <input type="submit" value="Add new Video">
 </form:form>

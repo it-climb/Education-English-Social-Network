@@ -28,8 +28,6 @@
             </tr>
         </c:forEach>
     </table>
-
-    <%--<iframe width="560" height="315" src="${videoUrl}" frameborder="3" allowfullscreen></iframe>--%>
     <br><br><br>
     <a href="/video/admin">administrate video content (need a password)</a>
 </body>
