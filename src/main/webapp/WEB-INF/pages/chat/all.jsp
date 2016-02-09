@@ -7,12 +7,12 @@
     <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
+<div id = "navBar"><a href="/">Home</a></div>
+<div id = "userInfo"><strong>${email}</strong></div>
+<div style="clear: both"></div>
+
 <table class="menu">
     <tr>
-        <td><b>Users List</b></td>
-    </tr>
-    <tr>
-        <td></td>
         <td>
             <form method="get" action="/writeTo">
                 <input type="hidden" name="recEmail" value="">
@@ -20,6 +20,10 @@
             </form>
         </td>
     </tr>
+    <tr>
+        <td><b>Users List</b></td>
+    </tr>
+
     <c:forEach var="user" items="${users}">
         <tr>
             <c:if test="${email != user.email}">
@@ -43,7 +47,6 @@
     </c:forEach>
 </table>
 
-<div align="right"><strong>${email} </strong><a href="/">   Home</a></div>
 <div id="chat">
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
@@ -69,8 +72,8 @@
         </div>
         <table class="chat">
             <tr>
-                <td width="50%">
-                    <input type="text" name="message">
+                <td>
+                    <input class="inputField" type="text" name="message">
                 </td>
                 <td width="10%">
                     <input type="hidden" name="is121" value="false">
@@ -78,7 +81,7 @@
                     <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
-                <td width="40%">
+                <td width="30%">
                     to: ${receiver}
                 </td>
             </tr>

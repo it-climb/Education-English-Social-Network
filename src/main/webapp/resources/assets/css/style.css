@@ -314,7 +314,7 @@ padding: 5px;
 
 .whisperT{
     color: white;
-    background-color: peachpuff;
+    background-color: #2b542c;
     border-radius: 10%;
     padding: 2px;
 }
@@ -334,9 +334,10 @@ padding: 5px;
 #chat{
     float: right;
     width: auto;
+    max-width: 70%;
     height: 600px;
     position: fixed;
-    left: 70%;
+    right: 0;
 }
 
 #containerChat {
@@ -344,4 +345,17 @@ padding: 5px;
     max-height: 600px;
     overflow: auto;
     position: relative;
+}
+
+#userInfo {
+    float: right;
+}
+
+#navBar {
+    float: left;
+}
+
+
+.inputField {
+    width: 100%;
 }

@@ -7,11 +7,12 @@
     <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
+<div id = "navBar"><a href="/">Home</a></div>
+<div id = "userInfo"><strong>${email}</strong></div>
+<div style="clear: both"></div>
+
 <table class="menu">
     <tr>
-        <td>
-            <b>Users List</b>
-        </td>
         <td>
             <form method="get" action="/chat">
                 <input type="hidden" name="recEmail" value=${user.email}>
@@ -19,6 +20,13 @@
             </form>
         </td>
     </tr>
+
+    <tr>
+        <td>
+            <b>Users List</b>
+        </td>
+    </tr>
+
     <c:forEach var="user" items="${users}">
         <c:if test="${email != user.email}">
         <tr>
@@ -37,13 +45,15 @@
         </c:if>
     </c:forEach>
 </table>
-<div align="right"><strong>${email}</strong><a href="/">   Home</a></div>
 <div id="chat">
+    <div>
+        <span style="background: grey; color: white">My companion: ${receiver}</span>
+        </div>
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
                 <tr>
-                    <td><span style="background: grey; color: white">My companion: ${receiver}</span></td>
+                    <td></td>
                 </tr>
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == email && receiver == chat.user.email}">
@@ -62,10 +72,10 @@
         <div id = "containerSender">
         <table>
             <tr>
-                <td width="70%">
-                    <input type="text" name="message">
-                </td>
                 <td>
+                    <input class="inputField" type="text" name="message">
+                </td>
+                <td width="10%">
                     <input type="hidden" name="is121" value="true">
                     <input type="hidden" name="email" value="${email}">
                     <input type="hidden" name="recEmail" value="${receiver}">
