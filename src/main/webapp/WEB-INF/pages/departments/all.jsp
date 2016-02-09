@@ -3,7 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <head>
-  <title>All</title>
+  <title>All Departments</title>
 </head>
 <body class="no-js">
 <div align="right"><strong>${email}</strong></div>
