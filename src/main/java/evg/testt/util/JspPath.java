@@ -22,6 +22,8 @@ public class JspPath {
     public static final String ACCOUNT_SHOW = "/account/show";
 
     public static final String DEFAULT_ERROR_VIEW = "error-404";
+    public static final String CHAT_ALL = "/chat/all";
+    public static final String MESSAGES = "/messages/all";
 
 
 
