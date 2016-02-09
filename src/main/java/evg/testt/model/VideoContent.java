@@ -13,6 +13,7 @@ public class VideoContent implements Serializable {
     @Id
     private Long id;
 
+
     private URL url;
     private String name;
     private String type;
