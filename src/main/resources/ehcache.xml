@@ -1,0 +1,13 @@
+<ehcache
+        updateCheck="true"
+        monitoring="autodetect"
+        dynamicConfig="true"
+        maxBytesLocalHeap="400M"
+>
+
+    <cache name="departmentsAllCache"
+           maxBytesLocalHeap="100M"
+           eternal="true"
+           memoryStoreEvictionPolicy="LRU"/>
+
+</ehcache>

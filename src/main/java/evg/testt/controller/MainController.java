@@ -25,13 +25,13 @@ public class MainController {
     private ContactService contactService;
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
-        //ModelAndView modelAndView = new ModelAndView("contacts/all");
-        //modelAndView.addObject("contacts", contactService.getAll());
-        //HttpSession session = request.getSession();
-        return new ModelAndView(JspPath.HOME);
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
+//        //ModelAndView modelAndView = new ModelAndView("contacts/all");
+//        //modelAndView.addObject("contacts", contactService.getAll());
+//        //HttpSession session = request.getSession();
+//        return new ModelAndView(JspPath.HOME);
+//    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView showAddForm() {

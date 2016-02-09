@@ -3,10 +3,9 @@ package evg.testt.controller;
 import evg.testt.model.User;
 import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
+import evg.testt.util.validation.UserValid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.util.Map;
 
 @Controller
 public class UserController {
 
-    /*@Autowired
-    UserValidator userValidator;*/
+    @Autowired
+    UserValid userValid;
+
     @Autowired
     UserService userService;
 
@@ -46,9 +45,11 @@ public class UserController {
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
     public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
-       if(result.hasErrors()){
+       // userValid.validate(user, result);
+
+        if(result.hasErrors()){
            return "redirect:/loginProblems";
-       }else {
+        } else {
             HttpSession session = request.getSession();
             userService.insert(user);
             session.setAttribute("user", user);

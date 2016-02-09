@@ -4,6 +4,10 @@
   <title>Success</title>
 </head>
 <body>
-  Success
+  <p>Success</p>
+<tr>
+  <td><a href="/">Home</a></td>
+  <td><a href="/dep">Dep's</a></td>
+</tr>
 </body>
 </html>
