@@ -10,18 +10,21 @@ import java.util.List;
 public interface DepartmentService extends Service<Department>{
 
     @Override
-    @Cacheable(value = "departmentsAllCache", key = "#root.methodName")
+    @Cacheable(value = "departmentsAllCache" , key = "'getAll'")
     List<Department> getAll() throws SQLException;
 
     @Override
-    @Cacheable(value = "departmentsCache", key = "#id")
     Department getById(Integer id) throws SQLException;
 
     @Override
-    @CacheEvict(value = "departmentsCache", key = "#p0.id")
+    @CacheEvict(value = "departmentsAllCache", key = "'getAll'")
     void delete(Department o) throws SQLException;
 
     @Override
-    @CacheEvict(value = "departmentsCache", key = "#p0.id")
-    void update(Department o) throws SQLException;
+    @CacheEvict(value = "departmentsAllCache", key = "'getAll'")
+    Department update(Department o) throws SQLException;
+
+    @Override
+    @CacheEvict(value = "departmentsAllCache", key = "'getAll'")
+    Department insert(Department o) throws SQLException;
 }

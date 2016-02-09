@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
+import java.util.List;
+
 @Service
 public class UserServiceImp extends BaseService<User, UserDao> implements UserService {
 
@@ -17,19 +19,20 @@ public class UserServiceImp extends BaseService<User, UserDao> implements UserSe
 
     @Override
     public User getByEmail(String email) {
-        return dao.findByEmail(email);
+       return dao.findByEmail(email);
     }
 
     @Override
-    public void insert(User o) {
-        try {
+    public User insert(User o) throws SQLException{
+
             dao.save(o);
             mailMail.sendMail("from@no-spam.com",
                     o.getEmail(),
                     "Welcome list",
                     "Congratulation! \n\n Now you are in EESN team!");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+            return o;
+
+
     }
+
 }
