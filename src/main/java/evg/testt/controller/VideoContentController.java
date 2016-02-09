@@ -24,9 +24,14 @@ public class VideoContentController {
 
     @Autowired
     VideoContentService videoContentService;
-    @Autowired
-    ContactService contactService;
+    /*@Autowired
+    ContactService contactService;*/
 
+    /**
+     * making start page for choose type of video
+     * @return ModelAndView
+     * @throws MalformedURLException
+     */
 
     @RequestMapping(value = "/video", method = RequestMethod.GET)
     public ModelAndView videoHome() throws MalformedURLException {
