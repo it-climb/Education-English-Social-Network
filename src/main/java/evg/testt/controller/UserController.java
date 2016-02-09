@@ -54,7 +54,7 @@ public class UserController {
             HttpSession session = request.getSession();
             userService.insert(user);
             session.setAttribute("user", user);
-            return "redirect:/login";
+            return "redirect:/login";  //TODO need decide where go back after successful registration
         }
     }
 
