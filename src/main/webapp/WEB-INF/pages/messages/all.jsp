@@ -7,62 +7,75 @@
     <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
-<table class="menu" width="1000px">
-        <td>
-            <b>Users List</b>
-        </td>
+<div id = "navBar"><a href="/">Home</a></div>
+<div id = "userInfo"><strong>${email}</strong></div>
+<div style="clear: both"></div>
+
+<table class="menu">
+    <tr>
         <td>
             <form method="get" action="/chat">
                 <input type="hidden" name="recEmail" value=${user.email}>
                 <input type="submit" value="All chat">
             </form>
         </td>
-    <form method="get" action="/writeTo">
-        <input type="hidden" name="recEmail" value="">
-        <input type="submit" value="Write to all">
-    </form>
+    </tr>
+
+    <tr>
+        <td>
+            <b>Users List</b>
+        </td>
+    </tr>
+
     <c:forEach var="user" items="${users}">
         <c:if test="${email != user.email}">
         <tr>
             <td>
-                ${user.email}
+                <a href="/messages?recEmail=${user.email}">${user.email}</a>
             </td>
+            <!--
             <td>
                 <form method="get" action="/messages">
                     <input type="hidden" name="recEmail" value=${user.email}>
                     <input type="submit" value="OneToOne">
                 </form>
             </td>
+            -->
         </tr>
         </c:if>
     </c:forEach>
 </table>
-<div align="right"><strong>${email}</strong></div>
 <div id="chat">
+    <div>
+        <span style="background: grey; color: white">My companion: ${receiver}</span>
+        </div>
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
-                <tr><td>My companion : ${receiver}</td></tr>
+                <tr>
+                    <td></td>
+                </tr>
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == email && receiver == chat.user.email}">
                         <tr>
-                            <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
+                            <td><span class="pWhisperF">To me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                     <c:if test="${chat.user.email == email && receiver == chat.receiver}">
                         <tr>
-                            <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
+                            <td><span class="pWhisperT">From me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                 </c:forEach>
             </table>
         </div>
+        <div id = "containerSender">
         <table>
             <tr>
                 <td>
-                    <input width="30%" type="text" name="message">
+                    <input class="inputField" type="text" name="message">
                 </td>
-                <td colspan="5">
+                <td width="10%">
                     <input type="hidden" name="is121" value="true">
                     <input type="hidden" name="email" value="${email}">
                     <input type="hidden" name="recEmail" value="${receiver}">
@@ -74,6 +87,7 @@
                 <td><input type="hidden" name="receiver" value="${receiver}"></td>
             </tr>
         </table>
+        </div>
     </form:form><%--
     <tr>
         <td colspan="5">
@@ -84,6 +98,16 @@
         </td>
     </tr>--%>
 </div>
-<a href="/">Home</a>
+
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        var height = $('#containerChat')[0].scrollHeight;
+        $('#containerChat').scrollTop(height);
+    });
+</script>
+
 </body>
 </html>
