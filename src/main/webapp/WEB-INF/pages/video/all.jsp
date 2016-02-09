@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,15 +10,27 @@
 
     <nav >
         <p align="center">
-            <a href="/video/movies">Movies</a>
-            <a href="/video/serials">Serials</a>
-            <a href="/video/tvshows">TV-Shows</a>
+            <a href="/video">Movies</a>
+            <a href="/video">Serials</a>
+            <a href="/video">TV-Shows</a>
         </p>
     </nav>
-    <p>${content.id}</p>
 
-    <p>${videoUrl}</p>
-    <iframe width="560" height="315" src="${videoUrl}" frameborder="3" allowfullscreen></iframe>
+    <table>
+        <tr>
+            <td><b>Video name</b></td>
+            <td><b>Type</b></td>
+        </tr>
+        <c:forEach var="content" items="${contents}">
+            <tr>
+                <td><a href="/video?id=${content.id}">${content.name}</a></td>
+                <td>${content.type}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
+    <%--<iframe width="560" height="315" src="${videoUrl}" frameborder="3" allowfullscreen></iframe>--%>
+    <br><br><br>
+    <a href="/video/admin">administrate video content (need a password)</a>
 </body>
 </html>

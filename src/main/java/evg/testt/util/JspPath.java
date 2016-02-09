@@ -22,5 +22,7 @@ public class JspPath {
     public static final String DEFAULT_ERROR_VIEW = "error-404";
 
     public static final String VIDEO_ALL = "video/all";
+    public static final String VIDEO_ADMIN = "video/admin";
+    public static final String VIDEO_PLAY = "video/play";
 
 }

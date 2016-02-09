@@ -9,23 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-/**
- * Created by alex on 31.01.16.
- */
 
 @Controller
+@RequestMapping(value = "/video")
 public class VideoContentController {
 
     @Autowired
     VideoContentService videoContentService;
-    /*@Autowired
-    ContactService contactService;*/
 
     /**
      * making start page for choose type of video
@@ -33,28 +30,28 @@ public class VideoContentController {
      * @throws MalformedURLException
      */
 
-    @RequestMapping(value = "/video", method = RequestMethod.GET)
-    public ModelAndView videoHome() throws MalformedURLException {
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ModelAndView videoHome(@RequestParam(required = false) String id) throws MalformedURLException {
 
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView;
+        if (id != null) {
+            VideoContent videoContent = videoContentService.get(Long.parseLong(id));
+            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", videoContent);
+        } else {
+            modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
+            List<VideoContent> contentList = videoContentService.getAll();
+            modelAndView.addObject("contents", contentList);
+        }
 
-        VideoContent videoContent = new VideoContent();
-
-        videoContent.setUrl(new URL("https://www.youtube.com/embed/VNq9GqHxl6w"));
-        videoContent.setName("film_1");
-        videoContent.setType("movie");
-
-        /*Contact contact = new Contact("scA", "asc", "ASC");
-        contactService.save(contact);*/
-
-        videoContentService.save(videoContent);
-        List<VideoContent> contentList = videoContentService.getAll();
-        modelAndView.addObject("content", contentList.get(0));
-
-        String videoUrl = videoContent.getUrl().toString();
-        modelAndView.addObject("videoUrl", videoUrl);
-
-        return new ModelAndView(JspPath.VIDEO_ALL, "videoUrl", videoUrl);
+        return modelAndView;
     }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ModelAndView videoAdmin() {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
+
+        return modelAndView;
+    }
+
 
 }
