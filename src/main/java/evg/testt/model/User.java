@@ -18,6 +18,7 @@ public class User extends BaseModel {
     @Email(message = "Invalid email")
     private String email;
 
+    //TODO Valid error if use cyrillic characters
     @NotEmpty(message = "Please enter your password")
     @Size(min = 3, max = 16, message = "Your password must between 3 and 16 characters")
     private String password;
