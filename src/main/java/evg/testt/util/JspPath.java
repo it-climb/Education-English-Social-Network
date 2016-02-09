@@ -24,5 +24,6 @@ public class JspPath {
     public static final String VIDEO_ALL = "video/all";
     public static final String VIDEO_ADMIN = "video/admin";
     public static final String VIDEO_PLAY = "video/play";
+    public static final String VIDEO_EDIT = "video/edit";
 
 }

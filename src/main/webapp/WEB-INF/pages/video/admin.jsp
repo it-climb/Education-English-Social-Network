@@ -8,29 +8,37 @@
 </head>
 <body>
 
-    <table>
+<table>
+    <tr>
+        <td><b>Video name</b></td>
+        <td><b>Type</b></td>
+    </tr>
+    <c:forEach var="content" items="${contents}">
         <tr>
-            <td><b>Movie</b></td>
+            <td><a href="/video?id=${content.id}">${content.name}</a></td>
+            <td>${content.type}</td>
+            <td>
+                <form:form action="/video/delete" method="post">
+                    <input type="submit" value="Delete">
+                    <input type="hidden" name="id" value="${content.id}">
+                </form:form>
+            </td>
+            <td>
+                <form:form action="/video/edit" method="post">
+                    <input type="submit" value="Update">
+                    <input type="hidden" name="id" value="${content.id}">
+                </form:form>
+            </td>
         </tr>
-        <c:forEach var="videocontent" items="videocontents">
-            <tr>
-                <td>${videocontent.name}</td>
-                <td>
-                    <form:form method="post" action="/videocontentDelete">
-                        <input type="submit" value="Delete">
-                    </form:form>
-                </td>
-                <td>
-                    <form:form method="post" action="/videocontentEdit">
-                        <input type="submit" value="Edit">
-                    </form:form>
-                </td>
-            </tr>
-        </c:forEach>
-        <tr>
-            <input type="button" value="Add new Video" formaction="/video">
-        </tr>
-    </table>
+    </c:forEach>
+
+</table>
+
+<form:form action="/video/edit" method="post">
+    <input type="submit" value="Add new Video">
+</form:form>
+
+<p><a href="/video">Back to Catalog</a></p>
 
 </body>
 </html>

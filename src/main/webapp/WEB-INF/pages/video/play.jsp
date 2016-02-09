@@ -8,7 +8,7 @@
 
     <h2 align="center">${content.name}</h2>
 
-    <iframe align="center" width="560" height="315" src="${content.url}" frameborder="3" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="${content.url}" frameborder="3" allowfullscreen></iframe>
 
     <p><a href="/video">Back to catalog</a></p>
 

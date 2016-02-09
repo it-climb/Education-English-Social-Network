@@ -48,9 +48,20 @@ public class VideoContentController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin() {
-        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
+        List<VideoContent> contentList = videoContentService.getAll();
+        return new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+    }
 
-        return modelAndView;
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView editContent(@RequestParam(required = true) String id) {
+        VideoContent videoContent = videoContentService.get(Long.parseLong(id));
+        return new ModelAndView(JspPath.VIDEO_EDIT, "content", videoContent);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteVideo(@RequestParam(required = true) String id) {
+        videoContentService.remove(Long.parseLong(id));
+        return "redirect:/video/admin";
     }
 
 
