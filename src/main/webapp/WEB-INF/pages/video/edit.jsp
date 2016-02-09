@@ -8,6 +8,7 @@
 <body>
     <h2>${content.name}</h2>
 
+
 <form:form action="/video/save" modelAttribute="newcontent">
     <table>
         <tr>
