@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * Created by alex on 31.01.16.
  */
+
 @Controller
 public class VideoContentController {
 
