@@ -33,6 +33,13 @@ public class MainController {
 //        return new ModelAndView(JspPath.HOME);
 //    }
 
+    @RequestMapping(value = "/c", method = RequestMethod.GET)
+    public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("contacts/all");
+        modelAndView.addObject("contacts", contactService.getAll());
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView showAddForm() {
         return new ModelAndView("contacts/add_form", "contact", new Contact());

@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 @Document(collection = Comment.COLLECTION_NAME)
 public class Comment {
@@ -14,15 +15,15 @@ public class Comment {
     private Long id;
 
     private String objectForComments;
-    private Data data;
+    private LocalDate data;
     private String userAcc;
 
     public Comment() {
+
     }
 
-    public Comment(String objectForComments, Data data, String userAcc) {
+    public Comment(String objectForComments, String userAcc) {
         this.objectForComments = objectForComments;
-        this.data = data;
         this.userAcc = userAcc;
     }
 
@@ -42,11 +43,11 @@ public class Comment {
         this.objectForComments = objectForComments;
     }
 
-    public Data getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

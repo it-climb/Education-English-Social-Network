@@ -6,6 +6,7 @@ import evg.testt.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class CommentService {
         if(comment.getId()==null){
             comment.setId(sequenceDao.getNextSequenceId(Comment.COLLECTION_NAME));
         }
+        comment.setData(LocalDate.now());
         commentDao.save(comment);
     }
 

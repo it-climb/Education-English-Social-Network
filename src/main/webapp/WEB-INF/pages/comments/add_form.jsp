@@ -5,17 +5,17 @@
     <title>Add new one</title>
 </head>
 <body>
-<form:form method="post" action="/add" modelAttribute="contact">
+<form:form method="post" action="/addComment" modelAttribute="comment">
     <form:hidden path="id" />
     <table>
         <tr>
-            <td>Name:</td>
-            <td><form:input path="name" /></td>
+            <td>Comment:</td>
+            <td><form:input path="objectForComments" /></td>
         </tr>
 
         <tr>
-            <td>E-mail:</td>
-            <td><form:input path="email" /></td>
+            <td>userAcc:</td>
+            <td><form:input path="userAcc" /></td>
         </tr>
         <tr>
             <td colspan="2">

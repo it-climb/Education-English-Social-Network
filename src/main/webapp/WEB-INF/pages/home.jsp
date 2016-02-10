@@ -43,6 +43,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
+        <li><a href="/comment">COMMENTS</a></li>
         <li><a href="/login">LOGIN</a></li>
         <li><a href="/dep">DEPARTMENTS</a></li>
         <li><a href="/chat">CHAT</a></li>
