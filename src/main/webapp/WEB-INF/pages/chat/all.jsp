@@ -7,30 +7,35 @@
     <link href="resources/assets/css/style.css" rel="stylesheet">
 </head>
 <body class="no-js">
-<table class="menu" width="1000px">
+<div id = "navBar"><a href="/">Home</a></div>
+<div id = "userInfo"><strong>${email}</strong></div>
+<div style="clear: both"></div>
+
+<table class="menu">
     <tr>
-        <td><b>Users List</b></td>
-    </tr>
-    <tr>
-        <td><td>
         <td>
             <form method="get" action="/writeTo">
                 <input type="hidden" name="recEmail" value="">
                 <input type="submit" value="Write to all">
             </form>
         </td>
-        <td></td>
     </tr>
+    <tr>
+        <td><b>Users List</b></td>
+    </tr>
+
     <c:forEach var="user" items="${users}">
         <tr>
             <c:if test="${email != user.email}">
-            <td>${user.email}</td>
-            <td>
+            <td><a href="/writeTo?recEmail=${user.email}">${user.email}</a></td>
+            <!--
+                <td>
                 <form method="get" action="/writeTo">
                     <input type="hidden" name="recEmail" value=${user.email}>
                     <input type="submit" value="Write">
                 </form>
             </td>
+            -->
             <td>
                 <form method="get" action="/messages">
                 <input type="hidden" name="recEmail" value=${user.email}>
@@ -42,12 +47,10 @@
     </c:forEach>
 </table>
 
-<div align="right"><strong>${email}</strong></div>
-<div class="chat">
+<div id="chat">
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
-                <tr><td>My companion : ${receiver}</td></tr>
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == null}">
                         <tr>
@@ -70,15 +73,15 @@
         <table class="chat">
             <tr>
                 <td>
-                    <input width="30%" type="text" name="message">
+                    <input class="inputField" type="text" name="message">
                 </td>
-                <td colspan="5">
+                <td width="10%">
                     <input type="hidden" name="is121" value="false">
                     <input type="hidden" name="email" value="${email}">
                     <input type="hidden" name="recEmail" value="${receiver}">
                     <input type="submit" value="Send">
                 </td>
-                <td>
+                <td width="30%">
                     to: ${receiver}
                 </td>
             </tr>
@@ -88,6 +91,16 @@
         </table>
     </form:form>
 </div>
-<a href="/">Home</a>
+
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+            var height = $('#containerChat')[0].scrollHeight;
+            $('#containerChat').scrollTop(height);
+    });
+</script>
+
 </body>
 </html>

@@ -34,6 +34,8 @@ public class ChatController {
     /**
      * this model uses in another methods to not copy code
      *
+     * tested
+     *
      * @param request it must be to get user from session
      * @param jspPath it's path of your jsp page
      * @return
