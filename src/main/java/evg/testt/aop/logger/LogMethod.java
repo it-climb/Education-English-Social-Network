@@ -9,4 +9,5 @@ public interface LogMethod {
     void writeDebug(String message);
     void writeError(String message);
     void writeWarn(String message);
+    void writeRootTrace(String message);
 }

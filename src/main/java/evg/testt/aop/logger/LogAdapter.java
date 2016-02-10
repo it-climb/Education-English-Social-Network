@@ -26,4 +26,9 @@ public class LogAdapter
     public void writeWarn(String message) {
         WARN_LOGGER.warn(message);
     }
+
+    @Override
+    public void writeRootTrace(String message) {
+        ROOT_LOGGER.trace(message);
+    }
 }

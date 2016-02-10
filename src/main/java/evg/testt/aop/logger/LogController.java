@@ -39,11 +39,11 @@ public class LogController
 
         switch (methodController.getName()){
 
-            case "deleteOne" : logAdapter.writeWarn("delete after [method] : " + methodController.getName());
+            case "deleteOne" : logAdapter.writeInfo("delete after [method] : " + methodController.getName());
                 break;
-            case "addNewOne" : logAdapter.writeWarn("incert after [method] : " + methodController.getName());
+            case "addNewOne" : logAdapter.writeInfo("incert after [method] : " + methodController.getName());
                 break;
-            case "updateOne" : logAdapter.writeWarn("update after [method] : " + methodController.getName());
+            case "updateOne" : logAdapter.writeInfo("update after [method] : " + methodController.getName());
         }
     }
 }
