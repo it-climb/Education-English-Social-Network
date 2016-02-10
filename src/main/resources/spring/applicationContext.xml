@@ -22,22 +22,76 @@
 
     <context:component-scan base-package="evg.testt"/>
 
-    <aop:aspectj-autoproxy>
-        <aop:include name="aspectLoggerController"/>
-    </aop:aspectj-autoproxy>
-
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
     <bean id="departmentController" class="evg.testt.controller.DepartmentController" />
     <bean id="aspectLoggerController" class="evg.testt.aop.logger.AspectLoggerController" />
-    <bean id="departmentServiceImpl"
-          class="evg.testt.service.impl.DepartmentServiceImpl" />
-    <aop:config>
+    <bean id="baseService" class="evg.testt.service.impl.DepartmentServiceImpl"/>
+
+
+    <!--<aop:config>-->
+        <!--&lt;!&ndash;<aop:aspect ref="aspectLoggerController">&ndash;&gt;-->
+        <!--<aop:pointcut id="aspectLoggerControllerPointcutDelete" expression="execution(* evg.testt..*.delete*(..))"/>-->
+        <!--<aop:pointcut id="aspectLoggerControllerPointcutAdd" expression="execution(* evg.testt..*.incert*(..))"/>-->
+        <!--<aop:advisor advice-ref="aspectLoggerController" pointcut-ref="aspectLoggerControllerPointcutDelete"-->
+                     <!--id="aspectLoggerControllerAdvisor"/>-->
+        <!--<aop:advisor advice-ref="aspectLoggerController" pointcut-ref="aspectLoggerControllerPointcutAdd"-->
+                     <!--id="aspectLoggerControllerAdvisor"/>-->
+        <!--&lt;!&ndash;<aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>&ndash;&gt;-->
+    <!--</aop:config>-->
+    
+    <!--<aop:config>-->
         <!--<aop:aspect ref="aspectLoggerController">-->
-        <aop:pointcut id="aspectLoggerControllerPointcutDelete" expression="execution(* evg.testt..*.delete*(..))"/>
-        <aop:advisor advice-ref="aspectLoggerController" pointcut-ref="aspectLoggerControllerPointcutDelete"
-                     id="aspectLoggerControllerAdvisorDelete"/>
-        <!--<aop:before pointcut-ref="delete" method="deleteBeforeDepartment"/>-->
-        <!--<aop:after pointcut-ref="delete" method="deleteAfterDepartment"/>-->
+            <!--<aop:pointcut id="addPointcut" expression="execution (* evg.testt.controller.DepartmentController.addNewOne(..))"/>-->
+            <!--<aop:before pointcut-ref="addPointcut" method="addBeforeDepartment"/>-->
+            <!--<aop:after pointcut-ref="addPointcut" method="addAfterDepartment"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+    <aop:config>
+        <aop:pointcut id="aspectLoggerControllerPointcutDelete"
+                      expression="execution(* evg.testt.controller.DepartmentController.deleteOne(..))"/>
+        <aop:advisor advice-ref="aspectLoggerController"
+                     pointcut-ref="aspectLoggerControllerPointcutDelete"
+                     id="aspectLoggerControllerInterceptorAdvisor"/>
     </aop:config>
+
+    <aop:config>
+        <aop:pointcut id="aspectLoggerControllerPointcutUpdate"
+                      expression="execution(* evg.testt.controller.DepartmentController.updateOne(..))"/>
+        <aop:advisor advice-ref="aspectLoggerController"
+                     pointcut-ref="aspectLoggerControllerPointcutUpdate"
+                     id="aspectLoggerControllerInterceptorAdvisor"/>
+    </aop:config>
+
+    <aop:config>
+        <aop:pointcut id="aspectLoggerControllerPointcutInsert"
+                      expression="execution(* evg.testt.controller.DepartmentController.addNewOne(..))"/>
+        <aop:advisor advice-ref="aspectLoggerController"
+                     pointcut-ref="aspectLoggerControllerPointcutInsert"
+                     id="aspectLoggerControllerInterceptorAdvisor"/>
+    </aop:config>
+
+    <!--<bean id="departmentServiceImpl"-->
+          <!--class="evg.testt.service.impl.DepartmentServiceImpl" />-->
+    <!--<bean id="departmentControllerProxy" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+        <!--<property name="target" ref="departmentController"/>-->
+        <!--<property name="interceptorNames">-->
+            <!--<list>-->
+                <!--<value>aspectLoggerController</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<aop:config>-->
+        <!--&lt;!&ndash; Performance logging pointcut - -->
+            <!--run for every method in a control or facade class &ndash;&gt;-->
+        <!--<aop:pointcut id="performanceLoggingPointcut"-->
+                      <!--expression="execution(* evg.testt..*.add*(..))" />-->
+
+        <!--<aop:advisor-->
+                <!--advice-ref="aspectLoggerController"-->
+                <!--pointcut-ref="performanceLoggingPointcut"-->
+                <!--id="performanceLoggingInterceptorAdvisor"  />-->
+    <!--</aop:config>-->
 </beans>

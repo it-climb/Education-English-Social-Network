@@ -16,11 +16,35 @@ public class LogController
 
         switch (methodAspectName){
 
-            case "deleteOne" : logAdapter.writeWarn("delete [method] : " + methodController.getName());
+            case "before" : beforeMethod(methodController);
                 break;
-            case "addNewOne" : logAdapter.writeInfo("incert [method] : " + methodController.getName());
+            case "afterReturning" : afterReturningMethod(methodController);
                 break;
-            case "updateOne" : logAdapter.writeInfo("update [method] : " + methodController.getName());
+        }
+    }
+
+    private void beforeMethod(Method methodController){
+
+        switch (methodController.getName()){
+
+            case "deleteOne" : logAdapter.writeWarn("delete before [method] : " + methodController.getName());
+                break;
+            case "addNewOne" : logAdapter.writeWarn("incert before [method] : " + methodController.getName());
+                break;
+            case "updateOne" : logAdapter.writeWarn("update before [method] : " + methodController.getName());
+        }
+    }
+
+    private void afterReturningMethod(Method methodController){
+
+        switch (methodController.getName()){
+
+            case "deleteOne" : logAdapter.writeWarn("delete after [method] : " + methodController.getName());
+                break;
+            case "addNewOne" : logAdapter.writeWarn("incert after [method] : " + methodController.getName());
+                break;
+            case "updateOne" : logAdapter.writeWarn("update after [method] : " + methodController.getName());
         }
     }
 }
+
