@@ -9,18 +9,19 @@
 <table width="600px">
     <tr>
         <td><b>ID</b></td>
-        <td><b>Comment</b></td>
+        <td><b>className</b></td>
+        <td><b>classId</b></td>
         <td><b>Date</b></td>
-        <td><b>User</b></td>
-        <td><b>Action</b></td>
+        <td><b>Comment</b></td>
     </tr>
 
     <c:forEach var="comment" items="${comments}">
         <tr>
             <td>${comment.id}</td>
-            <td>${comment.message}</td>
-            <td>${comment.data}</td>
-            <td>${comment.userAcc}</td>
+            <td>${comment.className}</td>
+            <td>${comment.classId}</td>
+            <td>${comment.date}</td>
+            <td>${comment.comment}</td>
             <td><a href="/editComment?id=${comment.id}">Edit</a> | <a href="/deleteComment?id=${comment.id}">Delete</a></td>
         </tr>
     </c:forEach>

@@ -3,35 +3,29 @@ package evg.testt.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Document(collection = Comment.COLLECTION_NAME)
-@Entity(name = "comments")
 public class Comment {
 
     public static final String COLLECTION_NAME = "comments";
 
-    @ManyToOne
-    @JoinColumn(name = "objectForComment_id")
-    private ObjectForComments objectForComments;
-
     @Id
     private Long id;
 
-    private String message;
+    private String className;
+    private Long classId;
     private LocalDate data;
-    private String userAcc;
+    private String comment;
 
     public Comment() {
 
     }
 
-    public Comment(String message, String userAcc) {
-        this.message = message;
-        this.userAcc = userAcc;
+    public Comment(String className, Long classId, String comment) {
+        this.className = className;
+        this.classId = classId;
+        this.comment = comment;
     }
 
     public Long getId() {
@@ -42,20 +36,20 @@ public class Comment {
         this.id = id;
     }
 
-    public ObjectForComments getObjectForComments() {
-        return objectForComments;
+    public String getClassName() {
+        return className;
     }
 
-    public void setObjectForComments(ObjectForComments objectForComments) {
-        this.objectForComments = objectForComments;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public String getMessage() {
-        return message;
+    public Long getClassId() {
+        return classId;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setClassId(Long classId) {
+        this.classId = classId;
     }
 
     public LocalDate getData() {
@@ -66,11 +60,11 @@ public class Comment {
         this.data = data;
     }
 
-    public String getUserAcc() {
-        return userAcc;
+    public String getComment() {
+        return comment;
     }
 
-    public void setUserAcc(String userAcc) {
-        this.userAcc = userAcc;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

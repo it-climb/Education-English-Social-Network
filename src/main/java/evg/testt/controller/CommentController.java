@@ -1,9 +1,9 @@
 package evg.testt.controller;
 
 import evg.testt.model.Comment;
+import evg.testt.model.Contact;
 import evg.testt.service.CommentService;
-import evg.testt.service.ObjectForCommentsService;
-import evg.testt.util.JspPath;
+import evg.testt.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,17 +23,14 @@ public class CommentController {
     CommentService commentService;
 
     @Autowired
-    ObjectForCommentsService objectForCommentsService;
-    @RequestMapping(value = "/obj", method = RequestMethod.GET)
-    public ModelAndView showAllObj(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView modelAndView = new ModelAndView("objectForComments/all");
-        modelAndView.addObject("objectForComments", objectForCommentsService.getAll());
-        return modelAndView;
-    }
+    ContactService contactService;
+
 
     @RequestMapping(value = "/comment", method = RequestMethod.GET)
-    public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView showAll(@RequestParam(required = true) Long id, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("comments/all");
+        Contact contact = contactService.get(id);
+        modelAndView.addObject("contacts", contact);
         modelAndView.addObject("comments", commentService.getAll());
         HttpSession session = request.getSession();
         return modelAndView;
