@@ -1,14 +1,15 @@
 package evg.testt.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import evg.testt.service.convertor.TestConvector;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "departments")
 public class Department extends BaseModel{
 
+    @Column
+    @Convert(converter = TestConvector.class)
     private String name;
 
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department", fetch = FetchType.LAZY)

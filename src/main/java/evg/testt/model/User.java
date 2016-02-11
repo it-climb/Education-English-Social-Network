@@ -1,5 +1,6 @@
 package evg.testt.model;
 
+import evg.testt.service.convertor.TestConvector;
 import evg.testt.util.validation.Unique;
 import org.hibernate.annotations.Columns;
 import org.hibernate.validator.constraints.Email;
@@ -7,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;

@@ -28,9 +28,9 @@ public class DepartmentController{
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("user");
+        //User sessionUser = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_ALL);
-        modelAndView.addObject("email", sessionUser.getEmail());
+        //modelAndView.addObject("email", sessionUser.getEmail());
         modelAndView.addObject("departments", departmentService.getAll());
         return modelAndView;
     }
