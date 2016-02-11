@@ -25,12 +25,12 @@
         <br/>
 
         <label for="passImp">Password: </label>
-        <form:input path="password" id="passImp"/>
+        <form:password path="password" id="passImp"/>
         <form:errors path="password" cssClass="error" />
         <br/>
 
         <br/>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="OK" />
     </form:form>
 </div>
 </body>
