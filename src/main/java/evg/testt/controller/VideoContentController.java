@@ -1,11 +1,8 @@
 package evg.testt.controller;
 
-import evg.testt.model.Contact;
-import evg.testt.model.VideoContent;
-import evg.testt.service.ContactService;
-import evg.testt.service.VideoContentService;
+import evg.testt.model.content.VideoFile;
+import evg.testt.service.impl.VideoContentServiceImpl;
 import evg.testt.util.JspPath;
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 
@@ -24,7 +20,7 @@ import java.util.List;
 public class VideoContentController {
 
     @Autowired
-    VideoContentService videoContentService;
+    VideoContentServiceImpl videoContentServiceImpl;
 
     /**
      * making start page for choose type of video
@@ -37,11 +33,11 @@ public class VideoContentController {
 
         ModelAndView modelAndView;
         if (id != null) {
-            VideoContent videoContent = videoContentService.get(Long.parseLong(id));
-            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", videoContent);
+            VideoFile videoFile = videoContentServiceImpl.get(Long.parseLong(id));
+            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", videoFile);
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
-            List<VideoContent> contentList = videoContentService.getAll();
+            List<VideoFile> contentList = videoContentServiceImpl.getAll();
             modelAndView.addObject("contents", contentList);
         }
 
@@ -50,7 +46,7 @@ public class VideoContentController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin() {
-        List<VideoContent> contentList = videoContentService.getAll();
+        List<VideoFile> contentList = videoContentServiceImpl.getAll();
         return new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
     }
 
@@ -59,23 +55,23 @@ public class VideoContentController {
 
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
         if (id != null) {
-            VideoContent videoContent = videoContentService.get(Long.parseLong(id));
-            modelAndView.addObject("content", videoContent);
-            modelAndView.addObject("contenturl", videoContent.getUrl().toString());
+            VideoFile videoFile = videoContentServiceImpl.get(Long.parseLong(id));
+            modelAndView.addObject("content", videoFile);
+            modelAndView.addObject("contenturl", videoFile.getUrl().toString());
         }
 
         return modelAndView;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveContent(@ModelAttribute VideoContent videoContent) {
-        videoContentService.save(videoContent);
+    public String saveContent(@ModelAttribute VideoFile videoFile) {
+        videoContentServiceImpl.save(videoFile);
         return "redirect:/video/admin";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteVideo(@RequestParam(required = true) String id) {
-        videoContentService.remove(Long.parseLong(id));
+        videoContentServiceImpl.remove(Long.parseLong(id));
         return "redirect:/video/admin";
     }
 

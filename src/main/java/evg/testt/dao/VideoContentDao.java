@@ -1,12 +1,10 @@
 package evg.testt.dao;
 
-import evg.testt.model.Contact;
-import evg.testt.model.VideoContent;
+import evg.testt.model.content.VideoFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,20 +18,20 @@ public class VideoContentDao{
     @Autowired
     private MongoOperations mongoOperations;
 
-    public void save(VideoContent videoContent) {
-        mongoOperations.save(videoContent);
+    public void save(VideoFile videoFile) {
+        mongoOperations.save(videoFile);
     }
 
-    public VideoContent get(Long id) {
-        return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), VideoContent.class);
+    public VideoFile get(Long id) {
+        return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), VideoFile.class);
     }
 
-    public List<VideoContent> getAll() {
-        return mongoOperations.findAll(VideoContent.class);
+    public List<VideoFile> getAll() {
+        return mongoOperations.findAll(VideoFile.class);
     }
 
     public void remove(Long id) {
-        mongoOperations.remove(Query.query(Criteria.where("id").is(id)), VideoContent.class);
+        mongoOperations.remove(Query.query(Criteria.where("id").is(id)), VideoFile.class);
     }
 
 }
