@@ -4,7 +4,7 @@ package evg.testt.service.impl;
 import evg.testt.dao.SequenceDao;
 import evg.testt.dao.VideoContentDao;
 import evg.testt.model.content.VideoFile;
-import evg.testt.service.VideoContentService;
+import evg.testt.service.videoservices.VideoContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
