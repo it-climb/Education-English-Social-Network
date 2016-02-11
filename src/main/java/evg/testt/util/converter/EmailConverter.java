@@ -1,7 +1,5 @@
 package evg.testt.util.converter;
 
-
-
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -9,7 +7,6 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.security.Key;
-
 
 @Converter
 public class EmailConverter implements AttributeConverter<String, String> {

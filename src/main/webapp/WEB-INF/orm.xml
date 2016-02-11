@@ -5,5 +5,7 @@
 
     <entity class="evg.testt.model.User">
         <convert converter="evg.testt.util.converter.EmailConverter" attribute-name="email"/>
+        <convert converter="evg.testt.util.converter.PasswordConverter" attribute-name="password"/>
     </entity>
+
 </entity-mappings>

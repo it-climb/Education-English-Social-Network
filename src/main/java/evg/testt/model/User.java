@@ -1,6 +1,7 @@
 package evg.testt.model;
 
 import evg.testt.util.converter.EmailConverter;
+import evg.testt.util.converter.PasswordConverter;
 import evg.testt.util.validation.Unique;
 import org.hibernate.annotations.Columns;
 import org.hibernate.validator.constraints.Email;
@@ -24,6 +25,7 @@ public class User extends BaseModel {
 
     @NotEmpty(message = "Please enter your password")
     @Size(min = 3, max = 16, message = "Your password must between 3 and 16 characters")
+    @Convert(converter = PasswordConverter.class)
     private String password;
 
     public String getPassword() {
