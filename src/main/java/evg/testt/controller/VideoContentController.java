@@ -1,7 +1,7 @@
 package evg.testt.controller;
 
 import evg.testt.model.content.VideoFile;
-import evg.testt.service.impl.VideoContentServiceImpl;
+import evg.testt.service.impl.videoservicesimpl.VideoContentServiceImpl;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

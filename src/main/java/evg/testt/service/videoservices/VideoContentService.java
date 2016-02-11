@@ -1,5 +1,7 @@
 package evg.testt.service.videoservices;
 
 
-public interface VideoContentService {
+import evg.testt.model.content.VideoFile;
+
+public interface VideoContentService extends BaseVideoService<VideoFile> {
 }

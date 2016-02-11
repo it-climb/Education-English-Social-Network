@@ -1,4 +1,4 @@
-package evg.testt.service.impl;
+package evg.testt.service.impl.videoservicesimpl;
 
 
 import evg.testt.dao.SequenceDao;

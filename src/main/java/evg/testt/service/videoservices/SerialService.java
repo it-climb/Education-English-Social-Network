@@ -1,7 +1,7 @@
 package evg.testt.service.videoservices;
 
-/**
- * Created by alex on 11.02.16.
- */
-public interface SerialService {
+import evg.testt.model.content.Serial;
+
+
+public interface SerialService extends BaseVideoService<Serial> {
 }
