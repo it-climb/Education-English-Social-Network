@@ -5,28 +5,21 @@
 <head>
     <title>All</title>
 </head>
-<body>
 <table width="600px">
-    <tr>
-        <td><b>ID</b></td>
-        <td><b>Comment</b></td>
-        <td><b>Date</b></td>
-        <td><b>User</b></td>
-        <td><b>Action</b></td>
-    </tr>
 
-    <c:forEach var="comment" items="${comments}">
+    <c:forEach var="objectForComment" items="${}">
         <tr>
-            <td>${comment.id}</td>
-            <td>${comment.message}</td>
-            <td>${comment.data}</td>
-            <td>${comment.userAcc}</td>
-            <td><a href="/editComment?id=${comment.id}">Edit</a> | <a href="/deleteComment?id=${comment.id}">Delete</a></td>
+            <td>${objectForComment.id}</td>
+            <td><form method="get" action="/comment">
+                <input type="hidden" name="id" value=${objectForComment.id}>
+                <input type="submit" value="Comments">
+            </form>
+            <td><a href="/edit?id=${objectForComment.id}">Edit</a> | <a href="/delete?id=${objectForComment.id}">Delete</a></td>
         </tr>
     </c:forEach>
     <tr>
         <td colspan="5">
-            <a href="/addComment">Add new one</a>
+            <a href="/add">Add new one</a>
         </td>
     </tr>
 </table>

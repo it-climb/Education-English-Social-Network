@@ -3,18 +3,25 @@ package evg.testt.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.xml.crypto.Data;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Document(collection = Comment.COLLECTION_NAME)
+@Entity(name = "comments")
 public class Comment {
 
     public static final String COLLECTION_NAME = "comments";
 
+    @ManyToOne
+    @JoinColumn(name = "objectForComment_id")
+    private ObjectForComments objectForComments;
+
     @Id
     private Long id;
 
-    private String objectForComments;
+    private String message;
     private LocalDate data;
     private String userAcc;
 
@@ -22,8 +29,8 @@ public class Comment {
 
     }
 
-    public Comment(String objectForComments, String userAcc) {
-        this.objectForComments = objectForComments;
+    public Comment(String message, String userAcc) {
+        this.message = message;
         this.userAcc = userAcc;
     }
 
@@ -35,12 +42,20 @@ public class Comment {
         this.id = id;
     }
 
-    public String getObjectForComments() {
+    public ObjectForComments getObjectForComments() {
         return objectForComments;
     }
 
-    public void setObjectForComments(String objectForComments) {
+    public void setObjectForComments(ObjectForComments objectForComments) {
         this.objectForComments = objectForComments;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public LocalDate getData() {

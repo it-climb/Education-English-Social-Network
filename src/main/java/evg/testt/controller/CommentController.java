@@ -2,6 +2,7 @@ package evg.testt.controller;
 
 import evg.testt.model.Comment;
 import evg.testt.service.CommentService;
+import evg.testt.service.ObjectForCommentsService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,15 @@ public class CommentController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    ObjectForCommentsService objectForCommentsService;
+    @RequestMapping(value = "/obj", method = RequestMethod.GET)
+    public ModelAndView showAllObj(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("objectForComments/all");
+        modelAndView.addObject("objectForComments", objectForCommentsService.getAll());
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/comment", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {

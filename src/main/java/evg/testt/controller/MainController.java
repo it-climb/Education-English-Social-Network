@@ -1,7 +1,9 @@
 package evg.testt.controller;
 
 import evg.testt.model.Contact;
+import evg.testt.model.ObjectForComments;
 import evg.testt.service.ContactService;
+import evg.testt.service.ObjectForCommentsService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class MainController {
 
     @Autowired
     private ContactService contactService;
+
+
+
 
 
 //    @RequestMapping(value = "/", method = RequestMethod.GET)

@@ -10,7 +10,7 @@
     <table>
         <tr>
             <td>Comment:</td>
-            <td><form:input path="objectForComments" /></td>
+            <td><form:input path="message" /></td>
         </tr>
 
         <tr>
