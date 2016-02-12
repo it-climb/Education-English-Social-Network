@@ -48,7 +48,6 @@ public class UserController {
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
     public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
        // userValid.validate(user, result);
-
         if(result.hasErrors()){
            return "redirect:/loginProblems";
         } else {
@@ -63,7 +62,7 @@ public class UserController {
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
-            if(user!=null && user.getPassword().equals(password)) {
+        if(user!=null && user.getPassword().equals(Integer.toString(password.hashCode()))) {
                 session.setAttribute("user", user);
                 return "redirect:/success";
             }else return "redirect:/loginProblems";

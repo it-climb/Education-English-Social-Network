@@ -15,7 +15,6 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 
     @Override
     public String convertToEntityAttribute(String db) {
-
-             return "redirect:/login";
+             return db;
     }
 }
