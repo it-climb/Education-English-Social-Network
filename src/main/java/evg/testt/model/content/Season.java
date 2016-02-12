@@ -3,16 +3,16 @@ package evg.testt.model.content;
 import java.util.List;
 
 
-public abstract class Season<T> {
+public abstract class Season {
 
-    private List<MovieContent<T>> season;
+    private List<MovieContent> season;
     private String describe;
 
-    public List<MovieContent<T>> getSeason() {
+    public List<MovieContent> getSeason() {
         return season;
     }
 
-    public void setSeason(List<MovieContent<T>> season) {
+    public void setSeason(List<MovieContent> season) {
         this.season = season;
     }
 

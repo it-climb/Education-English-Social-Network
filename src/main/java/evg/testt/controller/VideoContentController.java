@@ -1,7 +1,9 @@
 package evg.testt.controller;
 
-import evg.testt.model.content.VideoFile;
-import evg.testt.service.impl.videoservicesimpl.VideoContentServiceImpl;
+import evg.testt.model.content.*;
+import evg.testt.service.videoservices.MovieService;
+import evg.testt.service.videoservices.SerialService;
+import evg.testt.service.videoservices.TvShowService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +23,11 @@ import java.util.List;
 public class VideoContentController {
 
     @Autowired
-    VideoContentServiceImpl videoContentServiceImpl;
+    MovieService movieService;
+    @Autowired
+    SerialService serialService;
+    @Autowired
+    TvShowService tvShowService;
 
     /**
      * making start page for choose type of video
@@ -31,20 +38,50 @@ public class VideoContentController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView videoHome(@RequestParam(required = false) String id) throws MalformedURLException {
 
+    //add object in movie,  in serial,  in tv-show
+        VideoFile videoFile1 = new VideoFile();
+        videoFile1.setName("video_1");
+        videoFile1.setDescribe("describing of video_1");
+        videoFile1.setUrl("https://www.youtube.com/watch?v=ruxvZGMbGI8");
+        VideoFile videoFile2 = new VideoFile();
+        videoFile2.setName("video_1");
+        videoFile2.setDescribe("describing of video_1");
+        videoFile2.setUrl("https://www.youtube.com/watch?v=ruxvZGMbGI8");
+        List<VideoFile> videoFiles = new ArrayList<>();
+        videoFiles.add(videoFile1);
+        videoFiles.add(videoFile2);
+        Movie movie1 = new Movie();
+        movie1.setMovieContent(videoFiles);
+        movie1.setDescribe("describing about this MOVIE");
+        movieService.save(movie1);
+
+        Serial serial = new Serial();
+        serial.setDescribe("This is SERIAL");
+        List<MovieContent> movieContents = new ArrayList<>();
+        movieContents.add(movie1);
+        serial.setSeason(movieContents);
+        serialService.save(serial);
+
+        TvShow tvShow = new TvShow();
+        tvShow.setDescribe("This is TV-Show !!");
+        tvShow.setSeason(movieContents);
+        tvShowService.save(tvShow);
+
+
         ModelAndView modelAndView;
         if (id != null) {
-            VideoFile videoFile = videoContentServiceImpl.get(Long.parseLong(id));
-            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", videoFile);
+            Movie movie = movieService.get(Long.parseLong(id));
+            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", movie);
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
-            List<VideoFile> contentList = videoContentServiceImpl.getAll();
+            List<Movie> contentList = movieService.getAll();
             modelAndView.addObject("contents", contentList);
         }
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin() {
         List<VideoFile> contentList = videoContentServiceImpl.getAll();
         return new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
@@ -73,7 +110,7 @@ public class VideoContentController {
     public String deleteVideo(@RequestParam(required = true) String id) {
         videoContentServiceImpl.remove(Long.parseLong(id));
         return "redirect:/video/admin";
-    }
+    }*/
 
 
 }

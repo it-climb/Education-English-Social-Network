@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = TvShow.COLLECTION_NAME)
-public class TvShow extends Season<VideoFile>{
+public class TvShow extends Season{
 
     public static final String COLLECTION_NAME = "tvshows";
 

@@ -1,9 +1,7 @@
 package evg.testt.service.impl.videoservicesimpl;
 
 import evg.testt.dao.SequenceDao;
-import evg.testt.dao.contentdao.MovieDao;
 import evg.testt.dao.contentdao.SerialDao;
-import evg.testt.model.content.Movie;
 import evg.testt.model.content.Serial;
 import evg.testt.service.videoservices.SerialService;
 import org.springframework.beans.factory.annotation.Autowired;

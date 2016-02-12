@@ -1,6 +1,5 @@
 package evg.testt.dao.contentdao;
 
-import evg.testt.model.content.Movie;
 import evg.testt.model.content.TvShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
