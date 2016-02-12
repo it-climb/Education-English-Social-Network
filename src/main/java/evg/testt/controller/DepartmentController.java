@@ -3,8 +3,6 @@ package evg.testt.controller;
 import evg.testt.model.Department;
 import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +17,6 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private final Logger LOGGER = LogManager.getLogger(this.getClass());
-
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll() throws SQLException {
         return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
@@ -29,28 +25,22 @@ public class DepartmentController{
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) {
         Department department = Department.newBuilder().setName(name).setId(id).build();
+        if(id==null){
             try {
-                if(id==null)
                 departmentService.insert(department);
-                LOGGER.info("in method addNewOne");
-//                DEBUG_LOGGER.debug("add new one department: " + department.getName());
-
+            }
+            catch (SQLException e) {
+            }
+        }
+        else
+            {
+            try {
+                departmentService.update(department);
             } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to add a new Department\n" +
-//                        "exception type: ", e);
 
             }
-//        }else{
-//            try {
-//                departmentService.update(department);
-//                DEBUG_LOGGER.debug("update department of " + department.getName());
-//            } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to update the Department of " +
-//                        department.getName() + "\n" +
-//                        "exception type: ", e);
-//            }
-//        }
-//        WARN_LOGGER.warn("method addNewOne was used!");
+        }
+
 
         return "redirect:/dep";
     }
@@ -60,16 +50,8 @@ public class DepartmentController{
         Department department = Department.newBuilder().setId(id).build();
         try {
             departmentService.delete(department);
-//            DEBUG_LOGGER.debug("delete department of");
-
         } catch (SQLException e) {
-//            ERROR_LOGGER.error("Remove Department failed " +
-//                    department.getName() + "\n" +
-//                    "exception type: ", e);
-
         }
-//        DEBUG_LOGGER.debug("delete one department");
-
         return "redirect:/dep";
     }
 
@@ -81,17 +63,9 @@ public class DepartmentController{
             try {
                 department = departmentService.getById(id);
                 modelAndView.addObject("department", department);
-//                DEBUG_LOGGER.debug("update department of " + department.getName());
-
             } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to update the Department of " +
-//                        department.getName() + "\n" +
-//                        "exception type: ", e);
-
             }
-
         }
         return modelAndView;
     }
-
 }
