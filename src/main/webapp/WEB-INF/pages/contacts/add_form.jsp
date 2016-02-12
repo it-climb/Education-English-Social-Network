@@ -12,7 +12,10 @@
             <td>Name:</td>
             <td><form:input path="name" /></td>
         </tr>
-
+        <tr>
+            <td>Number:</td>
+            <td><form:input path="number" /></td>
+        </tr>
         <tr>
             <td>E-mail:</td>
             <td><form:input path="email" /></td>
