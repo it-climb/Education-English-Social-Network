@@ -6,27 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.net.URL;
 
-@Document(collection = VideoFile.COLLECTION_NAME)
-public class VideoFile implements Serializable {
 
-    public static final String COLLECTION_NAME = "videocontent";
-    @Id
-    private Long id;
+public class VideoFile {
 
-    private URL url;
+    private String url;
     private String name;
-    private String type;
     private String describe;
     private String season;
     private String series;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -36,13 +24,6 @@ public class VideoFile implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getSeason() {
         return season;
@@ -60,11 +41,11 @@ public class VideoFile implements Serializable {
         this.series = series;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(URL url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 

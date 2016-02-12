@@ -1,29 +1,42 @@
 package evg.testt.service.impl.videoservicesimpl;
 
+import evg.testt.dao.SequenceDao;
+import evg.testt.dao.contentdao.MovieDao;
+import evg.testt.dao.contentdao.SerialDao;
+import evg.testt.model.content.Movie;
 import evg.testt.model.content.Serial;
 import evg.testt.service.videoservices.SerialService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
+@Service
 public class SerialServiceImpl implements SerialService {
-    @Override
-    public void save(Serial o) {
 
+    @Autowired
+    private SequenceDao sequenceDao;
+    @Autowired
+    private SerialDao serialDao;
+
+    public void save(Serial serial) {
+        if(serial.getId()==null) {
+            serial.setId(sequenceDao.getNextSequenceId(Serial.COLLECTION_NAME));
+        }
+        serialDao.save(serial);
     }
 
-    @Override
     public Serial get(Long id) {
-        return null;
+        return serialDao.get(id);
     }
 
-    @Override
     public List<Serial> getAll() {
-        return null;
+        return serialDao.getAll();
     }
 
-    @Override
     public void remove(Long id) {
-
+        serialDao.remove(id);
     }
+
 }
