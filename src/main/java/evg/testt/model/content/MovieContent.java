@@ -6,9 +6,17 @@ import java.util.List;
 
 public abstract class MovieContent<T> {
 
-    private List<T> movieContent;
+    private List<T> listVideoFiles;
     private String describe;
+    private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescribe() {
         return describe;
@@ -18,12 +26,11 @@ public abstract class MovieContent<T> {
         this.describe = describe;
     }
 
-    public List<T> getMovieContent() {
-        return movieContent;
+    public List<T> getListVideoFiles() {
+        return listVideoFiles;
     }
 
-    public void setMovieContent(List<T> movieContent) {
-        this.movieContent = movieContent;
+    public void setListVideoFiles(List<T> listVideoFiles) {
+        this.listVideoFiles = listVideoFiles;
     }
-
 }

@@ -15,6 +15,7 @@ public class Movie extends MovieContent<VideoFile> implements Serializable {
     private Long id;
 
 
+
     public Long getId() {
         return id;
     }

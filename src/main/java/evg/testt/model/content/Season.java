@@ -6,7 +6,16 @@ import java.util.List;
 public abstract class Season {
 
     private List<MovieContent> season;
+    private String name;
     private String describe;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<MovieContent> getSeason() {
         return season;

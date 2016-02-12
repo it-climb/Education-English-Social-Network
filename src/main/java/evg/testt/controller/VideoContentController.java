@@ -29,57 +29,64 @@ public class VideoContentController {
     @Autowired
     TvShowService tvShowService;
 
-    /**
-     * making start page for choose type of video
-     * @return ModelAndView
-     * @throws MalformedURLException
-     */
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView videoHome(@RequestParam(required = false) String id) throws MalformedURLException {
-
-    //add object in movie,  in serial,  in tv-show
-        VideoFile videoFile1 = new VideoFile();
-        videoFile1.setName("video_1");
-        videoFile1.setDescribe("describing of video_1");
-        videoFile1.setUrl("https://www.youtube.com/watch?v=ruxvZGMbGI8");
-        VideoFile videoFile2 = new VideoFile();
-        videoFile2.setName("video_1");
-        videoFile2.setDescribe("describing of video_1");
-        videoFile2.setUrl("https://www.youtube.com/watch?v=ruxvZGMbGI8");
-        List<VideoFile> videoFiles = new ArrayList<>();
-        videoFiles.add(videoFile1);
-        videoFiles.add(videoFile2);
-        Movie movie1 = new Movie();
-        movie1.setMovieContent(videoFiles);
-        movie1.setDescribe("describing about this MOVIE");
-        movieService.save(movie1);
-
-        Serial serial = new Serial();
-        serial.setDescribe("This is SERIAL");
-        List<MovieContent> movieContents = new ArrayList<>();
-        movieContents.add(movie1);
-        serial.setSeason(movieContents);
-        serialService.save(serial);
-
-        TvShow tvShow = new TvShow();
-        tvShow.setDescribe("This is TV-Show !!");
-        tvShow.setSeason(movieContents);
-        tvShowService.save(tvShow);
+    public String redirectToMovie() {
+        return "redirect:/video/movie";
+    }
 
 
+    @RequestMapping(value = "/movie", method = RequestMethod.GET)
+    public ModelAndView videoMovie(@RequestParam(required = false) String id,
+                         @RequestParam(required = false) String name) throws MalformedURLException {
         ModelAndView modelAndView;
         if (id != null) {
             Movie movie = movieService.get(Long.parseLong(id));
             modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", movie);
+            modelAndView.addObject("nameVideoFile", name);
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
             List<Movie> contentList = movieService.getAll();
             modelAndView.addObject("contents", contentList);
         }
-
+        modelAndView.addObject("type", "movie");
+        modelAndView.addObject("typeName", "Movie");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/serial", method = RequestMethod.GET)
+    public ModelAndView videoSerial(@RequestParam(required = false) String id) throws MalformedURLException {
+        ModelAndView modelAndView;
+        if (id != null) {
+            Serial serial = serialService.get(Long.parseLong(id));
+            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", serial);
+        } else {
+            modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
+            List<Serial> contentList = serialService.getAll();
+            modelAndView.addObject("contents", contentList);
+        }
+        modelAndView.addObject("type", "serial");
+        modelAndView.addObject("typeName", "Serial");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tvshow", method = RequestMethod.GET)
+    public ModelAndView videoTvShow(@RequestParam(required = false) String id) throws MalformedURLException {
+        ModelAndView modelAndView;
+        if (id != null) {
+            TvShow tvShow = tvShowService.get(Long.parseLong(id));
+            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", tvShow);
+        } else {
+            modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
+            List<TvShow> contentList = tvShowService.getAll();
+            modelAndView.addObject("contents", contentList);
+        }
+        modelAndView.addObject("type", "tvshow");
+        modelAndView.addObject("typeName", "TV-Show");
+        return modelAndView;
+    }
+
 
     /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin() {
@@ -114,3 +121,35 @@ public class VideoContentController {
 
 
 }
+//add object in movie,  in serial,  in tv-show
+       /* VideoFile videoFile1 = new VideoFile();
+        videoFile1.setName("video_1");
+        videoFile1.setDescribe("describing of video_1");
+        videoFile1.setUrl("https://www.youtube.com/embed/ruxvZGMbGI8");
+        VideoFile videoFile2 = new VideoFile();
+        videoFile2.setName("video_2");
+        videoFile2.setDescribe("describing of video_2");
+        videoFile2.setUrl("https://www.youtube.com/embed/WmCKo6AofnU");
+        List<VideoFile> videoFiles = new ArrayList<>();
+        videoFiles.add(videoFile1);
+        videoFiles.add(videoFile2);
+        Movie movie1 = new Movie();
+        movie1.setMovieContent(videoFiles);
+        movie1.setDescribe("describing about this MOVIE");
+        movie1.setName("My movie #1");
+        movieService.save(movie1);
+
+        Serial serial = new Serial();
+        serial.setDescribe("This is SERIAL");
+        serial.setName("It's my favorite serial !");
+        List<MovieContent> movieContents = new ArrayList<>();
+        movieContents.add(movie1);
+        movieContents.add(movie1);
+        serial.setSeason(movieContents);
+        serialService.save(serial);
+
+        TvShow tvShow = new TvShow();
+        tvShow.setDescribe("This is TV-Show !!");
+        tvShow.setSeason(movieContents);
+        tvShow.setName("This is TV-Show about something..");
+        tvShowService.save(tvShow);*/

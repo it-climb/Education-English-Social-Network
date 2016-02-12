@@ -12,8 +12,6 @@ public class VideoFile {
     private String url;
     private String name;
     private String describe;
-    private String season;
-    private String series;
 
 
     public String getName() {
@@ -22,23 +20,6 @@ public class VideoFile {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
-    public String getSeries() {
-        return series;
-    }
-
-    public void setSeries(String series) {
-        this.series = series;
     }
 
     public String getUrl() {

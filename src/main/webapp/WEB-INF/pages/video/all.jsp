@@ -10,21 +10,22 @@
 
     <nav >
         <p align="center">
-            <a href="/video">Movies</a>
-            <a href="/video">Serials</a>
-            <a href="/video">TV-Shows</a>
+            <a href="/video/movie">Movies</a>
+            <a href="/video/serial">Serials</a>
+            <a href="/video/tvshow">TV-Shows</a>
         </p>
     </nav>
 
+    <h2>List of ${typeName}s:</h2><br>
     <table>
         <tr>
-            <td><b>Video name</b></td>
-            <td><b>Type</b></td>
+            <td><b>Name of ${typeName}</b></td>
+            <td><b>Describe</b></td>
         </tr>
         <c:forEach var="content" items="${contents}">
             <tr>
-                <td><a href="/video?id=${content.id}">${content.name}</a></td>
-                <td>${content.type}</td>
+                <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
+                <td>${content.describe}</td>
             </tr>
         </c:forEach>
     </table>
