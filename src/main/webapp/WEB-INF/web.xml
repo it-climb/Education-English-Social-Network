@@ -43,6 +43,10 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- /Spring Dispatcher Servlet Context -->
+
+    <!-- Tiles Dispatcher Servlet Context -->
+
     <servlet>
         <servlet-name>Tiles Dispatch Servlet</servlet-name>
         <servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
@@ -53,7 +57,7 @@
         <url-pattern>*.tiles</url-pattern>
     </servlet-mapping>
 
-    <!-- /Spring Dispatcher Servlet Context -->
+    <!--/ Tiles Dispatcher Servlet Context -->
 
     <!-- Filters -->
 
