@@ -94,6 +94,11 @@ public class Employee extends BaseModel{
             return this;
         }
 
+        public Builder setVersion(Long version) {
+            Employee.this.setVersion(version);
+            return this;
+        }
+
         public Employee build() {
             return Employee.this;
         }

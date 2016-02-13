@@ -1,9 +1,7 @@
 package evg.testt.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
 public class BaseModel {
@@ -18,6 +16,20 @@ public class BaseModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Version
+    private Long version;
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public BaseModel() {
     }
 
     @Override

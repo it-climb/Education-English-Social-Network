@@ -39,8 +39,8 @@ public class DepartmentController{
     }
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
-    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
-        Department department = Department.newBuilder().setName(name).setId(id).build();
+    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name, @RequestParam(required = false) Long version ) throws SQLException {
+        Department department = Department.newBuilder().setName(name).setId(id).setVersion(version).build();
         if(id==null){
             departmentService.insert(department);
         }else{

@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-
 <head>
   <title>All Departments</title>
 </head>
@@ -13,7 +12,7 @@
   </tr>
   <c:forEach var="department" items="${departments}">
     <tr>
-      <td>${department.name}</td>
+      <td>${department.name} (v.${department.version})</td>
       <td>
         <form method="post" action="/depDelete">
           <input type="hidden" name="id" value=${department.id}>
