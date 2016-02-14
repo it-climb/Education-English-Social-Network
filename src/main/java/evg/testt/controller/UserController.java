@@ -70,7 +70,7 @@ public class UserController {
 
     @RequestMapping(value = "/loginProblems", method = RequestMethod.GET)
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGI_PROBLEM);
+        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGIN_PROBLEM);
         return modelAndView;
     }
 
