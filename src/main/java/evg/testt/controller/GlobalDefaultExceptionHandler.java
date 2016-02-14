@@ -17,6 +17,9 @@ public class GlobalDefaultExceptionHandler {
         modelAndView.addObject("url", request.getRequestURL());
         modelAndView.setViewName(JspPath.DEFAULT_ERROR_VIEW);
 
+        // print exception even it handled by 404 page
+        e.printStackTrace();
+
         return modelAndView;
     }
 }

@@ -82,6 +82,6 @@
     <!--Customs error-pages-->
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error-404.jsp</location>
+        <location>/WEB-INF/pages/error-404.jsp</location>
     </error-page>
 </web-app>

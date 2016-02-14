@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>AllDescriptions</title>
+    <title>All Descriptions</title>
 </head>
 <body>
 <table>

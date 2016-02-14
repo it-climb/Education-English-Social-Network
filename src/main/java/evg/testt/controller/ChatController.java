@@ -43,6 +43,10 @@ public class ChatController {
         List<Chat> chat = chatService.getAll();
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
+        if(sessionUser == null){
+            ModelAndView modelAndView = new ModelAndView(JspPath.ISE_ERROR_VIEW);
+            return modelAndView;
+        }
         ModelAndView modelAndView = new ModelAndView(jspPath);
         modelAndView.addObject("users", userService.getAll());
         modelAndView.addObject("email", sessionUser.getEmail());
