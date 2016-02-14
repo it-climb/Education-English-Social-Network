@@ -1,0 +1,32 @@
+package evg.testt.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.Set;
+
+@Entity(name = "subject")
+public class Subject extends BaseModel {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<SubjectInActivity> getSubjectInActivitySet() {
+        return subjectInActivitySet;
+    }
+
+    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
+        this.subjectInActivitySet = subjectInActivitySet;
+    }
+
+    private String name;
+
+    @OneToMany( mappedBy = "subject", cascade = CascadeType.REMOVE)
+    private Set<SubjectInActivity> subjectInActivitySet;
+
+
+}
