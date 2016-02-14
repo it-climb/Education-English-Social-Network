@@ -7,7 +7,7 @@
     <style>
         body { background-color: #eee; font: helvetica; }
         #container { width: 500px; background-color: #fff; margin: 30px auto; padding: 30px; border-radius: 5px; }
-        label {width:70px; display:inline-block;}
+        label {width: 150px; display:inline-block;}
         input { display:inline-block; margin-right: 10px; }
         form {line-height: 160%; }
         .hide { display: none; }
@@ -27,6 +27,11 @@
         <label for="passImp">Password: </label>
         <form:password path="password" id="passImp"/>
         <form:errors path="password" cssClass="error" />
+        <br/>
+        
+        <label for="confPass">Confirm password:</label>
+        <form:input path="confirmPassword" id="confPass"/>
+        <form:errors path="confirmPassword" cssClass="error"/>
         <br/>
 
         <br/>

@@ -1,16 +1,21 @@
 package evg.testt.model;
 
+import evg.testt.util.validation.FieldEquals;
 import evg.testt.util.validation.Unique;
 import evg.testt.util.validation.UserEmail;
 
 import evg.testt.util.validation.UserPassword;
 import org.hibernate.validator.constraints.NotEmpty;
 
+
+
 import javax.persistence.Entity;
 
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 @Entity(name = "users")
+@FieldEquals( field="password", equalsTo="confirmPassword" )
 public class User extends BaseModel {
 
     @Unique(message = "This email already exists")
@@ -22,6 +27,18 @@ public class User extends BaseModel {
     @Size(min = 6, max = 16, message = "Your password must between 6 and 16 characters")
     private String password;
 
+    @Transient
+    @UserPassword
+    @NotEmpty
+    private String confirmPassword;
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public String getPassword() {
         return password;
