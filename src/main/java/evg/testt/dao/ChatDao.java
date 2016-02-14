@@ -14,4 +14,6 @@ public interface ChatDao extends JpaRepository<Chat, Integer> {
 
     List<Chat> findByUser(User user);
 
+    List<Chat> findByUserEmail(String email);
+
 }

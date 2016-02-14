@@ -1,7 +1,9 @@
 package evg.testt.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Entity(name = "chat")
 public class Chat extends BaseModel{
@@ -11,7 +13,18 @@ public class Chat extends BaseModel{
 
     private String receiver;
 
+    @Column(length = 2048)
     private String message;
+
+    private Date time;
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     public String getReceiver() {return receiver;}
 
@@ -59,6 +72,11 @@ public class Chat extends BaseModel{
 
         public Builder setUser(User user) {
             Chat.this.user = user;
+            return this;
+        }
+
+        public Builder setTime() {
+            Chat.this.time = new Date();
             return this;
         }
 

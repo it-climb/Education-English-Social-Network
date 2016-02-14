@@ -58,12 +58,12 @@
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == email && receiver == chat.user.email}">
                         <tr>
-                            <td><span class="pWhisperF">To me: ${chat.message}</span></td>
+                            <td><span class="pWhisperF">${chat.time} : To me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                     <c:if test="${chat.user.email == email && receiver == chat.receiver}">
                         <tr>
-                            <td><span class="pWhisperT">From me: ${chat.message}</span></td>
+                            <td><span class="pWhisperT">${chat.time} : From me: ${chat.message}</span></td>
                         </tr>
                     </c:if>
                 </c:forEach>

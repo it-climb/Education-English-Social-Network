@@ -54,17 +54,17 @@
                 <c:forEach var="chat" items="${chat}">
                     <c:if test="${chat.receiver == null}">
                         <tr>
-                            <td>${chat.getUser().email}:${chat.message}</td>
+                            <td>${chat.time} : ${chat.getUser().email} : ${chat.message}</td>
                         </tr>
                     </c:if>
                     <c:if test="${chat.receiver == email}">
                         <tr>
-                            <td><span class="whisperF">From ${chat.getUser().email} : ${chat.message}</span></td>
+                            <td><span class="whisperF">${chat.time} : From ${chat.getUser().email} : ${chat.message}</span></td>
                         </tr>
                     </c:if>
                     <c:if test="${chat.user.email == email && (chat.receiver != null)}">
                         <tr>
-                            <td><span class="whisperT">To ${chat.receiver} : ${chat.message}</span></td>
+                            <td><span class="whisperT">${chat.time} : To ${chat.receiver} : ${chat.message}</span></td>
                         </tr>
                     </c:if>
                 </c:forEach>

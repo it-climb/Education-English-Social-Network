@@ -101,7 +101,7 @@ public class ChatController {
         if (recEmail == ""){
             recEmail = null;
         }
-        Chat chat = Chat.newBuilder().setUser(user).setMessage(message).setReceiver(recEmail).build();
+        Chat chat = Chat.newBuilder().setUser(user).setMessage(message).setReceiver(recEmail).setTime().build();
         chatService.insert(chat);
         if(is121 == true){
             ModelAndView modelAndView = chatPage(request, JspPath.MESSAGES);
