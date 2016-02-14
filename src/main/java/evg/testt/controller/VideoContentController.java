@@ -53,7 +53,7 @@ public class VideoContentController {
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
     public ModelAndView videoMovie(@RequestParam(required = false) String id,
-                         @RequestParam(required = false) String serie) throws MalformedURLException {
+                         @RequestParam(required = false) String serie){
         ModelAndView modelAndView;
         if (id != null) {
             Movie movie = movieService.get(Long.parseLong(id));
@@ -78,36 +78,47 @@ public class VideoContentController {
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/tvshow", method = RequestMethod.GET)
     public ModelAndView videoTvShow(@RequestParam(required = false) String id,
-                            @RequestParam(required = false) String season) throws MalformedURLException {
+                            @RequestParam(required = false) String season,
+                            @RequestParam(required = false) String serie) {
         ModelAndView modelAndView;
         if (id != null) {
+            List<Season> seasonList = tvShowService.get(Long.parseLong(id)).getSeason();
             if (season == null) {
                 modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
-                List<Season> seasonList = tvShowService.get(Long.parseLong(id)).getSeason();
                 modelAndView.addObject("contents", seasonList);
-                modelAndView.addObject("id", id);
             }
             else {
                 modelAndView = new ModelAndView(JspPath.VIDEO_PLAY);
-                List<Season> seasonList = tvShowService.get(Long.parseLong(id)).getSeason();
+                Season currentSeason = null;
                 for (Season oneSeason : seasonList) {
-                    if (oneSeason.getSeasonNumber().equals(season)) {
-                        modelAndView.addObject("content", oneSeason);
+                    if (oneSeason.getSeasonNumber().equals(Integer.parseInt(season))) {
+                        currentSeason = oneSeason;
                         break;
                     }
+                }
+                modelAndView.addObject("content", currentSeason);
+                if (serie != null) {
+                    VideoFile playVideo = null;
+                    for (VideoFile videoFile: currentSeason.getListVideoFiles()) {
+                        if (videoFile.getSerieNumber().equals(Integer.parseInt(serie))) {
+                            playVideo = videoFile;
+                        }
+                    }
+                    modelAndView.addObject("playVideo", playVideo);
                 }
             }
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
-            List<Video> contentList = videoService.getAll();
+            List<TvShow> contentList = tvShowService.getAll();
             modelAndView.addObject("contents", contentList);
             id = "0";
-            modelAndView.addObject("id", id);
         }
-        modelAndView.addObject("type", "serial");
-        modelAndView.addObject("typeName", "Serial");
+        modelAndView.addObject("id", id);
+        modelAndView.addObject("type", "tvshow");
+        modelAndView.addObject("typeName", "TV-Show");
         return modelAndView;
     }
 
@@ -147,7 +158,7 @@ public class VideoContentController {
 
 
 }
-//add object in movie,  in serial,  in tv-show
+//add objects in movie,  in video,  in tv-show
        /*Video video1 = new Video();
         Video video2 = new Video();
         video1.setName("video_1");

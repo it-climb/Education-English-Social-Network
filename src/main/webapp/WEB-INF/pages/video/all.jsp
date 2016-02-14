@@ -17,7 +17,7 @@
     </nav>
 
     <h2>List of ${typeName}s:</h2><br>
-    ${fff}
+
     <table>
         <tr>
             <td><b>Name of ${typeName}</b></td>
@@ -26,18 +26,11 @@
         <c:forEach var="content" items="${contents}">
             <tr>
                 <c:choose>
-                    <c:when test="${type == 'movie'}">
+                    <c:when test="${type == 'movie' || id == '0'}">
                         <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
                     </c:when>
                     <c:otherwise>
-                        <c:choose>
-                            <c:when test="${id == '0'}">
-                                <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
-                            </c:when>
-                            <c:otherwise>
-                                <td><a href="/video/${type}?id=${id}&season=${content.seasonNumber}">${content.name}</a></td>
-                            </c:otherwise>
-                        </c:choose>
+                        <td><a href="/video/${type}?id=${id}&season=${content.seasonNumber}">${content.name}</a></td>
                     </c:otherwise>
                 </c:choose>
                 <td>${content.describe}</td>
@@ -45,6 +38,6 @@
         </c:forEach>
     </table>
     <br><br><br>
-    <a href="/video/admin">administrate video content (need a password)</a>
+    <a href="/video/admin">administrate video content <br>(need a password)</a>
 </body>
 </html>

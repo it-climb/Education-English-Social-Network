@@ -1,7 +1,7 @@
 package evg.testt.model.content;
 
 
-public class Season extends MovieContent {
+public class Season extends MovieContent<VideoFile> {
 
     private Integer seasonNumber;
 
