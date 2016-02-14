@@ -21,7 +21,8 @@ public class JspPath {
     public static final String WORD_EDIT = "/words/edit";
     public static final String ACCOUNT_SHOW = "/account/show";
 
-    public static final String DEFAULT_ERROR_VIEW = "error-404";
+    public static final String DEFAULT_ERROR_VIEW = "error-404"; //page not found
+    public static final String ISE_ERROR_VIEW = "ErrorNeedLogin"; //internal server error
     public static final String CHAT_ALL = "/chat/all";
     public static final String MESSAGES = "/messages/all";
 
