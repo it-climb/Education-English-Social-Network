@@ -37,6 +37,7 @@ public class ChatController {
      * @param request it must be to get user from session
      * @param jspPath it's path of your jsp page
      * @return
+     *
      * @throws SQLException
      */
     private ModelAndView chatPage(HttpServletRequest request, String jspPath) throws SQLException {
