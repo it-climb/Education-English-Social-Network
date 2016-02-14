@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 @Entity(name = "UserPoints")
-public class UserPoints extends BaseModel {
+public class UserAuthorshipPoints extends BaseModel {
 
     @OneToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "user_id")
