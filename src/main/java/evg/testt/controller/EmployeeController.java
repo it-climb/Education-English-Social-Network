@@ -47,8 +47,14 @@ public class EmployeeController{
         employee.setVersion(version);
         if(employee.getId()==null){
             employeeService.insert(employee);
-        }else{
-            employeeService.update(employee);
+        } else {
+
+            try {
+                employeeService.update(employee);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/except";
+            }
         }
         return "redirect:/employees?id="+departmentId;
     }

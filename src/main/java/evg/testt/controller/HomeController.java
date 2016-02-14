@@ -19,5 +19,11 @@ public class HomeController {
         //HttpSession session = request.getSession();
         return new ModelAndView(JspPath.HOME);
     }
+
+    @RequestMapping(value = "/except", method = RequestMethod.GET)
+    public ModelAndView showExcept() {
+        ModelAndView modelAndView = new ModelAndView("/exceptions/except");
+        return modelAndView;
+    }
 }
 
