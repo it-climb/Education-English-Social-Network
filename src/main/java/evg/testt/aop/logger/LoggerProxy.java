@@ -6,17 +6,14 @@ package evg.testt.aop.logger;
 public class LoggerProxy extends LoggerAdapter implements LoggerMathodWraper {
 
     @Override
-    public void info(String message) {
-        INFO_LOGGER.info(message);
-    }
-
-    @Override
-    public void error(String message) {
-        ERROR_LOGGER.error(message);
-    }
-
-    @Override
-    public void warn(String message) {
-        WARN_LOGGER.warn(message);
+    public void loggerWriter(String message, String methodName) {
+        switch (methodName){
+            case "addNewOne" : WARN_LOGGER.warn(message);
+                break;
+            case "updateOne" : WARN_LOGGER.warn(message);
+                break;
+            case "deleteOne" : WARN_LOGGER.warn(message);
+                break;
+        }
     }
 }

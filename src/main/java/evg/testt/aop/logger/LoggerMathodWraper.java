@@ -5,7 +5,6 @@ package evg.testt.aop.logger;
  */
 public interface LoggerMathodWraper {
 
-    void info(String message);
-    void error(String message);
-    void warn(String message);
+    void loggerWriter(String message, String methodName);
+
 }
