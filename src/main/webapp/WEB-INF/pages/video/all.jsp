@@ -11,8 +11,8 @@
     <nav >
         <p align="center">
             <a href="/video/movie">Movies</a>
-            <a href="/video/serial">Serials</a>
             <a href="/video/tvshow">TV-Shows</a>
+            <a href="/video/video">Videos</a>
         </p>
     </nav>
 
@@ -21,7 +21,7 @@
     <table>
         <tr>
             <td><b>Name of ${typeName}</b></td>
-            <td><b>Describe</b></td>
+            <td><b> Describe</b></td>
         </tr>
         <c:forEach var="content" items="${contents}">
             <tr>
@@ -35,7 +35,7 @@
                                 <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
                             </c:when>
                             <c:otherwise>
-                                <td><a href="/video/${type}?id=${id}&season=${content.name}">${content.name}</a></td>
+                                <td><a href="/video/${type}?id=${id}&season=${content.seasonNumber}">${content.name}</a></td>
                             </c:otherwise>
                         </c:choose>
                     </c:otherwise>

@@ -4,10 +4,10 @@ package evg.testt.model.content;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = Serial.COLLECTION_NAME)
-public class Serial extends SerialShowModel {
+@Document(collection = Video.COLLECTION_NAME)
+public class Video extends VideoFile {
 
-    public static final String COLLECTION_NAME = "serials";
+    public static final String COLLECTION_NAME = "videos";
 
     @Id
     private Long id;

@@ -1,6 +1,6 @@
 package evg.testt.dao.contentdao;
 
-import evg.testt.model.content.Serial;
+import evg.testt.model.content.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,25 +10,25 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class SerialDao {
+public class VideoDao {
 
     @Autowired
     private MongoOperations mongoOperations;
 
-    public void save(Serial serial) {
-        mongoOperations.save(serial);
+    public void save(Video video) {
+        mongoOperations.save(video);
     }
 
-    public Serial get(Long id) {
-        return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), Serial.class);
+    public Video get(Long id) {
+        return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), Video.class);
     }
 
-    public List<Serial> getAll() {
-        return mongoOperations.findAll(Serial.class);
+    public List<Video> getAll() {
+        return mongoOperations.findAll(Video.class);
     }
 
     public void remove(Long id) {
-        mongoOperations.remove(Query.query(Criteria.where("id").is(id)), Serial.class);
+        mongoOperations.remove(Query.query(Criteria.where("id").is(id)), Video.class);
     }
 
 }
