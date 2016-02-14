@@ -12,6 +12,7 @@ public class VideoFile {
     private String url;
     private String name;
     private String describe;
+    private Integer serieNumber;
 
 
     public String getName() {
@@ -38,4 +39,11 @@ public class VideoFile {
         this.describe = describe;
     }
 
+    public Integer getSerieNumber() {
+        return serieNumber;
+    }
+
+    public void setSerieNumber(Integer serieNumber) {
+        this.serieNumber = serieNumber;
+    }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = Serial.COLLECTION_NAME)
-public class Serial extends Season{
+public class Serial extends SerialShowModel {
 
     public static final String COLLECTION_NAME = "serials";
 

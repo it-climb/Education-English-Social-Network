@@ -33,18 +33,63 @@ public class VideoContentController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String redirectToMovie() {
+
+        VideoFile videoFile1 = new VideoFile();
+        videoFile1.setName("video_1");
+        videoFile1.setDescribe(" describing of video_1");
+        videoFile1.setUrl("https://www.youtube.com/embed/ruxvZGMbGI8");
+        videoFile1.setSerieNumber(1);
+        VideoFile videoFile2 = new VideoFile();
+        videoFile2.setName("video_2");
+        videoFile2.setDescribe("describing of video_2");
+        videoFile2.setUrl("https://www.youtube.com/embed/WmCKo6AofnU");
+        videoFile2.setSerieNumber(2);
+        List<VideoFile> videoFiles = new ArrayList<>();
+        videoFiles.add(videoFile1);
+        videoFiles.add(videoFile2);
+        Movie movie1 = new Movie();
+        movie1.setListVideoFiles(videoFiles);
+        movie1.setDescribe(" describing about this MOVIE");
+        movie1.setName("My movie #1");
+        movieService.save(movie1);
+
+        Serial serial = new Serial();
+        serial.setDescribe("This is SERIAL");
+        serial.setName("It's my favorite serial !");
+        List<Season> seasons = new ArrayList<>();
+        Season season1 = new Season();
+        season1.setDescribe(" about this season #1");
+        season1.setName("season #1");
+        season1.setSeasonNumber(1);
+        season1.setListVideoFiles(videoFiles);
+        Season season2 = new Season();
+        season2.setDescribe(" about this season #2");
+        season2.setName("season #2");
+        season2.setSeasonNumber(2);
+        season2.setListVideoFiles(videoFiles);
+        seasons.add(season1);
+        seasons.add(season2);
+        serialService.save(serial);
+
+        TvShow tvShow = new TvShow();
+        tvShow.setDescribe("This is TV-Show !!");
+        tvShow.setSeason(seasons);
+        tvShow.setName("TV-Show about something..");
+        tvShowService.save(tvShow);
+
+
         return "redirect:/video/movie";
     }
 
 
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
     public ModelAndView videoMovie(@RequestParam(required = false) String id,
-                         @RequestParam(required = false) String name) throws MalformedURLException {
+                         @RequestParam(required = false) String serie) throws MalformedURLException {
         ModelAndView modelAndView;
         if (id != null) {
             Movie movie = movieService.get(Long.parseLong(id));
             modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", movie);
-            modelAndView.addObject("nameVideoFile", name);
+            modelAndView.addObject("serie", serie);
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
             List<Movie> contentList = movieService.getAll();
@@ -56,15 +101,32 @@ public class VideoContentController {
     }
 
     @RequestMapping(value = "/serial", method = RequestMethod.GET)
-    public ModelAndView videoSerial(@RequestParam(required = false) String id) throws MalformedURLException {
+    public ModelAndView videoSerial(@RequestParam(required = false) String id,
+                            @RequestParam(required = false) String season) throws MalformedURLException {
         ModelAndView modelAndView;
         if (id != null) {
-            Serial serial = serialService.get(Long.parseLong(id));
-            modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", serial);
+            if (season == null) {
+                modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
+                List<Season> seasonList = serialService.get(Long.parseLong(id)).getSeason();
+                modelAndView.addObject("contents", seasonList);
+                modelAndView.addObject("id", id);
+            }
+            else {
+                modelAndView = new ModelAndView(JspPath.VIDEO_PLAY);
+                List<Season> seasonList = serialService.get(Long.parseLong(id)).getSeason();
+                for (MovieContent oneSeason : seasonList) {
+                    if (oneSeason.getName().equals(season)) {
+                        modelAndView.addObject("content", oneSeason);
+                        break;
+                    }
+                }
+            }
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
             List<Serial> contentList = serialService.getAll();
             modelAndView.addObject("contents", contentList);
+            id = "0";
+            modelAndView.addObject("id", id);
         }
         modelAndView.addObject("type", "serial");
         modelAndView.addObject("typeName", "Serial");

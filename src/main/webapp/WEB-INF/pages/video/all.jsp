@@ -17,6 +17,7 @@
     </nav>
 
     <h2>List of ${typeName}s:</h2><br>
+    ${fff}
     <table>
         <tr>
             <td><b>Name of ${typeName}</b></td>
@@ -24,7 +25,21 @@
         </tr>
         <c:forEach var="content" items="${contents}">
             <tr>
-                <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
+                <c:choose>
+                    <c:when test="${type == 'movie'}">
+                        <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
+                    </c:when>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${id == '0'}">
+                                <td><a href="/video/${type}?id=${content.id}">${content.name}</a></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><a href="/video/${type}?id=${id}&season=${content.name}">${content.name}</a></td>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
                 <td>${content.describe}</td>
             </tr>
         </c:forEach>
