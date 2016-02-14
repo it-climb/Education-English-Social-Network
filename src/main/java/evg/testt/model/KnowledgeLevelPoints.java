@@ -6,11 +6,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "knowledgeLevelPoints")
-public class KnowledgeLevelPoints {
+public class KnowledgeLevelPoints extends BaseModel {
 
     @OneToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "user_id")
     private User user;
+
+    private String subject = "someSubject";
 
     private Integer knowledgeLevelPoints;
 
@@ -27,10 +29,10 @@ public class KnowledgeLevelPoints {
     }
 
     public String getSubject() {
-        return "someSubject";
+        return subject;
     }
     public void setSubject(String subject) {
-
+        this.subject = subject;
     }
 
 }
