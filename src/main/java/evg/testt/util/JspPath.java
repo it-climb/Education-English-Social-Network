@@ -24,5 +24,6 @@ public class JspPath {
     public static final String DESCRIPTION_EDIT = "descriptions/edit";
     public static final String CHAT_ALL = "chat/all";
     public static final String MESSAGES = "messages/all";
+    public static final String POINTS_ALL = "points/all";
 
 }
