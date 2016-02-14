@@ -8,7 +8,7 @@
 <body>
     <h5><b>We are will trnslate here !!</b></h5>
 
-    <form action="/translate/doTransl" method="post">
+    <form action="/doTransl" method="post">
         <c:set var="translatorDto2" value="${translatorDto}" scope="request"/>
 
         Input Language:
