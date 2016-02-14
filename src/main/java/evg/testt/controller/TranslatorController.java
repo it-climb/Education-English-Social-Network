@@ -18,15 +18,15 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Controller
-@RequestMapping(value = "translate")
+//@RequestMapping(value = "translate")
 public class TranslatorController {
 
     @Autowired
     TranslateService translateService;
 
 
-//    @RequestMapping(value = "/translate", method = RequestMethod.GET)
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/translate", method = RequestMethod.GET)
+//    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws TranslateServiceException {
         ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME);
         TranslatorDto translatorDto = new TranslatorDto();

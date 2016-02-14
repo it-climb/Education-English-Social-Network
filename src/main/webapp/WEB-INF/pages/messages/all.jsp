@@ -8,6 +8,7 @@
 </head>
 <body class="no-js">
 <table class="menu" width="1000px">
+    <tr>
         <td>
             <b>Users List</b>
         </td>
@@ -17,10 +18,7 @@
                 <input type="submit" value="All chat">
             </form>
         </td>
-    <form method="get" action="/writeTo">
-        <input type="hidden" name="recEmail" value="">
-        <input type="submit" value="Write to all">
-    </form>
+    </tr>
     <c:forEach var="user" items="${users}">
         <c:if test="${email != user.email}">
         <tr>
@@ -38,7 +36,7 @@
     </c:forEach>
 </table>
 <div align="right"><strong>${email}</strong></div>
-<div id="chat">
+<div id="chat" style="float:right">
     <form:form method="post" action="/chatAdd">
         <div id="containerChat">
             <table>
@@ -57,6 +55,7 @@
                 </c:forEach>
             </table>
         </div>
+        <div id = "containerSender">
         <table>
             <tr>
                 <td>
@@ -74,6 +73,7 @@
                 <td><input type="hidden" name="receiver" value="${receiver}"></td>
             </tr>
         </table>
+        </div>
     </form:form><%--
     <tr>
         <td colspan="5">
