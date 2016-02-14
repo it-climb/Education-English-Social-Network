@@ -14,7 +14,7 @@ public class Comment {
     private Long id;
 
     private String className;
-    private Long classId;
+    private Integer classId;
     private LocalDate data;
     private String comment;
 
@@ -22,7 +22,7 @@ public class Comment {
 
     }
 
-    public Comment(String className, Long classId, String comment) {
+    public Comment(String className, Integer classId, String comment) {
         this.className = className;
         this.classId = classId;
         this.comment = comment;
@@ -44,11 +44,11 @@ public class Comment {
         this.className = className;
     }
 
-    public Long getClassId() {
+    public Object getClassId() {
         return classId;
     }
 
-    public void setClassId(Long classId) {
+    public void setClassId(Integer classId) {
         this.classId = classId;
     }
 

@@ -23,6 +23,11 @@ public class CommentDao {
         return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), Comment.class);
     }
 
+    public Comment getByDep(Object id){
+        return mongoOperations.findOne(Query.query(Criteria.where("classId").is(id)), Comment.class);
+
+    }
+
     public List<Comment> getAll() {
         return mongoOperations.findAll(Comment.class);
     }

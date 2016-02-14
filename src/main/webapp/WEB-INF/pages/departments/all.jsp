@@ -31,6 +31,11 @@
         <input type="submit" value="Employees">
       </form>
       </td>
+      <td><form method="get" action="/comment">
+        <input type="hidden" name="id" value=${department.id}>
+        <input type="submit" value="Comments">
+      </form>
+      </td>
     </tr>
   </c:forEach>
   <tr>

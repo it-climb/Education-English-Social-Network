@@ -12,6 +12,14 @@
             <td>Comment:</td>
             <td><form:input path="comment" /></td>
         </tr>
+        <%--<tr>--%>
+            <%--<td>ClassName:</td>--%>
+            <%--<td><form:input path="className" /></td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>ClassId:</td>--%>
+            <%--<td><form:input path="classId" /></td>--%>
+        <%--</tr>--%>
         <tr>
             <td colspan="2">
                 <input type="submit" />

@@ -27,11 +27,25 @@ public class CommentController {
 
 
     @RequestMapping(value = "/comment", method = RequestMethod.GET)
-    public ModelAndView showAll(@RequestParam(required = true) Long id, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
+//        ModelAndView modelAndView = new ModelAndView("comments/all");
         ModelAndView modelAndView = new ModelAndView("comments/all");
-        Contact contact = contactService.get(id);
-        modelAndView.addObject("contacts", contact);
+//        Contact contact = contactService.get(id);
+//        modelAndView.addObject("contacts", contact);
         modelAndView.addObject("comments", commentService.getAll());
+//        modelAndView.addObject("comments", commentService.getAll());
+        HttpSession session = request.getSession();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/commenta", method = RequestMethod.GET)
+    public ModelAndView showA(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = true) Integer id) {
+//        ModelAndView modelAndView = new ModelAndView("comments/all");
+        ModelAndView modelAndView = new ModelAndView("comments/allByDep");
+//        Contact contact = contactService.get(id);
+//        modelAndView.addObject("contacts", contact);
+        modelAndView.addObject("comments", commentService.getByDep(id));
+//        modelAndView.addObject("comments", commentService.getAll());
         HttpSession session = request.getSession();
         return modelAndView;
     }
@@ -44,7 +58,7 @@ public class CommentController {
     @RequestMapping(value = "/addComment", method = RequestMethod.POST)
     public String addNewOne(@ModelAttribute Comment comment) {
         commentService.save(comment);
-        return "redirect:/comment";
+        return "redirect:/dep";
     }
 
 //    @RequestMapping(value = "/success", method = RequestMethod.GET)
