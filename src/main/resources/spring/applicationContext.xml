@@ -5,7 +5,6 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -24,15 +23,6 @@
 
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
-    <bean id="departmentController" class="evg.testt.controller.DepartmentController"/>
     <bean id="aspectDepartmentController" class="evg.testt.aop.AspectDepartmentController" />
 
-    <aop:config>
-        <aop:aspect id="log" ref="aspectDepartmentController">
-            <aop:pointcut id="add" expression="execution(* evg.testt.controller.DepartmentController.addNewOne(..))"/>
-            <aop:before method="beforeAdd" pointcut-ref="add"/>
-        </aop:aspect>
-    </aop:config>
-
-    <aop:aspectj-autoproxy />
 </beans>
