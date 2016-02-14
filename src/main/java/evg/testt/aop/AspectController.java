@@ -3,7 +3,6 @@ package evg.testt.aop;
 import evg.testt.aop.logger.LoggerProxy;
 import org.springframework.aop.AfterReturningAdvice;
 import org.springframework.aop.MethodBeforeAdvice;
-
 import java.lang.reflect.Method;
 
 /**
@@ -17,16 +16,14 @@ public class AspectController implements MethodBeforeAdvice, AfterReturningAdvic
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
         System.out.println("before");
-        loggerProxy.loggerWriter("before", method.getName());
+        loggerProxy.info("before " + method.getName() + " " + args.getClass().getName() + " " + target.getClass().getName());
 
     }
 
     @Override
     public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
-        for (Object o: args) {
-            System.out.println(o.getClass().getName());
-        }
-        System.out.println("after " + method.getName() + " ... " + returnValue.getClass()
-        + " ... " + args.getClass().getName() + " ... " + target.getClass().getName());
+        System.out.println("after");
+        loggerProxy.warn("after " + method.getName() + " " + returnValue.getClass().getName() + " " + target.getClass().getName());
+
     }
 }
