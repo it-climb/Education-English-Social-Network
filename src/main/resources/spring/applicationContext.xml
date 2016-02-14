@@ -20,12 +20,19 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:annotation-config/>
-    <aop:aspectj-autoproxy/>
     <context:component-scan base-package="evg.testt"/>
 
     <bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
     <bean id="departmentController" class="evg.testt.controller.DepartmentController"/>
-    <bean id="aspectController" class="evg.testt.aop.AspectController"/>
+    <bean id="aspectDepartmentController" class="evg.testt.aop.AspectDepartmentController" />
 
+    <aop:config>
+        <aop:aspect id="log" ref="aspectDepartmentController">
+            <aop:pointcut id="add" expression="execution(* evg.testt.controller.DepartmentController.addNewOne(..))"/>
+            <aop:before method="beforeAdd" pointcut-ref="add"/>
+        </aop:aspect>
+    </aop:config>
+
+    <aop:aspectj-autoproxy />
 </beans>

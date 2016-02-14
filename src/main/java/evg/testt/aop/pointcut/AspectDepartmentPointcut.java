@@ -1,4 +1,4 @@
-package evg.testt.aop;
+package evg.testt.aop.pointcut;
 
 import org.aspectj.lang.annotation.Pointcut;
 
