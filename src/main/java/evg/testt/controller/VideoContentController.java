@@ -58,7 +58,16 @@ public class VideoContentController {
         if (id != null) {
             Movie movie = movieService.get(Long.parseLong(id));
             modelAndView = new ModelAndView(JspPath.VIDEO_PLAY, "content", movie);
-            modelAndView.addObject("serie", serie);
+            if (serie != null) {
+                List<VideoFile> listVideoFiles = movieService.get(Long.parseLong(id)).getListVideoFiles();
+                VideoFile playVideo = null;
+                for (VideoFile videoFile: listVideoFiles) {
+                    if (videoFile.getSerieNumber().equals(Integer.parseInt(serie))) {
+                        playVideo = videoFile;
+                    }
+                }
+                modelAndView.addObject("playVideo", playVideo);
+            }
         } else {
             modelAndView = new ModelAndView(JspPath.VIDEO_ALL);
             List<Movie> contentList = movieService.getAll();
