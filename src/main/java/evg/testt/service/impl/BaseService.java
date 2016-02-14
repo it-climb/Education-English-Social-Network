@@ -28,11 +28,11 @@ public abstract class BaseService <T , P extends JpaRepository<T,Integer>> imple
         dao.delete(o);
     }
 
-     public void insert(T o) throws SQLException {
-        dao.save(o);
+     public T insert(T o) throws SQLException {
+        return dao.save(o);
     }
 
-    public void update(T o) throws SQLException {
-        dao.save(o);
+    public T update(T o) throws SQLException {
+        return dao.save(o);
     }
 }

@@ -1,7 +1,7 @@
 package evg.testt.dto;
 
 
-import evg.testt.model.Language;
+import evg.testt.service.translateservice.Language;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class TranslatorDto {
     private Language languageOut;
     private String textIn;
     private String textOut;
-    Set<Language> languages;
+    private Set<Language> languages;
 
     public Language getLanguageIn() { return languageIn; }
 
