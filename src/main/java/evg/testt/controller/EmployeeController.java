@@ -41,13 +41,20 @@ public class EmployeeController{
     }
 
     @RequestMapping(value = "/employeeSaveOrUpdate", method = RequestMethod.POST)
-    public String addNewOne(@ModelAttribute Employee employee, @RequestParam(required = true) Integer departmentId) throws SQLException {
+    public String addNewOne(@ModelAttribute Employee employee, @RequestParam(required = true) Integer departmentId, @RequestParam(required = false) Long version  ) throws SQLException {
         Department department = departmentService.getById(departmentId);
         employee.setDepartment(department);
+        employee.setVersion(version);
         if(employee.getId()==null){
             employeeService.insert(employee);
-        }else{
-            employeeService.update(employee);
+        } else {
+
+            try {
+                employeeService.update(employee);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/except";
+            }
         }
         return "redirect:/employees?id="+departmentId;
     }

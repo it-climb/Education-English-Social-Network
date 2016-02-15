@@ -46,7 +46,7 @@ public class MainController {
 
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public ModelAndView showSuccess(@ModelAttribute Contact contact) {
-        ModelAndView modelAndView = new ModelAndView("success");
+        ModelAndView modelAndView = new ModelAndView("/utils/success");
         return modelAndView;
     }
 
