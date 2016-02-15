@@ -3,7 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <title>Edit Employee</title>
 </head>
 <body>
@@ -11,6 +10,7 @@
 
     <input type="hidden" name="departmentId" value="${employee.department.id}">
     <input type="hidden" name="id" value="${employee.id}">
+    <input type="hidden" name="version" value="${employee.version}">
     <table>
         <tr>
             <td>First Name:</td>

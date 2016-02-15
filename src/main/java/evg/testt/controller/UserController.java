@@ -3,6 +3,7 @@ package evg.testt.controller;
 import evg.testt.model.User;
 import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
+import evg.testt.util.converter.EmailConverter;
 import evg.testt.util.validation.UserValid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.Converter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -46,7 +48,6 @@ public class UserController {
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
     public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
        // userValid.validate(user, result);
-
         if(result.hasErrors()){
            return "redirect:/loginProblems";
         } else {
@@ -61,7 +62,7 @@ public class UserController {
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
-            if(user!=null && user.getPassword().equals(password)) {
+        if(user!=null && user.getPassword().equals(Integer.toString(password.hashCode()))) {
                 session.setAttribute("user", user);
                 return "redirect:/success";
             }else return "redirect:/loginProblems";
@@ -69,7 +70,7 @@ public class UserController {
 
     @RequestMapping(value = "/loginProblems", method = RequestMethod.GET)
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGI_PROBLEM);
+        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGIN_PROBLEM);
         return modelAndView;
     }
 

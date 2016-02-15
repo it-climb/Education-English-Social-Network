@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-  <title>All</title>
+  <title>Words</title>
 </head>
 <body class="no-js">
 <table width="600px">

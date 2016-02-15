@@ -325,6 +325,7 @@
             <version>1.6.11</version>
         </dependency>
 
+        <!-- Tiles -->
 
         <dependency>
             <groupId>org.apache.tiles</groupId>
