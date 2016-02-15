@@ -1,9 +1,6 @@
 package evg.testt.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "departments")
@@ -39,6 +36,11 @@ public class Department extends BaseModel{
 
         public Builder setId(Integer id) {
             Department.this.setId(id);
+            return this;
+        }
+
+        public Builder setVersion(Long version) {
+            Department.this.setVersion(version);
             return this;
         }
 

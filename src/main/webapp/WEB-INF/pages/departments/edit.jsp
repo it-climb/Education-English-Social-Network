@@ -3,7 +3,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html>
 <head>
-    <%--<link href="resources/assets/css/stylepages.css" rel="stylesheet">--%>
     <title>Edit Department</title>
 </head>
 <body>
@@ -18,6 +17,7 @@
                 <tr>
                     <td width="50" align="center" height="20">
                         <input type="hidden" name="id" value=${department.id}>
+                        <input type="hidden" name="version" value=${department.version}>
                         <input type="submit" value="Add">
                     </td>
                     <td width="50" height="20">
@@ -28,7 +28,5 @@
                 </tr>
             </table>
         </form:form>
-    <%--</div>--%>
-<%--</div>--%>
 </body>
 </html>
