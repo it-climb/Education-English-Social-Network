@@ -25,16 +25,23 @@ public class UserActionAOP {
         }
     }
 
-   /* @Before("execution(* evg.testt.controller.UserController.show(..))")
+    @Before("execution(* evg.testt.controller.UserController.show(..))")
     public void showDepartmentAction()
     {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }*/
+    }
 
     @Around("execution(* evg.testt.controller.DepartmentController.addNewOne(..))")
-    public void magic(ProceedingJoinPoint joinPoint) throws Throwable{
-       Object[] arr = joinPoint.getArgs();
-        System.out.println(superMagic((HttpServletRequest) arr[2]));
-        joinPoint.proceed();
+    public void magic(ProceedingJoinPoint joinPoint) {
+        System.out.println("BEFORE!");
+        try {
+            //Object[] arr = joinPoint.getArgs();
+           // System.out.println(superMagic((HttpServletRequest) arr[3]));
+          Object v =   joinPoint.proceed();
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
+        System.out.println("AFTER!");
+
     }
 }
