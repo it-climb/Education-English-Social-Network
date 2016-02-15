@@ -38,6 +38,12 @@
         </c:forEach>
     </table>
     <br><br><br>
-    <a href="/video/admin">administrate video content <br>(need a password)</a>
+    <c:if test="${type == 'movie'}">
+        <a href="/video/movie/admin">administrate video content <br>(need a password)</a>
+    </c:if>
+    <c:if test="${type == 'tvshow'}">
+        <a href="/video/tvshow/admin">administrate video content <br>(need a password)</a>
+    </c:if>
+
 </body>
 </html>

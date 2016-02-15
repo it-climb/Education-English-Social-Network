@@ -7,6 +7,16 @@
 </head>
 <body>
 
+<h4 align="center">Film and serials in english!</h4>
+
+<nav >
+    <p align="center">
+        <a href="/video/movie">Movies</a>
+        <a href="/video/tvshow">TV-Shows</a>
+        <a href="/video/video">Videos</a>
+    </p>
+</nav>
+
     <c:if test="${playVideo != null}">
         ${playVideo.name}<br>
         ${playVideo.describe}<br>
@@ -17,19 +27,23 @@
       <c:forEach var="videoFile" items="${content}">
          <a href="/video/${type}?id=${videoFile.id}">${videoFile.name}</a><br>
       </c:forEach>
+      <p><a href="/video/${type}">Back to ${typeName} catalog</a></p><br><br>
+      <a href="/video/video/admin">administrate video content <br>(need a password)</a>
   </c:if>
   <c:if test="${type == 'movie'}">
       <c:forEach var="videoFile" items="${content.listVideoFiles}">
          <a href="/video/${type}?id=${content.id}&serie=${videoFile.serieNumber}">${videoFile.name}</a><br>
       </c:forEach>
+      <p><a href="/video/${type}">Back to ${typeName} catalog</a></p>
   </c:if>
   <c:if test="${type == 'tvshow'}">
       <c:forEach var="videoFile" items="${content.listVideoFiles}">
          <a href="/video/${type}?id=${id}&season=${content.seasonNumber}&serie=${videoFile.serieNumber}">${videoFile.name}</a><br>
       </c:forEach>
+      <p><a href="/video/${type}">Back to ${typeName} catalog</a></p>
   </c:if>
 
-    <p><a href="/video/${type}">Back to ${typeName} catalog</a></p>
+
 
 </body>
 </html>

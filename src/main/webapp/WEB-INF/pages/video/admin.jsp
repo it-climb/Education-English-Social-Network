@@ -11,31 +11,28 @@
 <table>
     <tr>
         <td><b>Video name</b></td>
-        <td><b>Type</b></td>
     </tr>
     <c:forEach var="content" items="${contents}">
         <tr>
-            <td><a href="/video?id=${content.id}">${content.name}</a></td>
-            <td>${content.type}</td>
+            <td>${content.name}</td>
             <td>
-                <form:form action="/video/delete" method="post">
+                <form:form action="/video/${type}/delete" method="post">
                     <input type="submit" value="Delete">
                     <input type="hidden" name="id" value="${content.id}">
                 </form:form>
             </td>
             <td>
-                <form:form action="/video/edit" method="post">
+                <form:form action="/video/${type}/update" method="post">
                     <input type="submit" value="Update">
                     <input type="hidden" name="id" value="${content.id}">
                 </form:form>
             </td>
         </tr>
     </c:forEach>
-
 </table>
 <br>
-<form:form action="/video/edit" method="post">
-    <input type="submit" value="Add new Video">
+<form:form action="/video/${type}/update" method="post">
+    <input type="submit" value="Add new ${typeName}">
 </form:form>
 
 <p><a href="/video">Back to Catalog</a></p>

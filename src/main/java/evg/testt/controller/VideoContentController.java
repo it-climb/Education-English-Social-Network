@@ -7,6 +7,7 @@ import evg.testt.service.videoservices.TvShowService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,13 +126,75 @@ public class VideoContentController {
 
 
 
-    /*@RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/video/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin() {
-        List<VideoFile> contentList = videoContentServiceImpl.getAll();
-        return new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+        List<Video> contentList = videoService.getAll();
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+        modelAndView.addObject("type", "video");
+        modelAndView.addObject("typeName", "Video");
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/video/delete", method = RequestMethod.POST)
+    public String deleteVideo(@RequestParam(required = true) String id) {
+        videoService.remove(Long.parseLong(id));
+        return "redirect:/video/video/admin";
+    }
+
+    @RequestMapping(value = "/video/update", method = RequestMethod.POST)
+    public ModelAndView updateVideo(@RequestParam(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
+        if (id != null) {
+            Video videoFile = videoService.get(Long.parseLong(id));
+            modelAndView.addObject("content", videoFile);
+        }
+        modelAndView.addObject("type", "video");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/video/save", method = RequestMethod.POST)
+    public String saveVideo(@ModelAttribute Video newcontent) {
+        videoService.save(newcontent);
+        return "redirect:/video/video/admin";
+    }
+
+
+
+
+    @RequestMapping(value = "/movie/admin", method = RequestMethod.GET)
+    public ModelAndView videoMovie() {
+        List<Movie> contentList = movieService.getAll();
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+        modelAndView.addObject("type", "movie");
+        modelAndView.addObject("typeName", "Movie");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/movie/delete", method = RequestMethod.POST)
+    public String deleteMovie(@RequestParam(required = true) String id) {
+        movieService.remove(Long.parseLong(id));
+        return "redirect:/video/movie/admin";
+    }
+
+    @RequestMapping(value = "/tvshow/admin", method = RequestMethod.GET)
+    public ModelAndView videoTvShow() {
+        List<TvShow> contentList = tvShowService.getAll();
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+        modelAndView.addObject("type", "tvshow");
+        modelAndView.addObject("typeName", "TV-Show");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tvshow/delete", method = RequestMethod.POST)
+    public String deleteTvShow(@RequestParam(required = true) String id) {
+        tvShowService.remove(Long.parseLong(id));
+        return "redirect:/video/tvshow/admin";
+    }
+
+
+
+
+   /*@RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView editContent(@RequestParam(required = false) String id) {
 
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
@@ -150,11 +213,7 @@ public class VideoContentController {
         return "redirect:/video/admin";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteVideo(@RequestParam(required = true) String id) {
-        videoContentServiceImpl.remove(Long.parseLong(id));
-        return "redirect:/video/admin";
-    }*/
+    */
 
 
 }
