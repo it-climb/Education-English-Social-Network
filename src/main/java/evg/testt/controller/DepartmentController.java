@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DepartmentController{
@@ -31,7 +33,6 @@ public class DepartmentController{
     @Autowired
     ChatService chatService;
 
-    Comment comment = new Comment();
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
@@ -75,11 +76,15 @@ public class DepartmentController{
         ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_EDIT);
         if(id!=null){
             Department department = departmentService.getById(id);
-//            comment.setClassName("Departments");
-            comment.setClassId(id);
-            commentService.save(comment);
-//            modelAndView.addObject("comments", commentService.getAll());
-            modelAndView.addObject("comments", commentService.getByDep(id));
+            List<Comment> list = commentService.getAll();
+            List<Comment> comments = new ArrayList<>(list.size());
+            for (Comment comment : list){
+                if (comment.getClassId() == id){
+//                if (comment.getClassName().equals("Departments") && comment.getClassId() == id){
+                    comments.add(comment);
+                }
+            }
+            modelAndView.addObject("comments", comments);
             modelAndView.addObject("department", department);
         }
         return modelAndView;
