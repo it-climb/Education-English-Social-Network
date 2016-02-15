@@ -3,10 +3,10 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html>
 <head>
-    <title>AllEmployee</title>
+    <title>All Employee</title>
 </head>
 <body>
-<p style="color:red">${warning}</p>
+<%--<p style="color:red">${warning}</p>--%>
 <p><ins>Department : </ins>${department.name}</p>
 <table>
     <tr>

@@ -1,20 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-
 <head>
-  <title>All</title>
-  <link href="resources/assets/css/style.css" rel="stylesheet">
+  <title>All Departments</title>
 </head>
 <body class="no-js">
-<table id="menu" width="1000px">
+<div align="right"><strong>${email}</strong></div>
+<table width="600px">
   <tr>
     <td><b>Name</b></td>
   </tr>
   <c:forEach var="department" items="${departments}">
     <tr>
-      <td>${department.name}</td>
+      <td>${department.name} (v.${department.version})</td>
       <td>
         <form method="post" action="/depDelete">
           <input type="hidden" name="id" value=${department.id}>
@@ -41,7 +39,5 @@
     </td>
   </tr>
 </table>
-<div align="right"><strong>${email}</strong></div>
-<a href="/">Home</a>
 </body>
 </html>
