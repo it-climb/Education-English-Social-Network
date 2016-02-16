@@ -31,7 +31,7 @@
     </properties>
 
     <dependencies>
-//
+
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client-gson</artifactId>
@@ -56,7 +56,6 @@
             <artifactId>gson</artifactId>
             <version>2.6.1</version>
         </dependency>
-//
 
 
         <!-- Java Mail API -->
