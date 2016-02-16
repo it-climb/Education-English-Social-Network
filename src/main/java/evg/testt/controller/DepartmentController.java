@@ -43,7 +43,7 @@ public class DepartmentController {
     }
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
-    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name, @RequestParam(required = false) Long version) throws SQLException {
+    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name, @RequestParam(required = false) Long version ) throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).setVersion(version).build();
 
         if (id == null) {
@@ -60,6 +60,17 @@ public class DepartmentController {
         }
         return "redirect:/dep";
     }
+
+    //-------------------------------------------------------------------------------------
+
+    @RequestMapping(value = "/depSaveStars", method = RequestMethod.POST)
+    public String addStars(@RequestParam(required = true) Integer id, @RequestParam(required = false) Integer rate ) throws SQLException {
+        Department department = departmentService.getById(id);
+        department.setRate(rate);
+        departmentService.update(department);
+        return "redirect:/dep";
+    }
+        //-------------------------------------------------------------------------------------
 
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
     public String deleteOne (@RequestParam(required = true) Integer id)throws SQLException {

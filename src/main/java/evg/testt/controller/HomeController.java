@@ -25,5 +25,11 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("/exceptions/except");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/stars", method = RequestMethod.GET)
+    public ModelAndView showStars() {
+        ModelAndView modelAndView = new ModelAndView(JspPath.STARS);
+        return modelAndView;
+    }
 }
 

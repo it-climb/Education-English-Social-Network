@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ c:taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<html ng-app="ui.bootstrap.demo">
 <head>
   <title>All Departments</title>
 </head>
@@ -13,6 +15,7 @@
   <c:forEach var="department" items="${departments}">
     <tr>
       <td>${department.name} (v.${department.version})</td>
+
       <td>
         <form method="post" action="/depDelete">
           <input type="hidden" name="id" value=${department.id}>
@@ -29,6 +32,32 @@
         <input type="submit" value="Employees">
       </form>
       </td>
+
+        <td>
+            <%--<c:set var="department" value="${department.id}" scope="request"/>--%>
+                <jsp:include page="/WEB-INF/pages/stars1.jsp?id=${department.id}">
+                <jsp:param name="dep" value="${department}"/>
+                </jsp:include>
+
+
+        </td>
+
+        <%--<td>--%>
+         <%--<div ng-controller="RatingDemoCtrl">--%>
+           <%--<uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)"--%>
+                       <%--on-leave="overStar = null" titles="['one','two','three']"--%>
+                       <%--aria-labelledby="default-rating"></uib-rating>--%>
+                 <%--<span class="label"--%>
+      <%--ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"--%>
+      <%--ng-show="overStar && !isReadonly">{{percent}}%</span>--%>
+                 <%--<form id="aaa" name="aaa" action="/depSaveStars" method="post">--%>
+                     <%--<input type="hidden" name="rate" ng-value="rate"/> {{rate}}--%>
+                     <%--<input type="hidden" name="id" value=${department.id}>--%>
+                     <%--<input type="submit" value="Export">/>--%>
+                 <%--</form>--%>
+
+         <%--</div>--%>
+       <%--</td>--%>
     </tr>
   </c:forEach>
   <tr>

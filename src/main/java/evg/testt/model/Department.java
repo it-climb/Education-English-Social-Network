@@ -8,6 +8,8 @@ public class Department extends BaseModel{
 
     private String name;
 
+    private Integer rate = 0;
+
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "department", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 
@@ -23,6 +25,14 @@ public class Department extends BaseModel{
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public static Builder newBuilder() {
@@ -47,6 +57,11 @@ public class Department extends BaseModel{
         public Builder setName(String name) {
             Department.this.name = name;
 
+            return this;
+        }
+
+        public Builder setRate(Integer rate) {
+            Department.this.rate = rate;
             return this;
         }
 
