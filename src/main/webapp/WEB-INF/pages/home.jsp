@@ -29,9 +29,7 @@
   <![endif]-->
 </head>
 <body>
-<img src="resources/assets/img/1.jpg" style="position: fixed; left: 0px; top: -168.664px; width: auto; height: auto; bottom: auto; right: auto;" class="vegas-background">
-<div style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(&quot;resources/assets/plugins/vegas/overlays/02.png&quot;);" class="vegas-overlay"></div>
-
+<img src="resources/assets/img/1.jpg" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; bottom: auto; right: auto;" class="vegas-background"><div style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(&quot;resources/assets/plugins/vegas/overlays/02.png&quot;);" class="vegas-overlay"></div>
 <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
   <div class="container">
     <div class="navbar-header">
@@ -40,14 +38,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">EESN</a>
+      <a class="navbar-brand"   href="/">EESN</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#clients-testimonial">TESTIMONIALS</a></li>
-        <li><a href="#pricing">PRICING</a></li>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/login">LOGIN</a></li>
+        <li><a href="/dep">DEPARTMENTS</a></li>
+        <li><a href="/chat">CHAT</a></li>
+        <li><a href="/translate">TRANSLATOR</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="#social-section">SOCIAL</a></li>
       </ul>
@@ -61,12 +60,6 @@
     <div class="col-md-12">
       <span class="head-main">EDUCATION ENGLISH SOCIAL NETWORK </span>
       <h3 class="head-last">Bla bla bla bla</h3>
-      <a href="/dep" class="btn btn-primary btn-lg ">Departments</a>
-      <a href="/translate" class="btn btn-primary btn-lg ">Translator</a>
-
-      <%--<a href="/dep">Departments</a><br><br>--%>
-      <%--<a href="/translate">Translator</a>--%>
-
     </div>
   </div>
 </div>
@@ -110,7 +103,7 @@
           Praesent suscipit sem vel ipsum elementum venenatis.
         </div>
         <div class="team-member">
-          <img src="assets/img/team/1.png" class="img-circle" alt="">
+          <img src="resources/assets/img/team/1.png" class="img-circle" alt="">
           <h3><strong>ART DIRECTOR</strong></h3>
         </div>
       </div>
@@ -120,7 +113,7 @@
           Praesent suscipit sem vel ipsum elementum venenatis.
         </div>
         <div class="team-member">
-          <img src="assets/img/team/2.png" class="img-circle" alt="">
+          <img src="resources/assets/img/team/2.png" class="img-circle" alt="">
           <h3><strong>WEB DESIGNER</strong></h3>
         </div>
 
@@ -132,7 +125,7 @@
           Praesent suscipit sem vel ipsum elementum venenatis.
         </div>
         <div class="team-member">
-          <img src="assets/img/team/4.png" class="img-circle" alt="">
+          <img src="resources/assets/img/team/4.png" class="img-circle" alt="">
           <h3><strong>SUPPORT MANAGER </strong></h3>
         </div>
       </div>
@@ -143,7 +136,7 @@
         </div>
         <div class="team-member">
 
-          <img src="assets/img/team/3.png" class="img-circle" alt="">
+          <img src="resources/assets/img/team/3.png" class="img-circle" alt="">
           <h3><strong>SUPPORT MANAGER </strong></h3>
         </div>
       </div>
@@ -177,7 +170,7 @@
 
                   <h4><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit onec molestie non sem vel condimentum. <i class="fa fa-quote-right"></i></h4>
                   <div class="user-img pull-right">
-                    <img src="assets/img/user.gif" alt="" class="img-u image-responsive">
+                    <img src="resources/assets/img/user.gif" alt="" class="img-u image-responsive">
                   </div>
                   <h5 class="pull-right"><strong class="c-black">Lorem Dolor</strong></h5>
                 </div>
@@ -188,7 +181,7 @@
                 <div class="col-md-6 col-md-offset-3 slide-custom">
                   <h4> <i class="fa fa-quote-left"></i> Aenean faucibus luctus enim. Duis quis sem risu suspend lacinia elementum nunc. <i class="fa fa-quote-right"></i></h4>
                   <div class="user-img pull-right">
-                    <img src="assets/img/user2.png" alt="" class="img-u image-responsive">
+                    <img src="resources/assets/img/user2.png" alt="" class="img-u image-responsive">
                   </div>
                   <h5 class="pull-right"><strong class="c-black">Faucibus luctus</strong></h5>
                 </div>
@@ -199,7 +192,7 @@
                 <div class="col-md-6 col-md-offset-3 slide-custom">
                   <h4><i class="fa fa-quote-left"></i>Sed ultricies, libero ut adipiscing fringilla, ante elit luctus lorem, a egestas dui metus a arcu condimentum. <i class="fa fa-quote-right"></i></h4>
                   <div class="user-img pull-right">
-                    <img src="assets/img/user.gif" alt="" class="img-u image-responsive">
+                    <img src="resources/assets/img/user.gif" alt="" class="img-u image-responsive">
                   </div>
                   <h5 class="pull-right"><strong class="c-black">Sed ultricies</strong></h5>
                 </div>
@@ -445,15 +438,15 @@
 
 <%--<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->--%>
 <!-- CORE JQUERY  -->
-<script src="assets/plugins/jquery-1.10.2.js"></script>
+<script src="resources/assets/plugins/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP CORE SCRIPT   -->
-<script src="assets/plugins/bootstrap.js"></script>
+<script src="resources/assets/plugins/bootstrap.js"></script>
 <!-- VEGAS SLIDESHOW SCRIPTS -->
-<script src="assets/plugins/vegas/jquery.vegas.min.js"></script>
+<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>
 <!-- SCROLL SCRIPTS -->
-<script src="assets/plugins/jquery.easing.min.js"></script>
+<script src="resources/assets/plugins/jquery.easing.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="assets/js/custom.js"></script>
+<script src="resources/assets/js/custom.js"></script>
 </body>
 
 </html>

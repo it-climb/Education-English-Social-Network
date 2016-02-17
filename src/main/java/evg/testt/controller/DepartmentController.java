@@ -1,16 +1,19 @@
 package evg.testt.controller;
 
 import evg.testt.model.Department;
+import evg.testt.model.User;
+import evg.testt.service.ChatService;
 import evg.testt.service.DepartmentService;
 import evg.testt.util.JspPath;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -19,77 +22,51 @@ public class DepartmentController{
     @Autowired
     DepartmentService departmentService;
 
-    private final Logger LOGGER = LogManager.getLogger(this.getClass());
+    @Autowired
+    ChatService chatService;
 
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
-    public ModelAndView showAll() throws SQLException {
-        return new ModelAndView(JspPath.DEPARTMENT_ALL, "departments", departmentService.getAll());
+    public ModelAndView showAll(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_ALL);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("departments", departmentService.getAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
-    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) {
+    public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name) throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).build();
-            try {
-                if(id==null)
-                departmentService.insert(department);
-                LOGGER.info("in method addNewOne");
-//                DEBUG_LOGGER.debug("add new one department: " + department.getName());
-
-            } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to add a new Department\n" +
-//                        "exception type: ", e);
-
-            }
-//        }else{
-//            try {
-//                departmentService.update(department);
-//                DEBUG_LOGGER.debug("update department of " + department.getName());
-//            } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to update the Department of " +
-//                        department.getName() + "\n" +
-//                        "exception type: ", e);
-//            }
-//        }
-//        WARN_LOGGER.warn("method addNewOne was used!");
-
+        if(id==null){
+            departmentService.insert(department);
+        }else{
+            departmentService.update(department);
+        }
         return "redirect:/dep";
     }
 
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
-    public String deleteOne(@RequestParam(required = true) Integer id) {
-        Department department = Department.newBuilder().setId(id).build();
-        try {
+    public String deleteOne(@RequestParam(required = true) Integer id) throws SQLException {
+        String direct = "";
+        Department department; //= Department.newBuilder().setId(id).build();
+        department = departmentService.getById(id);
+        if (department.getEmployees().size() == 0) {
             departmentService.delete(department);
-//            DEBUG_LOGGER.debug("delete department of");
-
-        } catch (SQLException e) {
-//            ERROR_LOGGER.error("Remove Department failed " +
-//                    department.getName() + "\n" +
-//                    "exception type: ", e);
-
+            direct = "redirect:/dep";
+        } else {
+            direct = "redirect:/employees?id="+department.getId()+"&toDel=yes";
         }
-//        DEBUG_LOGGER.debug("delete one department");
 
-        return "redirect:/dep";
+        return direct;
     }
 
     @RequestMapping(value = "/depEdit", method = RequestMethod.POST)
-    public ModelAndView updateOne(@RequestParam(required = false) Integer id) {
+    public ModelAndView updateOne(@RequestParam(required = false) Integer id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView(JspPath.DEPARTMENT_EDIT);
         if(id!=null){
-            Department department = null;
-            try {
-                department = departmentService.getById(id);
-                modelAndView.addObject("department", department);
-//                DEBUG_LOGGER.debug("update department of " + department.getName());
-
-            } catch (SQLException e) {
-//                ERROR_LOGGER.error("failed to update the Department of " +
-//                        department.getName() + "\n" +
-//                        "exception type: ", e);
-
-            }
-
+            Department department = departmentService.getById(id);
+            modelAndView.addObject("department", department);
         }
         return modelAndView;
     }
