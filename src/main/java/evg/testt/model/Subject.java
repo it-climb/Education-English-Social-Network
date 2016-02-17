@@ -3,6 +3,7 @@ package evg.testt.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Entity(name = "subject")
@@ -25,7 +26,7 @@ public class Subject extends BaseModel {
 
     private String name;
 
-    @OneToMany( mappedBy = "subject", cascade = CascadeType.REMOVE)
+    @OneToOne( mappedBy = "subject", cascade = CascadeType.REMOVE)
     private Set<SubjectInActivity> subjectInActivitySet;
 
 

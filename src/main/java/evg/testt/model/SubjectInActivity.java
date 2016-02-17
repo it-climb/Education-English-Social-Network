@@ -3,6 +3,7 @@ package evg.testt.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * Created by alex on 14.02.16.
@@ -13,7 +14,7 @@ public class SubjectInActivity extends BaseModel {
     @JoinColumn(name = "activity_id")
     private Activity activity;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "subjectid")
     private Subject subject;
 
