@@ -18,4 +18,8 @@ public class SubjectInActivity extends BaseModel {
     @JoinColumn(name = "subjectid")
     private Subject subject;
 
+    @OneToOne
+    @JoinColumn(name = "levelid")
+    private Level level;
+
 }
