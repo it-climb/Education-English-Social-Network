@@ -16,14 +16,6 @@ public class Subject extends BaseModel {
         this.name = name;
     }
 
-    public Set<SubjectInActivity> getSubjectInActivitySet() {
-        return subjectInActivitySet;
-    }
-
-    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
-        this.subjectInActivitySet = subjectInActivitySet;
-    }
-
     private String name;
 
     @OneToOne( mappedBy = "subject", cascade = CascadeType.REMOVE)
