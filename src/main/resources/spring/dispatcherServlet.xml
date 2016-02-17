@@ -47,10 +47,12 @@
     </bean>
 
 
+    <!--
     <bean class="org.springframework.context.support.ResourceBundleMessageSource"
           id="messageSource">
         <property name="basename" value="messages" />
     </bean>
+    -->
 
     <!-- *******************************
 	 ***** TILES CONFIGURATION *****
@@ -74,5 +76,37 @@
         </property>
         <property name="order" value="0"/>
     </bean>
+
+    <!-- *********************************************
+	 ***** Internationalization and Localization *****
+	 ************************************************* -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:label" />
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang" />
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <ref bean="localeChangeInterceptor" />
+        </property>
+    </bean>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
 
 </beans>
