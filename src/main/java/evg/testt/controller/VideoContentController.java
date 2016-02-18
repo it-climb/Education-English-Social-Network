@@ -124,8 +124,6 @@ public class VideoContentController {
     }
 
 
-
-
     @RequestMapping(value = "/video/admin", method = RequestMethod.GET)
     public ModelAndView videoAdmin(@RequestParam(required = false) String id) {
         List<Video> contentList = videoService.getAll();
@@ -158,6 +156,9 @@ public class VideoContentController {
         return "redirect:/video/video/admin";
     }
 
+
+    //Movie administrate
+
     @RequestMapping(value = "/movie/admin", method = RequestMethod.GET)
     public ModelAndView videoMovie(@RequestParam(required = false) String id) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
@@ -174,6 +175,7 @@ public class VideoContentController {
         modelAndView.addObject("typeName", "Movie");
         return modelAndView;
     }
+
 
     @RequestMapping(value = "/movie/delete", method = RequestMethod.POST)
     public String deleteMovie(@RequestParam(required = true) String id,
@@ -193,6 +195,7 @@ public class VideoContentController {
         }
         return "redirect:/video/movie/admin";
     }
+
 
     @RequestMapping(value = "/movie/update", method = RequestMethod.POST)
     public ModelAndView updateMovie(@RequestParam(required = false) String id,
@@ -221,29 +224,11 @@ public class VideoContentController {
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/movie/save", method = RequestMethod.POST)
-    public String saveMovie(@ModelAttribute Movie newcontent,
-                            @RequestParam(required = false) String serieNumber,
-                            @RequestParam(required = false) String url) {
-    //if (serieNumber != null) then we resive a video file
-        /*if (serieNumber != null) {
-            Movie movie = movieService.get(newcontent.getId());
-            List<VideoFile> videoFiles = movie.getListVideoFiles();
-            for (int i = 0; i < videoFiles.size(); i++) {
-                if (videoFiles.get(i).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
-                    VideoFile videoFile = new VideoFile();
-                    videoFile.setName(newcontent.getName());
-                    videoFile.setDescribe(newcontent.getDescribe());
-                    videoFile.setUrl(url);
-                    videoFile.setSerieNumber(Integer.parseInt(serieNumber));
-                    videoFiles.set(i, videoFile);
-                }
-            }
-            movie.setListVideoFiles(videoFiles);
-            movieService.save(movie);
-        } else {*/
+    public String saveMovie(@ModelAttribute Movie newcontent) {
             Movie movie = new Movie();
-            Long id = null;
+            Long id;
             if ((id = newcontent.getId()) != null) {
                 movie = movieService.get(id);
             }
@@ -280,6 +265,7 @@ public class VideoContentController {
         return "redirect:/video/movie/admin?id="+id;
     }
 
+
     @RequestMapping(value = "/movie/addSerie", method = RequestMethod.POST)
     public ModelAndView saveMovie(@RequestParam(required = true) String id) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE, "id", id);
@@ -288,8 +274,7 @@ public class VideoContentController {
     }
 
 
-
-
+    //TV-Show administrate
 
 
     @RequestMapping(value = "/tvshow/admin", method = RequestMethod.GET)
