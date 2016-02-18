@@ -197,8 +197,10 @@ public class VideoContentController {
     @RequestMapping(value = "/movie/update", method = RequestMethod.POST)
     public ModelAndView updateMovie(@RequestParam(required = false) String id,
                                     @RequestParam(required = false) String serieNumber) {
-        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
-        /*if (serieNumber != null) {
+        ModelAndView modelAndView;
+        //if serieNumber != null then we recive query for updating one serie in movie
+        if (serieNumber != null) {
+            modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE);
             VideoFile videoFile = new VideoFile();
             List<VideoFile> videoFiles = movieService.get(Long.parseLong(id)).getListVideoFiles();
             for (int i = 0; i < videoFiles.size(); i++) {
@@ -208,12 +210,13 @@ public class VideoContentController {
             }
             modelAndView.addObject("content", videoFile);
             modelAndView.addObject("id", id);
-        } else {*/
+        } else {
+            modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
             if (id != null) {
                 Movie movie = movieService.get(Long.parseLong(id));
                 modelAndView.addObject("content", movie);
             }
-
+        }
         modelAndView.addObject("type", "movie");
         return modelAndView;
     }
@@ -249,6 +252,39 @@ public class VideoContentController {
             movieService.save(movie);
 
         return "redirect:/video/movie/admin";
+    }
+
+    @RequestMapping(value = "/movie/saveserie", method = RequestMethod.POST)
+    public String saveMovie(@ModelAttribute VideoFile newcontent,
+                            @RequestParam(required = true) String id) {
+        Movie movie = movieService.get(Long.parseLong(id));
+        List<VideoFile> videoFiles = movie.getListVideoFiles();
+        Boolean isNewSerie = true;
+        for (int i=0; i < videoFiles.size(); i++) {
+            if (videoFiles.get(i).getSerieNumber().equals(newcontent.getSerieNumber())) {
+                isNewSerie = false;
+                VideoFile videoFile = new VideoFile();
+                videoFile.setName(newcontent.getName());
+                videoFile.setDescribe(newcontent.getDescribe());
+                videoFile.setUrl(newcontent.getUrl());
+                videoFile.setSerieNumber(newcontent.getSerieNumber());
+                videoFiles.set(i, videoFile);
+            }
+        }
+        if (isNewSerie) {
+            videoFiles.add(newcontent);
+        }
+        movie.setListVideoFiles(videoFiles);
+        movieService.save(movie);
+
+        return "redirect:/video/movie/admin?id="+id;
+    }
+
+    @RequestMapping(value = "/movie/addSerie", method = RequestMethod.POST)
+    public ModelAndView saveMovie(@RequestParam(required = true) String id) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE, "id", id);
+        modelAndView.addObject("type", "movie");
+        return modelAndView;
     }
 
 

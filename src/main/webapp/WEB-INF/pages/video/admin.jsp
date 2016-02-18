@@ -50,11 +50,23 @@
             </c:choose>
         </tr>
     </c:forEach>
+    <c:choose>
+        <c:when test="${id != null}">
+            <form:form action="/video/${type}/addSerie" method="post">
+                <input type="hidden" name="id" value="${id}">
+                <input type="submit" value="Add new ${typeName}">
+            </form:form>
+        </c:when>
+        <c:otherwise>
+            <form:form action="/video/${type}/update" method="post">
+                <input type="submit" value="Add new ${typeName}">
+            </form:form>
+        </c:otherwise>
+    </c:choose>
+
 </table>
 <br>
-<form:form action="/video/${type}/update" method="post">
-    <input type="submit" value="Add new ${typeName}">
-</form:form>
+
 
 <p><a href="/video">Back to Catalog</a></p>
 

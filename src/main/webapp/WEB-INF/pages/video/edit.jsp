@@ -13,7 +13,7 @@
 <form:form action="/video/${type}/save" modelAttribute="newcontent">
     <table>
         <tr>
-            <td>Name of Video: </td>
+            <td>Name of ${type}: </td>
             <td><input type="text" name="name" value="${content.name}"></td>
         </tr>
 
