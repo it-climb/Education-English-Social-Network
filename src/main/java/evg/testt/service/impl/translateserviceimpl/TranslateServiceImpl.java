@@ -26,10 +26,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
 import java.util.*;
 
 
-@Service
+//@Service
 public class TranslateServiceImpl implements TranslateService {
 
     // google translate API key - AIzaSyB5v0NsBr3XIvpySJZIBPQ3zEmJbRgDaeI
@@ -145,8 +146,10 @@ public class TranslateServiceImpl implements TranslateService {
         }
     }
 
+
+
     @Override
-    public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) {
+    public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) throws GeneralSecurityException, IOException {
         TranslateResultImpl translateResult;
         if (textToTranslate.isEmpty()) {
             throw new EmptyFieldException("No data to translate. Please fill expression for translating.");
@@ -173,7 +176,7 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public TranslateResult translate(String textToTranslate, Language sourceLang, Language targetLang) {
+    public TranslateResult translate(String textToTranslate, Language sourceLang, Language targetLang) throws GeneralSecurityException, IOException {
         return translate(textToTranslate, sourceLang.getShortName(), targetLang.getShortName());
     }
 
