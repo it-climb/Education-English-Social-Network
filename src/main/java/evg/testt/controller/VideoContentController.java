@@ -240,7 +240,7 @@ public class VideoContentController {
     }
 
     @RequestMapping(value = "/movie/saveserie", method = RequestMethod.POST)
-    public String saveMovie(@ModelAttribute VideoFile newcontent,
+    public String saveserie(@ModelAttribute VideoFile newcontent,
                             @RequestParam(required = true) String id) {
         Movie movie = movieService.get(Long.parseLong(id));
         List<VideoFile> videoFiles = movie.getListVideoFiles();
@@ -267,7 +267,7 @@ public class VideoContentController {
 
 
     @RequestMapping(value = "/movie/addSerie", method = RequestMethod.POST)
-    public ModelAndView saveMovie(@RequestParam(required = true) String id) {
+    public ModelAndView addSerie(@RequestParam(required = true) String id) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE, "id", id);
         modelAndView.addObject("type", "movie");
         return modelAndView;
@@ -279,27 +279,59 @@ public class VideoContentController {
 
     @RequestMapping(value = "/tvshow/admin", method = RequestMethod.GET)
     public ModelAndView videoTvShow(@RequestParam(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
         if (id != null){
-
-
+            List<Season> seasons = tvShowService.get(Long.parseLong(id)).getSeason();
+            modelAndView.addObject("contents", seasons);
+            modelAndView.addObject("id", id);
+        } else {
+            List<TvShow> contentList = tvShowService.getAll();
+            modelAndView.addObject("contents", contentList);
         }
-        List<TvShow> contentList = tvShowService.getAll();
-        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
         modelAndView.addObject("type", "tvshow");
         modelAndView.addObject("typeName", "TV-Show");
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/tvshow/delete", method = RequestMethod.POST)
-    public String deleteTvShow(@RequestParam(required = true) String id) {
-        tvShowService.remove(Long.parseLong(id));
-        return "redirect:/video/tvshow/admin";
+    public String deleteTvShow(@RequestParam(required = true) String id,
+                               @RequestParam(required = false) String seasonNumber) {
+        String wayOut;
+        if (seasonNumber != null) {
+            TvShow tvShow = tvShowService.get(Long.parseLong(id));
+            List<Season> seasons = tvShow.getSeason();
+            for (int i = 0; i < seasons.size(); i++) {
+                if (seasons.get(i).getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                    seasons.remove(i);
+                }
+            }
+            tvShow.setSeason(seasons);
+            tvShowService.save(tvShow);
+            wayOut = "redirect:/video/tvshow/admin?id="+id;
+        } else {
+            tvShowService.remove(Long.parseLong(id));
+            wayOut = "redirect:/video/tvshow/admin";
+        }
+        return wayOut;
     }
 
     @RequestMapping(value = "/tvshow/update", method = RequestMethod.POST)
-    public ModelAndView updateTvShow(@RequestParam(required = false) String id) {
+    public ModelAndView updateTvShow(@RequestParam(required = false) String id,
+                                     @RequestParam(required = false) String seasonNumber) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
-        if (id != null) {
+        if (seasonNumber != null) {
+            Season season = null;
+            List<Season> seasons = tvShowService.get(Long.parseLong(id)).getSeason();
+            for (Season seas : seasons) {
+                if (seas.getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                    season = seas;
+                }
+            }
+            modelAndView.addObject("content", season);
+            modelAndView.addObject("id", id);
+        }
+        else if (id != null) {
             TvShow tvShow = tvShowService.get(Long.parseLong(id));
             modelAndView.addObject("content", tvShow);
         }
@@ -308,15 +340,30 @@ public class VideoContentController {
     }
 
     @RequestMapping(value = "/tvshow/save", method = RequestMethod.POST)
-    public String saveTvShow(@ModelAttribute Movie newcontent) {
-        TvShow tvShow = new TvShow();
-        Long id = null;
-        if ((id = newcontent.getId()) != null) {
-            tvShow = tvShowService.get(newcontent.getId());
+    public String saveTvShow(@ModelAttribute Movie newcontent,
+                             @RequestParam(required = false) String seasonNumber) {
+        TvShow tvShowOut = new TvShow();
+        if (seasonNumber != null) {
+            TvShow tvShow = tvShowService.get(newcontent.getId());
+            List<Season> seasons = tvShow.getSeason();
+            for (int i=0; i < seasons.size(); i++) {
+                if (seasons.get(i).getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                    seasons.get(i).setName(newcontent.getName());
+                    seasons.get(i).setDescribe(newcontent.getDescribe());
+                }
+            }
+            tvShow.setSeason(seasons);
+            tvShowService.save(tvShow);
         }
-        tvShow.setDescribe(newcontent.getDescribe());
-        tvShow.setName(newcontent.getName());
-        tvShowService.save(tvShow);
+        else {
+            Long id;
+            if ((id = newcontent.getId()) != null) {
+                tvShowOut = tvShowService.get(id);
+            }
+        }
+        tvShowOut.setDescribe(newcontent.getDescribe());
+        tvShowOut.setName(newcontent.getName());
+        tvShowService.save(tvShowOut);
         return "redirect:/video/tvshow/admin";
     }
 

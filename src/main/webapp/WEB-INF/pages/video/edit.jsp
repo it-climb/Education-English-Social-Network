@@ -17,7 +17,7 @@
             <td><input type="text" name="name" value="${content.name}"></td>
         </tr>
 
-        <c:if test="${type == video}">
+        <c:if test="${type == 'video'}">
             <tr>
                 <td>URL: </td>
                 <td><input type="text" name="url" value="${content.url}"></td>
@@ -27,8 +27,19 @@
             <td>Describe :</td>
             <td><input type="text" name="describe" value="${content.describe}"></td>
         </tr>
+
         <tr>
-            <td><input type="hidden" name="id" value="${content.id}"></td>
+            <td>
+                <c:choose>
+                    <c:when test="${id != null}">
+                        <input type="hidden" name="id" value="${id}">
+                        <input type="hidden" name="seasonNumber" value="${content.seasonNumber}">
+                    </c:when>
+                    <c:otherwise>
+                        <input type="hidden" name="id" value="${content.id}">
+                    </c:otherwise>
+                </c:choose>
+               <%-- <input type="hidden" name="season" value="${season}"></td>--%>
             <td><input type="submit" value="Save"></td>
         </tr>
     </table>

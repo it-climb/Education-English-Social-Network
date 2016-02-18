@@ -21,14 +21,24 @@
                         <form:form action="/video/${type}/delete" method="post">
                             <input type="submit" value="Delete">
                             <input type="hidden" name="id" value="${id}">
-                            <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                            <c:if test="${type == 'movie'}">
+                                <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                            </c:if>
+                            <c:if test="${type == 'tvshow'}">
+                                <input type="hidden" name="seasonNumber" value="${content.seasonNumber}">
+                            </c:if>
                         </form:form>
                     </td>
                     <td>
                         <form:form action="/video/${type}/update" method="post">
                             <input type="submit" value="Update">
                             <input type="hidden" name="id" value="${id}">
-                            <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                            <c:if test="${type == 'movie'}">
+                                <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                            </c:if>
+                            <c:if test="${type == 'tvshow'}">
+                                <input type="hidden" name="seasonNumber" value="${content.seasonNumber}">
+                            </c:if>
                         </form:form>
                     </td>
                 </c:when>
