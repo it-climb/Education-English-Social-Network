@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -13,30 +14,30 @@
         <tr>
             <td>${content.name}</td>
             <td>
-                <form action="video/${type}/deleteserie" method="post">
+                <form:form action="/video/${type}/deleteserie" method="post">
                     <input type="hidden" name="id" value="${id}">
                     <input type="hidden" name="seasonNumber" value="${seasonNumber}">
                     <input type="hidden" name="serieNumber" value="${content.serieNumber}">
                     <input type="submit" value="Delete">
-                </form>
+                </form:form>
             </td>
             <td>
-                <form action="video/${type}/" method="post">
+                <form:form action="/video/${type}/editserie" method="post">
                     <input type="hidden" name="id" value="${id}">
                     <input type="hidden" name="seasonNumber" value="${seasonNumber}">
                     <input type="hidden" name="serieNumber" value="${content.serieNumber}">
                     <input type="submit" value="Update">
-                </form>
+                </form:form>
             </td>
         </tr>
     </c:forEach>
 </table>
 
-<form action="video/${type}/" method="post">
+<form:form action="/video/${type}/editserie" method="post">
     <input type="hidden" name="id" value="${id}">
     <input type="hidden" name="seasonNumber" value="${seasonNumber}">
     <input type="submit" value="Add new Series">
-</form>
+</form:form>
 
 
 </body>

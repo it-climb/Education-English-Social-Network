@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td>
-              <c:if test="${type = 'tvshow'}">
+              <c:if test="${type == 'tvshow'}">
                   <input type="hidden" name="seasonNumber" value="${seasonNumber}">
               </c:if>
               <input type="hidden" name="id" value="${id}">

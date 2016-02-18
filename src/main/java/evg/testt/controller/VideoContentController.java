@@ -240,7 +240,7 @@ public class VideoContentController {
     }
 
     @RequestMapping(value = "/movie/saveserie", method = RequestMethod.POST)
-    public String saveserie(@ModelAttribute VideoFile newcontent,
+    public String saveSerieMovie(@ModelAttribute VideoFile newcontent,
                             @RequestParam(required = true) String id) {
         Movie movie = movieService.get(Long.parseLong(id));
         List<VideoFile> videoFiles = movie.getListVideoFiles();
@@ -267,7 +267,7 @@ public class VideoContentController {
 
 
     @RequestMapping(value = "/movie/addSerie", method = RequestMethod.POST)
-    public ModelAndView addSerie(@RequestParam(required = true) String id) {
+    public ModelAndView addSerieMovie(@RequestParam(required = true) String id) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE, "id", id);
         modelAndView.addObject("type", "movie");
         return modelAndView;
@@ -410,20 +410,63 @@ public class VideoContentController {
         return "redirect:/video/tvshow/admin?id="+id;
     }
 
+    @RequestMapping(value = "/tvshow/editserie", method = RequestMethod.POST)
+    public ModelAndView editSerie(@RequestParam(required = true) String id,
+                            @RequestParam(required = true) String seasonNumber,
+                            @RequestParam(required = false) String serieNumber) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSERIE);
+        if (serieNumber != null) {
+            List<Season> seasonList = tvShowService.get(Long.parseLong(id)).getSeason();
+            for (int i = 0; i < seasonList.size(); i++) {
+                if (seasonList.get(i).getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                    List<VideoFile> videoFiles = seasonList.get(i).getListVideoFiles();
+                    for (int j = 0; j < videoFiles.size(); j++) {
+                        if (videoFiles.get(j).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
+                            modelAndView.addObject("content", videoFiles.get(j));
+                        }
+                    }
+                }
+            }
+        }
+        modelAndView.addObject("id", id);
+        modelAndView.addObject("seasonNumber", seasonNumber);
+        modelAndView.addObject("type", "tvshow");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = "/tvshow/saveserie", method = RequestMethod.POST)
     public String saveSerie(@ModelAttribute VideoFile newcontent,
                             @RequestParam(required = true) String id,
                             @RequestParam(required = true) String seasonNumber) {
-
-
-
-
-        return null;
+        TvShow tvShow = tvShowService.get(Long.parseLong(id));
+        List<Season> seasonList = tvShow.getSeason();
+        for (int i = 0; i < seasonList.size(); i++) {
+            if (seasonList.get(i).getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                List<VideoFile> videoFiles = seasonList.get(i).getListVideoFiles();
+                Boolean isNew = true;
+                for (int j = 0; j < videoFiles.size(); j++) {
+                    if (videoFiles.get(j).getSerieNumber().equals(newcontent.getSerieNumber())) {
+                        isNew = false;
+                        videoFiles.get(j).setName(newcontent.getName());
+                        videoFiles.get(j).setUrl(newcontent.getUrl());
+                        videoFiles.get(j).setDescribe(newcontent.getDescribe());
+                    }
+                }
+                if (isNew) {
+                    videoFiles.add(newcontent);
+                }
+                seasonList.get(i).setListVideoFiles(videoFiles);
+                tvShow.setSeason(seasonList);
+                tvShowService.save(tvShow);
+            }
+        }
+        return "redirect:/video/tvshow/admin?id="+id+"&season="+seasonNumber;
     }
 
+
     @RequestMapping(value = "/tvshow/deleteserie", method = RequestMethod.POST)
-    public String saveSerie(@RequestParam(required = true) String id,
+    public String deleteSerie(@RequestParam(required = true) String id,
                             @RequestParam(required = true) String seasonNumber,
                             @RequestParam(required = true) String serieNumber) {
         TvShow tvShow = tvShowService.get(Long.parseLong(id));
