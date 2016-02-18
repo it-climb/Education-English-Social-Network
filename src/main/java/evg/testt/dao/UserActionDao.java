@@ -1,6 +1,7 @@
 package evg.testt.dao;
 
-import evg.testt.model.UserAction;
+import evg.testt.model.userActionModels.Actions;
+import evg.testt.model.userActionModels.UserAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -22,7 +23,10 @@ public class UserActionDao {
     public UserAction get (Long id) {
         return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), UserAction.class);
     }
+
     public List<UserAction> getAll() { return mongoOperations.findAll(UserAction.class); }
 
     public void remove(Long id) { mongoOperations.remove(Query.query(Criteria.where("id").is(id)), UserAction.class); }
+
+
 }

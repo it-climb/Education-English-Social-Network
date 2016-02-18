@@ -3,7 +3,7 @@ package evg.testt.service;
 
 import evg.testt.dao.SequenceDao;
 import evg.testt.dao.UserActionDao;
-import evg.testt.model.UserAction;
+import evg.testt.model.userActionModels.UserAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,9 @@ public class UserActionService {
 
     @Autowired
     private SequenceDao sequenceDao;
-    @Autowired private UserActionDao userActionDao;
+
+    @Autowired
+    private UserActionDao userActionDao;
 
     public void save(UserAction userAction){
         if(userAction.getId() == null) {
