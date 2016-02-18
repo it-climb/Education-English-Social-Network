@@ -16,7 +16,15 @@
         <tr>
             <c:choose>
                 <c:when test="${id != null}">
-                    <td> ${content.name}</td>
+                    <c:choose>
+                        <c:when test="${type == 'tvshow'}">
+                            <td><a href="/video/${type}/admin?id=${id}&season=${content.seasonNumber}"> ${content.name}</a></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td> ${content.name}</td>
+                        </c:otherwise>
+                    </c:choose>
+
                     <td>
                         <form:form action="/video/${type}/delete" method="post">
                             <input type="submit" value="Delete">
@@ -74,10 +82,6 @@
                     <input type="submit" value="Add new Season">
                 </form:form>
             </c:if>
-
-
-
-
 
         </c:when>
         <c:otherwise>

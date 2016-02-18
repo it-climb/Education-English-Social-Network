@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -26,7 +27,12 @@
             <td><input type="text" name="describe" value="${content.describe}"></td>
         </tr>
         <tr>
-            <td><input type="hidden" name="id" value="${id}"></td>
+            <td>
+              <c:if test="${type = 'tvshow'}">
+                  <input type="hidden" name="seasonNumber" value="${seasonNumber}">
+              </c:if>
+              <input type="hidden" name="id" value="${id}">
+            </td>
             <td><input type="submit" value="Save serie"></td>
         </tr>
     </table>

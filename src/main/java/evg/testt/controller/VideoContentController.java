@@ -278,9 +278,24 @@ public class VideoContentController {
 
 
     @RequestMapping(value = "/tvshow/admin", method = RequestMethod.GET)
-    public ModelAndView videoTvShow(@RequestParam(required = false) String id) {
+    public ModelAndView videoTvShow(@RequestParam(required = false) String id,
+                                    @RequestParam(required = false) String season) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
-        if (id != null){
+        if (season != null) {
+            List<Season> seasons = tvShowService.get(Long.parseLong(id)).getSeason();
+            for (Season season1: seasons) {
+                if (season1.getSeasonNumber().equals(Integer.parseInt(season))) {
+
+
+
+                    modelAndView = new ModelAndView(JspPath.VIDEO_ADMINSERIE);
+                    modelAndView.addObject("id", id);
+                    modelAndView.addObject("seasonNumber", season);
+                    modelAndView.addObject("contents", season1.getListVideoFiles());
+                }
+            }
+        }
+        else if (id != null){
             List<Season> seasons = tvShowService.get(Long.parseLong(id)).getSeason();
             modelAndView.addObject("contents", seasons);
             modelAndView.addObject("id", id);
@@ -333,7 +348,6 @@ public class VideoContentController {
             modelAndView.addObject("id", id);
         }
         else if (id != null) {
-            /*modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);*/
             TvShow tvShow = tvShowService.get(Long.parseLong(id));
             modelAndView.addObject("content", tvShow);
         }
@@ -395,6 +409,43 @@ public class VideoContentController {
         tvShowService.save(tvShow);
         return "redirect:/video/tvshow/admin?id="+id;
     }
+
+
+    @RequestMapping(value = "/tvshow/saveserie", method = RequestMethod.POST)
+    public String saveSerie(@ModelAttribute VideoFile newcontent,
+                            @RequestParam(required = true) String id,
+                            @RequestParam(required = true) String seasonNumber) {
+
+
+
+
+        return null;
+    }
+
+    @RequestMapping(value = "/tvshow/deleteserie", method = RequestMethod.POST)
+    public String saveSerie(@RequestParam(required = true) String id,
+                            @RequestParam(required = true) String seasonNumber,
+                            @RequestParam(required = true) String serieNumber) {
+        TvShow tvShow = tvShowService.get(Long.parseLong(id));
+        List<Season> seasonList = tvShow.getSeason();
+
+        for (int i = 0; i < seasonList.size(); i++) {
+            if (seasonList.get(i).getSeasonNumber().equals(Integer.parseInt(seasonNumber))) {
+                List<VideoFile> videoFiles = seasonList.get(i).getListVideoFiles();
+                for (int j = 0; j < videoFiles.size(); j++) {
+                    if (videoFiles.get(j).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
+                        videoFiles.remove(j);
+                        seasonList.get(i).setListVideoFiles(videoFiles);
+                        tvShow.setSeason(seasonList);
+                        tvShowService.save(tvShow);
+                    }
+                }
+            }
+        }
+        return "redirect:/video/tvshow/admin?id="+id+"&season="+seasonNumber;
+    }
+
+
 
 
 
