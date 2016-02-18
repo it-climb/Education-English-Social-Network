@@ -62,10 +62,23 @@
     </c:forEach>
     <c:choose>
         <c:when test="${id != null}">
-            <form:form action="/video/${type}/addSerie" method="post">
-                <input type="hidden" name="id" value="${id}">
-                <input type="submit" value="Add new ${typeName}">
-            </form:form>
+            <c:if test="${type == 'movie'}">
+                <form:form action="/video/${type}/addSerie" method="post">
+                    <input type="hidden" name="id" value="${id}">
+                    <input type="submit" value="Add new ${typeName}">
+                </form:form>
+            </c:if>
+            <c:if test="${type == 'tvshow'}">
+                <form:form action="/video/${type}/addSeason" method="post">
+                    <input type="hidden" name="id" value="${id}">
+                    <input type="submit" value="Add new Season">
+                </form:form>
+            </c:if>
+
+
+
+
+
         </c:when>
         <c:otherwise>
             <form:form action="/video/${type}/update" method="post">

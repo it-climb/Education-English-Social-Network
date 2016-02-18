@@ -30,5 +30,6 @@ public class JspPath {
     public static final String VIDEO_PLAY = "video/play";
     public static final String VIDEO_EDIT = "video/edit";
     public static final String VIDEO_EDITSERIE = "video/editserie";
+    public static final String VIDEO_EDITSEASON = "video/editseason";
 
 }

@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<form:form action="/video/${type}/saveserie" modelAttribute="newcontent">
+<form:form action="/video/${type}/saveseason" modelAttribute="newcontent">
     <table>
         <tr>
             <td>Name of Season: </td>
@@ -14,16 +14,18 @@
         </tr>
         <tr>
             <td>Describe of Season: </td>
-            <td><input type="text" name="name" value="${content.describe}"></td>
+            <td><input type="text" name="describe" value="${content.describe}"></td>
         </tr>
         <tr>
-            <td>Name of Season: </td>
-            <td><input type="text" name="name" value="${content.name}"></td>
+            <td>Unique number of Season: </td>
+            <td><input type="text" name="seasonNumber" value="${content.seasonNumber}"></td>
         </tr>
-    <tr>
-    <td><input type="hidden" name="id" value="${id}"></td>
-    <td><input type="submit" value="Save serie"></td>
-    </tr>
+        <tr>
+            <td><input type="hidden" name="id" value="${id}"></td>
+            <td><input type="submit" value="Save season"></td>
+        </tr>
     </table>
+</form:form>
+
 </body>
 </html>

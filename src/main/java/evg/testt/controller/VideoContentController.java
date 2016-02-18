@@ -321,6 +321,7 @@ public class VideoContentController {
                                      @RequestParam(required = false) String seasonNumber) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
         if (seasonNumber != null) {
+            modelAndView = new ModelAndView(JspPath.VIDEO_EDITSEASON);
             Season season = null;
             List<Season> seasons = tvShowService.get(Long.parseLong(id)).getSeason();
             for (Season seas : seasons) {
@@ -332,6 +333,7 @@ public class VideoContentController {
             modelAndView.addObject("id", id);
         }
         else if (id != null) {
+            /*modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);*/
             TvShow tvShow = tvShowService.get(Long.parseLong(id));
             modelAndView.addObject("content", tvShow);
         }
@@ -365,6 +367,33 @@ public class VideoContentController {
         tvShowOut.setName(newcontent.getName());
         tvShowService.save(tvShowOut);
         return "redirect:/video/tvshow/admin";
+    }
+
+    @RequestMapping(value = "/tvshow/addSeason", method = RequestMethod.POST)
+    public ModelAndView addSeason(@RequestParam(required = true) String id) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDITSEASON, "id", id);
+        modelAndView.addObject("type", "tvshow");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/tvshow/saveseason", method = RequestMethod.POST)
+    public String saveSeason(@ModelAttribute Season newcontent,
+                             @RequestParam(required = true) String id) {
+        TvShow tvShow = tvShowService.get(Long.parseLong(id));
+        List<Season> seasons = tvShow.getSeason();
+        Boolean isNew = true;
+        for (int i=0; i < seasons.size(); i++) {
+            if (seasons.get(i).getSeasonNumber().equals(newcontent.getSeasonNumber())) {
+                isNew = false;
+                seasons.set(i, newcontent);
+            }
+        }
+        if (isNew) {
+            seasons.add(newcontent);
+        }
+        tvShow.setSeason(seasons);
+        tvShowService.save(tvShow);
+        return "redirect:/video/tvshow/admin?id="+id;
     }
 
 
