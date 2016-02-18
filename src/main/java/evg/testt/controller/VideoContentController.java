@@ -127,7 +127,7 @@ public class VideoContentController {
 
 
     @RequestMapping(value = "/video/admin", method = RequestMethod.GET)
-    public ModelAndView videoAdmin() {
+    public ModelAndView videoAdmin(@RequestParam(required = false) String id) {
         List<Video> contentList = videoService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
         modelAndView.addObject("type", "video");
@@ -158,26 +158,110 @@ public class VideoContentController {
         return "redirect:/video/video/admin";
     }
 
-
-
-
     @RequestMapping(value = "/movie/admin", method = RequestMethod.GET)
-    public ModelAndView videoMovie() {
-        List<Movie> contentList = movieService.getAll();
-        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
+    public ModelAndView videoMovie(@RequestParam(required = false) String id) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN);
+        if (id != null) {
+            List<VideoFile> videoFiles = movieService.get(Long.parseLong(id)).getListVideoFiles();
+            modelAndView.addObject("contents", videoFiles);
+            modelAndView.addObject("id", id);
+        }
+        else {
+            List<Movie> contentList = movieService.getAll();
+            modelAndView.addObject("contents", contentList);
+        }
         modelAndView.addObject("type", "movie");
         modelAndView.addObject("typeName", "Movie");
         return modelAndView;
     }
 
     @RequestMapping(value = "/movie/delete", method = RequestMethod.POST)
-    public String deleteMovie(@RequestParam(required = true) String id) {
-        movieService.remove(Long.parseLong(id));
+    public String deleteMovie(@RequestParam(required = true) String id,
+                              @RequestParam(required = false) String serieNumber) {
+        if (serieNumber != null) {
+            Movie movie = movieService.get(Long.parseLong(id));
+            List<VideoFile> videoFiles = movie.getListVideoFiles();
+            for (int i = 0; i < videoFiles.size(); i++) {
+                if (videoFiles.get(i).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
+                    videoFiles.remove(i);
+                }
+            }
+            movie.setListVideoFiles(videoFiles);
+            movieService.save(movie);
+        } else {
+            movieService.remove(Long.parseLong(id));
+        }
         return "redirect:/video/movie/admin";
     }
 
+    @RequestMapping(value = "/movie/update", method = RequestMethod.POST)
+    public ModelAndView updateMovie(@RequestParam(required = false) String id,
+                                    @RequestParam(required = false) String serieNumber) {
+        ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
+        /*if (serieNumber != null) {
+            VideoFile videoFile = new VideoFile();
+            List<VideoFile> videoFiles = movieService.get(Long.parseLong(id)).getListVideoFiles();
+            for (int i = 0; i < videoFiles.size(); i++) {
+                if (videoFiles.get(i).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
+                    videoFile = videoFiles.get(i);
+                }
+            }
+            modelAndView.addObject("content", videoFile);
+            modelAndView.addObject("id", id);
+        } else {*/
+            if (id != null) {
+                Movie movie = movieService.get(Long.parseLong(id));
+                modelAndView.addObject("content", movie);
+            }
+
+        modelAndView.addObject("type", "movie");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/movie/save", method = RequestMethod.POST)
+    public String saveMovie(@ModelAttribute Movie newcontent,
+                            @RequestParam(required = false) String serieNumber,
+                            @RequestParam(required = false) String url) {
+    //if (serieNumber != null) then we resive a video file
+        /*if (serieNumber != null) {
+            Movie movie = movieService.get(newcontent.getId());
+            List<VideoFile> videoFiles = movie.getListVideoFiles();
+            for (int i = 0; i < videoFiles.size(); i++) {
+                if (videoFiles.get(i).getSerieNumber().equals(Integer.parseInt(serieNumber))) {
+                    VideoFile videoFile = new VideoFile();
+                    videoFile.setName(newcontent.getName());
+                    videoFile.setDescribe(newcontent.getDescribe());
+                    videoFile.setUrl(url);
+                    videoFile.setSerieNumber(Integer.parseInt(serieNumber));
+                    videoFiles.set(i, videoFile);
+                }
+            }
+            movie.setListVideoFiles(videoFiles);
+            movieService.save(movie);
+        } else {*/
+            Movie movie = new Movie();
+            Long id = null;
+            if ((id = newcontent.getId()) != null) {
+                movie = movieService.get(id);
+            }
+            movie.setDescribe(newcontent.getDescribe());
+            movie.setName(newcontent.getName());
+            movieService.save(movie);
+
+        return "redirect:/video/movie/admin";
+    }
+
+
+
+
+
+
     @RequestMapping(value = "/tvshow/admin", method = RequestMethod.GET)
-    public ModelAndView videoTvShow() {
+    public ModelAndView videoTvShow(@RequestParam(required = false) String id) {
+        if (id != null){
+
+
+        }
         List<TvShow> contentList = tvShowService.getAll();
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_ADMIN, "contents", contentList);
         modelAndView.addObject("type", "tvshow");
@@ -191,29 +275,34 @@ public class VideoContentController {
         return "redirect:/video/tvshow/admin";
     }
 
-
-
-
-   /*@RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editContent(@RequestParam(required = false) String id) {
-
+    @RequestMapping(value = "/tvshow/update", method = RequestMethod.POST)
+    public ModelAndView updateTvShow(@RequestParam(required = false) String id) {
         ModelAndView modelAndView = new ModelAndView(JspPath.VIDEO_EDIT);
         if (id != null) {
-            VideoFile videoFile = videoContentServiceImpl.get(Long.parseLong(id));
-            modelAndView.addObject("content", videoFile);
-            modelAndView.addObject("contenturl", videoFile.getUrl().toString());
+            TvShow tvShow = tvShowService.get(Long.parseLong(id));
+            modelAndView.addObject("content", tvShow);
         }
-
+        modelAndView.addObject("type", "tvshow");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveContent(@ModelAttribute VideoFile videoFile) {
-        videoContentServiceImpl.save(videoFile);
-        return "redirect:/video/admin";
+    @RequestMapping(value = "/tvshow/save", method = RequestMethod.POST)
+    public String saveTvShow(@ModelAttribute Movie newcontent) {
+        TvShow tvShow = new TvShow();
+        Long id = null;
+        if ((id = newcontent.getId()) != null) {
+            tvShow = tvShowService.get(newcontent.getId());
+        }
+        tvShow.setDescribe(newcontent.getDescribe());
+        tvShow.setName(newcontent.getName());
+        tvShowService.save(tvShow);
+        return "redirect:/video/tvshow/admin";
     }
 
-    */
+
+
+
+
 
 
 }

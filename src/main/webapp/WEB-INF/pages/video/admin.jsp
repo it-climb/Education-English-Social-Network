@@ -10,23 +10,44 @@
 
 <table>
     <tr>
-        <td><b>Video name</b></td>
+        <td><b>${typeName} name</b></td>
     </tr>
     <c:forEach var="content" items="${contents}">
         <tr>
-            <td>${content.name}</td>
-            <td>
-                <form:form action="/video/${type}/delete" method="post">
-                    <input type="submit" value="Delete">
-                    <input type="hidden" name="id" value="${content.id}">
-                </form:form>
-            </td>
-            <td>
-                <form:form action="/video/${type}/update" method="post">
-                    <input type="submit" value="Update">
-                    <input type="hidden" name="id" value="${content.id}">
-                </form:form>
-            </td>
+            <c:choose>
+                <c:when test="${id != null}">
+                    <td> ${content.name}</td>
+                    <td>
+                        <form:form action="/video/${type}/delete" method="post">
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="id" value="${id}">
+                            <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                        </form:form>
+                    </td>
+                    <td>
+                        <form:form action="/video/${type}/update" method="post">
+                            <input type="submit" value="Update">
+                            <input type="hidden" name="id" value="${id}">
+                            <input type="hidden" name="serieNumber" value="${content.serieNumber}">
+                        </form:form>
+                    </td>
+                </c:when>
+                <c:otherwise>
+                    <td><a href="/video/${type}/admin?id=${content.id}"> ${content.name}</a></td>
+                    <td>
+                        <form:form action="/video/${type}/delete" method="post">
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="id" value="${content.id}">
+                        </form:form>
+                    </td>
+                    <td>
+                        <form:form action="/video/${type}/update" method="post">
+                            <input type="submit" value="Update">
+                            <input type="hidden" name="id" value="${content.id}">
+                        </form:form>
+                    </td>
+                </c:otherwise>
+            </c:choose>
         </tr>
     </c:forEach>
 </table>
