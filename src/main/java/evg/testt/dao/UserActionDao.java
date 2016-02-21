@@ -30,13 +30,17 @@ public class UserActionDao {
     public void remove(Long id) { mongoOperations.remove(Query.query(Criteria.where("id").is(id)), UserAction.class); }
 
     public void update(String email,Action action){
-        Query query = new Query();
+       /* Query query = new Query();
         query.addCriteria(Criteria.where("userEmail").is(email));
 
         Update update = new Update();
         update.push("actions", action);
 
-        mongoOperations.upsert(query, update, UserAction.class);
+        mongoOperations.upsert(query, update, UserAction.class);*/
+
+        mongoOperations.upsert(Query.query(Criteria.where("userEmail").is(email)),
+                new Update().push("actions",action),
+                UserAction.class);
     }
 
 

@@ -31,7 +31,7 @@ public class UserActionAOP {
         action.setDescription(event);
         action.setTime(new Date());
 
-        if(userActionService.get(Long.valueOf(sessionUser.getId().toString()))==null){
+        if(userActionService.get(Long.valueOf(sessionUser.getId().toString()))!=null){
             userActionService.update(sessionUser.getEmail(), action);
         }else {
             UserAction userAction = new UserAction();
