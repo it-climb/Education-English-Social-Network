@@ -9,6 +9,9 @@ import java.util.Set;
 @Entity(name = "activity")
 public class Activity extends BaseModel {
 
+    /**
+     *  name of activity
+     */
     protected String name;
 
     protected String targetAge;
