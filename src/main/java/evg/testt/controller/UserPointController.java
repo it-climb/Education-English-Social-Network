@@ -5,11 +5,13 @@ import evg.testt.model.AuthorshipPoints;
 import evg.testt.service.AuthorshipPointsService;
 import evg.testt.service.KnowledgeLevelPointsService;
 import evg.testt.service.UserService;
+import evg.testt.model.KnowledgeLevelPoints;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +38,21 @@ public class UserPointController {
         ModelAndView modelAndView = new ModelAndView(JspPath.POINTS_ALL);
         modelAndView.addObject("email", sessionUser.getEmail());
         modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
-        modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getByUser(sessionUser));
+        modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/addKLPoints", method = RequestMethod.POST)
+    public String addNewOne(@RequestParam(required = true) String subject, HttpServletRequest request) throws SQLException {
+
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        KnowledgeLevelPoints knowledgeLevelPoints = new KnowledgeLevelPoints();
+        knowledgeLevelPoints.setSubject(subject);
+        knowledgeLevelPoints.setUser(sessionUser);
+        knowledgeLevelPoints.setKnowledgeLevelPoints(0);
+        knowledgeLevelPointsService.insert(knowledgeLevelPoints);
+        return "redirect:/points";
     }
 
 }

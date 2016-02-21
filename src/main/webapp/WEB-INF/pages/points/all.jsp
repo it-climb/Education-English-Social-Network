@@ -12,24 +12,21 @@
     <title>Title</title>
 </head>
 <body>
+<div align="right"><strong>${email}</strong></div>
 <table class="menu" width="1000px">
+    <p>AutorshipPoints : ${authorshipPoints.authorshipPoints}</p>
     <tr>
-        <td><b>Users List</b></td>
-    </tr>
-    <tr>
-        <td><td>
+        <td>Add knowledge level</td>
         <td>
-            <form method="get" action="/writeTo">
-                <input type="hidden" name="recEmail" value="">
-                <input type="submit" value="Write to all">
+            <form method="post" action="/addKLPoints">
+                <input type="text" name="subject">
+                <input type="submit" value="Add">
             </form>
         </td>
-        <td></td>
-    </tr>
-    <p>KnowledgePoints : ${knowledgePoints.getKnowledgePoints()}</p>
+        </tr>
     <c:forEach var="knowledgePoints" items="${knowledgeLevelPoints}">
         <tr>
-                <td>${knowledgePoints.getSubject} : ${knowledgePoints.getKnowledgeLevelPoints}</td>
+                <td>${knowledgePoints.subject} : ${knowledgePoints.knowledgeLevelPoints}</td>
                 <!--<td>
                     <form method="post" action="/klPointsUp">
                         <input type="hidden" name="klPoints" value=${knowledgePoints}>

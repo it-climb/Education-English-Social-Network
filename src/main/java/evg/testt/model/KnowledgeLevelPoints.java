@@ -35,4 +35,12 @@ public class KnowledgeLevelPoints extends BaseModel {
         this.subject = subject;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
