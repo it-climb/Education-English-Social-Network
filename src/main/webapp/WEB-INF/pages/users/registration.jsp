@@ -30,7 +30,7 @@
         <br/>
         
         <label for="confPass">Confirm password:</label>
-        <form:input path="confirmPassword" id="confPass"/>
+        <form:password path="confirmPassword" id="confPass"/>
         <form:errors path="confirmPassword" cssClass="error"/>
         <br/>
 
