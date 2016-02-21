@@ -43,16 +43,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Tiles Dispatch Servlet</servlet-name>
-        <servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Tiles Dispatch Servlet</servlet-name>
-        <url-pattern>*.tiles</url-pattern>
-    </servlet-mapping>
-
     <!-- /Spring Dispatcher Servlet Context -->
 
     <!-- Filters -->
@@ -80,8 +70,5 @@
     <!-- /Filters -->
 
     <!--Customs error-pages-->
-    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB-INF/error-404.jsp</location>
-    </error-page>
+
 </web-app>

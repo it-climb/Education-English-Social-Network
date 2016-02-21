@@ -4,14 +4,12 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueImpl.class)
+@Constraint(validatedBy = UserEmailImpl.class)
 @Documented
-public @interface Unique {
-
-    String message() default "{email}";
+public @interface UserEmail{
+    String message() default "{UserEmail}";
 
     Class<?>[] groups() default { };
 
@@ -23,5 +21,4 @@ public @interface Unique {
     @interface List{
         Unique[] value();
     }
-
 }

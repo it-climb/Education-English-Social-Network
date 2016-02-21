@@ -3,15 +3,20 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <mvc:annotation-driven/>
+
+    <aop:aspectj-autoproxy/>
 
     <cache:annotation-driven/>
 
@@ -42,31 +47,66 @@
     </bean>
 
 
+    <!--
     <bean class="org.springframework.context.support.ResourceBundleMessageSource"
           id="messageSource">
         <property name="basename" value="messages" />
     </bean>
+    -->
 
-    <beans:beans xmlns:beans="http://www.springframework.org/schema/beans">
-        <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-        <beans:bean id="tilesConfigurer"
-                    class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-            <beans:property name="definitions">
-                <beans:list>
-                    <beans:value>/WEB-INF/tiles.xml</beans:value>
-                    <beans:value>/WEB-INF/views/views.xml</beans:value>
-                </beans:list>
-            </beans:property>
-        </beans:bean>
-        <beans:bean id="tilesViewResolver"
-                    class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-            <beans:property name="viewClass">
-                <beans:value>
-                    org.springframework.web.servlet.view.tiles3.TilesView
-                </beans:value>
-            </beans:property>
-            <beans:property name="order" value="0"/>
-        </beans:bean>
+    <!-- *******************************
+	 ***** TILES CONFIGURATION *****
+	 ******************************* -->
 
-    </beans:beans>
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+                <value>/WEB-INF/views/views.xml</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass">
+            <value>
+                org.springframework.web.servlet.view.tiles3.TilesView
+            </value>
+        </property>
+        <property name="order" value="0"/>
+    </bean>
+
+    <!-- *********************************************
+	 ***** Internationalization and Localization *****
+	 ************************************************* -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:label" />
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang" />
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <ref bean="localeChangeInterceptor" />
+        </property>
+    </bean>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
+
 </beans>

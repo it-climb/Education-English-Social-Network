@@ -53,6 +53,25 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- Spring AOP + AspectJ -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+
         <!-- Support for Ehcache and others -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -306,6 +325,7 @@
             <version>5.0.1.Final</version>
         </dependency>
 
+        <!-- Tiles -->
 
         <dependency>
             <groupId>org.apache.tiles</groupId>
