@@ -11,17 +11,17 @@
     </tr>
     <tr>
         <td><td>
-        <td>
-            <form method="get" action="/writeTo">
-                <input type="hidden" name="recEmail" value="">
-                <input type="submit" value="Write to all">
-            </form>
-        </td>
+        <%--<td>--%>
+            <%--<form method="get" action="/writeTo">--%>
+                <%--<input type="hidden" name="recEmail" value="">--%>
+                <%--<input type="submit" value="Write to all">--%>
+            <%--</form>--%>
+        <%--</td>--%>
         <td></td>
     </tr>
     <c:forEach var="activity" items="${activities}">
         <tr>
-            <td>${activity.name}</td>
+            <td>${activity.name}</td><td>${activity.}</td>
         </tr>
     </c:forEach>
 </table>
