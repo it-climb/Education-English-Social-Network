@@ -25,5 +25,6 @@ public class JspPath {
     public static final String ISE_ERROR_VIEW = "ErrorNeedLogin"; //internal server error
     public static final String CHAT_ALL = "/chat/all";
     public static final String MESSAGES = "/messages/all";
+    public static final String POINTS_ALL = "/points/all";
 
 }
