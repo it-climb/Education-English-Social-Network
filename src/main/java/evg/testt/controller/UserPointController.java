@@ -42,6 +42,36 @@ public class UserPointController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/klPointsUp", method = RequestMethod.POST)
+    public String klPointsUp(@RequestParam(required = true) String subject,
+                            @RequestParam(required = true) Integer klPointsUp,
+                            HttpServletRequest request) throws SQLException {
+
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        KnowledgeLevelPoints knowledgeLevelPoints = knowledgeLevelPointsService.findByUserAndSubject(sessionUser, subject);
+        knowledgeLevelPoints.increaseKnowledgeLevel(klPointsUp);
+        knowledgeLevelPointsService.update(knowledgeLevelPoints);
+        return "redirect:/points";
+    }
+
+    @RequestMapping(value = "/asPointsUpAndDown", method = RequestMethod.POST)
+    public String asPointsUpAndDown(@RequestParam(required = false) Integer asPointsUp,
+                            @RequestParam(required = false) Integer asPointsDown,
+                            HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        AuthorshipPoints authorshipPoints = authorshipPointsService.getByUser(sessionUser);
+        if(asPointsDown != null){
+            authorshipPoints.decreaseAuthorshipPoints(asPointsDown);
+        }
+        if(asPointsUp != null){
+            authorshipPoints.increaseAuthorshipPoints(asPointsUp);
+        }
+        authorshipPointsService.update(authorshipPoints);
+        return "redirect:/points";
+    }
+
     @RequestMapping(value = "/addKLPoints", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = true) String subject, HttpServletRequest request) throws SQLException {
 
@@ -55,4 +85,16 @@ public class UserPointController {
         return "redirect:/points";
     }
 
+    @RequestMapping(value = "/getBySubject", method = RequestMethod.GET)
+    public ModelAndView showBySubject(@RequestParam(required = true) String subject,
+                                      HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView(JspPath.POINTS_ALL);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
+        modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
+        modelAndView.addObject("knowledgePointsBySubject", knowledgeLevelPointsService.findByUserAndSubject(sessionUser, subject));
+        return modelAndView;
+    }
 }
