@@ -24,15 +24,13 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Controller
-@RequestMapping(value = "translate")
 public class TranslatorController {
 
     @Autowired
     TranslateService translateService;
 
 
-//    @RequestMapping(value = "/translate", method = RequestMethod.GET)
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/translate", method = RequestMethod.GET)
     public ModelAndView mainView() throws TranslateServiceException {
         ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME);
         TranslatorDto translatorDto = new TranslatorDto();
@@ -93,53 +91,5 @@ public class TranslatorController {
         }
         return modelAndView;
     }
-// @RequestMapping(value = "/doTransl", method = RequestMethod.POST)
-//    public ModelAndView doTranslate(String languageIn, String languageOut, String textIn) throws SQLException, GeneralSecurityException, IOException {
-//        TranslatorDto translatorDto = new TranslatorDto();
-//     Translate t = new Translate.Builder(
-//             com.google.api.client.googleapis.javanet.GoogleNetHttpTransport.newTrustedTransport()
-//             , com.google.api.client.json.gson.GsonFactory.getDefaultInstance(), null)
-//             //Need to update this to your App-Name
-//             .setApplicationName("EESN")
-//             .build();
-//     Translate.Translations.List list = t.new Translations().list(Arrays.asList(textIn), languageOut);
-//     list.setSource(languageIn);
-//     list.setKey("AIzaSyB5v0NsBr3XIvpySJZIBPQ3zEmJbRgDaeI");
-//     TranslationsListResponse response = list.execute();
-
-//        translatorDto.setTextIn(textIn);
-//        Set<Language> languages = translateService.getAvailableLanguages();
-//        translatorDto.setLanguages(languages);
-//        for (Language language: languages) {
-//            if (language.getShortName().equals(languageIn)) {
-//                translatorDto.setLanguageIn(language);
-//            }
-//            if (language.getShortName().equals(languageOut)) {
-//                translatorDto.setLanguageOut(language);
-//            }
-//        }
-//        ModelAndView modelAndView = new ModelAndView(JspPath.TRANSLATOR_HOME, "translatorDto", translatorDto);
-//        try {
-//            for(TranslationsResource tr : response.getTranslations()) {
-//                translatorDto.setTextOut(tr.getTranslatedText());
-//            }
-//        } catch (EmptyFieldException e) {
-//            String errorMassage = e.getMessage();
-//            modelAndView.addObject("errorMassage", errorMassage);
-//            e.printStackTrace();
-//        } catch (TheSameLanguageException e) {
-//            String errorMassage = e.getMessage();
-//            modelAndView.addObject("errorMassage", errorMassage);
-//            e.printStackTrace();
-//        } catch (TranslateServiceException e) {
-//            String errorMassage = "We can't translate this expression. Please try change your query.";
-//            modelAndView.addObject("errorMassage", errorMassage);
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            String errorMassage = e.getMessage();
-//            modelAndView.addObject("errorMassage", errorMassage);
-//            e.printStackTrace();
-//        }
-//        return modelAndView;
-//    }
+//
 }

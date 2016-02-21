@@ -10,7 +10,8 @@ public class JspPath {
     public static final String DEPARTMENT_EDIT = "depEdit";
     public static final String EMPLOYEE_ALL = "allEmp";
     public static final String EMPLOYEE_EDIT = "editEmp";
-    public static final String TRANSLATOR_HOME = "transl";
+    public static final String TRANSLATOR_HOME = "translate";
+//    public static final String TRANSLATOR = "doTransl";
     public static final String USER_LOGIN = "login";
     public static final String USER_REGISTRATION = "registration";
     public static final String USER_LOGI_PROBLEM = "logProblem"; // Беда в слове LOGIN

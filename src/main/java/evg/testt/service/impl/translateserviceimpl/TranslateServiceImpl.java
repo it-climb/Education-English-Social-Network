@@ -30,7 +30,6 @@ import java.security.GeneralSecurityException;
 import java.util.*;
 
 
-//@Service
 public class TranslateServiceImpl implements TranslateService {
 
     // google translate API key - AIzaSyB5v0NsBr3XIvpySJZIBPQ3zEmJbRgDaeI
@@ -48,12 +47,6 @@ public class TranslateServiceImpl implements TranslateService {
         availableLanguages.add(LANG_RUSSIAN_RU);
         availableLanguages.add(LANG_CHINESE);
     }
-
-//    private static final String FMT_PREPARED_TRANSLATE_SERVICE_URL_MAIN
-//            = "http://api.lingualeo.com/translate.php?q=%s&source=%s&target=%s&port=1001";
-//
-//    private static final String FMT_PREPARED_TRANSLATE_SERVICE_URL_ADDITION
-//            = "http://api.lingualeo.com/gettranslates?word=%s";
 
     private final CacheConfig cacheConfig = CacheConfig.custom()
             .setMaxCacheEntries(1000)
@@ -117,22 +110,11 @@ public class TranslateServiceImpl implements TranslateService {
 
     private URI buildTranslateServiceMainUri(TranslateParams translateParams) throws URISyntaxException {
         return new URIBuilder()
-//                .setScheme("http")
-//                .setHost("api.lingualeo.com")
-//                .setPath("/translate.php")
-//                .setParameter("q", translateParams.getTextToTranslate())
-//                .setParameter("source", translateParams.getSourceLang())
-//                .setParameter("target", translateParams.getTargetLang())
-//                .setParameter("port", "1001")
                 .build();
     }
 
     private URI buildTranslateServiceAdditionUri(TranslateParams translateParams) throws URISyntaxException {
         return new URIBuilder()
-//                .setScheme("http")
-//                .setHost("api.lingualeo.com")
-//                .setPath("/gettranslates")
-//                .setParameter("word", translateParams.getTextToTranslate())
                 .build();
     }
 
@@ -149,7 +131,7 @@ public class TranslateServiceImpl implements TranslateService {
 
 
     @Override
-    public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) throws GeneralSecurityException, IOException {
+    public TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) throws IOException {
         TranslateResultImpl translateResult;
         if (textToTranslate.isEmpty()) {
             throw new EmptyFieldException("No data to translate. Please fill expression for translating.");

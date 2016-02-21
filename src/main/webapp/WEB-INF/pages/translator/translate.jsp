@@ -8,14 +8,14 @@
 <body>
     <h5><b>We are will translate here !!</b></h5>
 
-    <form action="/translate/doTransl" method="post">
+    <form action="/doTransl" method="post">
         <c:set var="translatorDto2" value="${translatorDto}" scope="request"/>
 
-        Input Language:
-        <jsp:include page="chooseLang.jsp">
-            <jsp:param name="languageFlag" value="${translatorDto.languageIn.fullName}" />
-            <jsp:param name="selectName" value="languageIn" />
-        </jsp:include>
+        <%--Input Language:--%>
+        <%--<jsp:include page="chooseLang.jsp">--%>
+            <%--<jsp:param name="languageFlag" value="${translatorDto.languageIn.fullName}" />--%>
+            <%--<jsp:param name="selectName" value="languageIn" />--%>
+        <%--</jsp:include>--%>
         <textarea rows="7" cols="70" name="textIn" autofocus maxlength="350">${translatorDto.textIn}</textarea><br><br>
         <p style="color: red">
             ${errorMassage}

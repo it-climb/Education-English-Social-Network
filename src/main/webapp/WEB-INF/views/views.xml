@@ -19,7 +19,7 @@
 		<put-attribute name="title" value="Edit Employees"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/pages/employees/edit.jsp"></put-attribute>
 	</definition>
-	<definition name="transl" extends="base.definition">
+	<definition name="translate" extends="base.definition">
 		<put-attribute name="title" value="Translator"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/pages/translator/translate.jsp"></put-attribute>
 	</definition>
