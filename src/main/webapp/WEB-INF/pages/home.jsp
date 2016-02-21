@@ -46,6 +46,7 @@
         <li><a href="/login">LOGIN</a></li>
         <li><a href="/dep">DEPARTMENTS</a></li>
         <li><a href="/chat">CHAT</a></li>
+        <li><a href="/points">POINTS</a></li>
         <li><a href="/translate">TRANSLATOR</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="#social-section">SOCIAL</a></li>
