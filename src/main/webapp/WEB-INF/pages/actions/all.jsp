@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>List actions</title>
+    <title>List action</title>
 </head>
 <body>
 <table width="600px">

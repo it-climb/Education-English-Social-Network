@@ -3,7 +3,7 @@ package evg.testt.model.userActionModels;
 
 import java.util.Date;
 
-public class Actions {
+public class Action {
 
     private String description;
     private Date time;

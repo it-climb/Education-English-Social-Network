@@ -1,11 +1,9 @@
 package evg.testt.model.userActionModels;
 
-import evg.testt.model.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Document(collection = UserAction.ACTION_NAME)
@@ -17,7 +15,7 @@ public class UserAction implements Serializable {
     private Long id;
 
     private String userEmail;
-    private List<Actions> actions;
+    private List<Action> actions;
 
     public UserAction(){
     }
@@ -26,7 +24,7 @@ public class UserAction implements Serializable {
         this.userEmail = userEmail;
     }
 
-    public UserAction(Long id, String userEmail, List<Actions> actions) {
+    public UserAction(Long id, String userEmail, List<Action> actions) {
         this.id = id;
         this.userEmail = userEmail;
         this.actions = actions;
@@ -48,11 +46,11 @@ public class UserAction implements Serializable {
         this.userEmail = userEmail;
     }
 
-    public List<Actions> getActions() {
+    public List<Action> getActions() {
         return actions;
     }
 
-    public void setActions(List<Actions> actions) {
+    public void setActions(List<Action> actions) {
         this.actions = actions;
     }
 }

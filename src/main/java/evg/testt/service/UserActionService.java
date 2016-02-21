@@ -3,6 +3,7 @@ package evg.testt.service;
 
 import evg.testt.dao.SequenceDao;
 import evg.testt.dao.UserActionDao;
+import evg.testt.model.userActionModels.Action;
 import evg.testt.model.userActionModels.UserAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +30,8 @@ public class UserActionService {
     public List<UserAction> getAll() { return userActionDao.getAll(); }
 
     public  void remove(Long id) {userActionDao.remove(id);}
+
+    public void update(String email, Action action){
+        userActionDao.update(email, action);
+    }
 }
