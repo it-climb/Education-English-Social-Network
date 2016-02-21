@@ -45,6 +45,12 @@ public class TranslateServiceImplGoogleApi extends TranslateServiceImpl {
         Set<Language> language = getAvailableLanguages();
         for (Language l : language){
             if (l.getShortName().equals(sourceLang)) {
+                if (textToTranslate.isEmpty()) {
+                    throw new EmptyStackException();
+                } else {
+                    if (sourceLang.equals(targetLang)) {
+                        throw new TheSameLanguageException();
+                    } else {
 
                 if (response.getTranslations().get(0).getDetectedSourceLanguage().equals(l.getShortName())) {
                     translateResult.setTranslation(list1.get(0));
@@ -53,12 +59,7 @@ public class TranslateServiceImplGoogleApi extends TranslateServiceImpl {
 
                 }
                 else {
-                    if (textToTranslate.isEmpty()) {
-                        throw new EmptyStackException();
-                    } else {
-                        if (sourceLang.equals(targetLang)) {
-                            throw new TheSameLanguageException();
-                        } else {
+
                             throw new TranslateServiceException();
                         }
                     }
