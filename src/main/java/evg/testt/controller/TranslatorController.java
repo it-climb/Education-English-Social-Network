@@ -73,11 +73,11 @@ public class TranslatorController {
         try {
             translatorDto.setTextOut(translateService.translate(textIn, languageIn, languageOut).translation());
         } catch (EmptyFieldException e) {
-            String errorMassage = e.getMessage();
+            String errorMassage = "You ";
             modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
         } catch (TheSameLanguageException e) {
-            String errorMassage = e.getMessage();
+            String errorMassage = "The source and target language are same. Please, change one of them.";
             modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
         } catch (TranslateServiceException e) {
