@@ -1,4 +1,4 @@
-
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">HOME</a></li>
+        <li><a href="/"> <spring:message code="home.home"/> </a></li>
         <li><a href="/login">LOGIN</a></li>
         <li><a href="/dep">DEPARTMENTS</a></li>
         <li><a href="/chat">CHAT</a></li>
@@ -50,6 +50,13 @@
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="#social-section">SOCIAL</a></li>
       </ul>
+    </div>
+    <div>
+      <span style="float: right">
+        <a href="?lang=en">en</a>
+        |
+        <a href="?lang=ru">ru</a>
+      </span>
     </div>
   </div>
 </div>

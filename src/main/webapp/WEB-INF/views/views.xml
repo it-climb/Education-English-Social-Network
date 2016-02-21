@@ -3,44 +3,13 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="allDep" extends="base.definition">
-	    <put-attribute name="title" value="All Departments"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/departments/all.jsp"></put-attribute>
+
+	<definition name="/*/*" extends="base.definition">
+	<put-attribute name="body" value="/WEB-INF/pages/{1}/{2}.jsp"></put-attribute>
 	</definition>
-	<definition name="depEdit" extends="base.definition">
-		<put-attribute name="title" value="Edit Departments"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/departments/edit.jsp"></put-attribute>
-	</definition>
-	<definition name="allEmp" extends="base.definition">
-		<put-attribute name="title" value="All Employees"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/employees/all.jsp"></put-attribute>
-	</definition>
-	<definition name="editEmp" extends="base.definition">
-		<put-attribute name="title" value="Edit Employees"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/employees/edit.jsp"></put-attribute>
-	</definition>
-	<definition name="translate" extends="base.definition">
-		<put-attribute name="title" value="Translator"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/translator/translate.jsp"></put-attribute>
-	</definition>
-	<definition name="login" extends="base.definition">
-		<put-attribute name="title" value="Login"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/users/login.jsp"></put-attribute>
-	</definition>
-	<definition name="registration" extends="base.definition">
-		<put-attribute name="title" value="Registration"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/users/registration.jsp"></put-attribute>
-	</definition>
-	<definition name="logProblem" extends="base.definition">
-		<put-attribute name="title" value="LoginProblem"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/users/loginProblems.jsp"></put-attribute>
-	</definition>
-	<definition name="descAll" extends="base.definition">
-		<put-attribute name="title" value="All Description"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/descriptions/all.jsp"></put-attribute>
-	</definition>
-	<definition name="descEdit" extends="base.definition">
-		<put-attribute name="title" value="Description Edit"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/pages/descriptions/edit.jsp"></put-attribute>
-	</definition>
+
+	<!--<definition name="/*/*/*" extends="base.definition">-->
+		<!--<put-attribute name="body" value="/WEB-INF/pages/{1}/{2}/{3}.jsp"></put-attribute>-->
+	<!--</definition>-->
+
 </tiles-definitions>
