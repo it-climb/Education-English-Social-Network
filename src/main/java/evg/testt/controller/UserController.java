@@ -39,18 +39,21 @@ public class UserController {
             return new ModelAndView(JspPath.USER_LOGIN, "email", sessionUser.getEmail());
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/regSave", method = RequestMethod.GET)
     public ModelAndView registration(){
-        return new ModelAndView(JspPath.USER_REGISTRATION);
+        User user = new User();
+        return new ModelAndView(JspPath.USER_REGISTRATION,"user",user);
     }
 
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
-    public String addNewUser(@Valid @ModelAttribute("user") User user, HttpServletRequest request, BindingResult result ) throws SQLException{
-       // userValid.validate(user, result);
+    public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult result,
+                             HttpServletRequest request)throws SQLException{
+        //userValid.validate(user, result);
         if(result.hasErrors()){
-           return "redirect:/loginProblems";
-        } else {
+            return "users/registration";
+        }
+        else{
             HttpSession session = request.getSession();
             userService.insert(user);
             session.setAttribute("user", user);

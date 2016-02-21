@@ -1,29 +1,42 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE HTML>
 <html>
 <head>
-    <title>Registration</title>
     <style>
-        .error{
-            color: #ff0000;
-        }
+        body { background-color: #eee; font: helvetica; }
+        #container { width: 500px; background-color: #fff; margin: 30px auto; padding: 30px; border-radius: 5px; }
+        label {width: 150px; display:inline-block;}
+        input { display:inline-block; margin-right: 10px; }
+        form {line-height: 160%; }
+        .hide { display: none; }
+        .error { color: red; font-size: 0.9em; font-weight: bold; }
     </style>
 </head>
 <body>
-<form:form method="post" action="/regSave">
-    <table>
-        <tr>
-            <td>Email:</td>
-            <td><input type="text" name="email" value="${user.email}"/></td>
-            <td><form:errors path="email" cssClass="error"/> </td>
-        </tr> <tr>
-            <td>Password:</td>
-            <td><input type="text" name="password" value="${user.password}"/></td>
-            <td><form:errors path="password" cssClass="error"/> </td>
-        </tr> <tr>
-            <td colspan="2"><input type="submit" value="OK"/></td>
-        </tr>
-    </table>
-</form:form>
+
+<div id="container">
+
+    <form:form action="regSave" modelAttribute="user">
+        <label for="emailInp">Email: </label>
+        <form:input path="email" id="emailInp" />
+        <form:errors path="email" cssClass="error" />
+        <br/>
+
+        <label for="passImp">Password: </label>
+        <form:password path="password" id="passImp"/>
+        <form:errors path="password" cssClass="error" />
+        <br/>
+        
+        <label for="confPass">Confirm password:</label>
+        <form:password path="confirmPassword" id="confPass"/>
+        <form:errors path="confirmPassword" cssClass="error"/>
+        <br/>
+
+        <br/>
+        <input type="submit" value="OK" />
+    </form:form>
+</div>
 </body>
 </html>
