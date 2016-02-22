@@ -6,6 +6,6 @@ import evg.testt.model.User;
 
 import java.util.List;
 
-public interface ActivitiesService extends Service<Activity> {
+public interface ActivityService extends Service<Activity> {
 
 }

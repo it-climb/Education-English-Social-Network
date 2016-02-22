@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ActivitiesDao extends JpaRepository<Activity, Integer> {
-
+public interface ActivityDao extends JpaRepository<Activity, Integer> {
+    Activity findByUser();
 }

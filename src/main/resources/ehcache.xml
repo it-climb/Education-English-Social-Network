@@ -2,11 +2,11 @@
         updateCheck="true"
         monitoring="autodetect"
         dynamicConfig="true"
-        maxBytesLocalHeap="400M"
+        maxBytesLocalHeap="40M"
 >
 
     <cache name="departmentsAllCache"
-           maxBytesLocalHeap="100M"
+           maxBytesLocalHeap="10M"
            eternal="true"
            memoryStoreEvictionPolicy="LRU"/>
 

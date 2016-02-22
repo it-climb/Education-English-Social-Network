@@ -2,7 +2,7 @@ package evg.testt.controller;
 
 import evg.testt.model.User;
 import evg.testt.model.UserData;
-import evg.testt.service.ActivitiesService;
+import evg.testt.service.ActivityService;
 import evg.testt.service.UserDataService;
 import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
-public class ActivitiesController {
+public class ActivityController {
 
 //    @Autowired
 //    UserDataService userDataService;
@@ -28,7 +28,7 @@ public class ActivitiesController {
 //    UserService userService;
 
     @Autowired
-    ActivitiesService activitiesService;
+    ActivityService activityService;
 
     @RequestMapping(value = "/activities", method = RequestMethod.GET)
     public ModelAndView showAccount(HttpServletRequest request) throws SQLException {
@@ -40,7 +40,7 @@ public class ActivitiesController {
         }
         ModelAndView modelAndView = new ModelAndView(JspPath.ACTIVITIES_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
-        modelAndView.addObject("activities", activitiesService.getAll());
+        modelAndView.addObject("activities", activityService.getAll());
         return modelAndView;
     }
 
