@@ -1,13 +1,12 @@
 package evg.testt.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.Set;
 
-@Entity(name = "subject")
+@Entity(name = "subjects")
 public class Subject extends BaseModel {
+
+    private String name;
+
     public String getName() {
         return name;
     }
@@ -15,10 +14,4 @@ public class Subject extends BaseModel {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String name;
-
-
-
-
 }
