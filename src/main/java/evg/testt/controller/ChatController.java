@@ -58,7 +58,6 @@ public class ChatController {
     /**
      * show chat
      *
-     *
      * @param request it must be to get user from session
      * @return chatPage with JspPath.CHAT_ALL
      * @throws SQLException
