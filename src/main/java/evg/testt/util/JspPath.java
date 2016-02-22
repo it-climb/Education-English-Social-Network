@@ -6,7 +6,6 @@ package evg.testt.util;
 public class JspPath {
 
     public static final String HOME = "home";
-
     public static final String DEPARTMENT_ALL = "/departments/all";
     public static final String DEPARTMENT_EDIT = "/departments/edit";
     public static final String EMPLOYEE_ALL = "/employees/all";
@@ -20,11 +19,11 @@ public class JspPath {
     public static final String WORD_ALL = "/words/all";
     public static final String WORD_EDIT = "/words/edit";
     public static final String ACCOUNT_SHOW = "/account/show";
-
     public static final String DEFAULT_ERROR_VIEW = "error-404"; //page not found
     public static final String ISE_ERROR_VIEW = "ErrorNeedLogin"; //internal server error
     public static final String CHAT_ALL = "/chat/all";
     public static final String MESSAGES = "/messages/all";
+    public static final String POINTS_ALL = "points/all";
 
     public static final String VIDEO_ALL = "video/all";
     public static final String VIDEO_ADMIN = "video/admin";

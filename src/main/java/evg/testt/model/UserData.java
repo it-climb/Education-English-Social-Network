@@ -16,7 +16,6 @@ public class UserData extends BaseModel{
     @JoinColumn(name = "user_id")
     private User user;
 
-
     public User getUser() {
         return user;
     }
