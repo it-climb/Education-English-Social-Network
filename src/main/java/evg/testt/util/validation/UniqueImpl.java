@@ -8,7 +8,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 
-public class EmailValidation  implements ConstraintValidator<Unique, String> {
+public class UniqueImpl implements ConstraintValidator<Unique, String> {
 
     @Autowired
     UserService userService;
