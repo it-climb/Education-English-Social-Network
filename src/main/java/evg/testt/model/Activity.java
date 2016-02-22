@@ -6,7 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.Set;
 
-@Entity(name = "activity")
+@Entity(name = "activities")
 public class Activity extends BaseModel {
 
     /**
