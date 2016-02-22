@@ -65,7 +65,7 @@ public class UserController {
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
-        if(user!=null && user.getPassword().equals(Integer.toString(password.hashCode()))) {
+        if(user!=null && user.getPassword().equals(password/*Integer.toString(password.hashCode())*/)) {
                 session.setAttribute("user", user);
                 return "redirect:/success";
             }else return "redirect:/loginProblems";
