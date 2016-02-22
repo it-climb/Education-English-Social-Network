@@ -15,7 +15,8 @@ public class ContactService {
 
     @Autowired
     private SequenceDao sequenceDao;
-    @Autowired private ContactDao contactDao;
+    @Autowired
+    private ContactDao contactDao;
 
     public void save(Contact contact) {
         if(contact.getId()==null) {
