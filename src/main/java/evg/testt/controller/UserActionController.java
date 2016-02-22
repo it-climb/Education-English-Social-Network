@@ -1,5 +1,6 @@
 package evg.testt.controller;
 
+import evg.testt.model.userActionModels.UserAction;
 import evg.testt.service.UserActionService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class UserActionController {
     }
     @RequestMapping(value = "/actionsList", method = RequestMethod.GET)
     public ModelAndView showAllActions(@RequestParam(required = true)Long id){
-        return null;
+        ModelAndView modelAndView = new ModelAndView(JspPath.USER_LIST_ACTION);
+        UserAction userAction = userActionService.get(id);
+        modelAndView.addObject("listActions", userAction.getActions());
+        return modelAndView;
     }
 }

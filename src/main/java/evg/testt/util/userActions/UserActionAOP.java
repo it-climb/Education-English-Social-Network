@@ -49,30 +49,16 @@ public class UserActionAOP {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
-    /*@Around("execution(* evg.testt.controller.DepartmentController.addNewOne(..))")
-    public void magic(ProceedingJoinPoint joinPoint) {
-        System.out.println("BEFORE!");
-        try {
 
-            joinPoint.proceed();
-            System.out.println("AFTER!");
-            Object[] arr = joinPoint.getArgs();
-            System.out.println(arr[0]);
-            System.out.println(arr[1]);
-            System.out.println(actionLog((HttpServletRequest) arr[3]));
-
-        }catch (Throwable e){
-            e.printStackTrace();
-        }
-
-    }*/
     @After("execution(* evg.testt.controller.DepartmentController.addNewOne(..))")
     public void afterAddOrUpdateDep(JoinPoint joinPoint)throws Throwable{
         Object[]arr = joinPoint.getArgs();
         Integer id = (Integer) arr[0];
         if(id == null){
             actionLog((HttpServletRequest)arr[3], EventAction.ADD_DEP);
-        }else actionLog((HttpServletRequest)arr[3],EventAction.UDPDATE_DEP);
-        //actionLog((HttpServletRequest) arr[3]);
+        }else
+            actionLog((HttpServletRequest)arr[3],EventAction.UDPDATE_DEP+id);
+
+
     }
 }

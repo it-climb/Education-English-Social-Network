@@ -2,18 +2,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>List action</title>
+    <title>Action list</title>
 </head>
 <body>
 <table width="600px">
     <tr>
-        <td><b>ID</b></td>
-        <td><b>E-mail</b></td>
+        <td><b>Description</b></td>
+        <td><b>Time</b></td>
     </tr>
-    <c:forEach var="usersAct" items="${userActions}">
+    <c:forEach var="acctionsList" items="${listActions}">
         <tr>
-            <td>${usersAct.id}</td>
-            <td><a href="/actionsList?id=${usersAct.id}" >${usersAct.userEmail}</a></td>
+            <td>${acctionsList.description}</td>
+            <td>${acctionsList.time}</td>
         </tr>
     </c:forEach>
 </table>
