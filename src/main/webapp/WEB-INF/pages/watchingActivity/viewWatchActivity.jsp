@@ -6,19 +6,19 @@
     <title>View</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <td><h1>Name activity: ${nameActivity}</h1></td>
-        </tr>
-        <tr>
-            <td>Name author: ${nameAuthor}</td>
-        </tr>
-        <tr>
-            <iframe width="560" height="315" src="${URL}" frameborder="0" allowfullscreen></iframe>
-        </tr>
-        <tr>
-            <td>Describe: ${describe}</td>
-        </tr>
-    </table>
+
+    <div>
+        <h3>Name activity: ${nameActivity}</h3>
+    </div>
+    <div align="left">
+        <iframe width="560" height="315" src="${URL}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div>
+        Name author: ${nameAuthor}
+    </div>
+    <p>
+        Describe: ${describe}
+    </p>
+    <div><input type="button" value="I understood"></div>
 </body>
 </html>
