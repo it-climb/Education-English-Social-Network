@@ -17,6 +17,7 @@ public class Activity extends BaseModel {
 
     protected String targetAge;
 
+    @Column(name = "activity_content_id")
     protected Long activityContentId;
 
     @Column(name = "activity_type")
