@@ -1,5 +1,7 @@
 package evg.testt.service.translateservice;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Set;
 
 public interface TranslateService {
@@ -10,7 +12,7 @@ public interface TranslateService {
     * @param targetLang - a short name of language (see ISO 639-1)
     * @return TranslateResult
     * */
-    TranslateResult translate(String textToTranslate, String sourceLang, String targetLang);
+    TranslateResult translate(String textToTranslate, String sourceLang, String targetLang) throws GeneralSecurityException, IOException;
 
-    TranslateResult translate(String textToTranslate, Language sourceLang, Language targetLang);
+    TranslateResult translate(String textToTranslate, Language sourceLang, Language targetLang) throws GeneralSecurityException, IOException;
 }
