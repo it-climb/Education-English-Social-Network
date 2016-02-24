@@ -28,10 +28,17 @@ public class AuthorshipPoints extends BaseModel {
         this.user = user;
     }
 
-
+    /**
+     *<p>it allows to increase User authorship points</p>
+     * @param increment
+     */
     public void increaseAuthorshipPoints(Integer increment) {
         authorshipPoints += increment;
     }
+    /**
+     *<p>it allows to decrease User authorship points</p>
+     * @param decrement
+     */
     public void decreaseAuthorshipPoints(Integer decrement) {
         authorshipPoints -= decrement;
     }

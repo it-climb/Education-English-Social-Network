@@ -10,6 +10,12 @@ import java.util.List;
 
 @Service
 public class AuthorshipPointsServiceImpl extends BaseService<AuthorshipPoints, AuthorshipPointsDao> implements AuthorshipPointsService {
+    /**
+     * <p>it allows to find in database AuthorshipPoints for given User</p>
+     * <p>created and save in database AuthorshipPoints if it is absent for required User</p>
+     * @param user - search param
+     * @return AuthorshipPoints
+     */
     public AuthorshipPoints getByUser(User user) {
         AuthorshipPoints authorshipPoints = dao.findByUser(user);
         if (authorshipPoints != null) {
