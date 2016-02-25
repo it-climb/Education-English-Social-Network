@@ -50,10 +50,15 @@ public class SubjectController {
         return new ModelAndView(JspPath.SUBJECT_UPDATE, "subject", subjectService.getById(Integer.parseInt(id)));
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView addSubject() {
+        return new ModelAndView(JspPath.SUBJECT_UPDATE);
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveSubject (@RequestParam(required = false) String id,
-                               @RequestParam(required = false) String name) throws SQLException {
-        if (id != null) {
+                               @RequestParam(required = true) String name) throws SQLException {
+        if (id != "") {
             Subject subject = subjectService.getById(Integer.parseInt(id));
             subject.setName(name);
             subjectService.update(subject);

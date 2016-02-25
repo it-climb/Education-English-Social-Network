@@ -27,6 +27,13 @@
             </td>
         </tr>
     </c:forEach>
+    <tr>
+        <td>
+            <form action="/subject/add" method="post">
+                <input type="submit" value="Add new Subject">
+            </form>
+        </td>
+    </tr>
 </table>
 <br><br>
 <a href="/subject" >View mode</a>
