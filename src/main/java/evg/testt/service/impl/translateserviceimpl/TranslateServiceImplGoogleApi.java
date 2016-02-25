@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.testng.annotations.Test;
 
 import java.io.*;
 import java.security.GeneralSecurityException;
@@ -37,11 +38,9 @@ public class TranslateServiceImplGoogleApi extends TranslateServiceImpl {
                     com.google.api.client.googleapis.javanet.GoogleNetHttpTransport.newTrustedTransport()
                     , com.google.api.client.json.gson.GsonFactory.getDefaultInstance(), null)
                     .setApplicationName(env.getProperty("appName"))
-//                    .setApplicationName("EESN")
                     .build();
             list = t.new Translations().list(Arrays.asList(textToTranslate), targetLang);
             list.setKey(env.getProperty("appPassKey"));
-//            list.setKey("AIzaSyB5v0NsBr3XIvpySJZIBPQ3zEmJbRgDaeI");
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
             throw new TranslateServiceException();
