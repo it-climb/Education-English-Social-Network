@@ -11,6 +11,12 @@
     <title>Title</title>
 </head>
 <body>
+    <form action="/viewGeneralActivity" method="get">
+       <p>Name activity: Some Name
+        User email: ${userEmail}
+        Subject:English
+        Level: NORMAL</p>
+    </form>
 
 </body>
 </html>
