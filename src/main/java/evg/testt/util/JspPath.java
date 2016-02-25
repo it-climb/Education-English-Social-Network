@@ -33,6 +33,10 @@ public class JspPath {
     public static final String VIDEO_EDITSERIE = "video/editserie";
     public static final String VIDEO_EDITSEASON = "video/editseason";
     public static final String VIDEO_ADMINSERIE = "video/adminserie";
->>>>>>> Temporary merge branch 2
+
+    public static final String PASSING_TEST_ALL_WITH_BUTTON = "/passingTests/allWithButton";
+    public static final String PASSING_TEST_ALL_WITH_BOX = "/passingTests/allWithBox";
+    public static final String PASSING_TEST_EDIT = "/passingTests/edit";
+//>>>>>>> Temporary merge branch 2
 
 }
