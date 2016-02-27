@@ -7,6 +7,7 @@ import evg.testt.model.activities.ActivityType;
 import evg.testt.service.ActivityCommonService;
 import evg.testt.service.ActivityService;
 import evg.testt.service.UserDataService;
+import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -26,9 +27,9 @@ public class ActivityController {
 
     @Autowired
     UserDataService userDataService;
-//
-//    @Autowired
-//    UserService userService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     ActivityService activityService;
@@ -39,7 +40,8 @@ public class ActivityController {
     @RequestMapping(value = "/activities", method = RequestMethod.GET)
     public ModelAndView showAccount(HttpServletRequest request,
                                     @RequestParam(required = false) Integer number,
-                                    @RequestParam(required = false) Integer page) throws SQLException {
+                                    @RequestParam(required = false) Integer page,
+                                    @RequestParam(required = false) String author) throws SQLException {
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         if(sessionUser == null){
@@ -54,9 +56,14 @@ public class ActivityController {
         Pageable paginator = new PageRequest(page, number);
         ModelAndView modelAndView = new ModelAndView(JspPath.ACTIVITIES_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
-        modelAndView.addObject("activities", activityService.getAll(paginator).getContent());
         modelAndView.addObject("paginator", paginator);
-        return modelAndView;
+        if (author == null || author.isEmpty()) {
+            return modelAndView.addObject("activities", activityService.getAll(paginator).getContent());
+        }
+        UserData authorUserData = userDataService.findByUser(userService.getByEmail(author));
+        modelAndView.addObject("author", author);
+        return modelAndView.addObject("activities", activityCommonService.getActivityByAuthor(authorUserData,
+                paginator).getContent());
     }
 
     @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)

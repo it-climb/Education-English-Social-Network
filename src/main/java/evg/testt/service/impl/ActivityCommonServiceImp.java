@@ -4,6 +4,8 @@ import evg.testt.dao.ActivityDao;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import evg.testt.service.ActivityCommonService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +38,9 @@ public class ActivityCommonServiceImp extends BaseService<Activity, ActivityDao>
         activity.getInnerActivities().size();
         activity.getSubjectInActivitySet().size();
         return activity;
+    }
+
+    public Page<Activity> getActivityByAuthor(UserData author, Pageable pageable) {
+        return dao.findByAuthor(author, pageable);
     }
 }

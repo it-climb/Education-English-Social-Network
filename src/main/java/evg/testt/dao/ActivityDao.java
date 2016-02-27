@@ -15,6 +15,6 @@ public interface ActivityDao extends JpaRepository<Activity, Integer> {
     List<Activity> findByAuthor(UserData author);
 
     Page<Activity> findAll(Pageable pageable);
-//
-//    List<Activity> findByAuthor(UserData author, Pageable pageable);
+
+    Page<Activity> findByAuthor(UserData author, Pageable pageable);
 }
