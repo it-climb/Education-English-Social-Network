@@ -103,6 +103,18 @@ public class Activity extends BaseModel {
             return this;
         }
 
+        public Builder setAuthor(UserData author) {
+            Activity.this.author = author;
+
+            return this;
+        }
+
+        public Builder setActivityType(ActivityType type) {
+            Activity.this.type = type;
+
+            return this;
+        }
+
         public Activity build() {
             return Activity.this;
         }
