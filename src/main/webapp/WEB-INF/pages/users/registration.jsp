@@ -33,7 +33,17 @@
         <form:password path="confirmPassword" id="confPass"/>
         <form:errors path="confirmPassword" cssClass="error"/>
         <br/>
-
+        <label for="firstNameInp">First Name:</label>
+        <form:input path="firstName" id="firstNameInp"/>
+        <form:errors path="firstName" cssClass="error"/>
+        <br/>
+        <label for="secondNameInp">Second Name:</label>
+        <form:input path="secondName" id="secondNameInp"/>
+        <form:errors path="secondName" cssClass="error"/>
+        <br/>
+        <label for="ageInp">Age:</label>
+        <form:input path="age" id="ageInp"/>
+        <form:errors path="age" cssClass="error"/>
         <br/>
         <input type="submit" value="OK" />
     </form:form>
