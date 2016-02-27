@@ -5,9 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
-/**
- * Created on 9/10/15.
- */
+
 @Document(collection = Contact.COLLECTION_NAME)
 public class Contact implements Serializable {
 
