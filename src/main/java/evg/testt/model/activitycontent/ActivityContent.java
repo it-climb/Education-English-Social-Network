@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Document(collection = "activityContents")
 public class ActivityContent implements Serializable {
+
     @Id
     private Long id;
 
