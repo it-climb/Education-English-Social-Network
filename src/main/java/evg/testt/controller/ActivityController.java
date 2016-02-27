@@ -72,7 +72,7 @@ public class ActivityController {
         User sessionUser = (User) session.getAttribute("user");
         UserData sessionUserData = userDataService.findByUser(sessionUser);
         Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-                .setActivityType(ActivityType.TEST_TEST_ACTIVITY).setAuthor(sessionUserData).build();
+                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
             activityService.insert(testActivity);
         return "redirect:/activities";
     }
