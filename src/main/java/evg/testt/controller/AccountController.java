@@ -25,9 +25,9 @@ public class AccountController {
 
     @Autowired
     UserDataService userDataService;
-//
-//    @Autowired
-//    UserService userService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     KnowledgeLevelPointsService knowledgeLevelPointsService;
