@@ -20,6 +20,7 @@
             <list>
                 <value>classpath*:database_nosql.dev.properties</value>
                 <value>classpath*:database_rdbms.dev.properties</value>
+                <value>classpath*:config.properties</value>
             </list>
         </property>
     </bean>

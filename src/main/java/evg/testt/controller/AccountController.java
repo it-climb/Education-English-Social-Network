@@ -1,7 +1,10 @@
 package evg.testt.controller;
 
+import evg.testt.model.KnowledgeLevelPoints;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
+import evg.testt.service.AuthorshipPointsService;
+import evg.testt.service.KnowledgeLevelPointsService;
 import evg.testt.service.UserDataService;
 import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -20,21 +25,47 @@ public class AccountController {
 
     @Autowired
     UserDataService userDataService;
+//
+//    @Autowired
+//    UserService userService;
 
     @Autowired
-    UserService userService;
+    KnowledgeLevelPointsService knowledgeLevelPointsService;
+
+    @Autowired
+    AuthorshipPointsService authorshipPointsService;
+
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
-    public ModelAndView showAccount() throws SQLException {
-        return new ModelAndView(JspPath.ACCOUNT_SHOW, "account", userDataService.getById(1));
+    public ModelAndView showAll(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView(JspPath.ACCOUNT_SHOW);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("userData", userDataService.findByUser(sessionUser));
+        modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
+        modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
+        return modelAndView;
     }
 
+
     @RequestMapping(value = "/accountUpdate", method = RequestMethod.POST)
-    public String addNewOne(@RequestParam(required = false) Integer accountId,@RequestParam(required = false) Integer userId,@ModelAttribute User user,@ModelAttribute UserData userData) throws SQLException {
-        userData.setId(accountId);
-        user.setId(userId);
-        userData.setUser(user);
+    public ModelAndView addNewOne(@RequestParam(required = true) String firstName,
+                                  @RequestParam(required = true) String secondName,
+                                  @RequestParam(required = true) Integer age,
+                                  HttpServletRequest request)throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView(JspPath.ACCOUNT_SHOW);
+        UserData userData = userDataService.findByUser(sessionUser);
+        userData.setFirstName(firstName);
+        userData.setSecondName(secondName);
+        userData.setAge(age);
+        modelAndView.addObject("email", sessionUser.getEmail());
+        modelAndView.addObject("userData", userData);
+        modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
+        modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
         userDataService.update(userData);
-        return "redirect:/account";
+        return modelAndView;
     }
 }

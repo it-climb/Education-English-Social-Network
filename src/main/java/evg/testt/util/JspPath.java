@@ -6,6 +6,7 @@ package evg.testt.util;
 public class JspPath {
 
     public static final String HOME = "home";
+
     public static final String DEPARTMENT_ALL = "/departments/all";
     public static final String DEPARTMENT_EDIT = "/departments/edit";
     public static final String EMPLOYEE_ALL = "/employees/all";
@@ -34,5 +35,6 @@ public class JspPath {
     public static final String VIDEO_EDITSERIE = "video/editserie";
     public static final String VIDEO_EDITSEASON = "video/editseason";
     public static final String VIDEO_ADMINSERIE = "video/adminserie";
+>>>>>>> Temporary merge branch 2
 
 }

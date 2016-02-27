@@ -52,6 +52,7 @@
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="/activities">ACTIVITIES</a></li>
         <li><a href="#social-section">SOCIAL</a></li>
+        <li><a href="/account">ACCOUNT</a></li>
       </ul>
     </div>
     <div>
