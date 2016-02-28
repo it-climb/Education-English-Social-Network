@@ -43,15 +43,15 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/"> <spring:message code="home.home"/> </a></li>
-        <li><a href="/login">LOGIN</a></li>
-        <li><a href="/dep">DEPARTMENTS</a></li>
-        <li><a href="/chat">CHAT</a></li>
-        <li><a href="/points">POINTS</a></li>
-        <li><a href="/translate">TRANSLATOR</a></li>
-        <li><a href="/video">VIDEO</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-        <li><a href="#social-section">SOCIAL</a></li>
-        <li><a href="/account">ACCOUNT</a></li>
+          <li><a href="/login"><spring:message code="home.login"/></a></li>
+        <li><a href="/dep"><spring:message code="home.departments"/> </a></li>
+        <li><a href="/chat"><spring:message code="home.chat"/></a></li>
+        <li><a href="/points"><spring:message code="home.points"/></a></li>
+        <li><a href="/translate"><spring:message code="home.translator"/></a></li>
+        <li><a href="/video"><spring:message code="home.video"/></a></li>
+        <li><a href="#contact"><spring:message code="home.contact"/></a></li>
+        <li><a href="#social-section"><spring:message code="home.social"/></a></li>
+        <li><a href="/account"><spring:message code="home.account"/></a></li>
       </ul>
     </div>
     <div>

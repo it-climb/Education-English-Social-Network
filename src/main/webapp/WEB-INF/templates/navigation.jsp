@@ -1,10 +1,11 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 </head>
-<body>
+<body>https://www.youtube.com/watch?v=rxn7vlmJ0pI
 <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
     <div class="container">
         <div class="navbar-header">
@@ -17,13 +18,13 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">HOME</a></li>
-                <li><a href="/login">LOGIN</a></li>
-                <li><a href="/dep">DEPARTMENTS</a></li>
-                <li><a href="/chat">CHAT</a></li>
-                <li><a href="/translate">TRANSLATOR</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                <li><a href="#social-section">SOCIAL</a></li>
+                <li><a href="/"> <spring:message code="home.home"/> </a></li>
+                <li><a href="/login"><spring:message code="home.login"/></a></li>
+                <li><a href="/dep"><spring:message code="home.departments"/> </a></li>
+                <li><a href="/chat"><spring:message code="home.chat"/></a></li>
+                <li><a href="/translate"><spring:message code="home.translator"/></a></li>
+                <li><a href="#contact"><spring:message code="home.contact"/></a></li>
+                <li><a href="#social-section"><spring:message code="home.social"/></a></li>
             </ul>
         </div>
     </div>

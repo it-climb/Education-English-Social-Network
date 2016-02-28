@@ -1,7 +1,9 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title><spring:message code="users.login.login"/></title>
     <title>Login</title>
 </head>
 <body>
@@ -9,11 +11,11 @@
     <div align="right"><strong>${email}</strong></div>
     <table>
         <tr>
-            <td>Email:</td>
+            <td><spring:message code="users.login.email"/>:</td>
             <td><input type="text" name="email" value="${user.email}"/></td>
         </tr>
         <tr>
-            <td>Password:</td>
+            <td><spring:message code="users.login.password"/>:</td>
             <td><input type="password" name="password" value="${user.password}"/></td>
         </tr>
         <tr>
@@ -23,7 +25,7 @@
             </td>
         </tr>
     </table>
-    <a href="/regSave">Registration</a>
+    <a href="/regSave"><spring:message code="users.login.registration"/></a>
 </form:form>
 </body>
 </html>
