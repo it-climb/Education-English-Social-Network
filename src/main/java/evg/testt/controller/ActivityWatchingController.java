@@ -5,6 +5,7 @@ import evg.testt.model.User;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
 import evg.testt.model.activities.WatchingActivity;
+import evg.testt.model.activitycontent.ActivityContent;
 import evg.testt.model.activitycontent.WatchingActivityContent;
 import evg.testt.service.UserDataService;
 import evg.testt.service.WatchingActivityService;
@@ -28,7 +29,7 @@ public class ActivityWatchingController {
     @Autowired
     private UserDataService userDataService;
 
-    @RequestMapping(value = "/addWatchActivity", method = RequestMethod.GET)
+    @RequestMapping(value = "/activityContents", method = RequestMethod.GET)
     public ModelAndView showAddActivity(){
         return new ModelAndView(JspPath.WATCHING_ACTIVITY_ADD);
     }
@@ -56,17 +57,16 @@ public class ActivityWatchingController {
     }
 
     @RequestMapping(value = "/watchActivity", method = RequestMethod.GET)
-    public ModelAndView showActivity(){
+    public ModelAndView showActivity()throws SQLException{
         ModelAndView modelAndView = new ModelAndView(JspPath.WATCHING_ACTIVITY_VIEW);
-        String url = "https://www.youtube.com/embed/gQHddcdwDMQ";
-        String nameAuthor = "Sergei Bragin";
-        String nameActivity = "BAT METAL !!!!";
-        String describe = "METAL IS LIVE !!!! ";
+        WatchingActivity watchingActivity = watchingActivityService.getById(1);
+        Activity activity = watchingActivity.getActivity();
+        WatchingActivityContent content = watchingActivity.getContent();
 
-        modelAndView.addObject("URL", url);
-        modelAndView.addObject("nameAuthor", nameAuthor);
-        modelAndView.addObject("nameActivity", nameActivity);
-        modelAndView.addObject("describe", describe);
+        modelAndView.addObject("URL", content.getUrl());
+        modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
+        modelAndView.addObject("nameActivity", activity.getName());
+        modelAndView.addObject("describe", content.getDescription());
 
         return modelAndView;
     }
