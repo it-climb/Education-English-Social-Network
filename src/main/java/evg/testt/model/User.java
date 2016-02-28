@@ -32,38 +32,6 @@ public class User extends BaseModel {
     @NotEmpty
     private String confirmPassword;
 
-    @NotEmpty(message = "Please, enter your first name")
-    private String firstName;
-
-    @NotEmpty(message = "Please, enter your second name")
-    private String secondName;
-
-    @NotEmpty(message = "Please, enter your age")
-    private String age;
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public String getConfirmPassword() {
         return confirmPassword;

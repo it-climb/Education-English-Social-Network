@@ -26,15 +26,15 @@
     <table class="table" style="color: black">
       <tr>
         <td>First Name:</td>
-        <td>${user.firstName}</td>
+        <td>${userData.firstName}</td>
       </tr>
       <tr>
         <td>Second Name:</td>
-        <td>${user.secondName}</td>
+        <td>${userData.secondName}</td>
       </tr>
       <tr>
         <td>Age:</td>
-        <td>${user.age}</td>
+        <td>${userData.age}</td>
       </tr>
       <tr>
         <td>Email</td>
