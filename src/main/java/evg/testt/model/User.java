@@ -32,6 +32,7 @@ public class User extends BaseModel {
     @NotEmpty
     private String confirmPassword;
 
+
     public String getConfirmPassword() {
         return confirmPassword;
     }

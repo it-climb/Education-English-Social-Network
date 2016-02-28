@@ -1,6 +1,8 @@
 package evg.testt.controller;
 
 import evg.testt.model.User;
+import evg.testt.model.UserData;
+import evg.testt.service.UserDataService;
 import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
 import evg.testt.util.converter.EmailConverter;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.Converter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,6 +32,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserDataService userDataService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView show(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -42,21 +48,35 @@ public class UserController {
     @RequestMapping(value = "/regSave", method = RequestMethod.GET)
     public ModelAndView registration(){
         User user = new User();
-        return new ModelAndView(JspPath.USER_REGISTRATION,"user",user);
+        UserData userData = new UserData();
+        ModelAndView modelAndView = new ModelAndView(JspPath.USER_REGISTRATION);
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("userData", userData);
+        return modelAndView;
     }
 
 
     @RequestMapping(value = "/regSave", method = RequestMethod.POST)
-    public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult result,
+    public String addNewUser(@Valid @ModelAttribute("user") User user,
+                             @ModelAttribute("userData") UserData userData,
+                             /*@RequestParam(required = true) String email,
+                             @RequestParam(required = true) String password,
+//                             @RequestParam(required = true) String confirmPassword,
+                             @RequestParam(required = true) String firstName,
+                             @RequestParam(required = true) String secondName,
+                             @RequestParam(required = true) Integer age,*/
+                             BindingResult result,
                              HttpServletRequest request)throws SQLException{
         //userValid.validate(user, result);
         if(result.hasErrors()){
             return "users/registration";
-        }
-        else{
+        }else{
             HttpSession session = request.getSession();
-            userService.insert(user);
             session.setAttribute("user", user);
+            userService.insert(user);
+            userData = UserData.newBuilder().setUser(user).setAge(userData.getAge()).setFirstName(userData.getFirstName()).setSecondName(userData.getSecondName()).build();
+            userDataService.insert(userData);
+//            UserData userData = userDataService.findByUser(user);
         }
         return "redirect:/login";
     }
@@ -65,7 +85,7 @@ public class UserController {
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password, HttpServletRequest request) throws SQLException {
             HttpSession session = request.getSession();
             User user = userService.getByEmail(email);
-        if(user!=null && user.getPassword().equals(Integer.toString(password.hashCode()))) {
+        if(user!=null && user.getPassword().equals(password/*Integer.toString(password.hashCode())*/)) {
                 session.setAttribute("user", user);
                 return "redirect:/success";
             }else return "redirect:/loginProblems";
