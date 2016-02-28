@@ -53,8 +53,11 @@ public class WatchingActivityServiceImpl implements WatchingActivityService {
 
     @Override
     public WatchingActivity insert(WatchingActivity o) throws SQLException {
-        activityCommonService.insert(o.getActivity());
-        activityContentService.save(o.getContent());
+        ActivityContent ac = activityContentService.save(o.getContent());
+        Activity activity = o.getActivity();
+        activity.setActivityContentId(ac.getId());
+        activityCommonService.insert(activity);
+
         return o;
     }
 
