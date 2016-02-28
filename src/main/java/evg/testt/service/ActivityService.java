@@ -9,5 +9,13 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ActivityService extends Service<Activity> {
+
+    /**
+     * <p>It allows to get Page object with list of all Activities for required page from database</p>
+     * <p>It useful for view entities with pagination</p>
+     * @param pageable - Pageable request object with page number and number of Activities on
+     *                 page information.
+     * @return response Page object witch contains Activities for required page.
+     */
     Page<Activity> getAll(Pageable pageable);
 }
