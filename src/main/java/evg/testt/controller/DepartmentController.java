@@ -28,6 +28,13 @@ public class DepartmentController {
     @Autowired
     ChatService chatService;
 
+    /**
+     * This method shows all the departments if you entered in session like "user"
+     * Many referense
+     * @param request
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/dep", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
@@ -42,6 +49,14 @@ public class DepartmentController {
         return modelAndView;
     }
 
+    /**
+     * Method used to save or update current department
+     * @param id
+     * @param name
+     * @param version
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/depSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@RequestParam(required = false) Integer id, @RequestParam(required = true) String name, @RequestParam(required = false) Long version) throws SQLException {
         Department department = Department.newBuilder().setName(name).setId(id).setVersion(version).build();
