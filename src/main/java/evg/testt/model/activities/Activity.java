@@ -1,6 +1,7 @@
 package evg.testt.model.activities;
 
 import evg.testt.model.BaseModel;
+import evg.testt.model.KnowledgeLevelUnits;
 import evg.testt.model.SubjectInActivity;
 import evg.testt.model.UserData;
 
@@ -27,15 +28,34 @@ public class Activity extends BaseModel {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<SubjectInActivity> subjectInActivitySet;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
+
     @ManyToOne
     @JoinColumn(name = "user_data_id")
     private UserData author;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_that_are_finished_activitiy",
+            joinColumns = @JoinColumn(name = "activity_pk"),
+            inverseJoinColumns = @JoinColumn(name = "user_fk"))
+    private Set<UserData> usersThatAreFinishedActivity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "inner_activities",
         joinColumns = @JoinColumn(name = "activity_pk"),
         inverseJoinColumns = @JoinColumn(name = "activity_fk"))
     private Set<Activity> innerActivities;
+
+
+    public Set<UserData> getUsersThatAreFinishedActivity() {
+        return usersThatAreFinishedActivity;
+    }
+
+    public void setUsersThatAreFinishedActivity(Set<UserData> usersThatAreFinishedActivity) {
+        this.usersThatAreFinishedActivity = usersThatAreFinishedActivity;
+    }
 
     public Long getActivityContentId() {
         return activityContentId;
@@ -51,6 +71,14 @@ public class Activity extends BaseModel {
 
     public void setType(ActivityType type) {
         this.type = type;
+    }
+
+    public Set<KnowledgeLevelUnits> getKnowledgeLevelUnitsSet() {
+        return knowledgeLevelUnitsSet;
+    }
+
+    public void setKnowledgeLevelUnitsSet(Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet) {
+        this.knowledgeLevelUnitsSet = knowledgeLevelUnitsSet;
     }
 
     public Set<Activity> getInnerActivities() {
