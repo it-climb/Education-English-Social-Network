@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="/subject/save" method="post">
+    <form action="/subjectSave" method="post">
         <table>
             <tr>
                 <td>Subject name:</td>

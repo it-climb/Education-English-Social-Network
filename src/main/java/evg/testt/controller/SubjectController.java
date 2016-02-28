@@ -14,13 +14,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Controller
-@RequestMapping("subject")
 public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/subject", method = RequestMethod.GET)
     public ModelAndView allSubject(@RequestParam(required = false) String edit) throws SQLException {
         ModelAndView modelAndView;
         if (edit != null) {
@@ -34,28 +33,28 @@ public class SubjectController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/subject/edit", method = RequestMethod.GET)
     public String editSubject() throws SQLException {
         return "redirect:/subject?edit=true";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/subject/delete", method = RequestMethod.POST)
     public String deleteSubject (@RequestParam(required = true) String id) throws SQLException {
         subjectService.delete(subjectService.getById(Integer.parseInt(id)));
         return "redirect:/subject?edit=true";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/subjectUpdate", method = RequestMethod.POST)
     public ModelAndView updateSubject(String id) throws SQLException {
         return new ModelAndView(JspPath.SUBJECT_UPDATE, "subject", subjectService.getById(Integer.parseInt(id)));
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/subjectAdd", method = RequestMethod.POST)
     public ModelAndView addSubject() {
         return new ModelAndView(JspPath.SUBJECT_UPDATE);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/subjectSave", method = RequestMethod.POST)
     public String saveSubject (@RequestParam(required = false) String id,
                                @RequestParam(required = true) String name) throws SQLException {
         if (id != "") {
