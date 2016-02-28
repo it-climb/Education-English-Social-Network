@@ -49,6 +49,7 @@
         <li><a href="/points">POINTS</a></li>
         <li><a href="/translate">TRANSLATOR</a></li>
         <li><a href="/video">VIDEO</a></li>
+        <li><a href="/subject">SUBJECTS</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="#social-section">SOCIAL</a></li>
         <li><a href="/account">ACCOUNT</a></li>
