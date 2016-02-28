@@ -37,6 +37,22 @@ public class Activity extends BaseModel {
         inverseJoinColumns = @JoinColumn(name = "activity_fk"))
     private Set<Activity> innerActivities;
 
+    public Long getActivityContentId() {
+        return activityContentId;
+    }
+
+    public void setActivityContentId(Long activityContentId) {
+        this.activityContentId = activityContentId;
+    }
+
+    public ActivityType getType() {
+        return type;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
+    }
+
     public Set<Activity> getInnerActivities() {
         return innerActivities;
     }
