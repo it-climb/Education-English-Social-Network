@@ -77,6 +77,19 @@ public class ActivityController {
         return "redirect:/activities";
     }
 
+//    @RequestMapping(value = "/addSubjectInActivity", method = RequestMethod.POST)
+//    public String addSubject(HttpServletRequest request,
+//                             @RequestParam(required = true) String name,
+//                             @RequestParam(required = true) Integer activityID) throws SQLException {
+//        HttpSession session = request.getSession();
+//        User sessionUser = (User) session.getAttribute("user");
+//        UserData sessionUserData = userDataService.findByUser(sessionUser);
+////        Subject sub =
+//
+//        return "redirect:/activities";
+//    }
+
+
 //    @RequestMapping(value = "/accountUpdate", method = RequestMethod.POST)
 //    public String addNewOne(@RequestParam(required = false) Integer accountId,@RequestParam(required = false) Integer userId,@ModelAttribute User user,@ModelAttribute UserData userData) throws SQLException {
 //        userData.setId(accountId);

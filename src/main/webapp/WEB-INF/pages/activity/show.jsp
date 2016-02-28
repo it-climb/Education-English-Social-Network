@@ -44,6 +44,7 @@
         <td>Activity name</td>
         <td>Activity target age</td>
         <td>Activity type</td>
+        <td>Subject</td>
     </tr>
     <c:forEach var="activity" items="${activities}">
         <tr>
@@ -53,7 +54,17 @@
             <td>${activity.author.age}</td>
             <td>${activity.name}</td>
             <td>${activity.targetAge}</td>
-            <td>${activity.type}</td>
+        <%--<c:forEach var="subject" items="${activity.subjects}">--%>
+            <%--<td>${subject.name}</td>--%>
+        <%--</c:forEach>--%>
+            <%--<td>--%>
+                <%--<form method="post" action="/addSubjectInActivity">--%>
+                    <%--<input type="text" name="name">--%>
+                    <%--<input type="hidden" name="activityID" value="${activity.id}">--%>
+                    <%--<input type="submit" value="add">--%>
+                <%--</form>--%>
+            <%--</td>--%>
+            <%--<td>${activity.}</td>--%>
         </tr>
     </c:forEach>
     <tr>

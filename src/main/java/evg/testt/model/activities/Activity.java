@@ -1,8 +1,6 @@
 package evg.testt.model.activities;
 
-import evg.testt.model.BaseModel;
-import evg.testt.model.SubjectInActivity;
-import evg.testt.model.UserData;
+import evg.testt.model.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,6 +21,11 @@ public class Activity extends BaseModel {
     @Column(name = "activity_type")
     @Enumerated(EnumType.STRING)
     protected ActivityType type;
+
+//    @Column(name = "subjects")
+    @Enumerated(EnumType.STRING)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "activity", fetch = FetchType.LAZY)
+    protected Set<Subject> subjects;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<SubjectInActivity> subjectInActivitySet;
@@ -87,6 +90,22 @@ public class Activity extends BaseModel {
 
     public void setType(ActivityType type) {
         this.type = type;
+    }
+
+    public Long getActivityContentId() {
+        return activityContentId;
+    }
+
+    public void setActivityContentId(Long activityContentId) {
+        this.activityContentId = activityContentId;
+    }
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public static Builder newBuilder() {
