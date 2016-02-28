@@ -4,9 +4,11 @@ import evg.testt.dao.ActivityDao;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import evg.testt.service.ActivityCommonService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ActivityCommonServiceImp extends BaseService<Activity, ActivityDao> implements ActivityCommonService {
 
     @Override

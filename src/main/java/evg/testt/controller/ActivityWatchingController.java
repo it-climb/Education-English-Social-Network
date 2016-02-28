@@ -3,7 +3,6 @@ package evg.testt.controller;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
 import evg.testt.model.activities.WatchingActivity;
-import evg.testt.model.activitycontent.ActivityContent;
 import evg.testt.model.activitycontent.WatchingActivityContent;
 import evg.testt.service.WatchingActivityService;
 import evg.testt.util.JspPath;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -34,6 +32,10 @@ public class ActivityWatchingController {
         activity.setType(ActivityType.WATCHING_ACTIVITY);
         WatchingActivity watchingActivity = new WatchingActivity();
         watchingActivity.setActivity(activity);
+
+        activityContent.setDescription("ghjkl;");
+        activityContent.setUrl("121213412jklhgjkljh");
+
         watchingActivity.setContent(activityContent);
         watchingActivityService.insert(watchingActivity);
         return "redirect:/success";

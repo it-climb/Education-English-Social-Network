@@ -9,11 +9,12 @@ import evg.testt.service.ActivityCommonService;
 import evg.testt.service.ActivityContentService;
 import evg.testt.service.WatchingActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-
+@Service
 public class WatchingActivityServiceImpl implements WatchingActivityService {
 
     @Autowired
