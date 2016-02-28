@@ -25,8 +25,8 @@ public class Activity extends BaseModel {
     @Enumerated(EnumType.STRING)
     protected ActivityType type;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<SubjectInActivity> subjectInActivitySet;
+    //@OneToMany(cascade = CascadeType.ALL)
+    //private Set<SubjectInActivity> subjectInActivitySet;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
@@ -105,17 +105,17 @@ public class Activity extends BaseModel {
         this.name = name;
     }
 
-    public void addNewSubjectInActivity(SubjectInActivity subjectInActivity) {
-        subjectInActivitySet.add(subjectInActivity);
-    }
-
-    public Set<SubjectInActivity> getSubjectInActivitySet() {
-        return subjectInActivitySet;
-    }
-
-    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
-        this.subjectInActivitySet = subjectInActivitySet;
-    }
+//    public void addNewSubjectInActivity(SubjectInActivity subjectInActivity) {
+//        subjectInActivitySet.add(subjectInActivity);
+//    }
+//
+//    public Set<SubjectInActivity> getSubjectInActivitySet() {
+//        return subjectInActivitySet;
+//    }
+//
+//    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
+//        this.subjectInActivitySet = subjectInActivitySet;
+//    }
 
     public String getTargetAge() {
         return targetAge;

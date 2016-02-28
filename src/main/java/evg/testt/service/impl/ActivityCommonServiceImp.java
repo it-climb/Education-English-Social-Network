@@ -16,25 +16,14 @@ public class ActivityCommonServiceImp extends BaseService<Activity, ActivityDao>
         return dao.findByAuthor(author);
     }
 
+    public List<Activity> findBySubjectName(String subjectName) {
+        return dao.findBySubjectName(subjectName);
+    }
+
     @Override
     public Activity getActivityWithInnerActivitiesById(Integer id) {
         Activity activity = dao.findOne(id);
         activity.getInnerActivities().size();
-        return activity;
-    }
-
-    @Override
-    public Activity getActivityWithSubjectsInActivityById(Integer id) {
-        Activity activity = dao.findOne(id);
-        activity.getSubjectInActivitySet().size();
-        return activity;
-    }
-
-    @Override
-    public Activity getActivityWithAllValuesById(Integer id) {
-        Activity activity = dao.findOne(id);
-        activity.getInnerActivities().size();
-        activity.getSubjectInActivitySet().size();
         return activity;
     }
 }
