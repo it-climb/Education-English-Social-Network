@@ -76,5 +76,4 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGIN_PROBLEM);
         return modelAndView;
     }
-
 }

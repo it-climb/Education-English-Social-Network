@@ -13,12 +13,14 @@ public class PassingTestActivityController {
 
     @RequestMapping(value = "/testPage", method = RequestMethod.GET)
     public ModelAndView showAll(){
-        if (oneAnswer) {
-            return new ModelAndView(JspPath.PASSING_TEST_ALL_WITH_BOX);
-        }
-        else {
-            return new ModelAndView(JspPath.PASSING_TEST_ALL_WITH_BUTTON);
-        }
+//        if (oneAnswer) {
+//            return new ModelAndView(JspPath.PASSING_TEST_ALL_WITH_BOX);
+//        }
+//        else {
+//            return new ModelAndView(JspPath.PASSING_TEST_ALL_WITH_BUTTON);
+//        }
+
+        return new ModelAndView(JspPath.PASSING_TEST_EDIT);
     }
 
 
