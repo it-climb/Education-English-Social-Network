@@ -1,6 +1,7 @@
 package evg.testt.model.activities;
 
 import evg.testt.model.BaseModel;
+import evg.testt.model.KnowledgeLevelUnits;
 import evg.testt.model.SubjectInActivity;
 import evg.testt.model.UserData;
 
@@ -27,9 +28,16 @@ public class Activity extends BaseModel {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<SubjectInActivity> subjectInActivitySet;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
+
     @ManyToOne
     @JoinColumn(name = "user_data_id")
     private UserData author;
+
+
+    //private Set<UserData> usersThatAreFinishedActivity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "inner_activities",
