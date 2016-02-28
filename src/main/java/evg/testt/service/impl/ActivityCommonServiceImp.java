@@ -40,6 +40,15 @@ public class ActivityCommonServiceImp extends BaseService<Activity, ActivityDao>
         return activity;
     }
 
+    /**
+     * <p>It allows to get Page object with filtered by UserData list of all Activities</p>
+     * <p>for required page from database</p>
+     * <p>It useful for view entities with pagination</p>
+     * @param author - UserData for request Activity list by User.
+     * @param pageable - Pageable request object with page number and number of Activities on
+     *                 page information.
+     * @return response Page object witch contains filtered by given UserData Activities for required page.
+     */
     public Page<Activity> getActivityByAuthor(UserData author, Pageable pageable) {
         return dao.findByAuthor(author, pageable);
     }

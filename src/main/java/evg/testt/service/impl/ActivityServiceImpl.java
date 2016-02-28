@@ -17,6 +17,13 @@ import java.util.List;
 @Service
 public class ActivityServiceImpl extends BaseService<Activity, ActivityDao> implements ActivityService {
 
+    /**
+     * <p>It allows to get Page object with list of all Activities for required page from database</p>
+     * <p>It useful for view entities with pagination</p>
+     * @param pageable - Pageable request object with page number and number of Activities on
+     *                 page information.
+     * @return response Page object witch contains Activities for required page.
+     */
     public Page<Activity> getAll(Pageable pageable) {
         return dao.findAll(pageable);
     }

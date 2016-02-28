@@ -37,6 +37,20 @@ public class ActivityController {
     @Autowired
     ActivityCommonService activityCommonService;
 
+    /**
+     * <p>It is used to display List of Activities with pagination and filtration by some parameters.<p/>
+     * <p>PageRequest object need for obtain from database Activities only for required page.<p/>
+     * <p>All request parameters is non required and will not be used or get the default values.<p/>
+     * <p>Once defined parameters are stored from request to request by passing through the JSP<p/>
+     * <p>until they changed.<p/>
+     * @param request - HttpServletRequest, need for get user from session.
+     * @param number - Integer number of Activities on page.
+     * @param page -Integer number of required page
+     * @param author - String email, need for request Activity list by User.
+     * @return ModelAndView with String user email, List of Activities, PageRequest "paginator" object and
+     * String author email if last was transferred.
+     * @throws SQLException
+     */
     @RequestMapping(value = "/activities", method = RequestMethod.GET)
     public ModelAndView showAccount(HttpServletRequest request,
                                     @RequestParam(required = false) Integer number,
@@ -77,12 +91,4 @@ public class ActivityController {
         return "redirect:/activities";
     }
 
-//    @RequestMapping(value = "/accountUpdate", method = RequestMethod.POST)
-//    public String addNewOne(@RequestParam(required = false) Integer accountId,@RequestParam(required = false) Integer userId,@ModelAttribute User user,@ModelAttribute UserData userData) throws SQLException {
-//        userData.setId(accountId);
-//        user.setId(userId);
-//        userData.setUser(user);
-//        userDataService.update(userData);
-//        return "redirect:/account";
-//    }
 }
