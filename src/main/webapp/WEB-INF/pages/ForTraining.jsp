@@ -20,7 +20,9 @@
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-static-top">
+
+<%--Navigation menu bar--%>
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myMenu">
@@ -50,8 +52,10 @@
 
         </div>
     </div>
-</div>
+</div><br><br><br>
 
+
+<%--Carousel of photos--%>
 <div class="carousel slide" id="carousel">
     <ol class="carousel-indicators">
         <li class="active" data-target="#carousel" data-slide-to="0"></li>
@@ -109,6 +113,8 @@
 </div>
 
 
+
+<%--Group of the Buttons--%>
 <div class="container" >
     <div class="row">
         <div class="btn-group">
@@ -137,6 +143,9 @@
     </div>
 </div><br><br>
 
+
+
+<%--DropDown Menu--%>
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
@@ -221,31 +230,81 @@
 </div><br><br>
 
 
-<%--Carousel--%>
+<%--Accordeon--%>
 <div class="container">
     <div class="col-md-6">
         <div class="panel-group" id="myAccordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+
+            <div class="panel panel-info">
+                <div class="panel-heading panel-info">
                     <h4 class="panel-title">
-                        <a href="#collapse1" data-toggle="collapse" class="">Panel number 1</a>
+                        <a href="#collapse1" data-toggle="collapse" data-parent="#myAccordion">Panel number 1</a>
                     </h4>
                 </div>
-                <div class="panel-collapse collapse" id="collapse1">
+                <div class="panel-collapse collapse in" id="collapse1">
                     <div class="panel-body">
                         <p>My content in panel number 1</p>
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-default panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse2" data-toggle="collapse"  data-parent="#myAccordion">Panel number 22</a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapse2">
+                    <div class="panel-body">
+                        <p>My content in panel number 22</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse3" data-toggle="collapse"  data-parent="#myAccordion">Panel number 333</a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapse3">
+                    <div class="panel-body">
+                        <p>My content in panel number 333</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="col-md-6">
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal_1">Modal dialog</button>
+    </div>
+</div>
 
+
+<%--Modal dialog--%>
+<div class="modal fade" id="myModal_1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">
+                    <i class="fa fa-close"></i>
+                </button>
+                <h4 class="modal-title">My modal dialog</h4>
+            </div>
+            <div class="modal-body">
+                <p>This is the modal window</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
     </div>
 </div>
 
 
 
+<%--Containers columns--%>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-0 hidden-sm visible-xs visible-lg">
