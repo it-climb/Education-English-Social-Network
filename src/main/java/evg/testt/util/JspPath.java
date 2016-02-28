@@ -26,9 +26,9 @@ public class JspPath {
     public static final String MESSAGES = "/messages/all";
     public static final String POINTS_ALL = "points/all";
 
-    public static final String SUBJECT_ALL = "subject/all";
-    public static final String SUBJECT_EDIT = "subject/edit";
-    public static final String SUBJECT_UPDATE = "subject/update";
+    public static final String SUBJECT_ALL = "/subject/all";
+    public static final String SUBJECT_EDIT = "/subject/edit";
+    public static final String SUBJECT_UPDATE = "/subject/update";
 
     public static final String VIDEO_ALL = "video/all";
     public static final String VIDEO_ADMIN = "video/admin";

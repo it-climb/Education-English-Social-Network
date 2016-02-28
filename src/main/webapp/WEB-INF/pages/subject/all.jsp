@@ -18,7 +18,7 @@
         </c:forEach>
     </table>
     <br><br>
-    <a href="/subject/edit" >Edit mode</a>
+    <a href="/subjectEdit" >Edit mode</a>
 
 </body>
 </html>

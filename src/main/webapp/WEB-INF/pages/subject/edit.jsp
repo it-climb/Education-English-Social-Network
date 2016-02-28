@@ -14,13 +14,13 @@
         <tr>
             <td>${subject.name}</td>
             <td>
-                <form action="/subject/delete" method="post">
+                <form action="/subjectDelete" method="post">
                     <input type="hidden" name="id" value="${subject.id}">
                     <input type="submit" value="Delete">
                 </form>
             </td>
             <td>
-                <form action="/subject/update" method="post">
+                <form action="/subjectUpdate" method="post">
                     <input type="hidden" name="id" value="${subject.id}">
                     <input type="submit" value="Update">
                 </form>
@@ -29,7 +29,7 @@
     </c:forEach>
     <tr>
         <td>
-            <form action="/subject/add" method="post">
+            <form action="/subjectAdd" method="post">
                 <input type="submit" value="Add new Subject">
             </form>
         </td>
