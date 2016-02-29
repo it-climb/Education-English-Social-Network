@@ -29,13 +29,19 @@ public class ActivityWatchingController {
     @Autowired
     private UserDataService userDataService;
 
-    @RequestMapping(value = "/activityContents", method = RequestMethod.GET)
-    public ModelAndView showAddActivity(){
+    @RequestMapping(value = "/addWatchActivity", method = RequestMethod.GET)
+    public ModelAndView showAddActivity(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        if(sessionUser == null){
+            return new ModelAndView(JspPath.ISE_ERROR_VIEW);
+        }
         return new ModelAndView(JspPath.WATCHING_ACTIVITY_ADD);
     }
 
     @RequestMapping(value = "/addWatchActivity", method = RequestMethod.POST)
-    public String addActivity(@ModelAttribute("waDto") WatchActivityDto watchActivityDto, HttpServletRequest request)throws SQLException{
+    public String addActivity(@ModelAttribute("waDto") WatchActivityDto watchActivityDto,
+                              HttpServletRequest request)throws SQLException{
 
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
@@ -58,6 +64,7 @@ public class ActivityWatchingController {
 
     @RequestMapping(value = "/watchActivity", method = RequestMethod.GET)
     public ModelAndView showActivity()throws SQLException{
+
         ModelAndView modelAndView = new ModelAndView(JspPath.WATCHING_ACTIVITY_VIEW);
         WatchingActivity watchingActivity = watchingActivityService.getById(1);
         Activity activity = watchingActivity.getActivity();
@@ -69,6 +76,38 @@ public class ActivityWatchingController {
         modelAndView.addObject("describe", content.getDescription());
 
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateWatchActivity", method = RequestMethod.GET)
+    public ModelAndView showUpdateActivity()throws SQLException{
+        return new ModelAndView(JspPath.WATCHING_ACTIVITY_UPDATE);
+    }
+
+
+    @RequestMapping(value = "/updateWatchActivity", method = RequestMethod.POST)
+    public String updateActivity(@ModelAttribute("updateWADto") WatchActivityDto watchActivityDto)throws SQLException{
+
+        WatchingActivity watchingActivity = watchingActivityService.getById(1);
+        Activity activity = watchingActivity.getActivity();
+        WatchingActivityContent content = watchingActivity.getContent();
+
+        activity.setName(watchActivityDto.getName());
+        content.setUrl(watchActivityDto.getUrl());
+        content.setDescription(watchActivityDto.getDescription());
+
+        watchingActivity.setContent(content);
+        watchingActivity.setActivity(activity);
+
+        watchingActivityService.update(watchingActivity);
+        return "redirect:/success";
+    }
+
+
+    @RequestMapping(value = "/deleteWatchActivity", method = RequestMethod.POST)
+    public String deleteActivity() throws SQLException{
+        WatchingActivity activity = watchingActivityService.getById(1);
+        watchingActivityService.delete(activity);
+        return "redirect:/success";
     }
 
 }

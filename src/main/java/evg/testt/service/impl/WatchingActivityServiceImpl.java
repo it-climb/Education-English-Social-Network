@@ -57,7 +57,6 @@ public class WatchingActivityServiceImpl implements WatchingActivityService {
         Activity activity = o.getActivity();
         activity.setActivityContentId(ac.getId());
         activityCommonService.insert(activity);
-
         return o;
     }
 

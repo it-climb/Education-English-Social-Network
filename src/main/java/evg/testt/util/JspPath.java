@@ -21,12 +21,15 @@ public class JspPath {
 
     public static final String DESCRIPTION_ALL = "/descriptions/all";
     public static final String DESCRIPTION_EDIT = "/descriptions/edit";
+
     public static final String WORD_ALL = "/words/all";
     public static final String WORD_EDIT = "/words/edit";
+
     public static final String ACCOUNT_SHOW = "/account/show";
 
     public static final String WATCHING_ACTIVITY_VIEW = "/watchingActivity/viewWatchActivity";
     public static final String WATCHING_ACTIVITY_ADD = "/watchingActivity/addWatchActivity";
+    public static final String WATCHING_ACTIVITY_UPDATE = "/watchingActivity/updateWatchActivity";
 
     public static final String DEFAULT_ERROR_VIEW = "error-404"; //page not found
     public static final String ISE_ERROR_VIEW = "ErrorNeedLogin"; //internal server error
