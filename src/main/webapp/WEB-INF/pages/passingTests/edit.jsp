@@ -15,16 +15,28 @@
             <a href="">6</a> <a href="">7</a> <a href="">8</a> <a href="">9</a> <a href="">10</a> <span class="nav_ext">...</span><a href="">&#9658;</a></div>
 
 
-    <div>
-            <input type="submit" value="New question" title="Create new question">
-            <input type="submit" value="Save question" title="Save the question">
-           <input type="submit" value="Delete question" title="Delete the question">
-    </div>
-
     <tr>
         <td>
+         <form method="post" action="/newTestQ">
+             <input type="submit" value="New question" title="Create new question">
+         </form>
+        </td>
+        <td>
+         <form method="post" action="/saveQ" name="save">
+             <input type="submit" value="Save question" title="Save the question">
+         </form>
+        </td>
+        <td>
+           <input type="submit" value="Delete question" title="Delete the question">
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <form method="post" action="/saveQ" name="save">
             <br>
-            <input type="text" placeholder="text of the test question" size="100">
+            <input type="text" placeholder="text of the test question" size="100" name="question" value="${passingTestData.question}">
             <br>
             <div class="multi-field-wrapper">
                 <div class="multi-fields">
@@ -39,6 +51,7 @@
                 <br>
                 <div> <button type="button" class="add-field">Add answer</button></div>
             </div>
+            </form>
             </td>
     </tr>
 
