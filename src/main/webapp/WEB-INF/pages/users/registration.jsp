@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-
+<td>Signing Up</td>
 <div id="container">
 
     <form:form action="regSave" modelAttribute="user">
@@ -33,7 +33,6 @@
         <form:password path="confirmPassword" id="confPass"/>
         <form:errors path="confirmPassword" cssClass="error"/>
         <br/>
-        <%--<input type="submit" value="OK" />--%>
         <form:form action="regSave" modelAttribute="userData">
             <label for="firstNameInp">First Name:</label>
             <form:input path="firstName" id="firstNameInp"/>

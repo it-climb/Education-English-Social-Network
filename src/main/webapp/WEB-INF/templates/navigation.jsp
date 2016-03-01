@@ -18,12 +18,11 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">HOME</a></li>
-                <li><a href="/login">LOGIN</a></li>
                 <li><a href="/dep">DEPARTMENTS</a></li>
                 <li><a href="/chat">CHAT</a></li>
                 <li><a href="/translate">TRANSLATOR</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                <li><a href="#social-section">SOCIAL</a></li>
+                <li><a href="/login">SIGN IN</a></li>
+                <li><a href="/regSave">SIGN UP</a></li>
             </ul>
         </div>
     </div>
