@@ -27,11 +27,11 @@
             <input type="checkbox">
             <input type="text" value="text of the test answer" name="1">
             <br>
-            <label>answer 2</label>
-            <br>
-            <input type="checkbox">
-            <input type="text" value="text of the test answer" name="2">
-            <br>
+            <%--<label>answer 2</label>--%>
+            <%--<br>--%>
+            <%--<input type="checkbox">--%>
+            <%--<input type="text" value="text of the test answer" name="2">--%>
+            <%--<br>--%>
             <input type="submit" value="Reply">
         </td>
     </tr>

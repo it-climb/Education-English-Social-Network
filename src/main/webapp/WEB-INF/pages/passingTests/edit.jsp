@@ -42,8 +42,9 @@
                 <div class="multi-fields">
                     <div class="multi-field">
                         <br>
-                        <input type="checkbox">
-                        <input type="text" name="stuff[]" placeholder="new answer">
+                        <input type="checkbox" >
+                        <input type="text" name="answer" placeholder="new answer" value="${answerTestQuestion.answer}">
+                        <%--<input type="text" name="stuff[]" placeholder="new answer" value="${answersTestQuestion.answers}">--%>
                         <button type="button" class="remove-field">Delete</button>
                         <br>
                     </div>
