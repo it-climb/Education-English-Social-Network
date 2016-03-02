@@ -6,7 +6,7 @@
     <title>Translate</title>
 </head>
 <body>
-    <h5><b>We are will trnslate here !!</b></h5>
+    <h5><b>We are will translate here !!</b></h5>
 
     <form action="/doTransl" method="post">
         <c:set var="translatorDto2" value="${translatorDto}" scope="request"/>
