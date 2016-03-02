@@ -53,7 +53,8 @@
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
             <td>${activity.name}</td>
-            <td>${activity.targetAge}</td>
+            <td><a href="/edit?id=${contact.id}">Edit</a> | <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
+         <%--   <td>${activity.targetAge}</td>--%>
         <%--<c:forEach var="subject" items="${activity.subjects}">--%>
             <%--<td>${subject.name}</td>--%>
         <%--</c:forEach>--%>

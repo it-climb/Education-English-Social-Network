@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,9 +104,9 @@ public class ActivityWatchingController {
     }
 
 
-    @RequestMapping(value = "/deleteWatchActivity", method = RequestMethod.POST)
-    public String deleteActivity() throws SQLException{
-        WatchingActivity activity = watchingActivityService.getById(1);
+    @RequestMapping(value = "/deleteWatchActivity", method = RequestMethod.GET)
+    public String deleteActivity(@RequestParam(required = true) Integer id) throws SQLException{
+        WatchingActivity activity = watchingActivityService.getById(id);
         watchingActivityService.delete(activity);
         return "redirect:/success";
     }

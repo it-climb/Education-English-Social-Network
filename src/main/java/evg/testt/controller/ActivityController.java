@@ -52,7 +52,7 @@ public class ActivityController {
      * @throws SQLException
      */
     @RequestMapping(value = "/activities", method = RequestMethod.GET)
-    public ModelAndView showAccount(HttpServletRequest request,
+    public ModelAndView showActivity(HttpServletRequest request,
                                     @RequestParam(required = false) Integer number,
                                     @RequestParam(required = false) Integer page,
                                     @RequestParam(required = false) String author) throws SQLException {
@@ -64,6 +64,7 @@ public class ActivityController {
         if (number == null) {
             number = 10;
         }
+
         if (page == null) {
             page = 0;
         }
@@ -86,7 +87,7 @@ public class ActivityController {
         User sessionUser = (User) session.getAttribute("user");
         UserData sessionUserData = userDataService.findByUser(sessionUser);
         Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
+                .setActivityType(ActivityType.WATCHING_ACTIVITY).setAuthor(sessionUserData).build();
             activityService.insert(testActivity);
         return "redirect:/activities";
     }

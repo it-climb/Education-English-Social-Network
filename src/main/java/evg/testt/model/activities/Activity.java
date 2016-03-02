@@ -100,22 +100,6 @@ public class Activity extends BaseModel {
         this.targetAge = targetAge;
     }
 
-    public ActivityType getType() {
-        return type;
-    }
-
-    public void setType(ActivityType type) {
-        this.type = type;
-    }
-
-    public Long getActivityContentId() {
-        return activityContentId;
-    }
-
-    public void setActivityContentId(Long activityContentId) {
-        this.activityContentId = activityContentId;
-    }
-
     public Set<Subject> getSubjects() {
         return subjects;
     }
