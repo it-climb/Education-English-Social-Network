@@ -37,6 +37,7 @@ public class ActivityController {
     @Autowired
     ActivityCommonService activityCommonService;
 
+
     /**
      * <p>It is used to display List of Activities with pagination and filtration by some parameters.<p/>
      * <p>PageRequest object need for obtain from database Activities only for required page.<p/>
@@ -87,7 +88,7 @@ public class ActivityController {
         User sessionUser = (User) session.getAttribute("user");
         UserData sessionUserData = userDataService.findByUser(sessionUser);
         Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-                .setActivityType(ActivityType.WATCHING_ACTIVITY).setAuthor(sessionUserData).build();
+                .setActivityType(ActivityType.READING_ACTIVITY).setAuthor(sessionUserData).build();
             activityService.insert(testActivity);
         return "redirect:/activities";
     }

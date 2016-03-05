@@ -53,7 +53,13 @@
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
             <td>${activity.name}</td>
-            <td><a href="/edit?id=${contact.id}">Edit</a> | <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
+            <c:if test="${activity.type.ordinal()==1}">
+                <td><a href="/watchActivity?id=${activity.id}">View</a> |
+                    <a href="/updateWatchActivity?id=${activity.id}">Edit</a> |
+                    <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
+            </c:if>
+
+
          <%--   <td>${activity.targetAge}</td>--%>
         <%--<c:forEach var="subject" items="${activity.subjects}">--%>
             <%--<td>${subject.name}</td>--%>

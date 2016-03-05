@@ -4,6 +4,8 @@ package evg.testt.dto;
 
 public class WatchActivityDto {
 
+    private Integer id;
+
     private String name;
 
     private String description;
@@ -18,6 +20,13 @@ public class WatchActivityDto {
         this.name = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

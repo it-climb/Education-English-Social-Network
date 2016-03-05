@@ -64,10 +64,10 @@ public class ActivityWatchingController {
     }
 
     @RequestMapping(value = "/watchActivity", method = RequestMethod.GET)
-    public ModelAndView showActivity()throws SQLException{
+    public ModelAndView showActivity(@RequestParam(required = true) Integer id)throws SQLException{
 
         ModelAndView modelAndView = new ModelAndView(JspPath.WATCHING_ACTIVITY_VIEW);
-        WatchingActivity watchingActivity = watchingActivityService.getById(1);
+        WatchingActivity watchingActivity = watchingActivityService.getById(id);
         Activity activity = watchingActivity.getActivity();
         WatchingActivityContent content = watchingActivity.getContent();
 
@@ -80,15 +80,18 @@ public class ActivityWatchingController {
     }
 
     @RequestMapping(value = "/updateWatchActivity", method = RequestMethod.GET)
-    public ModelAndView showUpdateActivity()throws SQLException{
-        return new ModelAndView(JspPath.WATCHING_ACTIVITY_UPDATE);
+    public ModelAndView showUpdateActivity(@RequestParam(required = true) Integer id)throws SQLException{
+        ModelAndView modelAndView = new ModelAndView(JspPath.WATCHING_ACTIVITY_UPDATE);
+        modelAndView.addObject("id", id);
+        return modelAndView;
     }
 
 
     @RequestMapping(value = "/updateWatchActivity", method = RequestMethod.POST)
-    public String updateActivity(@ModelAttribute("updateWADto") WatchActivityDto watchActivityDto)throws SQLException{
+    public String updateActivity(@ModelAttribute("updateWADto") WatchActivityDto watchActivityDto,
+                                 @RequestParam(required = true) Integer id)throws SQLException{
 
-        WatchingActivity watchingActivity = watchingActivityService.getById(1);
+        WatchingActivity watchingActivity = watchingActivityService.getById(watchActivityDto.getId());
         Activity activity = watchingActivity.getActivity();
         WatchingActivityContent content = watchingActivity.getContent();
 
