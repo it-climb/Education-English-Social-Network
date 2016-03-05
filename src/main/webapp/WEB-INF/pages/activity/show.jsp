@@ -8,9 +8,11 @@
 <table class="menu" width="1000px">
     <tr>
         <td>
-            <form method="post" action="/createTestActivities">
-                <input type="text" name="num">
-                <input type="submit" value="Create test activities">
+            <form method="post" action="/createActivities">
+                <input type="checkbox" name="num" value="watch">Watching Activity<Br>
+                <input type="checkbox" name="num" value="read">Reading Activity<Br>
+                <input type="checkbox" name="num" value="test">Test Activity<Br>
+                <input type="submit" value="Create activities">
             </form>
         </td>
     </tr>
