@@ -80,15 +80,15 @@ public class ActivityController {
                 paginator).getContent());
     }
 
-    @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)
-    public String addTestActivities(HttpServletRequest request, @RequestParam(required = true) String num) throws SQLException {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("user");
-        UserData sessionUserData = userDataService.findByUser(sessionUser);
-        Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
-            activityService.insert(testActivity);
-        return "redirect:/activities";
-    }
+//    @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)
+//    public String addTestActivities(HttpServletRequest request, @RequestParam(required = true) String num) throws SQLException {
+//        HttpSession session = request.getSession();
+//        User sessionUser = (User) session.getAttribute("user");
+//        UserData sessionUserData = userDataService.findByUser(sessionUser);
+//        Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
+//                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
+//            activityService.insert(testActivity);
+//        return "redirect:/activities";
+//    }
 
 }
