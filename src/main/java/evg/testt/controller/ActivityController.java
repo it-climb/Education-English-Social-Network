@@ -52,7 +52,7 @@ public class ActivityController {
      * @throws SQLException
      */
     @RequestMapping(value = "/activities", method = RequestMethod.GET)
-    public ModelAndView showAccount(HttpServletRequest request,
+    public ModelAndView showActivities(HttpServletRequest request,
                                     @RequestParam(required = false) Integer number,
                                     @RequestParam(required = false) Integer page,
                                     @RequestParam(required = false) String author) throws SQLException {
@@ -77,18 +77,19 @@ public class ActivityController {
         UserData authorUserData = userDataService.findByUser(userService.getByEmail(author));
         modelAndView.addObject("author", author);
         return modelAndView.addObject("activities", activityCommonService.getActivityByAuthor(authorUserData,
-                paginator).getContent());
+                paginator));
     }
 
-//    @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)
-//    public String addTestActivities(HttpServletRequest request, @RequestParam(required = true) String num) throws SQLException {
-//        HttpSession session = request.getSession();
-//        User sessionUser = (User) session.getAttribute("user");
-//        UserData sessionUserData = userDataService.findByUser(sessionUser);
-//        Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-//                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
-//            activityService.insert(testActivity);
-//        return "redirect:/activities";
-//    }
+    //temporary method to add test activities
+    @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)
+    public String addTestActivities(HttpServletRequest request, @RequestParam(required = true) String num) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        UserData sessionUserData = userDataService.findByUser(sessionUser);
+        Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
+                .setActivityType(ActivityType.WATCHING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
+            activityService.insert(testActivity);
+        return "redirect:/activities";
+    }
 
 }
