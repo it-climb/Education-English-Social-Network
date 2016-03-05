@@ -4,7 +4,8 @@ import java.util.List;
 
 public class TestPassingActivityContent extends ActivityContent {
 
-    private List<PassingTestData> items;
+    private PassingTestData items;
+//    private List<PassingTestData> items;
 
     private String magicString;
 
@@ -15,4 +16,19 @@ public class TestPassingActivityContent extends ActivityContent {
     public void setMagicString(String magicString) {
         this.magicString = magicString;
     }
+
+    public PassingTestData getItems() {
+        return items;
+    }
+
+    public void setItems(PassingTestData items) {
+        this.items = items;
+    }
+//    public List<PassingTestData> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(List<PassingTestData> items) {
+//        this.items = items;
+//    }
 }
