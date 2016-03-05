@@ -91,7 +91,7 @@ public class ActivityWatchingController {
     public String updateActivity(@ModelAttribute("updateWADto") WatchActivityDto watchActivityDto,
                                  @RequestParam(required = true) Integer id)throws SQLException{
 
-        WatchingActivity watchingActivity = watchingActivityService.getById(watchActivityDto.getId());
+        WatchingActivity watchingActivity = watchingActivityService.getById(id);
         Activity activity = watchingActivity.getActivity();
         WatchingActivityContent content = watchingActivity.getContent();
 

@@ -6,10 +6,13 @@
     <title>Update</title>
 </head>
 <body>
-<form:form method="get" action="/updateWatchActivity" modelAttribute="updateWADto">
+<form:form method="post" action="/updateWatchActivity" modelAttribute="updateWADto">
     <table>
         <tr>
-            <td><input type="hidden" name="id" value="${id}"></td>
+            Update form !
+        </tr>
+        <tr>
+            <td><input type="hidden" name="id" value="${id}" ></td>
         </tr>
         <tr>
             <td>Name:</td>
