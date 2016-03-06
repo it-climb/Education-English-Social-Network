@@ -3,13 +3,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update</title>
+    <title>Update Watch Activity</title>
 </head>
 <body>
 <form:form method="post" action="/updateWatchActivity" modelAttribute="updateWADto">
     <table>
         <tr>
-            Update form !
+            Update watch activity !
         </tr>
         <tr>
             <td><input type="hidden" name="id" value="${id}" ></td>

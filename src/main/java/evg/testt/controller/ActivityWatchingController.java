@@ -60,7 +60,7 @@ public class ActivityWatchingController {
         watchingActivity.setActivity(activity);
         watchingActivity.setContent(content);
         watchingActivityService.insert(watchingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
     @RequestMapping(value = "/watchActivity", method = RequestMethod.GET)
@@ -82,6 +82,16 @@ public class ActivityWatchingController {
     @RequestMapping(value = "/updateWatchActivity", method = RequestMethod.GET)
     public ModelAndView showUpdateActivity(@RequestParam(required = true) Integer id)throws SQLException{
         ModelAndView modelAndView = new ModelAndView(JspPath.WATCHING_ACTIVITY_UPDATE);
+        WatchingActivity watchingActivity = watchingActivityService.getById(id);
+        Activity activity = watchingActivity.getActivity();
+        WatchingActivityContent content = watchingActivity.getContent();
+        WatchActivityDto watchActivityDto = new WatchActivityDto();
+
+        watchActivityDto.setDescription(content.getDescription());
+        watchActivityDto.setName(activity.getName());
+        watchActivityDto.setUrl(content.getUrl());
+
+        modelAndView.addObject("updateWADto", watchActivityDto);
         modelAndView.addObject("id", id);
         return modelAndView;
     }
@@ -103,7 +113,7 @@ public class ActivityWatchingController {
         watchingActivity.setActivity(activity);
 
         watchingActivityService.update(watchingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
 
@@ -111,7 +121,7 @@ public class ActivityWatchingController {
     public String deleteActivity(@RequestParam(required = true) Integer id) throws SQLException{
         WatchingActivity activity = watchingActivityService.getById(id);
         watchingActivityService.delete(activity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
 }

@@ -62,7 +62,7 @@ public class ActivityReadingController {
         readingActivity.setActivity(activity);
         readingActivity.setContent(content);
         readingActivityService.insert(readingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
     @RequestMapping(value = "/readActivity", method = RequestMethod.GET)
@@ -111,15 +111,15 @@ public class ActivityReadingController {
         readingActivity.setActivity(activity);
 
         readingActivityService.update(readingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
 
-//    @RequestMapping(value = "/deleteReadActivity", method = RequestMethod.POST)
-//    public String deleteActivity() throws SQLException{
-//        ReadingActivity activity = readingActivityService.getById(1);
-//        readingActivityService.delete(activity);
-//        return "redirect:/success";
-//    }
+    @RequestMapping(value = "/deleteReadActivity", method = RequestMethod.GET)
+    public String deleteActivity() throws SQLException{
+        ReadingActivity activity = readingActivityService.getById(1);
+        readingActivityService.delete(activity);
+        return "redirect:/activities";
+    }
 
 }

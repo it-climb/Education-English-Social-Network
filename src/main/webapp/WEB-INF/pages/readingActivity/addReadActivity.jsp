@@ -2,11 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Activity</title>
+    <title>Add Read Activity</title>
 </head>
 <body>
 <form:form method="post" action="/addReadActivity" modelAttribute="raDto">
     <table>
+        <tr>
+            Add new read activity
+        </tr>
         <tr>
             <td>Name:</td>
             <td><input type="text" name="name" value="${raDto.name}"/></td>

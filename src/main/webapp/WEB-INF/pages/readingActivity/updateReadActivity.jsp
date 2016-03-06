@@ -3,11 +3,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update</title>
+    <title>Update Read Activity</title>
 </head>
 <body>
 <form:form method="post" action="/updateReadActivity" modelAttribute="updateRADto">
     <table>
+        <tr>
+            Update read activity
+        </tr>
         <tr>
             <td><input type="hidden" name="id" value="${id}" ></td>
         </tr>
