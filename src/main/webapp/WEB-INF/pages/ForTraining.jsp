@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="resources/assets/css/bootstrap.css" rel="stylesheet">
     <link href="resources/assets/css/font-awesome.css" rel="stylesheet">
+    <link href="resources/assets/css/my-css.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">Logo</a>
+            <a href="fortrain_2" class="navbar-brand">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myMenu">
             <ul class="nav navbar-nav" >
@@ -49,7 +50,17 @@
                 <li><a href="#">menu 3</a> </li>
                 <li><a href="#">menu 4</a> </li>
             </ul>
-
+            <form action="" class="navbar-form navbar-right hidden-sm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary form-control">
+                    <i class="fa fa-sign-in">  Login</i>
+                </button>
+            </form>
         </div>
     </div>
 </div><br><br><br>
@@ -302,6 +313,24 @@
     </div>
 </div>
 
+
+<%--Progres Bar--%>
+<div class="container">
+    <div class="row">
+        <div class="progress">
+            <div class="progress-bar progress-bar-primary" style="
+            min-width: 3%;
+            width: 35%;">
+                35%
+            </div>
+            <div class="progress-bar progress-bar-danger progress-bar-striped active" style="
+            min-width: 3%;
+            width: 35%;">
+                35%
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <%--Containers columns--%>

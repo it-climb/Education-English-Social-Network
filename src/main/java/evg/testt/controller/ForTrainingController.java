@@ -5,11 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("fortraining")
 public class ForTrainingController {
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "fortraining", method = RequestMethod.GET)
     public String myTraining(){
         return "ForTraining";
     }
+
+
+    @RequestMapping(value = "fortrain_2", method = RequestMethod.GET)
+    public String myTrain_2(){
+        return "ForTrain_2";
+    }
+
 }
