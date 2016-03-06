@@ -1,23 +1,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Activity</title>
+    <title>Update</title>
 </head>
 <body>
-<form:form method="post" action="/addWatchActivity" modelAttribute="waDto">
+<form:form method="post" action="/updateReadActivity" modelAttribute="updateRADto">
     <table>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" value="${waDto.name}"/></td>
+            <td><input type="text" name="name" value="${updateRADto.name}"/></td>
         </tr>
         <tr>
             <td>Description:</td>
-            <td><input type="text" name="description" value="${waDto.description}"/></td>
-        </tr>
-        <tr>
-            <td>URL:</td>
-            <td><input type="text" name="url" value="${waDto.url}"/></td>
+            <td><input type="text" name="description" value="${updateRADto.text}"/></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -26,5 +23,8 @@
         </tr>
     </table>
 </form:form>
+<form method="post" action="/deleteWatchActivity">
+    <input type="submit" value="Delete">
+</form>
 </body>
 </html>

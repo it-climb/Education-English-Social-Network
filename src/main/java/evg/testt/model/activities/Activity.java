@@ -25,9 +25,6 @@ public class Activity extends BaseModel {
     @Enumerated(EnumType.STRING)
     protected ActivityType type;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //private Set<SubjectInActivity> subjectInActivitySet;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
@@ -105,17 +102,18 @@ public class Activity extends BaseModel {
         this.name = name;
     }
 
-//    public void addNewSubjectInActivity(SubjectInActivity subjectInActivity) {
-//        subjectInActivitySet.add(subjectInActivity);
-//    }
-//
-//    public Set<SubjectInActivity> getSubjectInActivitySet() {
-//        return subjectInActivitySet;
-//    }
-//
-//    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
-//        this.subjectInActivitySet = subjectInActivitySet;
-//    }
+    public Long getActivityContentId() {return activityContentId;}
+
+    public void setActivityContentId(Long activityContentId) {this.activityContentId = activityContentId;}
+
+    public ActivityType getType() {return type;}
+
+    public void setType(ActivityType type) {this.type = type;}
+
+    public void addNewSubjectInActivity(SubjectInActivity subjectInActivity) {
+        subjectInActivitySet.add(subjectInActivity);
+    }
+
 
     public String getTargetAge() {
         return targetAge;
@@ -143,6 +141,18 @@ public class Activity extends BaseModel {
 
         public Builder setTargetAge(String targetAge) {
             Activity.this.targetAge = targetAge;
+
+            return this;
+        }
+
+        public Builder setAuthor(UserData author) {
+            Activity.this.author = author;
+
+            return this;
+        }
+
+        public Builder setActivityType(ActivityType type) {
+            Activity.this.type = type;
 
             return this;
         }

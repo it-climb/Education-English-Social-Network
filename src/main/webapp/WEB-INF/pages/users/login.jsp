@@ -7,6 +7,7 @@
 <body>
 <form:form method="post" action="/userLogin">
     <div align="right"><strong>${email}</strong></div>
+    <td>Signing In:</td>
     <table>
         <tr>
             <td>Email:</td>
@@ -23,7 +24,8 @@
             </td>
         </tr>
     </table>
-    <a href="/regSave">Registration</a>
+    <td>Haven't got account?</td>
+    <a href="/regSave">Sing Up</a>
 </form:form>
 </body>
 </html>

@@ -26,10 +26,10 @@ public class UserServiceImp extends BaseService<User, UserDao> implements UserSe
     public User insert(User o) throws SQLException{
 
             dao.save(o);
-            mailMail.sendMail("from@no-spam.com",
-                    o.getEmail(),
-                    "Welcome list",
-                    "Congratulation! \n\n Now you are in EESN team!");
+//            mailMail.sendMail("from@no-spam.com",
+//                    o.getEmail(),
+//                    "Welcome list",
+//                    "Congratulation! \n\n Now you are in EESN team!");
             return o;
 
 

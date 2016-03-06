@@ -16,11 +16,12 @@ public class ActivityContentService {
     @Autowired
     private ActivityContentDao activityContentDao;
 
-    public void save(ActivityContent activityContent) {
+    public ActivityContent save(ActivityContent activityContent) {
         if(activityContent.getId()==null) {
             activityContent.setId(sequenceDao.getNextSequenceId(ActivityContent.COLLECTION_NAME));
         }
         activityContentDao.save(activityContent);
+        return activityContent;
     }
 
     public ActivityContent get(Long id) {
