@@ -1,20 +1,39 @@
 package evg.testt.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Entity(name = "UserData")
 public class UserData extends BaseModel{
 
+    @NotEmpty(message = "Please, enter your first name")
     private String firstName;
 
+    @NotEmpty(message = "Please, enter your second name")
     private String secondName;
 
+    @NotNull(message = "Please, enter your age")
     private Integer age;
 
     @OneToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
+
+    public Set<KnowledgeLevelUnits> getKnowledgeLevelUnitsSet() {
+        return knowledgeLevelUnitsSet;
+    }
+
+    public void setKnowledgeLevelUnitsSet(Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet) {
+        this.knowledgeLevelUnitsSet = knowledgeLevelUnitsSet;
+    }
 
     public User getUser() {
         return user;

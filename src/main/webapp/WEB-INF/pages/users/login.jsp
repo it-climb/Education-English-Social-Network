@@ -9,6 +9,7 @@
 <body>
 <form:form method="post" action="/userLogin">
     <div align="right"><strong>${email}</strong></div>
+    <td>Signing In:</td>
     <table>
         <tr>
             <td><spring:message code="users.login.email"/>:</td>
@@ -25,6 +26,7 @@
             </td>
         </tr>
     </table>
+    <td>Haven't got account?</td>
     <a href="/regSave"><spring:message code="users.login.registration"/></a>
 </form:form>
 </body>

@@ -52,6 +52,9 @@
         <li><a href="#contact"><spring:message code="home.contact"/></a></li>
         <li><a href="#social-section"><spring:message code="home.social"/></a></li>
         <li><a href="/account"><spring:message code="home.account"/></a></li>
+        <li><a href="/subject">SUBJECTS</a></li>
+        <li><a href="/activities">ACTIVITIES</a></li>
+        <li><a href="/regSave">SIGN UP</a></li>
       </ul>
     </div>
     <div>

@@ -1,6 +1,7 @@
 package evg.testt.model.activities;
 
 import evg.testt.model.BaseModel;
+import evg.testt.model.KnowledgeLevelUnits;
 import evg.testt.model.SubjectInActivity;
 import evg.testt.model.UserData;
 
@@ -25,17 +26,57 @@ public class Activity extends BaseModel {
     protected ActivityType type;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<SubjectInActivity> subjectInActivitySet;
+    @JoinColumn(name = "owner_id")
+    private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
 
     @ManyToOne
     @JoinColumn(name = "user_data_id")
     private UserData author;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_that_are_finished_activitiy",
+            joinColumns = @JoinColumn(name = "activity_pk"),
+            inverseJoinColumns = @JoinColumn(name = "user_fk"))
+    private Set<UserData> usersThatAreFinishedActivity;
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "inner_activities",
         joinColumns = @JoinColumn(name = "activity_pk"),
         inverseJoinColumns = @JoinColumn(name = "activity_fk"))
     private Set<Activity> innerActivities;
+
+
+    public Set<UserData> getUsersThatAreFinishedActivity() {
+        return usersThatAreFinishedActivity;
+    }
+
+    public void setUsersThatAreFinishedActivity(Set<UserData> usersThatAreFinishedActivity) {
+        this.usersThatAreFinishedActivity = usersThatAreFinishedActivity;
+    }
+
+    public Long getActivityContentId() {
+        return activityContentId;
+    }
+
+    public void setActivityContentId(Long activityContentId) {
+        this.activityContentId = activityContentId;
+    }
+
+    public ActivityType getType() {
+        return type;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
+    }
+
+    public Set<KnowledgeLevelUnits> getKnowledgeLevelUnitsSet() {
+        return knowledgeLevelUnitsSet;
+    }
+
+    public void setKnowledgeLevelUnitsSet(Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet) {
+        this.knowledgeLevelUnitsSet = knowledgeLevelUnitsSet;
+    }
 
     public Set<Activity> getInnerActivities() {
         return innerActivities;
@@ -61,17 +102,18 @@ public class Activity extends BaseModel {
         this.name = name;
     }
 
+    public Long getActivityContentId() {return activityContentId;}
+
+    public void setActivityContentId(Long activityContentId) {this.activityContentId = activityContentId;}
+
+    public ActivityType getType() {return type;}
+
+    public void setType(ActivityType type) {this.type = type;}
+
     public void addNewSubjectInActivity(SubjectInActivity subjectInActivity) {
         subjectInActivitySet.add(subjectInActivity);
     }
 
-    public Set<SubjectInActivity> getSubjectInActivitySet() {
-        return subjectInActivitySet;
-    }
-
-    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
-        this.subjectInActivitySet = subjectInActivitySet;
-    }
 
     public String getTargetAge() {
         return targetAge;
@@ -99,6 +141,18 @@ public class Activity extends BaseModel {
 
         public Builder setTargetAge(String targetAge) {
             Activity.this.targetAge = targetAge;
+
+            return this;
+        }
+
+        public Builder setAuthor(UserData author) {
+            Activity.this.author = author;
+
+            return this;
+        }
+
+        public Builder setActivityType(ActivityType type) {
+            Activity.this.type = type;
 
             return this;
         }
