@@ -23,7 +23,7 @@ public class UserData extends BaseModel{
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
 
