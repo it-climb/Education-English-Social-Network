@@ -19,7 +19,7 @@ public class ActivityCommonServiceImp extends BaseService<Activity, ActivityDao>
     }
 
     public List<Activity> findBySubjectName(String subjectName) {
-        return dao.findBySubjectName(subjectName);
+        return null;  //dao.findBySubjectName(subjectName);
     }
 
     @Override
