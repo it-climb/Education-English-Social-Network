@@ -46,7 +46,6 @@ public class ActivityReadingController {
     @RequestMapping(value = "/addReadActivity", method = RequestMethod.POST)
     public String addActivity(@ModelAttribute("raDto") ReadActivityDto readActivityDto,
                               HttpServletRequest request)throws SQLException{
-
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
 
