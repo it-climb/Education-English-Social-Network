@@ -10,7 +10,7 @@
 
 <ul id="myTabs" class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active">
-    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
+    <a href="#homes" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Home</a>
   </li>
   <li role="presentation" class="">
     <a href="#profile" id="profile-tab" role="tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Profile</a>
@@ -22,8 +22,8 @@
 </ul>
 <div id="myTabContent" class="tab-content">
 
-  <div role="tabpanel" class="tab-pane fade active in" id="homes" aria-labelledby="home-tab">
-    <table class="table" style="color: black">
+  <div role="tabpanel" class="tab-pane active in" id="homes" aria-labelledby="home-tab">
+    <table class="table">
       <tr>
         <td>First Name:</td>
         <td>${userData.firstName}</td>
@@ -43,7 +43,7 @@
     </table>
   </div>
 
-  <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+  <div role="tabpanel" class="tab-pane" id="profile" aria-labelledby="profile-tab">
     <form:form method="post" action="/accountUpdate" >
 
       <table class="table">
@@ -68,7 +68,7 @@
     </form:form>
   </div>
 
-  <div role="tabpanel" class="tab-pane fade" id="points" aria-labelledby="points-tab">
+  <div role="tabpanel" class="tab-pane" id="points" aria-labelledby="points-tab">
     <table class="table">
       <tr>
         <p>AuthorshipPoints : ${authorshipPoints.authorshipPoints}</p>

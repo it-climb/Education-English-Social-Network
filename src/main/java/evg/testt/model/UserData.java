@@ -1,15 +1,21 @@
 package evg.testt.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity(name = "UserData")
 public class UserData extends BaseModel{
 
+    @NotEmpty(message = "Please, enter your first name")
     private String firstName;
 
+    @NotEmpty(message = "Please, enter your second name")
     private String secondName;
 
+    @NotNull(message = "Please, enter your age")
     private Integer age;
 
     @OneToOne(cascade = CascadeType.MERGE )
