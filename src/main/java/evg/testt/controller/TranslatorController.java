@@ -31,6 +31,8 @@ public class TranslatorController {
     TranslateService translateService;
 
     /**
+     *
+     *
      * The main translate method used to act when you push the button "Translator"
      * Opend the page where you can translate words and sentencis 
      *
