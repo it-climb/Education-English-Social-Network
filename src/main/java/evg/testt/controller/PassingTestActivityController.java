@@ -177,6 +177,7 @@ public class PassingTestActivityController {
         Activity activity = passingActivity.getActivity();
 
 
+
 //        activity.setType(ActivityType.PASSING_TEST_ACTIVITY);
 //        activity.setName(dto.getName());
 //        activity.setAuthor(userDataService.findByUser(sessionUser));
