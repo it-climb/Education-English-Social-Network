@@ -29,8 +29,7 @@ public class DepartmentController {
     ChatService chatService;
 
     /**
-     * This method shows all the departments if you entered in session like "user"
-     * Many referense
+     * This method shows all the departments already exists in DB in your user
      * @param request
      * @return
      * @throws SQLException
@@ -50,7 +49,8 @@ public class DepartmentController {
     }
 
     /**
-     * Method used to save or update current department
+     * Update(save new updated name of department) or save new department
+     *
      * @param id
      * @param name
      * @param version
@@ -76,6 +76,13 @@ public class DepartmentController {
         return "redirect:/dep";
     }
 
+    /**
+     * Delete current department and all Employees in it
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+
     @RequestMapping(value = "/depDelete", method = RequestMethod.POST)
     public String deleteOne (@RequestParam(required = true) Integer id)throws SQLException {
             String direct = "";
@@ -90,6 +97,13 @@ public class DepartmentController {
 
             return direct;
         }
+
+    /**
+     * Show the page where you can update current name of department without adding new one
+     * @param id
+     * @return
+     * @throws SQLException
+     */
 
     @RequestMapping(value = "/depEdit", method = RequestMethod.POST)
     public ModelAndView updateOne (@RequestParam(required = false) Integer id)throws SQLException {

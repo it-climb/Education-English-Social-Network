@@ -30,7 +30,13 @@ public class TranslatorController {
     @Autowired
     TranslateService translateService;
 
-
+    /**
+     * The main translate method used to act when you push the button "Translator"
+     * Opend the page where you can translate words and sentencis 
+     *
+     * @return
+     * @throws TranslateServiceException
+     */
     @RequestMapping(value = "/translate", method = RequestMethod.GET)
 //    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView mainView() throws TranslateServiceException {
