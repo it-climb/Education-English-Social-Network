@@ -6,6 +6,7 @@
 </head>
 <body class="no-js">
 <table class="menu" width="1000px">
+<%--<div class="box">--%>
     <tr>
 
     </tr>
@@ -22,34 +23,41 @@
     <tr>
         <td><b>All activities </b> <c:if test="${author != null}">for <b> ${author}</b></c:if></td>
     </tr>
-    <tr>
-        <td>Author of activity</td>
-        <td>Author first name</td>
-        <td>Author second name</td>
-        <td>Author age</td>
-        <td>Activity name</td>
-        <td>Activity target age</td>
-        <td>Activity type</td>
-        <td>Subject</td>
-    </tr>
+<%--</div>--%>
+    <%--<div class="box">--%>
+        <tr>
+            <td>Author of activity</td>
+            <td>Author first name</td>
+            <td>Author second name</td>
+            <td>Author age</td>
+            <td>Activity name</td>
+            <td>Activity target age</td>
+            <td>Activity type</td>
+            <td>Subject</td>
+        </tr>
+    <%--</div>--%>
     <c:forEach var="activity" items="${activities}">
         <tr>
+            <div class="menu">
             <td>${activity.author.user.email}</td>
             <td>${activity.author.firstName}</td>
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
             <td>${activity.name}</td>
-            <c:if test="${activity.type.ordinal()==1}">
-                <td><a href="/watchActivity?id=${activity.id}">View</a> |
-                    <a href="/updateWatchActivity?id=${activity.id}">Edit</a> |
-                    <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
-            </c:if>
-            <c:if test="${activity.type.ordinal()==2}">
-                <td><a href="/readActivity?id=${activity.id}">View</a> |
-                    <a href="/updateReadActivity?id=${activity.id}">Edit</a> |
-                    <a href="/deleteReadActivity?id=${activity.id}">Delete</a></td>
-            </c:if>
-
+            <%--<td>${activity.targetAge}</td>--%>
+            <%--<td>${activity.type}</td>--%>
+            <%--<td>${activity.subject}</td>--%>
+                <c:if test="${activity.type.ordinal()==1}">
+                    <td><a href="/watchActivity?id=${activity.id}">View</a> |
+                        <a href="/updateWatchActivity?id=${activity.id}">Edit</a> |
+                        <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
+                </c:if>
+                <c:if test="${activity.type.ordinal()==2}">
+                    <td><a href="/readActivity?id=${activity.id}">View</a> |
+                        <a href="/updateReadActivity?id=${activity.id}">Edit</a> |
+                        <a href="/deleteReadActivity?id=${activity.id}">Delete</a></td>
+                </c:if>
+            </div>
 
          <%--   <td>${activity.targetAge}</td>--%>
         <%--<c:forEach var="subject" items="${activity.subjects}">--%>
@@ -63,7 +71,6 @@
                 <%--</form>--%>
             <%--</td>--%>
             <%--<td>${activity.}</td>--%>
-        </tr>
     </c:forEach>
     <tr>
         <td>
@@ -94,7 +101,7 @@
                 <input type="submit" value="Create activities">
             </form>
         </td>
-        <td>
+        <td><p>Show on page by number</p>
             <form method="get" action="/activities">
                 <input type="text" name="number" value="${paginator.pageSize}">
                 <c:if test="${author != null}"><input type="hidden" name="author" value="${author}"></c:if>

@@ -62,7 +62,7 @@ public class ActivityReadingController {
         readingActivity.setActivity(activity);
         readingActivity.setContent(content);
         readingActivityService.insert(readingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
     @RequestMapping(value = "/readActivity", method = RequestMethod.GET)
@@ -80,8 +80,19 @@ public class ActivityReadingController {
     }
 
     @RequestMapping(value = "/updateReadActivity", method = RequestMethod.GET)
-    public ModelAndView showUpdateActivity()throws SQLException{
-        return new ModelAndView(JspPath.READING_ACTIVITY_UPDATE);
+    public ModelAndView showUpdateActivity(@RequestParam(required = true) Integer id)throws SQLException{
+        ModelAndView modelAndView = new ModelAndView(JspPath.READING_ACTIVITY_UPDATE);
+        ReadingActivity readingActivity = readingActivityService.getById(id);
+        Activity activity = readingActivity.getActivity();
+        ReadingActivityContent content = readingActivity.getContent();
+        ReadActivityDto readActivityDto = new ReadActivityDto();
+
+        readActivityDto.setText(content.getText());
+        readActivityDto.setName(activity.getName());
+
+        modelAndView.addObject("updateRADto", readActivityDto);
+        modelAndView.addObject("id", id);
+        return modelAndView;
     }
 
 
@@ -100,15 +111,15 @@ public class ActivityReadingController {
         readingActivity.setActivity(activity);
 
         readingActivityService.update(readingActivity);
-        return "redirect:/success";
+        return "redirect:/activities";
     }
 
 
-//    @RequestMapping(value = "/deleteReadActivity", method = RequestMethod.POST)
-//    public String deleteActivity() throws SQLException{
-//        ReadingActivity activity = readingActivityService.getById(1);
-//        readingActivityService.delete(activity);
-//        return "redirect:/success";
-//    }
+    @RequestMapping(value = "/deleteReadActivity", method = RequestMethod.GET)
+    public String deleteActivity() throws SQLException{
+        ReadingActivity activity = readingActivityService.getById(1);
+        readingActivityService.delete(activity);
+        return "redirect:/activities";
+    }
 
 }

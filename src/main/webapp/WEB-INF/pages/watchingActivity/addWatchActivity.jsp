@@ -2,11 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Activity</title>
+    <title>Add Watch Activity</title>
 </head>
 <body>
 <form:form method="post" action="/addWatchActivity" modelAttribute="waDto">
     <table>
+        <tr>
+            <td> Add new watch activity</td>
+        </tr>
         <tr>
             <td>Name:</td>
             <td><input type="text" name="name" value="${waDto.name}"/></td>
