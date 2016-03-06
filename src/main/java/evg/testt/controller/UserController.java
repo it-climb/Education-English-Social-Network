@@ -31,7 +31,7 @@ public class UserController {
 
     /**
      * This method show user login page(with fields asking you to enter your email and password)
-     * or enter the page with user registration
+     * or enter the page with user registration/
      * @param request
      * @return
      */
