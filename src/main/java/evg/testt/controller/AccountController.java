@@ -35,7 +35,12 @@ public class AccountController {
     @Autowired
     AuthorshipPointsService authorshipPointsService;
 
-
+    /**
+     *
+     * @param request
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
