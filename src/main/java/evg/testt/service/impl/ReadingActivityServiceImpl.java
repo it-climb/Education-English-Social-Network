@@ -36,7 +36,7 @@ public class ReadingActivityServiceImpl implements ReadingActivityService {
         Activity activity = activityCommonService.getById(id);
         ActivityContent activityContent = activityContentService.get(activity.getActivityContentId());
 
-        if(!activity.getType().equals(ActivityType.WATCHING_ACTIVITY)) {
+        if(!activity.getType().equals(ActivityType.READING_ACTIVITY)) {
             throw new SQLException("WatchingActivityServiceImpl: error activity type");
         }
 

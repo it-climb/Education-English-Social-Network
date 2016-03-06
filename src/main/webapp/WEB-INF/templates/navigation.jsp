@@ -24,12 +24,12 @@
                 <li><a href="/chat">CHAT</a></li>
                 <li><a href="/points">POINTS</a></li>
                 <li><a href="/translate">TRANSLATOR</a></li>
-                <li><a href="/login">SIGN IN</a></li>
-                <li><a href="/regSave">SIGN UP</a></li>
+                <%--<li><a href="/login">SIGN IN</a></li>--%>
+                <%--<li><a href="/regSave">SIGN UP</a></li>--%>
                 <li><a href="/video">VIDEO</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <%--<li><a href="#contact">CONTACT</a></li>--%>
                 <li><a href="/activities">ACTIVITIES</a></li>
-                <li><a href="#social-section">SOCIAL</a></li>
+                <%--<li><a href="#social-section">SOCIAL</a></li>--%>
                 <li><a href="/account">ACCOUNT</a></li>
             </ul>
         </div>

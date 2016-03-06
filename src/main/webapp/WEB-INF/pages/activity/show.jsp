@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="../layout/classic.jsp"/>
 <head>
     <title>All</title>
@@ -52,7 +53,12 @@
             <td>${activity.author.firstName}</td>
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
-            <td>${activity.name}</td>
+            <form:form method="get" action="/readActivity">
+            <td>
+                <input type="hidden" name="id" value="${activity.id}">
+                <input type="submit" value="${activity.name}"/>
+            </td>
+            </form:form>
             <td>${activity.targetAge}</td>
         <%--<c:forEach var="subject" items="${activity.subjects}">--%>
             <%--<td>${subject.name}</td>--%>
