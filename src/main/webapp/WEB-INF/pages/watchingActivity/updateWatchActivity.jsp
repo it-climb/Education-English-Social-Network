@@ -9,6 +9,12 @@
 <form:form method="post" action="/updateWatchActivity" modelAttribute="updateWADto">
     <table>
         <tr>
+            Update form !
+        </tr>
+        <tr>
+            <td><input type="hidden" name="id" value="${id}" ></td>
+        </tr>
+        <tr>
             <td>Name:</td>
             <td><input type="text" name="name" value="${updateWADto.name}"/></td>
         </tr>
@@ -27,8 +33,5 @@
         </tr>
     </table>
 </form:form>
-<form method="post" action="/deleteWatchActivity">
-    <input type="submit" value="Delete">
-</form>
 </body>
 </html>

@@ -37,6 +37,7 @@ public class ActivityController {
     @Autowired
     ActivityCommonService activityCommonService;
 
+
     /**
      * <p>It is used to display List of Activities with pagination and filtration by some parameters.<p/>
      * <p>PageRequest object need for obtain from database Activities only for required page.<p/>

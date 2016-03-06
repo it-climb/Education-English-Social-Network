@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="../layout/classic.jsp"/>
 <head>
     <title>All</title>
@@ -9,9 +8,11 @@
 <table class="menu" width="1000px">
     <tr>
         <td>
-            <form method="post" action="/createTestActivities">
-                <input type="text" name="num">
-                <input type="submit" value="Create test activities">
+            <form method="post" action="/createActivities">
+                <input type="checkbox" name="num" value="watch">Watching Activity<Br>
+                <input type="checkbox" name="num" value="read">Reading Activity<Br>
+                <input type="checkbox" name="num" value="test">Test Activity<Br>
+                <input type="submit" value="Create activities">
             </form>
         </td>
     </tr>
@@ -53,13 +54,15 @@
             <td>${activity.author.firstName}</td>
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
-            <form:form method="get" action="/readActivity">
-            <td>
-                <input type="hidden" name="id" value="${activity.id}">
-                <input type="submit" value="${activity.name}"/>
-            </td>
-            </form:form>
-            <td>${activity.targetAge}</td>
+            <td>${activity.name}</td>
+            <c:if test="${activity.type.ordinal()==1}">
+                <td><a href="/watchActivity?id=${activity.id}">View</a> |
+                    <a href="/updateWatchActivity?id=${activity.id}">Edit</a> |
+                    <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
+            </c:if>
+
+
+         <%--   <td>${activity.targetAge}</td>--%>
         <%--<c:forEach var="subject" items="${activity.subjects}">--%>
             <%--<td>${subject.name}</td>--%>
         <%--</c:forEach>--%>
