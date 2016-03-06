@@ -24,6 +24,13 @@ public class EmployeeController{
     @Autowired
     DepartmentService departmentService;
 
+    /**
+     * Show the page with all the Employees of current department
+     * @param id
+     * @param toDel
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public ModelAndView showAll(@RequestParam(required = true) Integer id,
                                 @RequestParam(required = false) String toDel) throws SQLException {
@@ -34,11 +41,20 @@ public class EmployeeController{
         String warning = "";
         if (toDel!=null && toDel.equals("yes")) {
             warning = "You can't delete department <b>"+department.getName()+"</b> becose it is not empty !<br>You must" +
-                    " delete all emploees before!<br>";
+                    " delete all employees before!<br>";
         }
         modelAndView.addObject("warning", warning);
         return modelAndView;
     }
+
+    /**
+     * Update(save new updated Employee of current department) or save new Employee
+     * @param employee
+     * @param departmentId
+     * @param version
+     * @return
+     * @throws SQLException
+     */
 
     @RequestMapping(value = "/employeeSaveOrUpdate", method = RequestMethod.POST)
     public String addNewOne(@ModelAttribute Employee employee, @RequestParam(required = true) Integer departmentId, @RequestParam(required = false) Long version  ) throws SQLException {
@@ -81,6 +97,13 @@ public class EmployeeController{
         return modelAndView;
     }
 
+    /**
+     * Delete Employee from current Department
+     * @param id
+     * @param department_id
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/employeeDelete", method = RequestMethod.POST)
     public String deleteOne(@RequestParam(required = true) Integer id, @RequestParam(required = true) Integer department_id) throws SQLException {
         employeeService.delete(Employee.newBuilder().setId(id).build());

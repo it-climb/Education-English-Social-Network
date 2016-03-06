@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomeController {
+    /**
+     * Show or return you to the basic EESN page
+     * @param request
+     * @param response
+     * @return
+     */
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView showAll(HttpServletRequest request, HttpServletResponse response) {
