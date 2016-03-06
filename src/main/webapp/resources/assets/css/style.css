@@ -304,6 +304,10 @@ padding: 5px;
     float: left;
 }
 
+.box {
+    width: 1000px;
+}
+
 .whisperF{
     color: white;
     background-color: purple;
