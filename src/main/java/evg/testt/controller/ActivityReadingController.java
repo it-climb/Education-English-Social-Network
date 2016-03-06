@@ -115,8 +115,8 @@ public class ActivityReadingController {
 
 
     @RequestMapping(value = "/deleteReadActivity", method = RequestMethod.GET)
-    public String deleteActivity() throws SQLException{
-        ReadingActivity activity = readingActivityService.getById(1);
+    public String deleteActivity(@RequestParam(required = true) Integer id) throws SQLException{
+        ReadingActivity activity = readingActivityService.getById(id);
         readingActivityService.delete(activity);
         return "redirect:/activities";
     }
