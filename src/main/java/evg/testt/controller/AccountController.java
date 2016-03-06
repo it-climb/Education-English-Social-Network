@@ -35,8 +35,7 @@ public class AccountController {
     @Autowired
     AuthorshipPointsService authorshipPointsService;
 
-    /**
-     *
+    /**Show page with your email(from your login registration) and your First Name, Second Name and Age
      * @param request
      * @return
      * @throws SQLException
@@ -53,7 +52,15 @@ public class AccountController {
         return modelAndView;
     }
 
-
+    /**
+     * Add to a DB (your current email) new First Name, Second Name, Age
+     * @param firstName
+     * @param secondName
+     * @param age
+     * @param request
+     * @return
+     * @throws SQLException
+     */
     @RequestMapping(value = "/accountUpdate", method = RequestMethod.POST)
     public ModelAndView addNewOne(@RequestParam(required = true) String firstName,
                                   @RequestParam(required = true) String secondName,
