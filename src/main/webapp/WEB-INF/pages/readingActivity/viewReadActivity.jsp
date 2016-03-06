@@ -13,9 +13,9 @@
     <div>
         Name author: ${nameAuthor}
     </div>
-    <table width="auto">
+    <p>
         Text: ${text}
-    </table>
+    </p>
     <div><input type="button" value="I have already read"></div>
 </body>
 </html>

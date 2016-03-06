@@ -37,7 +37,7 @@ public class ReadingActivityServiceImpl implements ReadingActivityService {
         ActivityContent activityContent = activityContentService.get(activity.getActivityContentId());
 
         if(!activity.getType().equals(ActivityType.READING_ACTIVITY)) {
-            throw new SQLException("WatchingActivityServiceImpl: error activity type");
+            throw new SQLException("ReadingActivityServiceImpl: error activity type");
         }
 
         ReadingActivity readingActivity = new ReadingActivity();
@@ -56,8 +56,10 @@ public class ReadingActivityServiceImpl implements ReadingActivityService {
 
     @Override
     public ReadingActivity insert(ReadingActivity o) throws SQLException {
-        activityCommonService.insert(o.getActivity());
-        activityContentService.save(o.getContent());
+        ActivityContent ac = activityContentService.save(o.getContent());
+        Activity activity = o.getActivity();
+        activity.setActivityContentId(ac.getId());
+        activityCommonService.insert(activity);
         return o;
     }
 

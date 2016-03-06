@@ -7,23 +7,7 @@
 <body class="no-js">
 <table class="menu" width="1000px">
     <tr>
-        <td>
-            <form method="post" action="/createActivities">
-                <input type="checkbox" name="num" value="watch">Watching Activity<Br>
-                <input type="checkbox" name="num" value="read">Reading Activity<Br>
-                <input type="checkbox" name="num" value="test">Test Activity<Br>
-                <input type="submit" value="Create activities">
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <form method="get" action="/activities">
-                <input type="text" name="number" value="${paginator.pageSize}">
-<c:if test="${author != null}"><input type="hidden" name="author" value="${author}"></c:if>
-                <input type="submit" value="Number of activities">
-            </form>
-        </td>
+
     </tr>
     <tr>
         <td>
@@ -60,6 +44,11 @@
                     <a href="/updateWatchActivity?id=${activity.id}">Edit</a> |
                     <a href="/deleteWatchActivity?id=${activity.id}">Delete</a></td>
             </c:if>
+            <c:if test="${activity.type.ordinal()==2}">
+                <td><a href="/readActivity?id=${activity.id}">View</a> |
+                    <a href="/updateReadActivity?id=${activity.id}">Edit</a> |
+                    <a href="/deleteReadActivity?id=${activity.id}">Delete</a></td>
+            </c:if>
 
 
          <%--   <td>${activity.targetAge}</td>--%>
@@ -94,6 +83,23 @@
     current: ${paginator.getPageNumber()+1}  |
     <a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}&author=${author}">next</a>  |
 </c:if>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form method="post" action="/createActivities">
+                <input type="checkbox" name="num" value="watch">Watching Activity<Br>
+                <input type="checkbox" name="num" value="read">Reading Activity<Br>
+                <input type="checkbox" name="num" value="test">Test Activity<Br>
+                <input type="submit" value="Create activities">
+            </form>
+        </td>
+        <td>
+            <form method="get" action="/activities">
+                <input type="text" name="number" value="${paginator.pageSize}">
+                <c:if test="${author != null}"><input type="hidden" name="author" value="${author}"></c:if>
+                <input type="submit" value="Number of activities">
+            </form>
         </td>
     </tr>
 </table>

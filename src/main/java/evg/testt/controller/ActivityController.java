@@ -81,16 +81,15 @@ public class ActivityController {
                 paginator));
     }
 
-    //temporary method to add test activities
-    @RequestMapping(value = "/createTestActivities", method = RequestMethod.POST)
-    public String addTestActivities(HttpServletRequest request, @RequestParam(required = true) String num) throws SQLException {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("user");
-        UserData sessionUserData = userDataService.findByUser(sessionUser);
-        Activity testActivity = Activity.newBuilder().setName(num+"Name").setTargetAge(num+"Age")
-                .setActivityType(ActivityType.PASSING_TEST_ACTIVITY).setAuthor(sessionUserData).build();
-            activityService.insert(testActivity);
-        return "redirect:/activities";
+    @RequestMapping(value = "/createActivities", method = RequestMethod.POST)
+    public ModelAndView addActivities(@RequestParam(required = true) String num) {
+        if (num.equals("watch")){
+            return new ModelAndView(JspPath.WATCHING_ACTIVITY_ADD);
+        }
+        if (num.equals("read")){
+            return new ModelAndView(JspPath.READING_ACTIVITY_ADD);
+        }
+        return new ModelAndView(JspPath.HOME);
     }
 
 }

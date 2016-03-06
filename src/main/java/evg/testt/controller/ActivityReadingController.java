@@ -66,17 +66,16 @@ public class ActivityReadingController {
     }
 
     @RequestMapping(value = "/readActivity", method = RequestMethod.GET)
-    public ModelAndView showActivity(@RequestParam(required = false) Integer id)throws SQLException{
+    public ModelAndView showActivity(@RequestParam(required = true) Integer id)throws SQLException{
 
         ModelAndView modelAndView = new ModelAndView(JspPath.READING_ACTIVITY_VIEW);
-        ReadingActivity readingActivity = readingActivityService.getById(1);
+        ReadingActivity readingActivity = readingActivityService.getById(id);
         Activity activity = readingActivity.getActivity();
         ReadingActivityContent content = readingActivity.getContent();
 
+        modelAndView.addObject("text", content.getText());
         modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
         modelAndView.addObject("nameActivity", activity.getName());
-        modelAndView.addObject("text", content.getText());
-
         return modelAndView;
     }
 
@@ -87,9 +86,10 @@ public class ActivityReadingController {
 
 
     @RequestMapping(value = "/updateReadActivity", method = RequestMethod.POST)
-    public String updateActivity(@ModelAttribute("updateRADto") ReadActivityDto readActivityDto)throws SQLException{
+    public String updateActivity(@ModelAttribute("updateRADto") ReadActivityDto readActivityDto,
+                                 @RequestParam(required = true) Integer id)throws SQLException{
 
-        ReadingActivity readingActivity = readingActivityService.getById(1);
+        ReadingActivity readingActivity = readingActivityService.getById(id);
         Activity activity = readingActivity.getActivity();
         ReadingActivityContent content = readingActivity.getContent();
 

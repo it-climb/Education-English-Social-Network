@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td>Text:</td>
-            <td><input type="text" name="description" value="${raDto.text}"/></td>
+            <td><input type="text" name="text" value="${raDto.text}"/></td>
         </tr>
         <tr>
         <tr>
