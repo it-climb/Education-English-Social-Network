@@ -2,6 +2,7 @@ package evg.testt.service;
 
 import evg.testt.model.Chat;
 import evg.testt.model.User;
+import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,4 +19,6 @@ public interface ActivityService extends Service<Activity> {
      * @return response Page object witch contains Activities for required page.
      */
     Page<Activity> getAll(Pageable pageable);
+
+    List<Activity> getByAuthor(UserData userData);
 }

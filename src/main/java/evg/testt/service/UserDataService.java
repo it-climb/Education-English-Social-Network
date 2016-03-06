@@ -5,4 +5,5 @@ import evg.testt.model.UserData;
 
 public interface UserDataService extends Service<UserData>{
     UserData findByUser(User user);
+
 }

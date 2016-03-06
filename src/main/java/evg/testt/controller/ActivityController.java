@@ -56,7 +56,8 @@ public class ActivityController {
     public ModelAndView showActivities(HttpServletRequest request,
                                     @RequestParam(required = false) Integer number,
                                     @RequestParam(required = false) Integer page,
-                                    @RequestParam(required = false) String author) throws SQLException {
+                                    @RequestParam(required = false) String author,
+                                    @RequestParam(required = false) boolean onlyMy) throws SQLException {
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         if(sessionUser == null){
@@ -72,13 +73,20 @@ public class ActivityController {
         ModelAndView modelAndView = new ModelAndView(JspPath.ACTIVITIES_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
         modelAndView.addObject("paginator", paginator);
+        if(onlyMy == true){
+            UserData userData = userDataService.findByUser(sessionUser);
+            return modelAndView.addObject("activities", activityService.getByAuthor(userData));
+        }
         if (author == null || author.isEmpty()) {
             return modelAndView.addObject("activities", activityService.getAll(paginator).getContent());
         }
-        UserData authorUserData = userDataService.findByUser(userService.getByEmail(author));
-        modelAndView.addObject("author", author);
-        return modelAndView.addObject("activities", activityCommonService.getActivityByAuthor(authorUserData,
-                paginator));
+        User user = userService.getByEmail(author);
+        UserData userData = userDataService.findByUser(user);
+        return modelAndView.addObject("activities", activityService.getByAuthor(userData));
+//        UserData authorUserData = userDataService.findByUser(userService.getByEmail(author));
+//        modelAndView.addObject("author", author);
+//        return modelAndView.addObject("activities", activityCommonService.getActivityByAuthor(authorUserData,
+//                paginator));
     }
 
     @RequestMapping(value = "/createActivities", method = RequestMethod.POST)
@@ -91,5 +99,17 @@ public class ActivityController {
         }
         return new ModelAndView(JspPath.HOME);
     }
+
+//    @RequestMapping(value = "/yoursActivities", method = RequestMethod.GET)
+//    public ModelAndView showYoursActivities(@RequestParam(required = true) String num) {
+//        if (num.equals("watch")){
+//            return new ModelAndView(JspPath.WATCHING_ACTIVITY_ADD);
+//        }
+//        if (num.equals("read")){
+//            return new ModelAndView(JspPath.READING_ACTIVITY_ADD);
+//        }
+//        return new ModelAndView(JspPath.HOME);
+//    }
+//    yoursActivities
 
 }

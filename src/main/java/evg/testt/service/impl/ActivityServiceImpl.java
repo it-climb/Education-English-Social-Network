@@ -4,6 +4,7 @@ import evg.testt.dao.ActivityDao;
 import evg.testt.dao.ChatDao;
 import evg.testt.model.Chat;
 import evg.testt.model.User;
+import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import evg.testt.service.ActivityService;
 import evg.testt.service.ChatService;
@@ -27,4 +28,6 @@ public class ActivityServiceImpl extends BaseService<Activity, ActivityDao> impl
     public Page<Activity> getAll(Pageable pageable) {
         return dao.findAll(pageable);
     }
+
+    public List<Activity> getByAuthor(UserData userData){return dao.findByAuthor(userData);}
 }
