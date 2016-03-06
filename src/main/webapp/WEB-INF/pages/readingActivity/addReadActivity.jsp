@@ -5,20 +5,17 @@
     <title>Add Activity</title>
 </head>
 <body>
-<form:form method="post" action="/addWatchActivity" modelAttribute="waDto">
+<form:form method="post" action="/addReadActivity" modelAttribute="raDto">
     <table>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" value="${waDto.name}"/></td>
+            <td><input type="text" name="name" value="${raDto.name}"/></td>
         </tr>
         <tr>
-            <td>Description:</td>
-            <td><input type="text" name="description" value="${waDto.description}"/></td>
+            <td>Text:</td>
+            <td><input type="text" name="description" value="${raDto.text}"/></td>
         </tr>
         <tr>
-            <td>URL:</td>
-            <td><input type="text" name="url" value="${waDto.url}"/></td>
-        </tr>
         <tr>
             <td colspan="2">
                 <input type="submit" value="Ok">

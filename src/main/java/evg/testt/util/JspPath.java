@@ -28,7 +28,8 @@ public class JspPath {
     public static final String ACCOUNT_SHOW = "/account/show";
 
     public static final String READING_ACTIVITY_VIEW = "/readingActivity/viewReadActivity";
-
+    public static final String READING_ACTIVITY_ADD = "/readingActivity/addReadActivity";
+    public static final String READING_ACTIVITY_UPDATE = "/readingActivity/updateReadActivity";
 
     public static final String WATCHING_ACTIVITY_VIEW = "/watchingActivity/viewWatchActivity";
     public static final String WATCHING_ACTIVITY_ADD = "/watchingActivity/addWatchActivity";
