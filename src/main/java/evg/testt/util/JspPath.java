@@ -50,6 +50,7 @@ public class JspPath {
 
     public static final String PASSING_TEST_ACTIVITY = "/passingTestActivity/allQuestions";
     public static final String PASSING_TEST_ACTIVITY_ADD = "/passingTestActivity/addPassingTestActivity";
+    public static final String PASSING_TEST_ACTIVITY_ADD_QUESTION = "/passingTestActivity/addPassingTestActivity";
 
 
 }

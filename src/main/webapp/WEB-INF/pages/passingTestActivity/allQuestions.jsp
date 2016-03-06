@@ -8,17 +8,32 @@
 <body>
 
 <div>
-    <h3>Name activity: ${nameActivity}</h3>
+    <h3>Name activity: ${passingActivity.activity.name}</h3>
 </div>
 <div align="left">
-  <c:forEach var="question" items="${questions}">
+  <c:forEach var="q" items="${passingActivity.content.items}">
+       <div>
+          <h4>Question: ${q.question} <input type="submit" value="Update"> | <input type="submit" value="Remove"> </h4>
+           <c:forEach var="answer" items="${q.answers.answers}">
+               <div>
+                   Answer: ${answer.answer}
+               </div>
+           </c:forEach>
+          <%--<h4>Question: ${q.answers} <input type="submit" value="Update"> | <input type="submit" value="Remove"> </h4>--%>
+       </div>
       <div>
-          ${question}
+
       </div>
   </c:forEach>
 </div>
 <div>
-    Name author: ${nameAuthor}
+    <form method="get" action="/addQuestion">
+        <input type="hidden" name="id" value="${activityId}">
+    <input type="submit" value="Create new question" >
+    </form>
+</div>
+<div>
+    Name author: ${passingActivity.activity.author}
 </div>
 
 </body>

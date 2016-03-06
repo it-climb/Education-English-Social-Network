@@ -36,30 +36,91 @@ public class PassingTestActivityController {
     private UserDataService userDataService;
 
     @RequestMapping(value = "/passingTestActivity", method = RequestMethod.GET)
-    public ModelAndView showAll() throws SQLException {
+    public ModelAndView showAll(HttpServletRequest request) throws SQLException {
+
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+//
 
         ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY);
-        TestPassingActivity passingActivity = passingTestActivityService.getById(1);
-        Activity activity = passingActivity.getActivity();
-        TestPassingActivityContent content = passingActivity.getContent();
-//        List<PassingTestData> data = content.getItems();
-        PassingTestData data = content.getItems();
+        //TsuccessestPassingActivity passingActivity = passingTestActivityService.getById(13);
+        TestPassingActivity passingActivity = new TestPassingActivity();
+        Activity activity = new Activity();
+        TestPassingActivityContent content = new TestPassingActivityContent();
+
+        passingActivity.setContent(content);
+        passingActivity.setActivity(activity);
+
+
+        activity.setName("name++++++++++++++activity");
+        activity.setAuthor(userDataService.findByUser(sessionUser));
+        List <PassingTestData> list = new ArrayList<>();
+        PassingTestData data1 = new PassingTestData();
+        data1.setQuestion("first question");
+        AnswersTestQuestion answersTestQuestion = new AnswersTestQuestion();
+
+
+        List<AnswerTestQuestion> listAnswer = new ArrayList<>();
+        AnswerTestQuestion answerTestQuestion = new AnswerTestQuestion();
+        answerTestQuestion.setAnswer("first answer");
+//        answerTestQuestion.setAnswer("second answer");
+//        answerTestQuestion.setAnswer("third answer");
+        listAnswer.add(answerTestQuestion);
+
+        answerTestQuestion = new AnswerTestQuestion();
+        answerTestQuestion.setAnswer("second answer");
+        listAnswer.add(answerTestQuestion);
+
+        answersTestQuestion.setAnswers(listAnswer);
+
+        data1.setAnswers(answersTestQuestion);
+
+        /*
+        AnswersTestQuestion answers2TestQuestion = new AnswersTestQuestion();
+
+        List<AnswerTestQuestion> list2 = new ArrayList<>();
+        AnswerTestQuestion answer2TestQuestion = new AnswerTestQuestion();
+        answer2TestQuestion.setAnswer("first answer2");
+        answer2TestQuestion.setAnswer("second answer2");
+        answer2TestQuestion.setAnswer("third answer2");
+        listAnswer.add(answer2TestQuestion);
+        answers2TestQuestion.setAnswers(list2);
+*/
+        PassingTestData data2 = new PassingTestData();
+        data2.setQuestion("second question");
+        //data2.setAnswers(answers2TestQuestion);
+        list.add(data1);
+        list.add(data2);
+        content.setItems(list);
+
+
+        //TestPassingActivityContent content = passingActivity.getContent();
+        //List<PassingTestData> data = content.getItems();
+//        PassingTestData data = content.getItems();
 //        List<String> list = new ArrayList<>();
 //        for(PassingTestData p : data){
 //            list.add(p.getQuestion());
 //        }
 
-        modelAndView.addObject("questions", data.getQuestion());
-        modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
-        modelAndView.addObject("nameActivity", activity.getName());
+        modelAndView.addObject("passingActivity",passingActivity);
+
+//        modelAndView.addObject("questions", list);
+//        modelAndView.addObject("questions", data.getQuestion());
+//        modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
+//        modelAndView.addObject("nameActivity", activity.getName());
+//        modelAndView.addObject("activityId", activity.getId());
 
         return modelAndView;
     }
 
     @RequestMapping(value = "/addPassingTestActivity", method = RequestMethod.GET)
-    public ModelAndView showAddActivity(HttpServletRequest request){
+    public ModelAndView showAddActivity(HttpServletRequest request) throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
+//        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY);
+
+
+
         if (sessionUser == null){
             return new ModelAndView(JspPath.ISE_ERROR_VIEW);
         }
@@ -68,7 +129,7 @@ public class PassingTestActivityController {
 
     @RequestMapping(value = "/addPassingTestActivity", method = RequestMethod.POST)
     public String addActivity(@ModelAttribute("ptaDto")PassingTestActivityDto dto,
-                              HttpServletRequest request) throws SQLException{
+                              HttpServletRequest request) throws SQLException {
 
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
@@ -80,6 +141,49 @@ public class PassingTestActivityController {
 
         TestPassingActivityContent content = new TestPassingActivityContent();
 
+
+        TestPassingActivity passingActivity = new TestPassingActivity();
+        passingActivity.setContent(content);
+        passingActivity.setActivity(activity);
+        passingTestActivityService.insert(passingActivity);
+
+        return "redirect:/success";
+
+
+    }
+
+    @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
+    public ModelAndView showAllQuestions(HttpServletRequest request) throws SQLException{
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+//        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY);
+
+
+
+        if (sessionUser == null){
+            return new ModelAndView(JspPath.ISE_ERROR_VIEW);
+        }
+        return new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
+    }
+
+    @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
+    public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto,
+                              HttpServletRequest request) throws SQLException{
+
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+
+        TestPassingActivity passingActivity = passingTestActivityService.getById(13);
+        Activity activity = passingActivity.getActivity();
+
+
+//        activity.setType(ActivityType.PASSING_TEST_ACTIVITY);
+//        activity.setName(dto.getName());
+//        activity.setAuthor(userDataService.findByUser(sessionUser));
+
+//        TestPassingActivityContent content = new TestPassingActivityContent();
+        TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> data = content.getItems();
         AnswerTestQuestion answer1 = new AnswerTestQuestion();
         answer1.setAnswer(dto.getAnswer1());
         answer1.setRightAnswer(dto.isRightAnwer1());
@@ -102,7 +206,7 @@ public class PassingTestActivityController {
         answersTestQuestion.setAnswers(list);
         int count = 0;
         for (int i = 0; i < 4; i++) {
-            if (list.get(0).isRightAnswer() != null) {
+            if (list.get(i).isRightAnswer() != null) {
 //
                 count++;
             }
@@ -111,12 +215,12 @@ public class PassingTestActivityController {
         PassingTestData testData= new PassingTestData();
         testData.setQuestion(dto.getQuestion());
         testData.setAnswers(answersTestQuestion);
-        content.setItems(testData);
+        data.add(testData);
 
-        TestPassingActivity passingActivity = new TestPassingActivity();
-        passingActivity.setActivity(activity);
-        passingActivity.setContent(content);
-        passingTestActivityService.insert(passingActivity);
+//        TestPassingActivity passingActivity = new TestPassingActivity();
+//        passingActivity.setActivity(activity);
+//        passingActivity.setContent(content);
+        passingTestActivityService.update(passingActivity);
 
 
         return "redirect:/success";
