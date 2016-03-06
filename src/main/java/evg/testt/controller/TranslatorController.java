@@ -1,5 +1,8 @@
 package evg.testt.controller;
 
+import com.google.api.services.translate.Translate;
+import com.google.api.services.translate.model.TranslationsListResponse;
+import com.google.api.services.translate.model.TranslationsResource;
 import evg.testt.dto.TranslatorDto;
 import evg.testt.exception.translateexceptions.EmptyFieldException;
 import evg.testt.exception.translateexceptions.TheSameLanguageException;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -69,11 +75,11 @@ public class TranslatorController {
         try {
             translatorDto.setTextOut(translateService.translate(textIn, languageIn, languageOut).translation());
         } catch (EmptyFieldException e) {
-            String errorMassage = e.getMessage();
+            String errorMassage = "You ";
             modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
         } catch (TheSameLanguageException e) {
-            String errorMassage = e.getMessage();
+            String errorMassage = "The source and target language are same. Please, change one of them.";
             modelAndView.addObject("errorMassage", errorMassage);
             e.printStackTrace();
         } catch (TranslateServiceException e) {

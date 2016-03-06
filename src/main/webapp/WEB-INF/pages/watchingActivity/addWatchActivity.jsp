@@ -8,6 +8,9 @@
 <form:form method="post" action="/addWatchActivity" modelAttribute="waDto">
     <table>
         <tr>
+            <td> Add new activity</td>
+        </tr>
+        <tr>
             <td>Name:</td>
             <td><input type="text" name="name" value="${waDto.name}"/></td>
         </tr>
