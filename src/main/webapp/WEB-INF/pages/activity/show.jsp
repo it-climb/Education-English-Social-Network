@@ -94,7 +94,7 @@
                 <input type="submit" value="Create activities">
             </form>
         </td>
-        <td>
+        <td><p>Show on page by number</p>
             <form method="get" action="/activities">
                 <input type="text" name="number" value="${paginator.pageSize}">
                 <c:if test="${author != null}"><input type="hidden" name="author" value="${author}"></c:if>

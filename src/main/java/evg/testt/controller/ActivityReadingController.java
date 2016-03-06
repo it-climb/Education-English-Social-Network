@@ -80,8 +80,19 @@ public class ActivityReadingController {
     }
 
     @RequestMapping(value = "/updateReadActivity", method = RequestMethod.GET)
-    public ModelAndView showUpdateActivity()throws SQLException{
-        return new ModelAndView(JspPath.READING_ACTIVITY_UPDATE);
+    public ModelAndView showUpdateActivity(@RequestParam(required = true) Integer id)throws SQLException{
+        ModelAndView modelAndView = new ModelAndView(JspPath.READING_ACTIVITY_UPDATE);
+        ReadingActivity readingActivity = readingActivityService.getById(id);
+        Activity activity = readingActivity.getActivity();
+        ReadingActivityContent content = readingActivity.getContent();
+        ReadActivityDto readActivityDto = new ReadActivityDto();
+
+        readActivityDto.setText(content.getText());
+        readActivityDto.setName(activity.getName());
+
+        modelAndView.addObject("updateRADto", readActivityDto);
+        modelAndView.addObject("id", id);
+        return modelAndView;
     }
 
 
