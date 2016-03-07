@@ -5,11 +5,11 @@
     <title>Add Activity</title>
 </head>
 <body>
-<form:form method="post" action="/addPassingTestActivity" modelAttribute="ptaDto">
+<form:form method="post" action="/addQuestion" modelAttribute="ptaDto">
     <table>
-        <tr>
-            <td>Create new Passing Test Activity</td>
-        </tr>
+        <div>
+            <td>Create new Question with Answers</td>
+        </div>
             <%--<tr>--%>
             <%--<td>Name:</td>--%>
             <%--<td><input type="text" name="name" value="${ptaDto.name}"/></td>--%>
@@ -47,12 +47,29 @@
         </tr>
 
 
+
         <tr>
             <td colspan="2">
                 <input type="submit" value="Ok">
             </td>
         </tr>
     </table>
+
+    <div align="center">
+        <b>Activity Show Page</b>
+    </div>
+
+    <div class="bot-navigation" align="center"><span>&#9668;</span> <span>1</span> <a href="">2</a> <a href="">3</a> <a href="">4</a> <a href="">5</a>
+        <a href="">6</a> <a href="">7</a> <a href="">8</a> <a href="">9</a> <a href="">10</a> <span class="nav_ext">...</span><a href="">&#9658;</a></div>
+
+
+    <div>
+        <input type="submit" value="New question" title="Create new question">
+        <input type="submit" value="Save question" title="Save the question">
+        <input type="submit" value="Delete question" title="Delete the question">
+    </div>
+
+
 </form:form>
 </body>
 </html>

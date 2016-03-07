@@ -23,7 +23,7 @@
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="5
+        <td colspan="5">
             <a href="/add">Add new one</a>
         </td>
     </tr>

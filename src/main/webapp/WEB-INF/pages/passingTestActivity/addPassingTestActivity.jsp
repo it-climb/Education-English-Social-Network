@@ -5,7 +5,7 @@
     <title>Add Activity</title>
 </head>
 <body>
-<form:form method="post" action="/addPassingTestActivity" modelAttribute="ptaDto">
+<form:form method="post" action="/saveOrUpdatePassingTestActivity" modelAttribute="ptaDto">
     <table>
         <tr>
             <td>Create new Passing Test Activity</td>

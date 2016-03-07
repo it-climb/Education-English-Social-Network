@@ -51,8 +51,10 @@ public class JspPath {
     public static final String ACTIVITY_GENERAL_VIEW = "/activityGeneral/viewGeneralActivity";
 
     public static final String PASSING_TEST_ACTIVITY = "/passingTestActivity/allQuestions";
+    public static final String PASSING_TEST_ACTIVITY_SHOW = "/passingTestActivity/showActivity";
+    public static final String PASSING_TEST_ACTIVITY_SHOW_ALL = "/passingTestActivity/showAllActivities";
     public static final String PASSING_TEST_ACTIVITY_ADD = "/passingTestActivity/addPassingTestActivity";
-    public static final String PASSING_TEST_ACTIVITY_ADD_QUESTION = "/passingTestActivity/addPassingTestActivity";
+    public static final String PASSING_TEST_ACTIVITY_ADD_QUESTION = "/passingTestActivity/addQuestion";
 
 
 }

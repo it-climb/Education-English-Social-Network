@@ -1,5 +1,6 @@
 package evg.testt.service.impl;
 
+import evg.testt.model.activities.AbstractActivity;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
 import evg.testt.model.activities.TestPassingActivity;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +28,20 @@ public class PassingTestAvtivityServiceImpl implements PassingTestActivityServic
 
     @Override
     public List<TestPassingActivity> getAll() throws SQLException {
-        return null;
+        List<Activity> list = activityCommonService.getAll();
+        List<TestPassingActivity> passingActivityList = new ArrayList<>();
+        for(Activity activity: list){
+            ActivityContent activityContent = activityContentService.get(activity.getActivityContentId());
+            if(activity.getType().equals(ActivityType.PASSING_TEST_ACTIVITY)){
+                TestPassingActivity passingActivity = new TestPassingActivity();
+                passingActivity.setActivity(activity);
+                passingActivity.setContent((TestPassingActivityContent) activityContent);
+                passingActivityList.add(passingActivity);            }
+
+
+        }
+
+        return passingActivityList;
     }
 
     @Override
@@ -52,6 +67,14 @@ public class PassingTestAvtivityServiceImpl implements PassingTestActivityServic
         ActivityContent activityContent = o.getContent();
         activityContentService.remove(activityContent.getId());
     }
+
+
+//
+//    public void delete(Integer id) throws SQLException {
+//        activityCommonService.delete(getById(id).getActivity());
+//        ActivityContent activityContent = getById(id).getContent();
+//        activityContentService.remove(activityContent.getId());
+//    }
 
     @Override
     public TestPassingActivity insert(TestPassingActivity o) throws SQLException {
