@@ -14,7 +14,13 @@
 
 <div>
 <c:forEach var="item" items="${passingActivity.content.items}">
-    <div>${item.question}</div>
+    <div>${item.question}
+    <form method="post" action="/deleteQuestion">
+        <input type="hidden" name="question" value="${item.question}">
+        <input type="hidden" name="id" value="${passingActivity.activity.id}">
+        <input type="submit" value="Delete">
+    </form>
+    </div>
 </c:forEach>
 </div>
 <div>

@@ -260,27 +260,43 @@ public class PassingTestActivityController {
         content.setItems(data);
         passingActivity.setContent(content);
 
-//        TestPassingActivity passingActivity = new TestPassingActivity();
-//        passingActivity.setActivity(activity);
-//        passingActivity.setContent(content);
         passingTestActivityService.update(passingActivity);
-
 
         return "redirect:/passingTestActivity?id=" + id;
     }
 
-    @RequestMapping(value = "/passingActivity", method = RequestMethod.GET)
-    public ModelAndView showActivity () throws SQLException{
-        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW);
-        TestPassingActivity passingActivity = passingTestActivityService.getById(13);
-        Activity activity = passingActivity.getActivity();
+    @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
+    public String deleteQuestion(@RequestParam(required = false) String question, @RequestParam(required = false) Integer id) throws SQLException{
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
         TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> list = content.getItems(); //!!!
+        List<PassingTestData> newList = new ArrayList<>();
+        for (PassingTestData data : list){
+            if(!question.equals(data.getQuestion())){
+                newList.add(data);
+            }
+        }
+        content.setItems(newList);
+        passingActivity.setContent(content);
+        passingTestActivityService.update(passingActivity);
 
-        modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
-        modelAndView.addObject("nameActivity", activity.getName());
 
-        return modelAndView;
+        return "redirect:/passingTestActivity?id=" + id;
+
     }
+
+//    @RequestMapping(value = "/passingActivity", method = RequestMethod.GET)
+//    public ModelAndView showActivity () throws SQLException{
+//        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW);
+//        TestPassingActivity passingActivity = passingTestActivityService.getById(13);
+//        Activity activity = passingActivity.getActivity();
+//        TestPassingActivityContent content = passingActivity.getContent();
+//
+//        modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
+//        modelAndView.addObject("nameActivity", activity.getName());
+//
+//        return modelAndView;
+//    }
 
     @RequestMapping(value = "/passingActivities", method = RequestMethod.GET)
     public ModelAndView showAllActivities() throws SQLException{
