@@ -3,6 +3,8 @@ package evg.testt.dto;
 
 public class PassingTestActivityDto {
 
+    private Integer id;
+
     private String name;
 
     private String question;
@@ -22,6 +24,14 @@ public class PassingTestActivityDto {
     private String rightAnwer3;
 
     private String rightAnwer4;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getQuestion() {
         return question;

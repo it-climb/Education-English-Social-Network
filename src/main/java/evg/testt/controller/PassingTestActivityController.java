@@ -122,11 +122,16 @@ public class PassingTestActivityController {
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW);
-                    TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
             Activity activity = passingActivity.getActivity();
 
+//        TestPassingActivityContent content = passingActivity.getContent();
+//        List<PassingTestData> items = content.getItems();
 
-            modelAndView.addObject("activity", activity);
+
+
+            modelAndView.addObject("passingActivity", passingActivity);
+//        modelAndView.addObject("items", items);
         return modelAndView;
     }
 
@@ -182,27 +187,30 @@ public class PassingTestActivityController {
     }
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-    public ModelAndView showAllQuestions(HttpServletRequest request) throws SQLException{
+    public ModelAndView showAllQuestions(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
-//        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY);
+        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        modelAndView.addObject("passingActivity", passingActivity);
+
 
 
 
         if (sessionUser == null){
             return new ModelAndView(JspPath.ISE_ERROR_VIEW);
         }
-        return new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-    public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto,
+    public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto, @RequestParam(required = true) Integer id,
                               HttpServletRequest request) throws SQLException{
 
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
 
-        TestPassingActivity passingActivity = passingTestActivityService.getById(13);
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
         Activity activity = passingActivity.getActivity();
 
 
@@ -214,6 +222,9 @@ public class PassingTestActivityController {
 //        TestPassingActivityContent content = new TestPassingActivityContent();
         TestPassingActivityContent content = passingActivity.getContent();
         List<PassingTestData> data = content.getItems();
+        if (data == null){
+            data = new ArrayList<>();
+        }
         AnswerTestQuestion answer1 = new AnswerTestQuestion();
         answer1.setAnswer(dto.getAnswer1());
         answer1.setRightAnswer(dto.isRightAnwer1());
@@ -246,6 +257,8 @@ public class PassingTestActivityController {
         testData.setQuestion(dto.getQuestion());
         testData.setAnswers(answersTestQuestion);
         data.add(testData);
+        content.setItems(data);
+        passingActivity.setContent(content);
 
 //        TestPassingActivity passingActivity = new TestPassingActivity();
 //        passingActivity.setActivity(activity);
@@ -253,7 +266,7 @@ public class PassingTestActivityController {
         passingTestActivityService.update(passingActivity);
 
 
-        return "redirect:/success";
+        return "redirect:/passingTestActivity?id=" + id;
     }
 
     @RequestMapping(value = "/passingActivity", method = RequestMethod.GET)

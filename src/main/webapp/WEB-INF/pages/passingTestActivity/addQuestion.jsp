@@ -9,6 +9,7 @@
     <table>
         <div>
             <td>Create new Question with Answers</td>
+            ${passingActivity.activity.id}
         </div>
             <%--<tr>--%>
             <%--<td>Name:</td>--%>
@@ -50,6 +51,7 @@
 
         <tr>
             <td colspan="2">
+                <input type="hidden" name="id" value="${passingActivity.activity.id}">
                 <input type="submit" value="Ok">
             </td>
         </tr>
@@ -63,11 +65,14 @@
         <a href="">6</a> <a href="">7</a> <a href="">8</a> <a href="">9</a> <a href="">10</a> <span class="nav_ext">...</span><a href="">&#9658;</a></div>
 
 
-    <div>
-        <input type="submit" value="New question" title="Create new question">
-        <input type="submit" value="Save question" title="Save the question">
-        <input type="submit" value="Delete question" title="Delete the question">
-    </div>
+    <%--<div>--%>
+        <%--<form>--%>
+            <%--<input type="hidden" name="id" value="${passingActivity.activity.id}">--%>
+            <%--<input type="submit" value="New question">--%>
+        <%--</form>--%>
+        <%--<input type="submit" value="Save question" title="Save the question">--%>
+        <%--<input type="submit" value="Delete question" title="Delete the question">--%>
+    <%--</div>--%>
 
 
 </form:form>

@@ -8,15 +8,24 @@
 <body>
 
 <div>
-    <h3>Name activity: ${activity.name}</h3>
+    <h3>Name activity: ${passingActivity.activity.name}</h3>
+    ${passingActivity.activity.id}
 </div>
 
 <div>
-
+<c:forEach var="item" items="${passingActivity.content.items}">
+    <div>${item.question}</div>
+</c:forEach>
 </div>
-
 <div>
-    Name author: ${activity.author}
+    <form method="get" action="/addQuestion">
+        <input type="hidden" name="id" value="${passingActivity.activity.id}">
+        <input type="submit" value="Create new question" >
+    </form>
+</div>
+<div>
+    Name author: ${passingActivity.activity.author}
+
 </div>
 
 </body>
