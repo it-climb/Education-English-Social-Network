@@ -17,13 +17,13 @@ public class PassingTestActivityDto {
 
     private String answer4;
 
-    private String rightAnwer1;
+    private String rightAnswer1;
 
-    private String rightAnwer2;
+    private String rightAnswer2;
 
-    private String rightAnwer3;
+    private String rightAnswer3;
 
-    private String rightAnwer4;
+    private String rightAnswer4;
 
     public Integer getId() {
         return id;
@@ -74,35 +74,35 @@ public class PassingTestActivityDto {
     }
 
     public String isRightAnwer1() {
-        return rightAnwer1;
+        return rightAnswer1;
     }
 
-    public void setRightAnwer1(String rightAnwer1) {
-        this.rightAnwer1 = rightAnwer1;
+    public void setRightAnswer1(String rightAnswer1) {
+        this.rightAnswer1 = rightAnswer1;
     }
 
     public String isRightAnwer2() {
-        return rightAnwer2;
+        return rightAnswer2;
     }
 
-    public void setRightAnwer2(String rightAnwer2) {
-        this.rightAnwer2 = rightAnwer2;
+    public void setRightAnswer2(String rightAnswer2) {
+        this.rightAnswer2 = rightAnswer2;
     }
 
     public String isRightAnwer3() {
-        return rightAnwer3;
+        return rightAnswer3;
     }
 
-    public void setRightAnwer3(String rightAnwer3) {
-        this.rightAnwer3 = rightAnwer3;
+    public void setRightAnswer3(String rightAnswer3) {
+        this.rightAnswer3 = rightAnswer3;
     }
 
     public String isRightAnwer4() {
-        return rightAnwer4;
+        return rightAnswer4;
     }
 
-    public void setRightAnwer4(String rightAnwer4) {
-        this.rightAnwer4 = rightAnwer4;
+    public void setRightAnswer4(String rightAnswer4) {
+        this.rightAnswer4 = rightAnswer4;
     }
 
     public String getName() {

@@ -20,6 +20,13 @@
         </td>
         <td width="50" height="20">   ${item.question}</td>
         <td width="50">
+            <form method="post" action="/showQuestion">
+                <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
+                <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                <input type="submit" value="Show">
+            </form>
+        </td>
+        <td width="50">
             <form method="post" action="/editQuestion">
                 <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
                 <input type="hidden" name="id" value="${passingActivity.activity.id}">

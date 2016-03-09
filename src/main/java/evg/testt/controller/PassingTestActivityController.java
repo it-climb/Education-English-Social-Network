@@ -1,9 +1,7 @@
 package evg.testt.controller;
 
 import evg.testt.dto.PassingTestActivityDto;
-import evg.testt.dto.WatchActivityDto;
 import evg.testt.model.User;
-import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
 import evg.testt.model.activities.TestPassingActivity;
@@ -204,7 +202,8 @@ public class PassingTestActivityController {
     }
 
     @RequestMapping(value = "/editQuestion", method = RequestMethod.POST)
-    public ModelAndView editQuestion(HttpServletRequest request, @RequestParam(required = false) Integer id, @RequestParam(required = false) Integer numberQuestion) throws SQLException{
+    public ModelAndView editQuestion(HttpServletRequest request, @RequestParam(required = false) Integer id,
+                                     @RequestParam(required = false) Integer numberQuestion) throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
@@ -216,13 +215,13 @@ public class PassingTestActivityController {
         dto.setQuestion(item.getQuestion());
         List<AnswerTestQuestion> list1 = item.getAnswers().getAnswers();
         dto.setAnswer1(list1.get(0).getAnswer());
-//        dto.setRightAnwer1("checked");
+//        dto.setRightAnswer1(list1.get(0).isRightAnswer());
         dto.setAnswer2(list1.get(1).getAnswer());
-//        dto.setRightAnwer2("true");
+//        dto.setRightAnswer2("true");
         dto.setAnswer3(list1.get(2).getAnswer());
-//        dto.setRightAnwer3("true");
+//        dto.setRightAnswer3("true");
         dto.setAnswer4(list1.get(3).getAnswer());
-//        dto.setRightAnwer4("true");
+//        dto.setRightAnswer4("true");
         modelAndView.addObject("ptaDto", dto);
         modelAndView.addObject("passingActivity", passingActivity);
         modelAndView.addObject("numberQuestion", numberQuestion);
@@ -270,11 +269,12 @@ public class PassingTestActivityController {
         answersTestQuestion.setAnswers(list);
         int count = 0;
         for (int i = 0; i < 4; i++) {
-            if (list.get(i).isRightAnswer() != null) {
-//
+            if (list.get(i).isRightAnswer() != null && !list.get(i).isRightAnswer().equals("")) {
                 count++;
             }
         }
+
+
         answersTestQuestion.setRigthCountAnswers(count);
         PassingTestData testData= new PassingTestData();
         testData.setQuestion(dto.getQuestion());
@@ -294,6 +294,40 @@ public class PassingTestActivityController {
         passingTestActivityService.update(passingActivity);
 
         return "redirect:/passingTestActivity?id=" + id;
+    }
+
+    @RequestMapping(value = "/showQuestion", method = RequestMethod.POST)
+    public ModelAndView showQuestion(@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer numberQuestion) throws SQLException {
+        ModelAndView modelAndView;
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> list = content.getItems();
+        PassingTestData item = list.get(numberQuestion - 1);
+        PassingTestActivityDto dto = new PassingTestActivityDto();
+        dto.setQuestion(item.getQuestion());
+        List<AnswerTestQuestion> list1 = item.getAnswers().getAnswers();
+        dto.setAnswer1(list1.get(0).getAnswer());
+//        dto.setRightAnswer1(list1.get(0).isRightAnswer());
+        dto.setAnswer2(list1.get(1).getAnswer());
+//        dto.setRightAnswer2("true");
+        dto.setAnswer3(list1.get(2).getAnswer());
+//        dto.setRightAnswer3("true");
+        dto.setAnswer4(list1.get(3).getAnswer());
+//        dto.setRightAnswer4("true");
+        if (item.getAnswers().getRigthCountAnswers() == 1){
+            modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_RADIO_QUESTION);
+
+        } else {
+            modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_CHECKBOX_QUESTION);
+
+        }
+        modelAndView.addObject("ptaDto", dto);
+        modelAndView.addObject("passingActivity", passingActivity);
+        modelAndView.addObject("numberQuestion", numberQuestion);
+
+
+        return modelAndView;
+
     }
 //@RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
 //    public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto, @RequestParam(required = true) Integer id,
