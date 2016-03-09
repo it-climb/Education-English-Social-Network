@@ -9,26 +9,42 @@
 
 <div>
     <h3>Name activity: ${passingActivity.activity.name}</h3>
-    ${passingActivity.activity.id}
+
 </div>
 
-<div>
+<table>
 <c:forEach var="item" items="${passingActivity.content.items}">
-    <div>${item.question}
+    <tr>
+        <td width="20">
+            #${item.numberQuestion}
+        </td>
+        <td width="50" height="20">   ${item.question}</td>
+        <td width="50">
+            <form method="post" action="/editQuestion">
+                <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
+                <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+            <td>
     <form method="post" action="/deleteQuestion">
-        <input type="hidden" name="question" value="${item.question}">
+        <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
         <input type="hidden" name="id" value="${passingActivity.activity.id}">
         <input type="submit" value="Delete">
     </form>
-    </div>
+        </td>
+    </tr>
 </c:forEach>
-</div>
-<div>
+
+<tr>
+<td>
     <form method="get" action="/addQuestion">
         <input type="hidden" name="id" value="${passingActivity.activity.id}">
         <input type="submit" value="Create new question" >
     </form>
-</div>
+</td>
+</tr>
+</table>
 <div>
     Name author: ${passingActivity.activity.author}
 

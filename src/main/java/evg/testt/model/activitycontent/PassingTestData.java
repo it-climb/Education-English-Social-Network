@@ -1,8 +1,17 @@
 package evg.testt.model.activitycontent;
 
 public class PassingTestData {
+    private int numberQuestion;
     private String question;
     private AnswersTestQuestion answers;
+
+    public int getNumberQuestion() {
+        return numberQuestion;
+    }
+
+    public void setNumberQuestion(int numberQuestion) {
+        this.numberQuestion = numberQuestion;
+    }
 
     public String getQuestion() {
         return question;

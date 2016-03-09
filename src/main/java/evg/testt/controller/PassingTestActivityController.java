@@ -187,7 +187,7 @@ public class PassingTestActivityController {
     }
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-    public ModelAndView showAllQuestions(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
+    public ModelAndView addQuestions(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
@@ -203,29 +203,52 @@ public class PassingTestActivityController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/editQuestion", method = RequestMethod.POST)
+    public ModelAndView editQuestion(HttpServletRequest request, @RequestParam(required = false) Integer id, @RequestParam(required = false) Integer numberQuestion) throws SQLException{
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD_QUESTION);
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> list = content.getItems();
+        PassingTestData item = list.get(numberQuestion - 1);
+        PassingTestActivityDto dto = new PassingTestActivityDto();
+        dto.setQuestion(item.getQuestion());
+        List<AnswerTestQuestion> list1 = item.getAnswers().getAnswers();
+        dto.setAnswer1(list1.get(0).getAnswer());
+//        dto.setRightAnwer1("checked");
+        dto.setAnswer2(list1.get(1).getAnswer());
+//        dto.setRightAnwer2("true");
+        dto.setAnswer3(list1.get(2).getAnswer());
+//        dto.setRightAnwer3("true");
+        dto.setAnswer4(list1.get(3).getAnswer());
+//        dto.setRightAnwer4("true");
+        modelAndView.addObject("ptaDto", dto);
+        modelAndView.addObject("passingActivity", passingActivity);
+        modelAndView.addObject("numberQuestion", numberQuestion);
+
+        if (sessionUser == null){
+            return new ModelAndView(JspPath.ISE_ERROR_VIEW);
+        }
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto, @RequestParam(required = true) Integer id,
+                              @RequestParam(required = false) Integer numberQuestion,
                               HttpServletRequest request) throws SQLException{
 
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
 
         TestPassingActivity passingActivity = passingTestActivityService.getById(id);
-        Activity activity = passingActivity.getActivity();
-
-
-
-//        activity.setType(ActivityType.PASSING_TEST_ACTIVITY);
-//        activity.setName(dto.getName());
-//        activity.setAuthor(userDataService.findByUser(sessionUser));
-
-//        TestPassingActivityContent content = new TestPassingActivityContent();
         TestPassingActivityContent content = passingActivity.getContent();
         List<PassingTestData> data = content.getItems();
         if (data == null){
             data = new ArrayList<>();
         }
         AnswerTestQuestion answer1 = new AnswerTestQuestion();
+
         answer1.setAnswer(dto.getAnswer1());
         answer1.setRightAnswer(dto.isRightAnwer1());
         AnswerTestQuestion answer2 = new AnswerTestQuestion();
@@ -256,7 +279,15 @@ public class PassingTestActivityController {
         PassingTestData testData= new PassingTestData();
         testData.setQuestion(dto.getQuestion());
         testData.setAnswers(answersTestQuestion);
-        data.add(testData);
+        if (numberQuestion == null) {
+            testData.setNumberQuestion(data.size() + 1);
+            data.add(testData);
+
+        } else {
+            testData.setNumberQuestion(numberQuestion);
+
+            data.set(numberQuestion - 1, testData);
+        }
         content.setItems(data);
         passingActivity.setContent(content);
 
@@ -264,15 +295,69 @@ public class PassingTestActivityController {
 
         return "redirect:/passingTestActivity?id=" + id;
     }
+//@RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
+//    public String addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto, @RequestParam(required = true) Integer id,
+//                              HttpServletRequest request) throws SQLException{
+//
+//        HttpSession session = request.getSession();
+//        User sessionUser = (User) session.getAttribute("user");
+//
+//        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+//        TestPassingActivityContent content = passingActivity.getContent();
+//        List<PassingTestData> data = content.getItems();
+//        if (data == null){
+//            data = new ArrayList<>();
+//        }
+//        AnswerTestQuestion answer1 = new AnswerTestQuestion();
+//        answer1.setAnswer(dto.getAnswer1());
+//        answer1.setRightAnswer(dto.isRightAnwer1());
+//        AnswerTestQuestion answer2 = new AnswerTestQuestion();
+//        answer2.setAnswer(dto.getAnswer2());
+//        answer2.setRightAnswer(dto.isRightAnwer2());
+//        AnswerTestQuestion answer3 = new AnswerTestQuestion();
+//        answer3.setAnswer(dto.getAnswer3());
+//        answer3.setRightAnswer(dto.isRightAnwer3());
+//        AnswerTestQuestion answer4 = new AnswerTestQuestion();
+//        answer4.setAnswer(dto.getAnswer4());
+//        answer4.setRightAnswer(dto.isRightAnwer4());
+//        List<AnswerTestQuestion> list = new ArrayList<>();
+//        list.add(answer1);
+//        list.add(answer2);
+//        list.add(answer3);
+//        list.add(answer4);
+//
+//        AnswersTestQuestion answersTestQuestion = new AnswersTestQuestion();
+//        answersTestQuestion.setAnswers(list);
+//        int count = 0;
+//        for (int i = 0; i < 4; i++) {
+//            if (list.get(i).isRightAnswer() != null) {
+////
+//                count++;
+//            }
+//        }
+//        answersTestQuestion.setRigthCountAnswers(count);
+//        PassingTestData testData= new PassingTestData();
+//        testData.setQuestion(dto.getQuestion());
+//        testData.setAnswers(answersTestQuestion);
+//        testData.setNumberQuestion(data.size()+1);
+//        data.add(testData);
+//        content.setItems(data);
+//        passingActivity.setContent(content);
+//
+//        passingTestActivityService.update(passingActivity);
+//
+//        return "redirect:/passingTestActivity?id=" + id;
+//    }
 
     @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
-    public String deleteQuestion(@RequestParam(required = false) String question, @RequestParam(required = false) Integer id) throws SQLException{
+    public String deleteQuestion(@RequestParam(required = false) Integer numberQuestion, @RequestParam(required = false) Integer id) throws SQLException{
         TestPassingActivity passingActivity = passingTestActivityService.getById(id);
         TestPassingActivityContent content = passingActivity.getContent();
         List<PassingTestData> list = content.getItems(); //!!!
         List<PassingTestData> newList = new ArrayList<>();
         for (PassingTestData data : list){
-            if(!question.equals(data.getQuestion())){
+            if(numberQuestion != data.getNumberQuestion()){
+                data.setNumberQuestion(newList.size() + 1);
                 newList.add(data);
             }
         }
