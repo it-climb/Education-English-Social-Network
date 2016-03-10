@@ -42,6 +42,13 @@
             <form:input path="secondName" id="secondNameInp"/>
             <form:errors path="secondName" cssClass="error"/>
             <br/>
+            <label>Gender:</label>
+            <select name="gender" size="1">
+                <option value="unknown">Unknown</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br/>
             <label for="ageInp">Age:</label>
             <form:input path="age" id="ageInp"/>
             <form:errors path="age" cssClass="error"/>

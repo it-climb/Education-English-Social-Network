@@ -33,6 +33,10 @@
         <td>${userData.secondName}</td>
       </tr>
       <tr>
+        <td>Gender:</td>
+        <td>${userData.gender}</td>
+      </tr>
+      <tr>
         <td>Age:</td>
         <td>${userData.age}</td>
       </tr>
@@ -54,6 +58,16 @@
         <tr>
           <td>Second Name:</td>
           <td><input type="text" name="secondName" value="${userData.secondName}"/></td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>
+            <select name="gender" size="1">
+            <option value="unknown">Unknown</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td>Age:</td>

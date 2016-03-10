@@ -22,6 +22,12 @@ public class UserData extends BaseModel{
     @JoinColumn(name = "user_id")
     private User user;
 
+    private String gender;
+
+    public String getGender() {return gender;}
+
+    public void setGender(String gender) {this.gender = gender;}
+
     public User getUser() {
         return user;
     }
@@ -87,6 +93,10 @@ public class UserData extends BaseModel{
             return this;
         }
 
+        public Builder setGender(String gender) {
+            UserData.this.gender = gender;
+            return this;
+        }
 
         public UserData build() {
             return UserData.this;

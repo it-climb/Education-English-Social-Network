@@ -74,7 +74,7 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             userService.insert(user);
-            userData = UserData.newBuilder().setUser(user).setAge(userData.getAge()).setFirstName(userData.getFirstName()).setSecondName(userData.getSecondName()).build();
+            userData = UserData.newBuilder().setUser(user).setAge(userData.getAge()).setFirstName(userData.getFirstName()).setSecondName(userData.getSecondName()).setGender(userData.getGender()).build();
             userDataService.insert(userData);
 //            UserData userData = userDataService.findByUser(user);
         }
@@ -95,6 +95,18 @@ public class UserController {
     public ModelAndView showLoginProblems(@ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView(JspPath.USER_LOGIN_PROBLEM);
         return modelAndView;
+    }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            ModelAndView modelAndView = new ModelAndView(JspPath.ISE_ERROR_VIEW);
+            return modelAndView;
+        }else {
+            session.invalidate();
+        }
+        return new ModelAndView(JspPath.HOME);
     }
 
 }

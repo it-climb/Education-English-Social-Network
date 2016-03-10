@@ -52,6 +52,7 @@ public class AccountController {
     @RequestMapping(value = "/accountUpdate", method = RequestMethod.POST)
     public ModelAndView addNewOne(@RequestParam(required = true) String firstName,
                                   @RequestParam(required = true) String secondName,
+                                  @RequestParam(required = true) String gender,
                                   @RequestParam(required = true) Integer age,
                                   HttpServletRequest request)throws SQLException {
         HttpSession session = request.getSession();
@@ -59,25 +60,12 @@ public class AccountController {
         ModelAndView modelAndView = new ModelAndView(JspPath.ACCOUNT_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
         UserData userData = userDataService.findByUser(sessionUser);
-        userData.setFirstName(firstName);
-        userData.setSecondName(secondName);
-        userData.setAge(age);
+        userData = UserData.newBuilder().setAge(age).setFirstName(firstName).setSecondName(secondName).setGender(gender).build();
         userDataService.update(userData);
         modelAndView.addObject("userData", userData);
         modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
         modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
         return modelAndView;
     }
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logout(HttpServletRequest request) throws SQLException {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("user");
-        if (sessionUser == null) {
-            ModelAndView modelAndView = new ModelAndView(JspPath.ISE_ERROR_VIEW);
-            return modelAndView;
-        }else {
-        session.invalidate();
-        }
-        return new ModelAndView(JspPath.HOME);
-    }
+
 }
