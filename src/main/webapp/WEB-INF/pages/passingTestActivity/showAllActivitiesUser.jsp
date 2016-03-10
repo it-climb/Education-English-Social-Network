@@ -13,28 +13,28 @@
         <tr>
             <td><a href="/passingTestActivity?id=${activity.value}">${activity.key}</a>     </td>
             <td>
-                <form method="post" action="/deletePassingActivity">
+                <form method="get" action="/showQuestion">
                     <input type="hidden" name="id" value=${activity.value}>
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Test">
                 </form>
             </td>
-            <td><form method="post" action="/editPassingTestActivity">
-                <input type="hidden" name="id" value=${activity.value}>
-                <input type="submit" value="Update">
-            </form>
-            </td>
+                <%--<td><form method="post" action="/editPassingTestActivity">--%>
+                <%--<input type="hidden" name="id" value=${activity.value}>--%>
+                <%--<input type="submit" value="Update">--%>
+                <%--</form>--%>
+                <%--</td>--%>
 
 
 
         </tr>
     </c:forEach>
-    <tr>
-        <td colspan="5">
-            <form method="post" action="/editPassingTestActivity">
-                <input type="submit" value="Add new one">
-            </form>
-        </td>
-    </tr>
+    <%--<tr>--%>
+    <%--<td colspan="5">--%>
+    <%--<form method="post" action="/editPassingTestActivity">--%>
+    <%--<input type="submit" value="Add new one">--%>
+    <%--</form>--%>
+    <%--</td>--%>
+    <%--</tr>--%>
 </table>
 </body>
 </html>

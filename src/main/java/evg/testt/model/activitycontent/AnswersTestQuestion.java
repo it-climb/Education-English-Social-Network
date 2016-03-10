@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AnswersTestQuestion {
     private List<AnswerTestQuestion> answers;
-    private int rigthCountAnswers;
+    private int rightCountAnswers;
 
     public List<AnswerTestQuestion> getAnswers() {
         return answers;
@@ -14,11 +14,11 @@ public class AnswersTestQuestion {
         this.answers = answers;
     }
 
-    public int getRigthCountAnswers() {
-        return rigthCountAnswers;
+    public int getRightCountAnswers() {
+        return rightCountAnswers;
     }
 
-    public void setRigthCountAnswers(int rigthCountAnswers) {
-        this.rigthCountAnswers = rigthCountAnswers;
+    public void setRightCountAnswers(int rightCountAnswers) {
+        this.rightCountAnswers = rightCountAnswers;
     }
 }

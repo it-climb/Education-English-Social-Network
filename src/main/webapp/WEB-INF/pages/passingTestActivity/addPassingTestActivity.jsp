@@ -14,6 +14,8 @@
         <tr>
 
             <td><input type="text" value="${ptaDto.name}" name="name"></td>
+            <input type="hidden" name="id" value="${ptaDto.id}">
+
         </tr>
 
 

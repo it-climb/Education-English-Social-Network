@@ -44,6 +44,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/"> <spring:message code="home.home"/> </a></li>
         <li><a href="/login">LOGIN</a></li>
+        <li><a href="/authorOrUser">TEST</a></li>
         <li><a href="/dep">DEPARTMENTS</a></li>
         <li><a href="/chat">CHAT</a></li>
         <li><a href="/points">POINTS</a></li>

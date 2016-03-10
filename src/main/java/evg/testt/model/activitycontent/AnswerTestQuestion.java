@@ -3,7 +3,7 @@ package evg.testt.model.activitycontent;
 public class AnswerTestQuestion {
     private String answer;
     private String rightAnswer;
-//    private boolean rightAnswer;
+    private String rightAnswerUser;
 
     public String getAnswer() {
         return answer;
@@ -18,15 +18,15 @@ public class AnswerTestQuestion {
     }
 
     public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer = rightAnswer;
+        this.rightAnswer = rightAnswer;}
+
+    public String getRightAnswerUser() {
+        return rightAnswerUser;
     }
-//
-//    public boolean isRightAnswer() {
-//        return rightAnswer;
-//    }
-//
-//    public void setRightAnswer(boolean rightAnswer) {
-//        this.rightAnswer = rightAnswer;
+
+    public void setRightAnswerUser(String rightAnswerUser) {
+        this.rightAnswerUser = rightAnswerUser;
     }
+}
 
 

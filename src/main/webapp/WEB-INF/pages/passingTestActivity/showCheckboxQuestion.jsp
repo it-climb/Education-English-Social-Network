@@ -1,27 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: milu
-  Date: 09.03.16
-  Time: 15:35
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Add Activity</title>
 </head>
 <body>
-<form:form method="post" action="/showQuestion" modelAttribute="ptaDto">
+<form:form method="get" action="/showQuestion" modelAttribute="ptaDto">
     <table>
         <div>
-            <td> Question with Answers</td>
+            <td> Question #${numberQuestion}</td>
         </div>
 
         <tr>
@@ -62,6 +56,7 @@
 
 
 
+
         <%--<tr>--%>
             <%--<td colspan="2">--%>
                 <%--<input type="hidden" name="id" value="${passingActivity.activity.id}">--%>
@@ -70,6 +65,19 @@
             <%--</td>--%>
         <%--</tr>--%>
     </table>
+
+
+    <div align="center">
+        <table>
+        <c:forEach var="item" items="${passingActivity.content.items}">
+            <form method="get" action="/showQuestion">
+                <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
+                <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                <input type="submit" value="${item.numberQuestion}">
+            </form>
+        </c:forEach>
+        </table>
+    </div>
 
     <%--<div align="center">--%>
     <%--<b>Activity Show Page</b>--%>
@@ -89,7 +97,24 @@
     <%--</div>--%>
 
 
+<div>
+    <table>
+        <tr>
+            <td colspan="2">
+                <%--<form method="post" action="/showQuestion">--%>
+                    <input type="hidden" name="numberQuestion" value="${numberQuestion}">
+                    <input type="hidden" name="test" value="1">
+
+                <%--<input type="hidden" name="numberQuestion" value="${numberQuestion+1}">--%>
+                    <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                    <input type="submit" value="Ok">
+            </td>
+        </tr>
+
+    </table>
+</div>
 </form:form>
+
 </body>
 </html>
 

@@ -1,14 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Add Activity</title>
 </head>
 <body>
-<form:form method="post" action="/showQuestion" modelAttribute="ptaDto">
+<form:form method="get" action="/showQuestion" modelAttribute="ptaDto">
     <table>
         <div>
-            <td> Question with Answers</td>
+            <td> Question #${numberQuestion}</td>
         </div>
 
         <tr>
@@ -44,10 +45,9 @@
             <td>Answer 4</td>
             <td><input type="radio"  name="rightAnswer4"></td>
                 <%--<td><input type="hidden" value="${ptaDto.rightAnswer4}" name="rightAnswer4"></td>--%>
-            <td><input type="text" value="${ptaDto.answer4}" name="answer4"disabled></td>
+            <td><input type="text" value="${ptaDto.answer4}" name="answer4" disabled></td>
         </tr>
-
-
+</table>
 
         <%--<tr>--%>
             <%--<td colspan="2">--%>
@@ -56,14 +56,24 @@
                 <%--<input type="submit" value="Ok">--%>
             <%--</td>--%>
         <%--</tr>--%>
-    </table>
 
     <%--<div align="center">--%>
     <%--<b>Activity Show Page</b>--%>
     <%--</div>--%>
 
-    <div class="bot-navigation" align="center"><span>&#9668;</span> <span>1</span> <a href="">2</a> <a href="">3</a> <a href="">4</a> <a href="">5</a>
-    <a href="">6</a> <a href="">7</a> <a href="">8</a> <a href="">9</a> <a href="">10</a> <span class="nav_ext">...</span><a href="">&#9658;</a></div>
+    <div align="center">
+        <table>
+        <c:forEach var="item" items="${passingActivity.content.items}">
+            <form method="get" action="/showQuestion">
+                <input type="hidden" name="numberQuestion" value="${item.numberQuestion}">
+                <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                <input type="submit" value="${item.numberQuestion}">
+            </form>        </c:forEach>
+        </table>
+    </div>
+
+    <%--<div align="center"><span>&#9668;</span> <span>1</span> <a href="/">2</a> <a href="">3</a> <a href="">4</a> <a href="">5</a>--%>
+    <%--<a href="">6</a> <a href="">7</a> <a href="">8</a> <a href="">9</a> <a href="">10</a> <span class="nav_ext">...</span><a href="">&#9658;</a></div>--%>
 
 
     <%--<div>--%>
@@ -76,6 +86,22 @@
     <%--</div>--%>
 
 
+<div>
+    <table>
+        <tr>
+            <td colspan="2">
+                <%--<form method="post" action="/showQuestion">--%>
+                    <input type="hidden" name="numberQuestion" value="${numberQuestion}">
+                    <input type="hidden" name="test" value="1">
+                    <%--<input type="hidden" name="numberQuestion" value="${numberQuestion+1}">--%>
+                    <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                    <input type="submit" value="Ok">
+            </td>
+        </tr>
+
+    </table>
+</div>
 </form:form>
+
 </body>
 </html>

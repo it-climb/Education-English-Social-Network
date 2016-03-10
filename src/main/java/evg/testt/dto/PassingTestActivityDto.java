@@ -73,7 +73,7 @@ public class PassingTestActivityDto {
         this.answer4 = answer4;
     }
 
-    public String isRightAnwer1() {
+    public String getRightAnswer1() {
         return rightAnswer1;
     }
 
@@ -81,7 +81,7 @@ public class PassingTestActivityDto {
         this.rightAnswer1 = rightAnswer1;
     }
 
-    public String isRightAnwer2() {
+    public String getRightAnswer2() {
         return rightAnswer2;
     }
 
@@ -89,7 +89,7 @@ public class PassingTestActivityDto {
         this.rightAnswer2 = rightAnswer2;
     }
 
-    public String isRightAnwer3() {
+    public String getRightAnswer3() {
         return rightAnswer3;
     }
 
@@ -97,7 +97,7 @@ public class PassingTestActivityDto {
         this.rightAnswer3 = rightAnswer3;
     }
 
-    public String isRightAnwer4() {
+    public String getRightAnswer4() {
         return rightAnswer4;
     }
 
