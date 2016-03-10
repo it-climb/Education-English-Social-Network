@@ -68,4 +68,16 @@ public class AccountController {
         modelAndView.addObject("knowledgeLevelPoints", knowledgeLevelPointsService.getListByUser(sessionUser));
         return modelAndView;
     }
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            ModelAndView modelAndView = new ModelAndView(JspPath.ISE_ERROR_VIEW);
+            return modelAndView;
+        }else {
+        session.invalidate();
+        }
+        return new ModelAndView(JspPath.HOME);
+    }
 }

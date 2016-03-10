@@ -23,6 +23,7 @@
                 <li><a href="/translate">TRANSLATOR</a></li>
                 <li><a href="/login">SIGN IN</a></li>
                 <li><a href="/regSave">SIGN UP</a></li>
+                <li><a href="/logout">LOGOUT</a></li>
             </ul>
         </div>
     </div>
