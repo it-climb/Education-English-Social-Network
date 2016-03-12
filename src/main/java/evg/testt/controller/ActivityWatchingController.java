@@ -34,10 +34,9 @@ public class ActivityWatchingController {
     public ModelAndView showAddActivity(HttpServletRequest request){
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
-        /*if(sessionUser == null){
+        if(sessionUser == null){
             return new ModelAndView(JspPath.ISE_ERROR_VIEW);
         }
-        */
         return new ModelAndView(JspPath.WATCHING_ACTIVITY_ADD);
     }
 
