@@ -8,7 +8,7 @@
     <title>Add Activity</title>
 </head>
 <body>
-<h3>Ваш результат: ${result}</h3>
+<h3>Ваш результат: ${result} / ${numberQuestion}</h3>
 <h3>${conclusion}</h3>
 </body>
 </html>

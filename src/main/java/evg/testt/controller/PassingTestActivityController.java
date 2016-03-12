@@ -34,6 +34,14 @@ public class PassingTestActivityController {
     @Autowired
     private UserDataService userDataService;
 
+    /**
+     * the method show selected test activity
+     *
+     * @param request       it must be to get user from session
+     * @param id            id selected activity
+     * @return              show selected activity with questions
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/passingTestActivity", method = RequestMethod.GET)
     public ModelAndView showOneActivity(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
@@ -47,6 +55,14 @@ public class PassingTestActivityController {
         return modelAndView;
     }
 
+    /**
+     * edit selected activity
+     *
+     * @param request       it must be to get user from session
+     * @param id            id selected activity
+     * @return              show edit activity page
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/editPassingTestActivity", method = RequestMethod.POST)
     public ModelAndView updateActivity(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
@@ -66,6 +82,14 @@ public class PassingTestActivityController {
         return modelAndView;
     }
 
+    /**
+     * save new or update edited activity
+     *
+     * @param dto           object with data activity
+     * @param request       it must be to get user from session
+     * @return              page activity with questions
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/saveOrUpdatePassingTestActivity", method = RequestMethod.POST)
     public String addActivity(@ModelAttribute("ptaDto")PassingTestActivityDto dto,
                               HttpServletRequest request) throws SQLException {
@@ -95,6 +119,74 @@ public class PassingTestActivityController {
         return "redirect:/passingActivities";
     }
 
+    /**
+     * show all passing test activities for author with opportunity to create, edit and delete activities
+     *
+     * @return              page with all test activities
+     * @throws              SQLException
+     */
+    @RequestMapping(value = "/passingActivities", method = RequestMethod.GET)
+    public ModelAndView showAllActivitiesAuthor() throws SQLException{
+        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_ALL);
+        List<TestPassingActivity> list = passingTestActivityService.getAll();
+        Map<String, Integer> st = new LinkedHashMap<>();
+        for(TestPassingActivity activity : list){
+            st.put(activity.getActivity().getName(), activity.getActivity().getId());
+        }
+        modelAndView.addObject("activities", st);
+        return modelAndView;
+    }
+
+    /**
+     * show all passing test activities for user with opportunity to pass test any activity
+     *
+     * @return              page with all test activities any of which has one or more questions
+     * @throws              SQLException
+     */
+    @RequestMapping(value = "/passingActivitiesUser", method = RequestMethod.GET)
+    public ModelAndView showAllActivitiesUser() throws SQLException{
+        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_ALL_USER);
+        List<TestPassingActivity> list = passingTestActivityService.getAll();
+        Map<String, Integer> st = new LinkedHashMap<>();
+        for(TestPassingActivity activity : list){
+            if (activity.getContent().getItems() != null)
+                st.put(activity.getActivity().getName(), activity.getActivity().getId());
+        }
+        modelAndView.addObject("activities", st);
+        return modelAndView;
+    }
+
+    /**
+     * delete selected activity
+     *
+     * @param id            id selected activity
+     * @return              page with all test activities
+     * @throws              SQLException
+     */
+    @RequestMapping(value = "/deletePassingActivity", method = RequestMethod.POST)
+    public String deleteActivity(@RequestParam(required = true) Integer id ) throws SQLException {
+        passingTestActivityService.delete(passingTestActivityService.getById(id));
+        return "redirect:/passingActivities";
+    }
+
+    /**
+     * select author or user rights
+     *
+     * @return              page with bottoms
+     */
+    @RequestMapping(value = "/authorOrUser", method = RequestMethod.GET)
+    public ModelAndView chooseAuthorOrUser(){
+        return new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_AUTHOR_OR_USER);
+    }
+
+    /**
+     * show page for add question with answers
+     *
+     * @param request       it must be to get user from session
+     * @param id            id selected activity
+     * @return              page for create question with answers
+     * @throws              SQLException
+     */
     @RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
     public ModelAndView addQuestions(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
@@ -108,8 +200,16 @@ public class PassingTestActivityController {
         }
         return modelAndView;
     }
-//
 
+    /**
+     * create question with answers
+     *
+     * @param dto               object with parameters
+     * @param id                id selected activity
+     * @param numberQuestion    question's number
+     * @return                  activity's page or page for edit question with answers (if during the creation of question has not been selected no one correct answer)
+     * @throws                  SQLException
+     */
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public ModelAndView addQuestion(@ModelAttribute("ptaDto")PassingTestActivityDto dto, @RequestParam(required = true) Integer id,
                               @RequestParam(required = false) Integer numberQuestion) throws SQLException{
@@ -178,6 +278,15 @@ public class PassingTestActivityController {
         }
     }
 
+    /**
+     * edit selected question
+     *
+     * @param request           it must be to get user from session
+     * @param id                id selected activity
+     * @param numberQuestion    number of the selected question
+     * @return                  page for edit question and answers
+     * @throws                  SQLException
+     */
     @RequestMapping(value = "/editQuestion", method = RequestMethod.POST)
     public ModelAndView editQuestion(HttpServletRequest request, @RequestParam(required = false) Integer id,
                                      @RequestParam(required = false) Integer numberQuestion) throws SQLException{
@@ -204,6 +313,43 @@ public class PassingTestActivityController {
         return modelAndView;
     }
 
+    /**
+     * delete selected question
+     *
+     * @param numberQuestion    id of the selected question
+     * @param id                id of the selected activity
+     * @return                  activity's page with questions
+     * @throws                  SQLException
+     */
+    @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
+    public String deleteQuestion(@RequestParam(required = false) Integer numberQuestion, @RequestParam(required = false) Integer id) throws SQLException{
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> list = content.getItems();
+        List<PassingTestData> newList = new ArrayList<>();
+        for (PassingTestData data : list){
+            if(numberQuestion != data.getNumberQuestion()){
+                data.setNumberQuestion(newList.size() + 1);
+                newList.add(data);
+            }
+        }
+        content.setItems(newList);
+        passingActivity.setContent(content);
+        passingTestActivityService.update(passingActivity);
+
+        return "redirect:/passingTestActivity?id=" + id;
+    }
+
+    /**
+     * passing test and show result
+     *
+     * @param dto               object with parameters
+     * @param id                id of the selected activity
+     * @param numberQuestion    number of the selected question
+     * @param test              indication that user answered
+     * @return                  show each question in the test and than show a result
+     * @throws                  SQLException
+     */
     @RequestMapping(value = "/showQuestion", method = RequestMethod.GET)
     public ModelAndView test(@ModelAttribute("ptaDto")PassingTestActivityDto dto,
             @RequestParam(required = false) Integer id,
@@ -249,8 +395,10 @@ public class PassingTestActivityController {
             modelAndView.addObject("passingActivity", passingActivity);
             modelAndView.addObject("numberQuestion", numberQuestion);
         } else {
+            numberQuestion -= 1;
             modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_RESULT);
             int rightAns = 0;
+            list = passingTestActivityService.getById(id).getContent().getItems();
             for (PassingTestData aList : list) {
                 int countRightAns = 0;
                 if (aList.getAnswers().getRightCountAnswers() != 0) {
@@ -271,16 +419,26 @@ public class PassingTestActivityController {
             String conclusion;
             if(rightAns == 0){
                 conclusion = "Вы не ответили ни на один вопрос!";
-            } else if (rightAns*100/numberQuestion < 80){
+            } else if (rightAns*100/(numberQuestion) < 80){
                 conclusion = "Вы не прошли тест! Попробуйте еще раз!";
             } else {
                 conclusion = "Вы прошли тест! Поздравляем!!!";
             }
             modelAndView.addObject("conclusion", conclusion);
+            modelAndView.addObject("numberQuestion", numberQuestion);
+
         }
         return modelAndView;
     }
 
+    /**
+     * save selected answers during the test
+     *
+     * @param dto               object with parameters
+     * @param id                id of the selected activity
+     * @param numberQuestion    number of the selected question
+     * @throws                  SQLException
+     */
     public void answer (PassingTestActivityDto dto, Integer id, Integer numberQuestion) throws SQLException {
 
         TestPassingActivity passingActivity = passingTestActivityService.getById(id);
@@ -304,59 +462,8 @@ public class PassingTestActivityController {
         passingTestActivityService.update(passingActivity);
     }
 
-    @RequestMapping(value = "/deleteQuestion", method = RequestMethod.POST)
-    public String deleteQuestion(@RequestParam(required = false) Integer numberQuestion, @RequestParam(required = false) Integer id) throws SQLException{
-        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
-        TestPassingActivityContent content = passingActivity.getContent();
-        List<PassingTestData> list = content.getItems();
-        List<PassingTestData> newList = new ArrayList<>();
-        for (PassingTestData data : list){
-            if(numberQuestion != data.getNumberQuestion()){
-                data.setNumberQuestion(newList.size() + 1);
-                newList.add(data);
-            }
-        }
-        content.setItems(newList);
-        passingActivity.setContent(content);
-        passingTestActivityService.update(passingActivity);
 
-        return "redirect:/passingTestActivity?id=" + id;
-    }
 
-    @RequestMapping(value = "/passingActivities", method = RequestMethod.GET)
-    public ModelAndView showAllActivitiesAuthor() throws SQLException{
-        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_ALL);
-        List<TestPassingActivity> list = passingTestActivityService.getAll();
-        Map<String, Integer> st = new LinkedHashMap<>();
-        for(TestPassingActivity activity : list){
-            st.put(activity.getActivity().getName(), activity.getActivity().getId());
-        }
-        modelAndView.addObject("activities", st);
-        return modelAndView;
-    }
-    @RequestMapping(value = "/passingActivitiesUser", method = RequestMethod.GET)
-    public ModelAndView showAllActivitiesUser() throws SQLException{
-        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_SHOW_ALL_USER);
-        List<TestPassingActivity> list = passingTestActivityService.getAll();
-        Map<String, Integer> st = new LinkedHashMap<>();
-        for(TestPassingActivity activity : list){
-            if (activity.getContent().getItems() != null)
-            st.put(activity.getActivity().getName(), activity.getActivity().getId());
-        }
-        modelAndView.addObject("activities", st);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/deletePassingActivity", method = RequestMethod.POST)
-    public String deleteActivity(@RequestParam(required = true) Integer id ) throws SQLException {
-        passingTestActivityService.delete(passingTestActivityService.getById(id));
-        return "redirect:/passingActivities";
-    }
-
-    @RequestMapping(value = "/authorOrUser", method = RequestMethod.GET)
-    public ModelAndView chooseAuthorOrUser(){
-        return new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_AUTHOR_OR_USER);
-    }
 
 
 
