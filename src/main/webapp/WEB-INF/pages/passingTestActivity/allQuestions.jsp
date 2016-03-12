@@ -19,11 +19,7 @@
                    Answer: ${answer.answer}
                </div>
            </c:forEach>
-          <%--<h4>Question: ${q.answers} <input type="submit" value="Update"> | <input type="submit" value="Remove"> </h4>--%>
        </div>
-      <div>
-
-      </div>
   </c:forEach>
 </div>
 <div>
