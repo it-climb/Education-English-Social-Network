@@ -1,0 +1,21 @@
+.activity-border{
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    font-family: Helvetica;
+    font-style: normal;
+    color: #5C5C5C;
+    margin-top: 20px;
+}
+.activity-format{
+    background: #F0F0F0;
+    padding: 20px;
+}
+.activity-separate-line{
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.activity-block-interval{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
