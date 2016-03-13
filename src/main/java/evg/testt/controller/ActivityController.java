@@ -97,6 +97,9 @@ public class ActivityController {
         if (num.equals("read")){
             return new ModelAndView(JspPath.READING_ACTIVITY_ADD);
         }
+        if (num.equals("test")){
+            return new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_ADD);
+        }
         return new ModelAndView(JspPath.HOME);
     }
 

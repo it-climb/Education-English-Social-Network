@@ -25,6 +25,11 @@ public class PassingTestActivityDto {
 
     private String rightAnswer4;
 
+    private String returnRightAnswer1;
+    private String returnRightAnswer2;
+    private String returnRightAnswer3;
+    private String returnRightAnswer4;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +116,37 @@ public class PassingTestActivityDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getReturnRightAnswer1() {
+        return returnRightAnswer1;
+    }
+
+    public void setReturnRightAnswer1(String returnRightAnswer1) {
+        this.returnRightAnswer1 = returnRightAnswer1;
+    }
+
+    public String getReturnRightAnswer2() {
+        return returnRightAnswer2;
+    }
+
+    public void setReturnRightAnswer2(String returnRightAnswer2) {
+        this.returnRightAnswer2 = returnRightAnswer2;
+    }
+
+    public String getReturnRightAnswer3() {
+        return returnRightAnswer3;
+    }
+
+    public void setReturnRightAnswer3(String returnRightAnswer3) {
+        this.returnRightAnswer3 = returnRightAnswer3;
+    }
+
+    public String getReturnRightAnswer4() {
+        return returnRightAnswer4;
+    }
+
+    public void setReturnRightAnswer4(String returnRightAnswer4) {
+        this.returnRightAnswer4 = returnRightAnswer4;
     }
 }

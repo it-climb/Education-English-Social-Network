@@ -67,6 +67,16 @@
                         <a href="/updateReadActivity?id=${activity.id}">Edit</a> |
                         <a href="/deleteReadActivity?id=${activity.id}">Delete</a></td></c:if>
                 </c:if>
+                <c:if test="${activity.type.ordinal()==0}">
+                    <c:if test="${activity.author.user.email == email}">
+                        <td><a href="/passingTestActivity?id=${activity.id}">View</a> |
+                        <a href="/editPassingTestActivity?id=${activity.id}">Edit</a> |
+                        <a href="/deletePassingActivity?id=${activity.id}">Delete</a></td>
+                    </c:if>
+                    <c:if test="${activity.author.user.email != email}">
+                <td><a href="/passingActivitiesUser?id=${activity.id}">View</a>
+                </c:if>
+                </c:if>
             </>
 
          <%--   <td>${activity.targetAge}</td>--%>

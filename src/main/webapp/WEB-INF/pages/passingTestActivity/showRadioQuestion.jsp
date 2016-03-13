@@ -10,6 +10,7 @@
     <table>
         <div>
             <td> Question #${numberQuestion}</td>
+
         </div>
 
         <tr>
@@ -51,6 +52,7 @@
                     <input type="hidden" name="id" value="${passingActivity.activity.id}">
                     <input type="submit" value="Ok">
             </td>
+
         </tr>
 
     </table>
@@ -65,6 +67,19 @@
                 <input type="hidden" name="id" value="${passingActivity.activity.id}">
                 <input type="submit" value="${item.numberQuestion}">
             </form>        </c:forEach>
+    </table>
+</div>
+<div>
+    <table>
+        <tr>
+            <form:form method="get" action="/resultTest">
+                <td colspan="2" align="right">
+                    <input type="hidden" name="endTest" value="1">
+                    <input type="hidden" name="id" value="${passingActivity.activity.id}">
+                    <input type="submit" value="Завершить тест">
+                </td>
+            </form:form>
+        </tr>
     </table>
 </div>
 </body>

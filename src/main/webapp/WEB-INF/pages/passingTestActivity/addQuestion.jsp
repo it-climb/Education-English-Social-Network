@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,27 +22,61 @@
 
         <tr>
             <td>Answer 1</td>
-            <td>
+            <c:if test="${ptaDto.returnRightAnswer1 != null}">
+                <td>
+                <input type="checkbox"  name="rightAnswer1" checked>
+                </td>
+            </c:if>
+            <c:if test="${ptaDto.returnRightAnswer1 == null}">
+                <td>
                 <input type="checkbox"  name="rightAnswer1">
-            </td>
+                </td>
+            </c:if>
             <td><input type="text" value="${ptaDto.answer1}" name="answer1"></td>
         </tr>
 
         <tr>
             <td>Answer 2</td>
-            <td><input type="checkbox"  name="rightAnswer2"></td>
+            <c:if test="${ptaDto.returnRightAnswer2 != null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer2" checked>
+                </td>
+            </c:if>
+            <c:if test="${ptaDto.returnRightAnswer2 == null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer2">
+                </td>
+            </c:if>
             <td><input type="text" value="${ptaDto.answer2}" name="answer2"></td>
         </tr>
 
         <tr>
             <td>Answer 3</td>
-            <td><input type="checkbox"  name="rightAnswer3"></td>
+            <c:if test="${ptaDto.returnRightAnswer3 != null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer3" checked>
+                </td>
+            </c:if>
+            <c:if test="${ptaDto.returnRightAnswer3 == null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer3">
+                </td>
+            </c:if>
             <td><input type="text" value="${ptaDto.answer3}" name="answer3"></td>
         </tr>
 
         <tr>
             <td >Answer 4</td>
-            <td><input type="checkbox"  name="rightAnswer4"></td>
+            <c:if test="${ptaDto.returnRightAnswer4 != null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer4" checked>
+                </td>
+            </c:if>
+            <c:if test="${ptaDto.returnRightAnswer4 == null}">
+                <td>
+                    <input type="checkbox"  name="rightAnswer4">
+                </td>
+            </c:if>
             <td><input type="text" value="${ptaDto.answer4}" name="answer4" ></td>
         </tr>
 

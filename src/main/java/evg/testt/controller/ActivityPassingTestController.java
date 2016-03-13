@@ -63,7 +63,7 @@ public class ActivityPassingTestController {
      * @return              show edit activity page
      * @throws              SQLException
      */
-    @RequestMapping(value = "/editPassingTestActivity", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPassingTestActivity", method = RequestMethod.GET)
     public ModelAndView updateActivity(HttpServletRequest request, @RequestParam(required = false) Integer id) throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
@@ -164,7 +164,7 @@ public class ActivityPassingTestController {
      * @return              page with all test activities
      * @throws              SQLException
      */
-    @RequestMapping(value = "/deletePassingActivity", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletePassingActivity", method = RequestMethod.GET)
     public String deleteActivity(@RequestParam(required = true) Integer id ) throws SQLException {
         passingTestActivityService.delete(passingTestActivityService.getById(id));
         return "redirect:/activities";
@@ -222,6 +222,7 @@ public class ActivityPassingTestController {
         if (data == null){
             data = new ArrayList<>();
         }
+
         AnswerTestQuestion answer1 = new AnswerTestQuestion();
         answer1.setAnswer(dto.getAnswer1());
         answer1.setRightAnswer(dto.getRightAnswer1());
@@ -244,7 +245,7 @@ public class ActivityPassingTestController {
         answersTestQuestion.setAnswers(list);
         int count = 0;
         for (int i = 0; i < 4; i++) {
-            if (list.get(i).isRightAnswer() != null && !list.get(i).isRightAnswer().equals("")) {
+            if (list.get(i).getRightAnswer() != null && !list.get(i).getRightAnswer().equals("")) {
                 count++;
             }
         }
@@ -306,9 +307,13 @@ public class ActivityPassingTestController {
         dto.setQuestion(item.getQuestion());
         List<AnswerTestQuestion> list1 = item.getAnswers().getAnswers();
         dto.setAnswer1(list1.get(0).getAnswer());
+        dto.setReturnRightAnswer1(list1.get(0).getRightAnswer());
         dto.setAnswer2(list1.get(1).getAnswer());
+        dto.setReturnRightAnswer2(list1.get(1).getRightAnswer());
         dto.setAnswer3(list1.get(2).getAnswer());
+        dto.setReturnRightAnswer3(list1.get(2).getRightAnswer());
         dto.setAnswer4(list1.get(3).getAnswer());
+        dto.setReturnRightAnswer4(list1.get(3).getRightAnswer());
         modelAndView.addObject("ptaDto", dto);
         modelAndView.addObject("passingActivity", passingActivity);
         modelAndView.addObject("numberQuestion", numberQuestion);
@@ -361,6 +366,7 @@ public class ActivityPassingTestController {
         TestPassingActivity passingActivity = passingTestActivityService.getById(id);
         TestPassingActivityContent content = passingActivity.getContent();
         List<PassingTestData> list = content.getItems();
+
         if (test != null && test == 2) {
             for (PassingTestData aList : list) {
                 numberQuestion = aList.getNumberQuestion();
@@ -397,37 +403,7 @@ public class ActivityPassingTestController {
             modelAndView.addObject("passingActivity", passingActivity);
             modelAndView.addObject("numberQuestion", numberQuestion);
         } else {
-            numberQuestion -= 1;
-            modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_RESULT);
-            int rightAns = 0;
-            list = passingTestActivityService.getById(id).getContent().getItems();
-            for (PassingTestData aList : list) {
-                int countRightAns = 0;
-                if (aList.getAnswers().getRightCountAnswers() != 0) {
-                    List<AnswerTestQuestion> answerTestQuestions = aList.getAnswers().getAnswers();
-                    for (AnswerTestQuestion answerTestQuestion : answerTestQuestions) {
-                        if (answerTestQuestion.isRightAnswer() == null && answerTestQuestion.getRightAnswerUser() == null ||
-                                answerTestQuestion.isRightAnswer() != null && answerTestQuestion.getRightAnswerUser() != null) {
-                            countRightAns++;
-                        }
-                    }
-                    if (countRightAns == 4) {
-                        rightAns++;
-                    }
-                }
-
-            }
-            modelAndView.addObject("result", rightAns);
-            String conclusion;
-            if(rightAns == 0){
-                conclusion = "Вы не ответили ни на один вопрос!";
-            } else if (rightAns*100/(numberQuestion) < 80){
-                conclusion = "Вы не прошли тест! Попробуйте еще раз!";
-            } else {
-                conclusion = "Вы прошли тест! Поздравляем!!!";
-            }
-            modelAndView.addObject("conclusion", conclusion);
-            modelAndView.addObject("numberQuestion", numberQuestion);
+            modelAndView = result(id);
 
         }
         return modelAndView;
@@ -437,7 +413,7 @@ public class ActivityPassingTestController {
      * save selected answers during the test
      *
      * @param dto               object with parameters
-     * @param id                id of the selected activity
+     * @param id                id of the 5selected activity
      * @param numberQuestion    number of the selected question
      * @throws                  SQLException
      */
@@ -464,11 +440,52 @@ public class ActivityPassingTestController {
         passingTestActivityService.update(passingActivity);
     }
 
+    /**
+     * show result after passing test
+     *
+     * @param id                id of the 5selected activity
+     * @return                  result's page
+     * @throws                  SQLException
+     */
+    @RequestMapping(value = "/resultTest", method = RequestMethod.GET)
+    public ModelAndView result(@RequestParam(required = false) Integer id) throws SQLException {
 
+        TestPassingActivity passingActivity = passingTestActivityService.getById(id);
+        TestPassingActivityContent content = passingActivity.getContent();
+        List<PassingTestData> list = content.getItems();
+         int numberQuestion = list.size();
+        ModelAndView modelAndView = new ModelAndView(JspPath.PASSING_TEST_ACTIVITY_RESULT);
+        int rightAns = 0;
+        list = passingTestActivityService.getById(id).getContent().getItems();
+        for (PassingTestData aList : list) {
+            int countRightAns = 0;
+            if (aList.getAnswers().getRightCountAnswers() != 0) {
+                List<AnswerTestQuestion> answerTestQuestions = aList.getAnswers().getAnswers();
+                for (AnswerTestQuestion answerTestQuestion : answerTestQuestions) {
+                    if (answerTestQuestion.getRightAnswer() == null && answerTestQuestion.getRightAnswerUser() == null ||
+                            answerTestQuestion.getRightAnswer() != null && answerTestQuestion.getRightAnswerUser() != null) {
+                        countRightAns++;
+                    }
+                }
+                if (countRightAns == 4) {
+                    rightAns++;
+                }
+            }
 
+        }
+        modelAndView.addObject("result", rightAns);
+        String conclusion;
+        if(rightAns == 0){
+            conclusion = "Вы не ответили ни на один вопрос!";
+        } else if (rightAns*100/(numberQuestion) < 80){
+            conclusion = "Вы не прошли тест! Попробуйте еще раз!";
+        } else {
+            conclusion = "Вы прошли тест! Поздравляем!!!";
+        }
+        modelAndView.addObject("conclusion", conclusion);
+        modelAndView.addObject("numberQuestion", numberQuestion);
 
-
-
-
+    return modelAndView;
+    }
 
 }

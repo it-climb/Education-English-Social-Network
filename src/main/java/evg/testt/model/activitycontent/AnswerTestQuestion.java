@@ -13,7 +13,7 @@ public class AnswerTestQuestion {
         this.answer = answer;
     }
 
-    public String isRightAnswer() {
+    public String getRightAnswer() {
         return rightAnswer;
     }
 
