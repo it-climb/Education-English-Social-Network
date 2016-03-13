@@ -19,8 +19,8 @@
 
             <%--FORMAT--%>
         <div class="row activity-block-interval">
-            <div class="col-md-2"><h4>Format*</h4></div>
-            <div class="col-md-10">
+            <div class="col-lg-2"><h4>Format*</h4></div>
+            <div class="col-lg-10">
                 <div class="activity-format">
                     <div class="activity-separate-line">
                         <button type="button" class="btn btn-primary"> Watching </button>
@@ -37,8 +37,8 @@
 
             <%--TITLE--%>
         <div class="row activity-block-interval">
-            <div class="col-md-2"><h4>Title*</h4></div>
-            <div class="col-md-10">
+            <div class="col-lg-2"><h4>Title*</h4></div>
+            <div class="col-lg-10">
                 <input type="hidden" name="id" value="${id}" >
                 <input type="text" class="form-control" placeholder="Activity Title" name="name" value="${updateWADto.name}">
             </div>
@@ -46,8 +46,8 @@
 
             <%--TARGET AGE--%>
         <div class="row activity-block-interval">
-            <div class="col-md-2"><h4>Target Age*</h4></div>
-            <div class="col-md-10">
+            <div class="col-lg-2"><h4>Target Age*</h4></div>
+            <div class="col-lg-10">
                 <div>
                     <button type="button" class="btn btn-primary"> 6+ </button>
                     <button type="button" class="btn btn-default"> 12+ </button>
@@ -59,14 +59,14 @@
 
             <%--SUBJECTS--%>
         <div class="row activity-block-interval">
-            <div class="col-md-2"><h4>Subjects*</h4></div>
-            <div class="col-md-10">
+            <div class="col-lg-2"><h4>Subjects*</h4></div>
+            <div class="col-lg-10">
                 <div class="activity-separate-line">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="Subject Title">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3 difficulty-btn-class">
                             <button type="button" class="btn btn-primary"> Easy </button>
                             <button type="button" class="btn btn-default"> Normal </button>
                             <button type="button" class="btn btn-default"> Hard </button> <br>
@@ -79,8 +79,8 @@
 
             <%--BUTTON--%>
         <div class="row activity-block-interval">
-            <div class="col-md-2"><h4></h4></div>
-            <div class="col-md-10">
+            <div class="col-lg-2"><h4></h4></div>
+            <div class="col-lg-10">
                 <div>
                     <button type="submit" class="btn btn-primary btn-lg">Save</button>
                     <button type="reset" class="btn btn-default btn-lg">Cancel</button>
