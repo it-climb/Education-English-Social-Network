@@ -15,4 +15,13 @@ public class TestPassingActivityContent extends ActivityContent {
     public void setMagicString(String magicString) {
         this.magicString = magicString;
     }
+
+
+    public List<PassingTestData> getItems() {
+        return items;
+    }
+
+    public void setItems(List<PassingTestData> items) {
+        this.items = items;
+    }
 }

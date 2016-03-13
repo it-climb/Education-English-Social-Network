@@ -2,5 +2,31 @@ package evg.testt.model.activitycontent;
 
 public class AnswerTestQuestion {
     private String answer;
-    private boolean rightAnswer;
+    private String rightAnswer;
+    private String rightAnswerUser;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String isRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer = rightAnswer;}
+
+    public String getRightAnswerUser() {
+        return rightAnswerUser;
+    }
+
+    public void setRightAnswerUser(String rightAnswerUser) {
+        this.rightAnswerUser = rightAnswerUser;
+    }
 }
+
+
