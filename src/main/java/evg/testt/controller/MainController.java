@@ -33,6 +33,10 @@ public class MainController {
 //        return new ModelAndView(JspPath.HOME);
 //    }
 
+    /**
+     * Show button "Submit request" at the end of the main EESN page"
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView showAddForm() {
         return new ModelAndView("contacts/add_form", "contact", new Contact());
