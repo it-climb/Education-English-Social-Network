@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity(name = "subjects_in_activity")
 public class SubjectInActivity extends BaseModel {
+
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;

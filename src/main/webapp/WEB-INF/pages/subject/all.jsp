@@ -13,7 +13,9 @@
         </tr>
         <c:forEach var="subject" items="${subjects}" >
             <tr>
+                <td>${subject.id}</td>
                 <td>${subject.name}</td>
+                <td>${subject.activity.id}</td>
             </tr>
         </c:forEach>
     </table>

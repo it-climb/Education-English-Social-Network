@@ -1,9 +1,6 @@
 package evg.testt.model.activities;
 
-import evg.testt.model.BaseModel;
-import evg.testt.model.KnowledgeLevelUnits;
-import evg.testt.model.SubjectInActivity;
-import evg.testt.model.UserData;
+import evg.testt.model.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -44,7 +41,6 @@ public class Activity extends BaseModel {
         joinColumns = @JoinColumn(name = "activity_pk"),
         inverseJoinColumns = @JoinColumn(name = "activity_fk"))
     private Set<Activity> innerActivities;
-
 
     public Set<UserData> getUsersThatAreFinishedActivity() {
         return usersThatAreFinishedActivity;

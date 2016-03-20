@@ -1,13 +1,11 @@
 package evg.testt.controller;
 
+import evg.testt.model.Subject;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
-import evg.testt.service.ActivityCommonService;
-import evg.testt.service.ActivityService;
-import evg.testt.service.UserDataService;
-import evg.testt.service.UserService;
+import evg.testt.service.*;
 import evg.testt.util.JspPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ActivityController {
@@ -33,6 +33,9 @@ public class ActivityController {
 
     @Autowired
     ActivityService activityService;
+
+    @Autowired
+    SubjectService subjectService;
 
     @Autowired
     ActivityCommonService activityCommonService;
@@ -57,7 +60,8 @@ public class ActivityController {
                                     @RequestParam(required = false) Integer number,
                                     @RequestParam(required = false) Integer page,
                                     @RequestParam(required = false) String author,
-                                    @RequestParam(required = false) boolean onlyMy) throws SQLException {
+                                       @RequestParam(required = false) String subject,
+                                       @RequestParam(required = false) boolean onlyMy) throws SQLException {
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
         if(sessionUser == null){
@@ -73,6 +77,30 @@ public class ActivityController {
         ModelAndView modelAndView = new ModelAndView(JspPath.ACTIVITIES_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
         modelAndView.addObject("paginator", paginator);
+        modelAndView.addObject("sub", subjectService.getAll());
+
+        if (subject != null){
+
+            List<Activity> acts = activityService.getAll();
+            List<Subject> sub = subjectService.getAll();
+            List<Integer> findActivityID = new ArrayList<Integer>();
+            List<Activity> findActivity = new ArrayList<Activity>();
+            for (Subject sub1 : sub) {
+                if (sub1.getName().equals(subject)) {
+                    findActivityID.add(sub1.getActivity().getId());
+                }
+            }
+            for (Integer integer : findActivityID) {
+                for (Activity act : acts) {
+                    if (act.getId().equals(integer)) {
+                        findActivity.add(act);
+                    }
+                }
+            }
+            return modelAndView.addObject("activities", findActivity);
+        }
+
+
         if(onlyMy == true){
             UserData userData = userDataService.findByUser(sessionUser);
             return modelAndView.addObject("activities", activityService.getByAuthor(userData));
@@ -113,3 +141,4 @@ public class ActivityController {
 //    yoursActivities
 
 }
+

@@ -17,6 +17,19 @@
                 <input type="hidden" name="number" value="${paginator.pageSize}">
                 <input type="submit" value="Search for author">
             </form>
+
+            <form method="get" action="/activities">
+                <input type="text" name="subject">
+                <input type="hidden" name="number" value="${paginator.pageSize}">
+                <input type="submit" value="Search for subject">
+            </form>
+
+            <%--<form method="get" action="/activities">--%>
+                <%--<input type="text" name="Subject">--%>
+                <%--<input type="hidden" name="number" value="${paginator.pageSize}">--%>
+                <%--<input type="submit" value="Search for Subject">--%>
+            <%--</form>--%>
+
             <form method="get" action="/activities">
                 <input type="submit" value="Show All">
             </form>
@@ -51,6 +64,8 @@
             <td>${activity.author.secondName}</td>
             <td>${activity.author.age}</td>
             <td>${activity.name}</td>
+
+
                 <%--<td>${activity.targetAge}</td>--%>
                 <%--<td>${activity.type}</td>--%>
                 <%--<td>${activity.subject}</td>--%>
@@ -80,9 +95,12 @@
             </>
 
                 <%--   <td>${activity.targetAge}</td>--%>
-                <%--<c:forEach var="subject" items="${activity.subjects}">--%>
-                <%--<td>${subject.name}</td>--%>
-                <%--</c:forEach>--%>
+
+            <c:forEach var="subject" items="${sub}">
+                <c:if test="${activity.id == subject.activity.id}">
+                    <td>${subject.name}</td>
+                </c:if>
+            </c:forEach>
                 <%--<td>--%>
                 <%--<form method="post" action="/addSubjectInActivity">--%>
                 <%--<input type="text" name="name">--%>
