@@ -1,4 +1,4 @@
-new function ageBtn(id){
+function ageBtn(id){
         if (id == 4){
             document.getElementById('4').classList.remove("btn-default").add("btn-primary");
             document.getElementById('5').classList.remove("btn-primary").add("btn-default");
@@ -24,28 +24,25 @@ new function ageBtn(id){
             document.getElementById('6').classList.remove("btn-primary").add("btn-default");
             }
         }
-new function readBtn() {
+function readBtn() {
     document.getElementById('1').classList.remove("btn-primary");
     document.getElementById('1').classList.add("btn-default");
     document.getElementById('2').classList.remove("btn-default");
     document.getElementById('2').classList.add("btn-primary");
 }
-new function watchBtn() {
+function watchBtn() {
     document.getElementById('1').classList.remove("btn-default");
     document.getElementById('1').classList.add("btn-primary");
     document.getElementById('2').classList.remove("btn-primary");
     document.getElementById('2').classList.add("btn-default");
 }
-function addline()
+function add_input()
 {
-    c++;
-    s=document.getElementById('table').innerHTML;
-    s=s.replace(/[\r\n]/g,'');
-    re=/(.*)(<tr id=.*>)(<\/table>)/gi;
-    s1=s.replace(re,'$2');
-    s2=s1.replace(/\[\d+\]/gi,'['+c+']');
-    s2=s2.replace(/(rmline\()(\d+\))/gi,'$1'+c+')');
-    s=s.replace(re,'$1$2'+s2+'$3');
-    document.getElementById('table').innerHTML=s;
-    return false;
+    var new_input=document.createElement('div');
+    new_input.innerHTML='<br>Subject №'+document.getElementById('inputs').getElementsByTagName('div').length+1+'<br><input name="my_input">';
+    document.getElementById('inputs').appendChild(new_input);
+}
+function del_input()
+{
+    document.getElementById('inputs').removeChild(document.getElementById('inputs').getElementsByTagName('div')[document.getElementById('inputs').getElementsByTagName('div').length-1])
 }

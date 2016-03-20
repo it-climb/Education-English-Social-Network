@@ -7,7 +7,7 @@
     <script src="resources/assets/plugins/bootstrap.js" type="text/javascript"></script>
     <%--<script src="resources/assets/plugins/jquery.easing.min.js" type="text/javascript"></script>--%>
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-    <script src="resources/assets/js/readingA.js"></script>
+    <script type="text/javascript" src="resources/assets/js/readingA.js"></script>
     <meta charset="utf-8">
     <title>Add Read Activity</title>
 </head>
@@ -63,14 +63,8 @@
             <div class="col-md-10">
                 <div class="separate-line">
                     <div class="row">
-                        <div id="table" class="col-md-7">
-                            <table border=0 cellspacing=0 cellpadding=3>
-                                <tr id="newline" number="[0]">
-                                    <td><input type="text" class="form-control" placeholder="Subject Title" name="name[0]"></td>
-                                    <td><a href="#" onclick="return addline();">add</a></td>
-                                    <td valign="top"><a href="#" onclick="return rmline(0);"/>remove</td></tr>
-                            </table>
-                            <%--<input type="text"  placeholder="Subject Title">--%>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" placeholder="Subject Title">
                         </div>
                         <div class="col-md-5">
                             <button type="button" class="btn btn-primary"> Easy </button>
@@ -78,7 +72,10 @@
                             <button type="button" class="btn btn-default"> Hard </button> <br>
                         </div>
                     </div>
+                    <a onclick="add_input()">Add one more subject</a>
                 </div>
+            </div>
+        </div>
 
             <%--BUTTON--%>
         <div class="row block-interval">

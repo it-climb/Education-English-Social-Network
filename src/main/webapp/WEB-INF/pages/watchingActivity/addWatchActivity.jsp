@@ -21,7 +21,7 @@
             <div class="col-md-10">
                 <div class="format">
                     <div class="separate-line">
-                    <button href="/addWatchActivity" type="button" class="btn btn-primary"> Watching </input>
+                    <button href="/addWatchActivity" type="button" class="btn btn-primary"> Watching </button>
                     <button href="/addReadActivity" type="button" class="btn btn-default"> Reading </button>
                     <%--<button type="button" class="btn btn-default"> Typing </button>--%>
                     </div>
