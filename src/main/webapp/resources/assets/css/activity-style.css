@@ -6,16 +6,28 @@
     color: #5C5C5C;
     margin-top: 20px;
 }
-.activity-format{
+.activity-padding{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.format {
     background: #F0F0F0;
     padding: 20px;
 }
-.activity-separate-line{
-    border-bottom: 1px solid #CCCCCC;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+.separate-line {
+    border-color: #999999;
 }
-.activity-block-interval{
+.block-interval {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.date-float{
+    float: right;
+}
+.yellow{
+    color: yellow;
+}
+.block-interval-line {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

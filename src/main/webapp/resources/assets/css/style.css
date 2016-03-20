@@ -304,6 +304,13 @@ padding: 5px;
     float: left;
 }
 
+.text-field{
+    min-width: 200px;
+    max-width: 900px;
+    height: auto;
+    min-height: 30px;
+}
+
 .box {
     min-width: 1000px;
     /*width: auto;*/

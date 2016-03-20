@@ -13,9 +13,9 @@
 <div class="container activity-border">
 
     <%--VIEW HEAD--%>
-    <div class="row activity-block-interval">
+    <div class="row block-interval">
         <div class="col-md-11">
-            <h3>${nameActivity} <button type="button" class="btn btn-danger btn-xs">watch</button></h3>
+            <h4>${nameActivity} <span class="label label-danger">watch</span></h4>
         </div>
         <div class="col-md-1">
            <h3>12+</h3>
@@ -23,7 +23,7 @@
     </div>
 
     <%--BODY--%>
-    <div class="row activity-block-interval">
+    <div class="row block-interval">
         <div class="col-md-12">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="1100" height="500"  class="embed-responsive-item" src="${URL}"  frameborder="0" allowfullscreen align="absmiddle"></iframe>
@@ -32,7 +32,7 @@
     </div>
 
     <%--FOOTER--%>
-    <div class="row activity-block-interval">
+    <div class="row block-interval">
         <div class="col-md-8">
             Physical Science(easy)<br>
             Math(hard)<br>

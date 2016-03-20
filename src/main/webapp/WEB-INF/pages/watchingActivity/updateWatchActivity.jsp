@@ -18,11 +18,11 @@
         <h3>Update activity</h3>
 
             <%--FORMAT--%>
-        <div class="row activity-block-interval">
+        <div class="row block-interval">
             <div class="col-md-2"><h4>Format*</h4></div>
             <div class="col-md-10">
-                <div class="activity-format">
-                    <div class="activity-separate-line">
+                <div class="format">
+                    <div class="separate-line">
                         <button type="button" class="btn btn-primary"> Watching </button>
                         <button type="button" class="btn btn-default"> Reading </button>
                         <button type="button" class="btn btn-default"> Typing </button>
@@ -36,7 +36,7 @@
         </div>
 
             <%--TITLE--%>
-        <div class="row activity-block-interval">
+        <div class="row block-interval">
             <div class="col-md-2"><h4>Title*</h4></div>
             <div class="col-md-10">
                 <input type="hidden" name="id" value="${id}" >
@@ -45,7 +45,7 @@
         </div>
 
             <%--TARGET AGE--%>
-        <div class="row activity-block-interval">
+        <div class="row block-interval">
             <div class="col-md-2"><h4>Target Age*</h4></div>
             <div class="col-md-10">
                 <div>
@@ -58,10 +58,10 @@
         </div>
 
             <%--SUBJECTS--%>
-        <div class="row activity-block-interval">
+        <div class="row block-interval">
             <div class="col-md-2"><h4>Subjects*</h4></div>
             <div class="col-md-10">
-                <div class="activity-separate-line">
+                <div class="separate-line">
                     <div class="row">
                         <div class="col-md-7">
                             <input type="text" class="form-control" placeholder="Subject Title">
@@ -78,7 +78,7 @@
         </div>
 
             <%--BUTTON--%>
-        <div class="row activity-block-interval">
+        <div class="row block-interval">
             <div class="col-md-2"><h4></h4></div>
             <div class="col-md-10">
                 <div>

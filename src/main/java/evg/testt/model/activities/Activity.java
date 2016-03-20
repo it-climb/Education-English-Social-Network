@@ -6,6 +6,7 @@ import evg.testt.model.SubjectInActivity;
 import evg.testt.model.UserData;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Set;
 
 @Entity(name = "activities")
