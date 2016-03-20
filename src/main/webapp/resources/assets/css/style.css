@@ -30,11 +30,11 @@ body {
 }
 
 
-p {
-    font-weight:300;
-    line-height:30px;
-    padding-bottom:20px;
-}
+/*p {*/
+    /*font-weight:300;*/
+    /*line-height:30px;*/
+    /*padding-bottom:20px;*/
+/*}*/
 
 
 .space-free {
@@ -341,3 +341,84 @@ padding: 5px;
     overflow: auto;
     position: relative;
 }
+
+.form-control:active {
+    color: #ddd;
+}
+.content {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.jumbotron{
+    background-image: url('/resources/assets/img/homepage_banner.jpg');
+    background-size: cover;
+    color: white;
+    height: 700px;
+}
+
+.brand{
+    margin-top: 100px;
+    color: darkgray;
+    font-size: 40px;
+
+}
+
+.footer-nav {
+    margin-top: 22px;
+    list-style: none;
+    font-size: 20px;
+
+}
+.footer-nav li {
+    display: inline;
+}
+
+.copy {
+    margin: 25px;
+    margin-left: 50px;
+}
+
+.one {
+    margin-top: 250px;
+}
+.header-search {
+    margin-top: 15px;
+}
+.img-circle {
+    width: 100%;
+    margin-left: 50px;
+
+}
+.reg {
+    margin-top: 15px;
+}
+
+.bottom {
+    height: 70px;
+    background-color: #E3E3E3;
+
+}
+
+.navbar-fixed-top {
+    height: 80px;
+}
+
+.title-content {
+    color: gray;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px;
+}
+
+.cap {
+    padding: 0px;
+}
+
+.thumbnail {
+    background-color: #E3E3E3;
+}
+
+.img-rounded {
+    width: 400px;
+}
+
