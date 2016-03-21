@@ -62,8 +62,8 @@
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-2" >
-        <button type="button" class="btn btn-link btn-lg reg">Log In</button>
-        <button type="button" class="btn btn-primary btn-lg reg">Sign Up</button>
+          <a href="/login" role="button" type="button" class="btn btn-link btn-lg reg">Log In</a>
+          <a href="/regSave" role="button" type="button" class="btn btn-primary btn-lg reg">Sign Up</a>
       </div>
     </div>
   </nav>
