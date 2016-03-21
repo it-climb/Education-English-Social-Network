@@ -39,10 +39,37 @@ function watchBtn() {
 function add_input()
 {
     var new_input=document.createElement('div');
-    new_input.innerHTML='<br>Subject №'+document.getElementById('inputs').getElementsByTagName('div').length+1+'<br><input name="my_input">';
+    new_input.innerHTML='<input type="text" value="" class="form-control" placeholder="Subject Title" id="subject№'+document.getElementById('inputs').getElementsByTagName('div').length+'">';
     document.getElementById('inputs').appendChild(new_input);
 }
 function del_input()
 {
     document.getElementById('inputs').removeChild(document.getElementById('inputs').getElementsByTagName('div')[document.getElementById('inputs').getElementsByTagName('div').length-1])
+}
+function create_list(){
+    //console.log("111")
+    var listOfSubj = new Array();
+
+    for (var i = 0; i <= document.getElementById('inputs').getElementsByTagName('div').length -1 ; i++){
+        //console.log(i,document.getElementById('subject№'+i+'').value);
+        var valueOfInput = document.getElementById('subject№'+i+'').value;
+        listOfSubj[i] = valueOfInput;
+    }
+    var name = document.getElementById('nameField').value;
+    var text = document.getElementById('textField').value;
+    $.ajax({
+        type: 'POST',
+        url: 'localhost:8080/addReadActivity',
+        dataType:"json",
+      // data: { text : text },
+      // data: { name : name },
+        data: { listOfSubj : listOfSubj, text : text, name: name },
+        success: function (resp) {
+            console.log(resp);
+        },
+        error:function (err) {
+            console.error(err);
+        }
+    });
+    //document.getElementById('10').setAttribute('value', ""+listOfSubj);
 }

@@ -13,7 +13,10 @@ import evg.testt.service.ReadingActivityService;
 import evg.testt.service.UserDataService;
 import evg.testt.service.WatchingActivityService;
 import evg.testt.util.JspPath;
+import jdk.nashorn.internal.runtime.Debug;
+import org.mvel2.debug.Debugger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.Set;
 
 @Controller
 public class ActivityReadingController {
@@ -43,8 +48,10 @@ public class ActivityReadingController {
         return new ModelAndView(JspPath.READING_ACTIVITY_ADD);
     }
 
-    @RequestMapping(value = "/addReadActivity", method = RequestMethod.POST)
-    public String addActivity(@ModelAttribute("raDto") ReadActivityDto readActivityDto,
+    @RequestMapping(value = {"/addReadActivity"}, method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+    //@RequestMapping(value = "/addReadActivity", method = RequestMethod.POST)
+    public String addActivity(@ModelAttribute("raDTO") ReadActivityDto readActivityDto,
+                              @RequestParam(required = true, name="listOfSubj") String[] list,
                               HttpServletRequest request)throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");

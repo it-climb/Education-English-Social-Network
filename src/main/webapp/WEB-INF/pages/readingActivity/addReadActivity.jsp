@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <title>Add Read Activity</title>
 </head>
-<body>
+<body onload="add_input()">
 <form:form name="addActivity" method="post" action="/addReadActivity" modelAttribute="raDto">
     <div class="container activity-border">
 
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         Text to read <br>
-                        <input width="auto" type="text" class="form-control text-field" placeholder="Your text"  name="text" value="${raDto.text}">
+                        <input width="auto" type="text" class="form-control text-field" placeholder="Your text" id="textField"  name="text" value="${raDto.text}">
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="row block-interval">
             <div class="col-md-2"><h4>Title*</h4></div>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Activity Title" name="name" value="${raDto.name}">
+                <input type="text" class="form-control" placeholder="Activity Title" id="nameField" name="name" value="${raDto.name}">
             </div>
         </div>
 
@@ -56,15 +56,13 @@
                 </div>
             </div>
         </div>
-
             <%--SUBJECTS--%>
         <div class="row block-interval">
             <div class="col-md-2"><h4>Subjects*</h4></div>
             <div class="col-md-10">
                 <div class="separate-line">
                     <div class="row">
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" placeholder="Subject Title">
+                        <div id="inputs" class="col-md-7">
                         </div>
                         <div class="col-md-5">
                             <button type="button" class="btn btn-primary"> Easy </button>
@@ -73,17 +71,19 @@
                         </div>
                     </div>
                     <a onclick="add_input()">Add one more subject</a>
+                    <a onclick="del_input()">Delete last</a>
                 </div>
             </div>
         </div>
-
             <%--BUTTON--%>
         <div class="row block-interval">
             <div class="col-md-2"><h4></h4></div>
             <div class="col-md-10">
                 <div>
-                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                    <button type="submit" class="btn btn-primary btn-lg" onclick="create_list()">Save</button>
                     <button type="reset" class="btn btn-default btn-lg">Cancel</button>
+                    <%--<input type="hidden" id="10" name="listOfSubj">--%>
+                    <button type="button" class="btn btn-default">List</button>
                 </div>
             </div>
         </div>
