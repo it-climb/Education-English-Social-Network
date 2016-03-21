@@ -85,12 +85,14 @@ public class ActivityController {
             List<Subject> sub = subjectService.getAll();
             List<Integer> findActivityID = new ArrayList<Integer>();
             List<Activity> findActivity = new ArrayList<Activity>();
+
             for (Subject sub1 : sub) {
                 if (sub1.getName().equals(subject)) {
                     findActivityID.add(sub1.getActivity().getId());
                 }
             }
             for (Integer integer : findActivityID) {
+
                 for (Activity act : acts) {
                     if (act.getId().equals(integer)) {
                         findActivity.add(act);
