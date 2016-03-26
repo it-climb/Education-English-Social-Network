@@ -391,6 +391,7 @@ padding: 5px;
 }
 .reg {
     margin-top: 15px;
+    border-radius: 5px;
 }
 
 .bottom {
@@ -420,5 +421,54 @@ padding: 5px;
 
 .img-rounded {
     width: 400px;
+}
+
+.rm {
+    padding-top: 5px;
+}
+.checkbox {
+    font-size: 9px;
+}
+.bg-danger {
+    color: red;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.warning2 {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+}
+.policy {
+    font-size: 9px;
+    color: lightgray;
+    text-align: center;
+}
+.fmp {
+    padding: 0px;
+    /*    padding-top: 15px;*/
+    text-align: center;
+}
+
+.email-password {
+    padding-bottom: 10px;
+}
+
+.modal-footer {
+    margin: 0px;
+    padding-top: 20px;
+    text-align: left;
+}
+.or {
+    text-align: center;
+    padding: 15px;
+}
+.modal-body {
+    padding: 0px;
 }
 

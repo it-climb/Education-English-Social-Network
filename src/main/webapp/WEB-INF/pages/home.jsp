@@ -62,11 +62,202 @@
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-2" >
-          <a href="/login" role="button" type="button" class="btn btn-link btn-lg reg">Log In</a>
-          <a href="/regSave" role="button" type="button" class="btn btn-primary btn-lg reg">Sign Up</a>
+          <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
+          <%--<a href="/login" role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>--%>
+          <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
+          <%--<a href="/regSave" role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>--%>
       </div>
     </div>
   </nav>
+</div>
+
+<div class="modal" id="modal-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default active">Log In</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-2" data-dismiss="modal">Sing Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary  btn-block btns">Log In with Facebook</button>
+        <div class="or">
+          <p><strong>or</strong></p>
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+          <input type="text" class="form-control"  placeholder="Email">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+          <input type="text" class="form-control" placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-primary  btn-block btns">Sign In</button>
+
+        <div class="checkbox">
+          <input type="checkbox">
+          <div class="rm">Remember me</div>
+        </div>
+        <div class="fmp">
+          <p><strong>Forgot my password</strong></p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-1-error">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default active">Log In</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-2" data-dismiss="modal">Sing Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary  btn-block btns">Log In with Facebook</button>
+        <div class="or">
+          <p><strong>or</strong></p>
+        </div>
+        <div class="warning">
+          <p class="bg-danger">Incorrect <strong>Email</strong> or <strong>Password</strong></p>
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+          <input type="text" class="form-control" placeholder="Email">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+          <input type="text" class="form-control"  placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-primary  btn-block btns">Sign In</button>
+
+        <div class="checkbox">
+          <input type="checkbox">
+          <div class="rm">Remember me</div>
+        </div>
+        <div class="fmp">
+          <p><strong>Forgot my password</strong></p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modal-2">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-1" data-dismiss="modal">Log In</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default active">Sing Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary  btn-block btns">Sign Up with Facebook</button>
+        <div class="or">
+          <p><strong>or</strong></p>
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control"  placeholder="Full Name">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+          <input type="text" class="form-control"  placeholder="Email">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+          <input type="text" class="form-control"  placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-primary  btn-block btns">Sign Up</button>
+
+        <div class="checkbox">
+          <input type="checkbox">
+          <div class="rm">Remember me</div>
+        </div>
+        <div class="policy">
+          <p><strong>By signing up to create an account I accept EESN's Terms of Use and Privacy Policy</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-2-error">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-1" data-dismiss="modal">Log In</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default active">Sing Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary  btn-block btns">Sign Up with Facebook</button>
+        <div class="or">
+          <p><strong>or</strong></p>
+        </div>
+        <div>
+          <p class="bg-danger warning2">Incorrect <strong>Full Name</strong> format, <strong>Email</strong> or <strong>Password</strong></p>
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control"  placeholder="Full Name">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+          <input type="text" class="form-control"  placeholder="Email">
+        </div>
+        <div class="input-group email-password">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+          <input type="text" class="form-control"  placeholder="Password">
+        </div>
+        <button type="button" class="btn btn-primary  btn-block btns">Sign Up</button>
+        <div class="checkbox">
+          <input type="checkbox">
+          <div class="rm">Remember me</div>
+        </div>
+
+        <div class="policy">
+          <p><strong>By signing up to create an account I accept EESN's Terms of Use and Privacy Policy</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
