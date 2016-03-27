@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.security.auth.Subject;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -42,5 +43,8 @@ public interface ActivityDao extends JpaRepository<Activity, Integer> {
     @Query("select a from activities a, knowledge_level_units k, subjects s where " +
                     "k.subject = s and s.name like :subject_name")
     List<Activity> findBySubjectName(@Param("subject_name") String subjectName);
+
+//    Page<Activity> findByActivity(Subject subject);
+
 
 }

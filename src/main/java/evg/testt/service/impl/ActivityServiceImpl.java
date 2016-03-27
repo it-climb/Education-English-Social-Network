@@ -3,6 +3,7 @@ package evg.testt.service.impl;
 import evg.testt.dao.ActivityDao;
 import evg.testt.dao.ChatDao;
 import evg.testt.model.Chat;
+import evg.testt.model.Subject;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
@@ -30,4 +31,6 @@ public class ActivityServiceImpl extends BaseService<Activity, ActivityDao> impl
     }
 
     public List<Activity> getByAuthor(UserData userData){return dao.findByAuthor(userData);}
+
+//    List<Activity> getByActivity(Subject subject){return dao.findByActivity(subject);}
 }

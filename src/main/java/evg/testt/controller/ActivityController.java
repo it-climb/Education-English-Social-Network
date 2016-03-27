@@ -97,6 +97,7 @@ public class ActivityController {
                     }
                 }
             }
+//            UserData userData = userDataService.findByUser(sessionUser);
             return modelAndView.addObject("activities", findActivity);
         }
 

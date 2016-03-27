@@ -1,6 +1,7 @@
 package evg.testt.service;
 
 import evg.testt.model.Chat;
+import evg.testt.model.Subject;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
@@ -21,4 +22,6 @@ public interface ActivityService extends Service<Activity> {
     Page<Activity> getAll(Pageable pageable);
 
     List<Activity> getByAuthor(UserData userData);
+
+//    List<Activity> getByActivity(Subject subject);
 }
