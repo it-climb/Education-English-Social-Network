@@ -23,10 +23,10 @@
   <!-- GOOGLE FONT -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-  <![endif]-->
+  <%--<!--[if lt IE 9]>--%>
+  <%--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>--%>
+  <%--<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>--%>
+  <%--<![endif]-->--%>
 </head>
 <body>
 <img src="resources/assets/img/1.jpg" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; bottom: auto; right: auto;" class="vegas-background"><div style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(&quot;resources/assets/plugins/vegas/overlays/02.png&quot;);" class="vegas-overlay"></div>
@@ -449,17 +449,17 @@
 </div>
 <%--<!-- END FOOTER SECTION -->--%>
 
-<%--<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->--%>
-<!-- CORE JQUERY  -->
-<script src="resources/assets/plugins/jquery-1.10.2.js"></script>
-<!-- BOOTSTRAP CORE SCRIPT   -->
-<script src="resources/assets/plugins/bootstrap.js"></script>
-<!-- VEGAS SLIDESHOW SCRIPTS -->
-<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>
-<!-- SCROLL SCRIPTS -->
-<script src="resources/assets/plugins/jquery.easing.min.js"></script>
-<!-- CUSTOM SCRIPTS -->
-<script src="resources/assets/js/custom.js"></script>
+<%--&lt;%&ndash;<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->&ndash;%&gt;--%>
+<%--<!-- CORE JQUERY  -->--%>
+<%--<script src="resources/assets/plugins/jquery-1.10.2.js"></script>--%>
+<%--<!-- BOOTSTRAP CORE SCRIPT   -->--%>
+<%--<script src="resources/assets/plugins/bootstrap.js"></script>--%>
+<%--<!-- VEGAS SLIDESHOW SCRIPTS -->--%>
+<%--<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>--%>
+<%--<!-- SCROLL SCRIPTS -->--%>
+<%--<script src="resources/assets/plugins/jquery.easing.min.js"></script>--%>
+<%--<!-- CUSTOM SCRIPTS -->--%>
+<%--<script src="resources/assets/js/custom.js"></script>--%>
 </body>
 
 </html>
