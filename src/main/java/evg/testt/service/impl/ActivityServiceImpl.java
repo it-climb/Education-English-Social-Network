@@ -32,12 +32,12 @@ public class ActivityServiceImpl extends BaseService<Activity, ActivityDao> impl
 
     public List<Activity> getByAuthor(UserData userData){return dao.findByAuthor(userData);}
 
-    public Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter) {
-        return dao.findBySearchFilter(searchFilter.getPageRequest(),
-                                      searchFilter.getSubjectIDs(),
-                                      searchFilter.getDifficultLevels(),
-                                      searchFilter.getSearchPhrase(),
-                                      searchFilter.getTypes(),
-                                      searchFilter.getTargetAges());
-    }
+//    public Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter) {
+//        return dao.findBySearchFilter(searchFilter.getPageRequest(),
+//                                      searchFilter.getSubjectIDs(),
+//                                      searchFilter.getDifficultLevels(),
+//                                      searchFilter.getSearchPhrase(),
+//                                      searchFilter.getTypes(),
+//                                      searchFilter.getTargetAges());
+//    }
 }

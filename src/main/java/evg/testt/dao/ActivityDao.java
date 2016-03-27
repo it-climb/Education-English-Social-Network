@@ -45,12 +45,12 @@ public interface ActivityDao extends JpaRepository<Activity, Integer> {
                     "k.subject = s and s.name like :subject_name")
     List<Activity> findBySubjectName(@Param("subject_name") String subjectName);
 
-    @Query("select a from activities a where a.id in " +
-            "(select sa.activity_id from subjects_in_activity sa where " +
+    @Query("select a from activities a where " +
+            "a.id in (select distinct sa.activity_id from subjects_in_activity sa where " +
             "sa.subject_id in :subjectIDs and sa.difficult_level in :difficultLevels ) and " +
             "a.name like concat('%', :searchPhrase, '%') and a.type in :types and " +
             "a.targetAge in :targetAges ")
-    Page<Activity> findBySearchFilter(Pageable pageRequest,
+    Page<Activity> searchByFilter(Pageable pageRequest,
                                       @Param("subjectIDs") List<Integer> subjectIDs,
                                       @Param("difficultLevels") List<SubjectDifficult> difficultLevels,
                                       @Param("searchPhrase") String searchPhrase,

@@ -23,5 +23,5 @@ public interface ActivityService extends Service<Activity> {
 
     List<Activity> getByAuthor(UserData userData);
 
-    Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter);
+//    Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter);
 }
