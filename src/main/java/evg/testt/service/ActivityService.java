@@ -1,5 +1,6 @@
 package evg.testt.service;
 
+import evg.testt.dto.ActivitySearchFilterDTO;
 import evg.testt.model.Chat;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
@@ -21,4 +22,6 @@ public interface ActivityService extends Service<Activity> {
     Page<Activity> getAll(Pageable pageable);
 
     List<Activity> getByAuthor(UserData userData);
+
+    Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter);
 }

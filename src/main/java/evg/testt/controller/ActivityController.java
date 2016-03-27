@@ -83,8 +83,8 @@ public class ActivityController {
 
             List<Activity> acts = activityService.getAll();
             List<Subject> sub = subjectService.getAll();
-            List<Integer> findActivityID = new ArrayList<Integer>();
-            List<Activity> findActivity = new ArrayList<Activity>();
+            List<Integer> findActivityID = new ArrayList<>();
+            List<Activity> findActivity = new ArrayList<>();
 
             for (Subject sub1 : sub) {
                 if (sub1.getName().equals(subject)) {
@@ -103,7 +103,7 @@ public class ActivityController {
         }
 
 
-        if(onlyMy == true){
+        if(onlyMy){
             UserData userData = userDataService.findByUser(sessionUser);
             return modelAndView.addObject("activities", activityService.getByAuthor(userData));
         }
