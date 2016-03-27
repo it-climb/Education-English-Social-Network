@@ -1,5 +1,6 @@
 package evg.testt.controller;
 
+import com.google.api.client.json.Json;
 import evg.testt.dto.ReadActivityDto;
 import evg.testt.dto.WatchActivityDto;
 import evg.testt.model.User;
@@ -50,19 +51,19 @@ public class ActivityReadingController {
 
     @RequestMapping(value = {"/addReadActivity"}, method = {RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
     //@RequestMapping(value = "/addReadActivity", method = RequestMethod.POST)
-    public String addActivity(@ModelAttribute("raDTO") ReadActivityDto readActivityDto,
-                              @RequestParam(required = true, name="listOfSubj") String[] list,
+    public String addActivity(/*@ModelAttribute("raDTO") ReadActivityDto readActivityDto,*/
+                              @RequestParam(required = true, name="jsonData") Json list,
                               HttpServletRequest request)throws SQLException{
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
 
         Activity activity = new Activity();
         activity.setType(ActivityType.READING_ACTIVITY);
-        activity.setName(readActivityDto.getName());
+//        activity.setName(readActivityDto.getName());
         activity.setAuthor(userDataService.findByUser(sessionUser));
 
         ReadingActivityContent content = new ReadingActivityContent();
-        content.setText(readActivityDto.getText());
+//        content.setText(readActivityDto.getText());
 
         ReadingActivity readingActivity = new ReadingActivity();
         readingActivity.setActivity(activity);

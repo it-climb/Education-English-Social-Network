@@ -46,30 +46,70 @@ function del_input()
 {
     document.getElementById('inputs').removeChild(document.getElementById('inputs').getElementsByTagName('div')[document.getElementById('inputs').getElementsByTagName('div').length-1])
 }
+
+var listOfSubj = new Array();
+
 function create_list(){
     //console.log("111")
-    var listOfSubj = new Array();
 
     for (var i = 0; i <= document.getElementById('inputs').getElementsByTagName('div').length -1 ; i++){
         //console.log(i,document.getElementById('subject№'+i+'').value);
         var valueOfInput = document.getElementById('subject№'+i+'').value;
         listOfSubj[i] = valueOfInput;
     }
-    var name = document.getElementById('nameField').value;
-    var text = document.getElementById('textField').value;
-    $.ajax({
-        type: 'POST',
-        url: 'localhost:8080/addReadActivity',
-        dataType:"json",
-      // data: { text : text },
-      // data: { name : name },
-        data: { listOfSubj : listOfSubj, text : text, name: name },
-        success: function (resp) {
-            console.log(resp);
-        },
-        error:function (err) {
-            console.error(err);
-        }
-    });
+    alert(listOfSubj);
+    console.log(listOfSubj);
+
+
+
+
+    //$.ajax({
+    //    type: 'POST',
+    //    url: 'localhost:8080/addReadActivity',
+    //    dataType:"json",
+    //  // data: { text : text },
+    //  // data: { name : name },
+    //    data: { listOfSubj : listOfSubj, text : text, name: name },
+    //    success: function (resp) {
+    //        console.log(resp);
+    //    },
+    //    error:function (err) {
+    //        console.error(err);
+    //    }
+    //});
+
+    //$.ajax('localhost:8080/addReadActivity',
+    //    {'name':name,'text':text,'listOfSubj[]':listOfSubj}
+    //    );
+
     //document.getElementById('10').setAttribute('value', ""+listOfSubj);
+}
+
+function sendData() {
+
+    //var name = document.getElementById('nameField').value;
+    //var text = document.getElementById('textField').value;
+    //document.getElementById('addActivity').submit(function () {
+    //    console.log(this);
+    //    console.log(name);
+    //    alert(name);
+    //    console.log(text);
+    //    alert(text);
+        var formData = {
+            "name": $(document.getElementById('nameField').value)
+            , "text": $(document.getElementById('textField').value)
+            , "listOfSubj": $(listOfSubj)
+        };
+        console.log(formData);
+        alert(formData);
+        $.ajax({
+            url: 'localhost:8080/addReadActivity'
+            , type: 'POST'
+            , data: 'jsonData=' + JSON.stringify(formData)
+            , success: function (res) {
+                alert(res);
+            }
+        });
+        //return false;
+    //});
 }

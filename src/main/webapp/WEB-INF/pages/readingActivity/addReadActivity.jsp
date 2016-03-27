@@ -12,7 +12,7 @@
     <title>Add Read Activity</title>
 </head>
 <body onload="add_input()">
-<form:form name="addActivity" method="post" action="/addReadActivity" modelAttribute="raDto">
+<form:form id="addActivity" method="post" action="/addReadActivity">
     <div class="container activity-border">
 
         <h3>Share your knowledge</h3>
@@ -80,7 +80,7 @@
             <div class="col-md-2"><h4></h4></div>
             <div class="col-md-10">
                 <div>
-                    <button type="submit" class="btn btn-primary btn-lg" onclick="create_list()">Save</button>
+                    <button type="submit" class="btn btn-primary btn-lg" onclick="create_list(), sendData()">Save</button>
                     <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                     <%--<input type="hidden" id="10" name="listOfSubj">--%>
                     <button type="button" class="btn btn-default">List</button>

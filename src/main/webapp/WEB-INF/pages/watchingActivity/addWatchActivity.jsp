@@ -60,8 +60,8 @@
             <div class="col-md-10">
                <div class="separate-line">
                    <div class="row">
-                       <div class="col-md-7">
-                           <input type="text" class="form-control" placeholder="Subject Title">
+                           <div class="col-md-7">
+                               <input type="text" class="form-control" placeholder="Subject Title">
                        </div>
                        <div class="col-md-5">
                            <button type="button" class="btn btn-primary"> Easy </button>
