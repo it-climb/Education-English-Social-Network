@@ -2,6 +2,7 @@ package evg.testt.service.impl;
 
 import evg.testt.dao.ActivityDao;
 import evg.testt.dao.ChatDao;
+import evg.testt.dto.ActivitySearchFilterDTO;
 import evg.testt.model.Chat;
 import evg.testt.model.Subject;
 import evg.testt.model.User;
@@ -32,5 +33,12 @@ public class ActivityServiceImpl extends BaseService<Activity, ActivityDao> impl
 
     public List<Activity> getByAuthor(UserData userData){return dao.findByAuthor(userData);}
 
-//    List<Activity> getByActivity(Subject subject){return dao.findByActivity(subject);}
+//    public Page<Activity> getBySearchFilter(ActivitySearchFilterDTO searchFilter) {
+//        return dao.findBySearchFilter(searchFilter.getPageRequest(),
+//                                      searchFilter.getSubjectIDs(),
+//                                      searchFilter.getDifficultLevels(),
+//                                      searchFilter.getSearchPhrase(),
+//                                      searchFilter.getTypes(),
+//                                      searchFilter.getTargetAges());
+//    }
 }

@@ -1,7 +1,9 @@
 package evg.testt.dao;
 
+import evg.testt.model.SubjectDifficult;
 import evg.testt.model.UserData;
 import evg.testt.model.activities.Activity;
+import evg.testt.model.activities.ActivityType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -44,7 +46,16 @@ public interface ActivityDao extends JpaRepository<Activity, Integer> {
                     "k.subject = s and s.name like :subject_name")
     List<Activity> findBySubjectName(@Param("subject_name") String subjectName);
 
-//    Page<Activity> findByActivity(Subject subject);
-
+    @Query("select a from activities a where " +
+            "a.id in (select distinct sa.activity.id from subjects_in_activity sa where " +
+            "sa.subject.id in :subjectIDs and sa.difficultLevel in :difficultLevels ) and " +
+            "a.name like concat('%', :searchPhrase, '%') and a.type in :types and " +
+            "a.targetAge in :targetAges ")
+    Page<Activity> findBySearchFilter(Pageable pageRequest,
+                                      @Param("subjectIDs") List<Integer> subjectIDs,
+                                      @Param("difficultLevels") List<SubjectDifficult> difficultLevels,
+                                      @Param("searchPhrase") String searchPhrase,
+                                      @Param("types") List<ActivityType> types,
+                                      @Param("targetAges") List<String> targetAges);
 
 }
