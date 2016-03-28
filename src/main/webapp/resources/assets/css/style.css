@@ -345,8 +345,13 @@ padding: 5px;
 .form-control:active {
     color: #ddd;
 }
+.home-head {
+    margin: 0px;
+    padding: 0px;
+}
+
 .content {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     margin-bottom: 100px;
 }
 .jumbotron{
@@ -399,11 +404,6 @@ padding: 5px;
     background-color: #E3E3E3;
 
 }
-
-.navbar-fixed-top {
-    height: 80px;
-}
-
 .title-content {
     color: gray;
     font-size: 30px;

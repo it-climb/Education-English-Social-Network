@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +25,13 @@
   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <%--<!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->--%>
+  <%--<!--<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>-->--%>
   <![endif]-->
 </head>
 <body>
 <div>
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default home-head">
     <div class="row">
       <div class="col-md-1">
 
@@ -62,14 +63,14 @@
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-2" >
-          <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
-          <%--<a href="/login" role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>--%>
-          <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
-          <%--<a href="/regSave" role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>--%>
+
+        <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
+        <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
       </div>
     </div>
   </nav>
 </div>
+
 
 <div class="modal" id="modal-1">
   <div class="modal-dialog modal-sm">
@@ -92,15 +93,20 @@
         <div class="or">
           <p><strong>or</strong></p>
         </div>
+        <form:form method="post" action="/userLog">
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-          <input type="text" class="form-control"  placeholder="Email">
+
+        <input type="text" class="form-control"  placeholder="Email" name="email" value="${user.email}">
         </div>
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <input type="text" class="form-control" placeholder="Password">
+
+        <input type="text" class="form-control" placeholder="Password" name="password" value="${user.password}">
         </div>
-        <button type="button" class="btn btn-primary  btn-block btns">Sign In</button>
+          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign In"/>
+
+        </form:form>
 
         <div class="checkbox">
           <input type="checkbox">
@@ -163,7 +169,10 @@
     </div>
   </div>
 </div>
+
+
 <div class="modal" id="modal-2">
+
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
@@ -188,16 +197,20 @@
           <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
           <input type="text" class="form-control"  placeholder="Full Name">
         </div>
+    <form:form action="saveUser" modelAttribute="userReg">
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-          <input type="text" class="form-control"  placeholder="Email">
+          <form:input path="email" type="text" class="form-control"  placeholder="Email"  value="${userReg.email}"/>
         </div>
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <input type="text" class="form-control"  placeholder="Password">
+          <form:input path="password" type="text" class="form-control"  placeholder="Password" value="${userReg.password}"/>
         </div>
-        <button type="button" class="btn btn-primary  btn-block btns">Sign Up</button>
+        <div>
+        <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up"/>
 
+        </div>
+    </form:form>
         <div class="checkbox">
           <input type="checkbox">
           <div class="rm">Remember me</div>
@@ -430,11 +443,11 @@
 <!-- BOOTSTRAP CORE SCRIPT   -->
 <script src="resources/assets/plugins/bootstrap.js"></script>
 <!-- VEGAS SLIDESHOW SCRIPTS -->
-<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>
+<%--<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>--%>
 <!-- SCROLL SCRIPTS -->
-<script src="resources/assets/plugins/jquery.easing.min.js"></script>
+<%--<script src="resources/assets/plugins/jquery.easing.min.js"></script>--%>
 <!-- CUSTOM SCRIPTS -->
-<script src="resources/assets/js/custom.js"></script>
+<%--<script src="resources/assets/js/custom.js"></script>--%>
 </body>
 
 </html>

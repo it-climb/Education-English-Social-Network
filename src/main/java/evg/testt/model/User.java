@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 @Entity(name = "users")
-@FieldEquals( field="password", equalsTo="confirmPassword" )
+//@FieldEquals( field="password", equalsTo="confirmPassword" )
 public class User extends BaseModel {
 
     @Unique(message = "This email already exists")
@@ -27,19 +27,19 @@ public class User extends BaseModel {
     @Size(min = 6, max = 16, message = "Your password must between 6 and 16 characters")
     private String password;
 
-    @Transient
-    @UserPassword
-    @NotEmpty
-    private String confirmPassword;
+//    @Transient
+//    @UserPassword
+//    @NotEmpty
+//    private String confirmPassword;
 
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
+//    public String getConfirmPassword() {
+//        return confirmPassword;
+//    }
+//
+//    public void setConfirmPassword(String confirmPassword) {
+//        this.confirmPassword = confirmPassword;
+//    }
 
     public String getPassword() {
         return password;
