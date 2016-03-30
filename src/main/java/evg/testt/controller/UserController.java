@@ -74,8 +74,8 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             userService.insert(user);
-            userData = UserData.newBuilder().setUser(user).setAge(userData.getAge()).setFirstName(userData.getFirstName()).setSecondName(userData.getSecondName()).build();
-            userDataService.insert(userData);
+//            userData = UserData.newBuilder().setUser(user).setAge(userData.getAge()).setFirstName(userData.getFirstName()).setSecondName(userData.getSecondName()).build();
+//            userDataService.insert(userData);
 //            UserData userData = userDataService.findByUser(user);
         }
         return "redirect:/login";

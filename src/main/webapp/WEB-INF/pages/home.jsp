@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,13 +62,28 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2" >
 
-        <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
-        <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
+        <c:if test="${email != null}">
+      <div class="col-md-1"></div>
+      <div class="col-md-3" >
+          <a role="button" type="button" class="btn btn-primary btn-lg reg">Share knowledge</a>
+        <%--</div>--%>
+      <%--<div class="col-md-1">--%>
+          <img src="resources/assets/img/user2.png" class="img-thumbnail user-foto" >
       </div>
     </div>
+
+        </c:if>
+
+        <c:if test="${email == null}">
+    <div class="col-md-2"></div>
+    <div class="col-md-2" >
+          <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
+          <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
+      </div>
+        </c:if>
+
+
   </nav>
 </div>
 
@@ -193,24 +209,23 @@
         <div class="or">
           <p><strong>or</strong></p>
         </div>
-        <div class="input-group email-password">
+        <form:form action="saveUser" modelAttribute="dto">
+          <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-          <input type="text" class="form-control"  placeholder="Full Name">
+            <form:input path="fullName" type="text" class="form-control"  placeholder="Full Name"  value="${dto.fullName}"/>
         </div>
-    <form:form action="saveUser" modelAttribute="userReg">
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-          <form:input path="email" type="text" class="form-control"  placeholder="Email"  value="${userReg.email}"/>
+          <form:input path="email" type="text" class="form-control"  placeholder="Email"  value="${dto.email}"/>
         </div>
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <form:input path="password" type="text" class="form-control"  placeholder="Password" value="${userReg.password}"/>
+          <form:input path="password" type="text" class="form-control"  placeholder="Password" value="${dto.password}"/>
         </div>
         <div>
         <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up"/>
-
         </div>
-    </form:form>
+        </form:form>
         <div class="checkbox">
           <input type="checkbox">
           <div class="rm">Remember me</div>

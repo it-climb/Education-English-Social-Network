@@ -10,14 +10,18 @@ import java.util.Set;
 @Entity(name = "UserData")
 public class UserData extends BaseModel{
 
-    @NotEmpty(message = "Please, enter your first name")
-    private String firstName;
 
-    @NotEmpty(message = "Please, enter your second name")
-    private String secondName;
 
-    @NotNull(message = "Please, enter your age")
-    private Integer age;
+    private String fullName;
+
+//    @NotEmpty(message = "Please, enter your first name")
+//    private String firstName;
+//
+//    @NotEmpty(message = "Please, enter your second name")
+//    private String secondName;
+//
+//    @NotNull(message = "Please, enter your age")
+//    private Integer age;
 
     @OneToOne(cascade = CascadeType.MERGE )
     @JoinColumn(name = "user_id")
@@ -43,28 +47,36 @@ public class UserData extends BaseModel{
         this.user = user;
     }
 
-    public String getFirstName() {
-        return firstName;
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
+//
+//    public String getSecondName() {
+//        return secondName;
+//    }
+//
+//    public void setSecondName(String secondName) {
+//        this.secondName = secondName;
+//    }
+//
+//    public Integer getAge() {
+//        return age;
+//    }
+//
+//    public void setAge(Integer age) {
+//        this.age = age;
+//    }
+
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public static Builder newBuilder() {
@@ -80,23 +92,28 @@ public class UserData extends BaseModel{
             return this;
         }
 
-        public Builder setFirstName(String name) {
-            UserData.this.firstName = name;
-            return this;
-        }
-
-        public Builder setSecondName(String name) {
-            UserData.this.secondName = name;
-            return this;
-        }
-
-        public Builder setAge(Integer age) {
-            UserData.this.age = age;
-            return this;
-        }
+//        public Builder setFirstName(String name) {
+//            UserData.this.firstName = name;
+//            return this;
+//        }
+//
+//        public Builder setSecondName(String name) {
+//            UserData.this.secondName = name;
+//            return this;
+//        }
+//
+//        public Builder setAge(Integer age) {
+//            UserData.this.age = age;
+//            return this;
+//        }
 
         public Builder setUser(User user) {
             UserData.this.user = user;
+            return this;
+        }
+
+        public Builder setFullName(String name){
+            UserData.this.fullName = name;
             return this;
         }
 
@@ -104,5 +121,7 @@ public class UserData extends BaseModel{
         public UserData build() {
             return UserData.this;
         }
+
+
     }
 }

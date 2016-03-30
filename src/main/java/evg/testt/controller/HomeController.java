@@ -1,5 +1,6 @@
 package evg.testt.controller;
 
+import evg.testt.dto.RegAndLoginDto;
 import evg.testt.model.User;
 import evg.testt.model.UserData;
 import evg.testt.service.UserDataService;
@@ -7,6 +8,7 @@ import evg.testt.service.UserService;
 import evg.testt.util.JspPath;
 import evg.testt.util.validation.UserValid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,8 +44,10 @@ public class HomeController {
         UserData userDataReg = new UserData();
         User userLog = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView(JspPath.HOME);
-        modelAndView.addObject("userReg", userReg);
-        modelAndView.addObject("userDataReg", userDataReg);
+//        modelAndView.addObject("userReg", userReg);
+//        modelAndView.addObject("userDataReg", userDataReg);
+        RegAndLoginDto dto = new RegAndLoginDto();
+        modelAndView.addObject("dto", dto);
         if (userLog != null) {
 
             modelAndView.addObject("email", userLog.getEmail());
@@ -60,7 +64,9 @@ public class HomeController {
 
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-    public String addNewUser(@ModelAttribute("userReg") User userReg,
+    public String addNewUser(@ModelAttribute("dto") RegAndLoginDto dto,
+//                             @RequestParam(required = false) String fullName,
+//                             @ModelAttribute("userData") UserData userData,
 //                             BindingResult result,
                              HttpServletRequest request)throws SQLException {
         //userValid.validate(user, result);
@@ -68,14 +74,36 @@ public class HomeController {
 //            return "users/registration";
 //        }else{
             HttpSession session = request.getSession();
-            session.setAttribute("user", userReg);
-            userService.insert(userReg);
-//            userData = UserData.newBuilder().setUser(user).build();
-//            userDataService.insert(userData);
+        User user = User.newBuilder().setEmail(dto.getEmail()).setPassword(dto.getPassword()).build();
+            session.setAttribute("user", user);
+            userService.insert(user);
+        System.out.println(dto.getFullName());
+           UserData userData = UserData.newBuilder().setUser(user).setFullName(dto.getFullName()).build();
+            userDataService.insert(userData);
 ////            UserData userData = userDataService.findByUser(user);
 //        }
         return "redirect:/";
     }
+// @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+//    public String addNewUser(@ModelAttribute("userReg") User userReg,
+//                             @RequestParam(required = false) String fullName,
+////                             @ModelAttribute("userData") UserData userData,
+////                             BindingResult result,
+//                             HttpServletRequest request)throws SQLException {
+//        //userValid.validate(user, result);
+////        if(result.hasErrors()){
+////            return "users/registration";
+////        }else{
+//            HttpSession session = request.getSession();
+//            session.setAttribute("user", userReg);
+//            userService.insert(userReg);
+//        System.out.println(fullName);
+//           UserData userData = UserData.newBuilder().setUser(userReg).setFullName(fullName).build();
+//            userDataService.insert(userData);
+//////            UserData userData = userDataService.findByUser(user);
+////        }
+//        return "redirect:/";
+//    }
 
     @RequestMapping(value = "/userLog", method = RequestMethod.POST)
     public String updateOne(@RequestParam(required = true) String email, @RequestParam(required = true) String password,
@@ -84,7 +112,7 @@ public class HomeController {
         User user = userService.getByEmail(email);
         if(user!=null && user.getPassword().equals(password/*Integer.toString(password.hashCode())*/)) {
             session.setAttribute("user", user);
-            return "redirect:/success";
+            return "redirect:/";
         }else return "redirect:/loginProblems";
     }
 }

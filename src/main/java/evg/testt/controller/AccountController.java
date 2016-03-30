@@ -59,9 +59,9 @@ public class AccountController {
         ModelAndView modelAndView = new ModelAndView(JspPath.ACCOUNT_SHOW);
         modelAndView.addObject("email", sessionUser.getEmail());
         UserData userData = userDataService.findByUser(sessionUser);
-        userData.setFirstName(firstName);
-        userData.setSecondName(secondName);
-        userData.setAge(age);
+//        userData.setFirstName(firstName);
+//        userData.setSecondName(secondName);
+//        userData.setAge(age);
         userDataService.update(userData);
         modelAndView.addObject("userData", userData);
         modelAndView.addObject("authorshipPoints", authorshipPointsService.getByUser(sessionUser));
