@@ -14,4 +14,12 @@ public class SubjectInActivity extends BaseModel {
     @Column(name = "difficult_level")
     @Enumerated(EnumType.STRING)
     private SubjectDifficult difficultLevel;
+
+    public Subject getSubject() {return subject;}
+
+    public void setSubject(Subject subject) {this.subject = subject;}
+
+    public SubjectDifficult getDifficultLevel() {return difficultLevel;}
+
+    public void setDifficultLevel(SubjectDifficult difficultLevel) {this.difficultLevel = difficultLevel;}
 }

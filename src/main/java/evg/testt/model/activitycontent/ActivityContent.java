@@ -15,12 +15,6 @@ public class ActivityContent implements Serializable {
     @Id
     private Long id;
 
-    private Set<Subject> subjects;
-
-    public Set<Subject> getSubjects() {return subjects;}
-
-    public void setSubjects(Set<Subject> subjects) {this.subjects = subjects;}
-
     public ActivityContent() {
     }
 

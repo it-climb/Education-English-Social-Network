@@ -5,6 +5,7 @@ import evg.testt.dto.ReadActivityDto;
 import evg.testt.dto.WatchActivityDto;
 import evg.testt.model.Subject;
 import evg.testt.model.SubjectDifficult;
+import evg.testt.model.SubjectInActivity;
 import evg.testt.model.User;
 import evg.testt.model.activities.Activity;
 import evg.testt.model.activities.ActivityType;
@@ -65,7 +66,7 @@ public class ActivityReadingController {
         activity.setName(readActivityDto.getName());
         activity.setAuthor(userDataService.findByUser(sessionUser));
 
-        Set<Subject> subject = null;
+        Set<SubjectInActivity> subjectInActivities = null;
         for(int i = 0;i < subjects.length;i++)
         {
             SubjectDifficult subjectDiff = null;
@@ -78,17 +79,16 @@ public class ActivityReadingController {
             if(subjectsDiff[i].equals("hard")) {
                 subjectDiff = SubjectDifficult.HARD;
             }
-            Subject subjectInSet = new Subject();
-            subjectInSet.setName(subjects[i]);
-            subjectInSet.setSubjectDifficult(subjectDiff);
-            subjectInSet.setActivity(activity);
-            subject.add(subjectInSet);
-            int x = subject.size();
+            Subject subject = new Subject();
+            subject.setName(subjects[i]);
+            SubjectInActivity subjectInActivity = new SubjectInActivity();
+            subjectInActivity.setSubject(subject);
+            subjectInActivity.setDifficultLevel(subjectDiff);
+            subjectInActivities.add(subjectInActivity);
         }
 
         ReadingActivityContent content = new ReadingActivityContent();
         content.setText(readActivityDto.getText());
-        content.setSubjects(subject);
 
         ReadingActivity readingActivity = new ReadingActivity();
         readingActivity.setActivity(activity);
