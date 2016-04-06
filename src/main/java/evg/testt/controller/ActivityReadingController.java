@@ -13,9 +13,7 @@ import evg.testt.model.activities.ReadingActivity;
 import evg.testt.model.activities.WatchingActivity;
 import evg.testt.model.activitycontent.ReadingActivityContent;
 import evg.testt.model.activitycontent.WatchingActivityContent;
-import evg.testt.service.ReadingActivityService;
-import evg.testt.service.UserDataService;
-import evg.testt.service.WatchingActivityService;
+import evg.testt.service.*;
 import evg.testt.util.JspPath;
 import jdk.nashorn.internal.runtime.Debug;
 import org.bouncycastle.math.raw.Mod;
@@ -32,6 +30,7 @@ import java.io.Console;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -42,6 +41,12 @@ public class ActivityReadingController {
     private ReadingActivityService readingActivityService;
     @Autowired
     private UserDataService userDataService;
+    @Autowired
+    private SubjectService subjectService;
+    @Autowired
+    private SubjectInActivityService subjectInActivityService;
+    @Autowired
+    private ActivityService activityService;
 
     @RequestMapping(value = "/addReadActivity", method = RequestMethod.GET)
     public ModelAndView showAddActivity(HttpServletRequest request){
@@ -65,8 +70,17 @@ public class ActivityReadingController {
         activity.setType(ActivityType.READING_ACTIVITY);
         activity.setName(readActivityDto.getName());
         activity.setAuthor(userDataService.findByUser(sessionUser));
+        activityService.insert(activity);
 
-        Set<SubjectInActivity> subjectInActivities = null;
+        ReadingActivity readingActivity = new ReadingActivity();
+        readingActivity.setActivity(activity);
+
+        ReadingActivityContent content = new ReadingActivityContent();
+        content.setText(readActivityDto.getText());
+
+        readingActivity.setContent(content);
+        readingActivityService.insert(readingActivity);
+
         for(int i = 0;i < subjects.length;i++)
         {
             SubjectDifficult subjectDiff = null;
@@ -81,19 +95,19 @@ public class ActivityReadingController {
             }
             Subject subject = new Subject();
             subject.setName(subjects[i]);
+//            subject.setActivity(activity);
+            if (subjectService.findByName(subjects[i]) == null)
+            {subjectService.insert(subject);
+            }else{subject = subjectService.findByName(subjects[i]);}
             SubjectInActivity subjectInActivity = new SubjectInActivity();
             subjectInActivity.setSubject(subject);
             subjectInActivity.setDifficultLevel(subjectDiff);
-            subjectInActivities.add(subjectInActivity);
+            subjectInActivity.setActivity(activity);
+            subjectInActivityService.insert(subjectInActivity);
         }
 
-        ReadingActivityContent content = new ReadingActivityContent();
-        content.setText(readActivityDto.getText());
+//        activity.setSubjectInActivitySet(subjectInActivities);
 
-        ReadingActivity readingActivity = new ReadingActivity();
-        readingActivity.setActivity(activity);
-        readingActivity.setContent(content);
-        readingActivityService.insert(readingActivity);
         return new ModelAndView(JspPath.ACTIVITIES_SHOW);
     }
 
@@ -108,6 +122,7 @@ public class ActivityReadingController {
         modelAndView.addObject("text", content.getText());
         modelAndView.addObject("nameAuthor", activity.getAuthor().getUser().getEmail());
         modelAndView.addObject("nameActivity", activity.getName());
+//        modelAndView.addObject("subjects", activity.getSubjectInActivitySet());
         return modelAndView;
     }
 

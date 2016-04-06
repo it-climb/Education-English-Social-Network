@@ -26,6 +26,10 @@ public class Activity extends BaseModel {
     @Enumerated(EnumType.STRING)
     protected ActivityType type;
 
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "activity_id")
+//    private Set<SubjectInActivity> subjectInActivitySet;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Set<KnowledgeLevelUnits> knowledgeLevelUnitsSet;
@@ -46,6 +50,13 @@ public class Activity extends BaseModel {
         inverseJoinColumns = @JoinColumn(name = "activity_fk"))
     private Set<Activity> innerActivities;
 
+//    public Set<SubjectInActivity> getSubjectInActivitySet() {
+//        return subjectInActivitySet;
+//    }
+//
+//    public void setSubjectInActivitySet(Set<SubjectInActivity> subjectInActivitySet) {
+//        this.subjectInActivitySet = subjectInActivitySet;
+//    }
 
     public Set<UserData> getUsersThatAreFinishedActivity() {
         return usersThatAreFinishedActivity;

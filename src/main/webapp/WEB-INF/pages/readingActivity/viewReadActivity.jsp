@@ -36,9 +36,9 @@
     <%--FOOTER--%>
     <div class="row block-interval activity-padding">
         <div class="col-md-8">
-            Physical Science(easy)<br>
-            Math(hard)<br>
-            Something(normal)<br>
+            <%--<c:forEach var="subject" items="${subjectsSet}">--%>
+                <%--<tr><p>${subject}</p></tr></br>--%>
+            <%--</c:forEach>--%>
         </div>
         <div class="col-md-4" align="right">
             <tr>Date of create by <a>${nameAuthor}</a></tr>
