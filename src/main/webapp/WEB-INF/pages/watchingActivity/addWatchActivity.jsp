@@ -2,14 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link href="resources/assets/css/bootstrap.css" rel="stylesheet">
     <link href="resources/assets/css/activity-style.css" rel="stylesheet">
     <script src="resources/assets/plugins/bootstrap.js" type="text/javascript"></script>
-    <script src="resources/assets/plugins/jquery.easing.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="resources/assets/js/subjects.js"></script>
+    <script type="text/javascript" src="resources/assets/js/test.js"></script>
     <meta charset="utf-8">
     <title>Add Watch Activity</title>
 </head>
-<body>
+<body onload="add_input()">
 <form:form method="post" action="/addWatchActivity" modelAttribute="waDto">
     <div class="container activity-border">
 
@@ -21,8 +23,8 @@
             <div class="col-md-10">
                 <div class="format">
                     <div class="separate-line">
-                    <button href="/addWatchActivity" type="button" class="btn btn-primary"> Watching </button>
-                    <button href="/addReadActivity" type="button" class="btn btn-default"> Reading </button>
+                        <button id="1" type="button" class="btn btn-default" onclick="watchBtn()"> Watching </button>
+                        <button id="2" type="button" class="btn btn-primary" onclick="readBtn()"> Reading </button>
                     <%--<button type="button" class="btn btn-default"> Typing </button>--%>
                     </div>
                     <div>
@@ -46,10 +48,10 @@
             <div class="col-md-2"><h4>Target Age*</h4></div>
             <div class="col-md-10">
                 <div>
-                    <button type="button" class="btn btn-primary"> 6+ </button>
-                    <button type="button" class="btn btn-default"> 12+ </button>
-                    <button type="button" class="btn btn-default"> 16+ </button>
-                    <button type="button" class="btn btn-default"> 18+ </button>
+                    <button id="4" type="button" class="btn btn-primary" onclick="ageBtn(4)"> 6+ </button>
+                    <button id="5" type="button" class="btn btn-default" onclick="ageBtn(5)"> 12+ </button>
+                    <button id="6" type="button" class="btn btn-default" onclick="ageBtn(6)"> 16+ </button>
+                    <button id="7" type="button" class="btn btn-default" onclick="ageBtn(7)"> 18+ </button>
                 </div>
             </div>
         </div>
@@ -60,16 +62,13 @@
             <div class="col-md-10">
                <div class="separate-line">
                    <div class="row">
-                           <div class="col-md-7">
-                               <input type="text" class="form-control" placeholder="Subject Title">
+                       <div id="inputs" class="col-md-7">
                        </div>
-                       <div class="col-md-5">
-                           <button type="button" class="btn btn-primary"> Easy </button>
-                           <button type="button" class="btn btn-default"> Normal </button>
-                           <button type="button" class="btn btn-default"> Hard </button> <br>
+                       <div id="btns" class="col-md-5">
                        </div>
                    </div>
-                   <a>Add one more subject</a>
+                   <a onclick="add_input()">Add one more subject</a>
+                   <a onclick="del_input()">Delete last</a>
                </div>
             </div>
         </div>

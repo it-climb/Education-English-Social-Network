@@ -1,23 +1,22 @@
 package evg.testt.dto;
 
 import java.lang.reflect.Array;
-import java.util.Set;
 
 public class ReadActivityDto {
 
-    private Array listOfSubj;
+//    private Array listOfSubj;
 
     private String name;
 
     private String text;
 
-    public Array getListOfSubj() {
-        return listOfSubj;
-    }
-
-    public void setListOfSubj(Array listOfSubj) {
-        this.listOfSubj = listOfSubj;
-    }
+    //    public Array getListOfSubj() {
+//        return listOfSubj;
+//    }
+//
+//    public void setListOfSubj(Array listOfSubj) {
+//        this.listOfSubj = listOfSubj;
+//    }
 
     public String getName() {
         return name;

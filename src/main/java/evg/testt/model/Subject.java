@@ -16,7 +16,11 @@ public class Subject extends BaseModel {
 
     private String name;
 
+    private SubjectDifficult subjectDifficult;
 
+    public SubjectDifficult getSubjectDifficult() {return subjectDifficult;}
+
+    public void setSubjectDifficult(SubjectDifficult subjectDifficult) {this.subjectDifficult = subjectDifficult;}
 
     public String getName() {
         return name;

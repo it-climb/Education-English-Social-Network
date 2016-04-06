@@ -2,17 +2,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <link href="resources/assets/css/bootstrap.css" rel="stylesheet">
     <link href="resources/assets/css/activity-style.css" rel="stylesheet">
     <script src="resources/assets/plugins/bootstrap.js" type="text/javascript"></script>
-    <%--<script src="resources/assets/plugins/jquery.easing.min.js" type="text/javascript"></script>--%>
-    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-    <script type="text/javascript" src="resources/assets/js/readingA.js"></script>
+    <script type="text/javascript" src="resources/assets/js/subjects.js"></script>
+    <script type="text/javascript" src="resources/assets/js/test.js"></script>
     <meta charset="utf-8">
     <title>Add Read Activity</title>
 </head>
-<body onload="add_input()">
-<form:form id="addActivity" method="post" action="/addReadActivity">
+<body onload="add_input();">
+<form:form id="form" method="post" action="/addReadActivity" modelAttribute="raDto">
     <div class="container activity-border">
 
         <h3>Share your knowledge</h3>
@@ -64,10 +64,7 @@
                     <div class="row">
                         <div id="inputs" class="col-md-7">
                         </div>
-                        <div class="col-md-5">
-                            <button type="button" class="btn btn-primary"> Easy </button>
-                            <button type="button" class="btn btn-default"> Normal </button>
-                            <button type="button" class="btn btn-default"> Hard </button> <br>
+                        <div id="btns" class="col-md-5">
                         </div>
                     </div>
                     <a onclick="add_input()">Add one more subject</a>
@@ -80,10 +77,11 @@
             <div class="col-md-2"><h4></h4></div>
             <div class="col-md-10">
                 <div>
-                    <button type="submit" class="btn btn-primary btn-lg" onclick="create_list(), sendData()">Save</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
                     <button type="reset" class="btn btn-default btn-lg">Cancel</button>
                     <%--<input type="hidden" id="10" name="listOfSubj">--%>
-                    <button type="button" class="btn btn-default">List</button>
+                    <%--<input type="hidden" id="listOfSubj" value="">List</input>--%>
+                    <%--<button type="button" id="selector" value="click">Lisy</button>--%>
                 </div>
             </div>
         </div>

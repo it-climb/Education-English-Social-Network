@@ -43,6 +43,8 @@ public class ActivityWatchingController {
     @RequestMapping(value = "/addWatchActivity", method = RequestMethod.POST)
     public String addActivity(@ModelAttribute("waDto") WatchActivityDto watchActivityDto,
                               HttpServletRequest request)throws SQLException{
+        String[] subjects = request.getParameterValues("subject");
+        String[] subjectsDiff = request.getParameterValues("subjectDifficult");
 
         HttpSession session = request.getSession();
         User sessionUser = (User) session.getAttribute("user");
