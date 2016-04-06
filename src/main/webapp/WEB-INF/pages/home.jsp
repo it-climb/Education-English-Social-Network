@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
+<%--<html lang="en" ng-app>--%>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -40,7 +41,6 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">
               <img alt="Brand" src="resources/assets/img/logo.png" class="img-circle">
-
             </a>
           </div>
         </div>
@@ -48,12 +48,10 @@
       <div class="col-md-1">
                <span class="brand">
                   <p class="navbar-text"><strong>EESN</strong></p>
-
                </span>
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-4">
-
         <div class="header-search">
           <div class="input-group input-group-lg">
             <span class="input-group-addon">Catalog</span>
@@ -64,38 +62,31 @@
       </div>
 
         <c:if test="${email != null}">
-      <div class="col-md-1"></div>
-      <div class="col-md-3" >
-          <a role="button" type="button" class="btn btn-primary btn-lg reg">Share knowledge</a>
-        <%--</div>--%>
-      <%--<div class="col-md-1">--%>
-          <img src="resources/assets/img/user2.png" class="img-thumbnail user-foto" >
-      </div>
-    </div>
-
+            <div class="col-md-1"></div>
+            <div class="col-md-2" >
+                <a role="button" type="button" class="btn btn-primary btn-lg reg">Share knowledge</a>
+              </div>
+            <div class="col-md-1">
+                <img src="resources/assets/img/user2.png" class="img-thumbnail user-foto" >
+            </div>
+          </div>
         </c:if>
 
         <c:if test="${email == null}">
-    <div class="col-md-2"></div>
-    <div class="col-md-2" >
-          <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
-          <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
-      </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-2" >
+                <a role="button" type="button" class="btn btn-link btn-lg reg" data-toggle="modal" data-target="#modal-1">Log In</a>
+                <a role="button" type="button" class="btn btn-primary btn-lg reg" data-toggle="modal" data-target="#modal-2">Sign Up</a>
+            </div>
         </c:if>
-
-
   </nav>
 </div>
-
 
 <div class="modal" id="modal-1">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
       <div class="modal-body">
-
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default active">Log In</button>
           </div>
@@ -108,20 +99,19 @@
         <button type="button" class="btn btn-primary  btn-block btns">Log In with Facebook</button>
         <div class="or">
           <p><strong>or</strong></p>
-        </div>
+        </div >
+
         <form:form method="post" action="/userLog">
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                    <input type="email" class="form-control"  placeholder="Email" name="email" value="${user.email}">
+          </div>
 
-        <input type="text" class="form-control"  placeholder="Email" name="email" value="${user.email}">
-        </div>
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-
-        <input type="text" class="form-control" placeholder="Password" name="password" value="${user.password}">
-        </div>
-          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign In"/>
-
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+          <input type="password" class="form-control" placeholder="Password" name="password" value="${user.password}">
+          </div>
+            <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign In"/>
         </form:form>
 
         <div class="checkbox">
@@ -131,8 +121,6 @@
         <div class="fmp">
           <p><strong>Forgot my password</strong></p>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -141,11 +129,8 @@
 <div class="modal" id="modal-1-error">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
       <div class="modal-body">
-
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default active">Log In</button>
           </div>
@@ -179,8 +164,6 @@
         <div class="fmp">
           <p><strong>Forgot my password</strong></p>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -188,14 +171,10 @@
 
 
 <div class="modal" id="modal-2">
-
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
       <div class="modal-body">
-
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-1" data-dismiss="modal">Log In</button>
           </div>
@@ -209,23 +188,23 @@
         <div class="or">
           <p><strong>or</strong></p>
         </div>
-        <form:form action="saveUser" modelAttribute="dto">
+
+        <form:form action="saveUser" modelAttribute="dto" name="myForm">
           <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <form:input path="fullName" type="text" class="form-control"  placeholder="Full Name"  value="${dto.fullName}"/>
-        </div>
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-          <form:input path="email" type="text" class="form-control"  placeholder="Email"  value="${dto.email}"/>
-        </div>
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <form:input path="password" type="text" class="form-control"  placeholder="Password" value="${dto.password}"/>
-        </div>
-        <div>
-        <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up"/>
-        </div>
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control"  placeholder="Full Name" value="${dto.fullName}" name="fullName" ng-model="fullName" ng-length="1" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </div>
+            <input type="email" class="form-control"  placeholder="Email" name="email" ng-model="email" value="${dto.email}" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+            <input type="password" class="form-control"  placeholder="Password" name="password" ng-model="password" ng-minlength="3" value="${dto.password}" required>
+          </div>
+          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.fullName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
         </form:form>
+
         <div class="checkbox">
           <input type="checkbox">
           <div class="rm">Remember me</div>
@@ -241,11 +220,8 @@
 <div class="modal" id="modal-2-error">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-
       <div class="modal-body">
-
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-1" data-dismiss="modal">Log In</button>
           </div>
@@ -262,24 +238,26 @@
         <div>
           <p class="bg-danger warning2">Incorrect <strong>Full Name</strong> format, <strong>Email</strong> or <strong>Password</strong></p>
         </div>
+      <form:form action="saveUser" modelAttribute="dto" name="myForm">
+
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-          <input type="text" class="form-control"  placeholder="Full Name">
+          <input type="text" class="form-control"  placeholder="Full Name" value="${dto.fullName}" name="fullName" ng-model="fullName" ng-length="1" required>
         </div>
         <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-          <input type="text" class="form-control"  placeholder="Email">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </div>
+          <input type="email" class="form-control"  placeholder="Email" name="email" ng-model="email" value="${dto.email}" required>
         </div>
         <div class="input-group email-password">
           <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <input type="text" class="form-control"  placeholder="Password">
+          <input type="password" class="form-control"  placeholder="Password" name="password" ng-model="password" ng-minlength="3" value="${dto.password}" required>
         </div>
-        <button type="button" class="btn btn-primary  btn-block btns">Sign Up</button>
+          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.fullName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
+      </form:form>
         <div class="checkbox">
           <input type="checkbox">
           <div class="rm">Remember me</div>
         </div>
-
         <div class="policy">
           <p><strong>By signing up to create an account I accept EESN's Terms of Use and Privacy Policy</strong></p>
         </div>
@@ -288,9 +266,6 @@
   </div>
 </div>
 
-
-
-
 <div class="content">
   <div class="jumbotron" >
     <div class="row">
@@ -298,11 +273,10 @@
       <div class="col-lg-4">
         <div class="one">
           <div class="input-group input-group-lg" >
-
             <input type="text" class="form-control" placeholder="Search for knowledge...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
           </div>
         </div>
       </div>
@@ -452,11 +426,16 @@
   </div>
 </div>
 
+
+
+<script src="http://code.angularjs.org/1.2.3/angular.min.js"></script>
+
 <%--<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->--%>
 <!-- CORE JQUERY  -->
 <script src="resources/assets/plugins/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP CORE SCRIPT   -->
 <script src="resources/assets/plugins/bootstrap.js"></script>
+
 <!-- VEGAS SLIDESHOW SCRIPTS -->
 <%--<script src="resources/assets/plugins/vegas/jquery.vegas.min.js"></script>--%>
 <!-- SCROLL SCRIPTS -->
