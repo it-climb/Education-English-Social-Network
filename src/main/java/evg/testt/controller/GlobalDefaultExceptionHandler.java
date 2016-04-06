@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
 
+
+    /**
+     * Draw a page with Exception (404 Error) if you perform a illegal task
+     * @param request
+     * @param e
+     * @return
+     * @throws Exception
+     */
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultExceptionHandler(HttpServletRequest request, Exception e) throws Exception {
         ModelAndView modelAndView = new ModelAndView();

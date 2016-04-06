@@ -14,8 +14,16 @@ import javax.persistence.Entity;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
+/**
+ * Create model of user with fields: name and password
+ */
 @Entity(name = "users")
 @FieldEquals( field="password", equalsTo="confirmPassword" )
+
+/**
+ * Create blueprint of model user, describe mistakes you can make when create new one
+ * BaseModel give all the users id and version in DB
+ */
 public class User extends BaseModel {
 
     @Unique(message = "This email already exists")
