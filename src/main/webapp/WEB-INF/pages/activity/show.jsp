@@ -266,52 +266,52 @@
 <div class="content">
     <div class="heading">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
             </div>
+            <div id="type" class="col-md-8">
+            <form class="form-inline">
+                <div class="form-group">
 
+                    <label>Type:</label>
 
-            <div id="type" class="col-md-3">
-                Type:
-
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-md">Watching</button>
-                    <button type="button" class="btn btn-primary btn-md">Reading</button>
-                    <button type="button" class="btn btn-primary btn-md">Typing</button>
-                </div>
-
-            </div>
-            <div id="age" class="col-md-4">
-                <div class="col-md-4">
-                    <p id="sort" class="text-right">Target age:</p>
-                </div>
-                <div class="col-md-8">
-                    <div class="col-sm-12">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-md">6+</button>
-                            <button type="button" class="btn btn-primary btn-md">12+</button>
-                            <button type="button" class="btn btn-primary btn-md">16+</button>
-                            <button type="button" class="btn btn-primary btn-md">18+</button>
-                        </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-md">Watching</button>
+                        <button type="button" class="btn btn-primary btn-md">Reading</button>
+                        <button type="button" class="btn btn-primary btn-md">Typing</button>
                     </div>
                 </div>
-            </div>
 
-            <div id="sorting" class="col-md-3">
-                <div class="col-md-4">
-                    <p id="sort" class="text-right">Sorting:</p>
+                <div id="age" class="form-group">
+
+                    <label>Target age:</label>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-md">6+</button>
+                        <button type="button" class="btn btn-primary btn-md">12+</button>
+                        <button type="button" class="btn btn-primary btn-md">16+</button>
+                        <button type="button" class="btn btn-primary btn-md">18+</button>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="dropdown">
+                <div class="form-group">
+                    <div id="sorting" class="col-md-3">
+                    <label>Sorting:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="dropdown">
                         <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">most rated first
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">most rated first</a></li>
                         </ul>
                     </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+
                 </div>
             </div>
-        </div>
-    </div>
+
     <div style="clear: both "></div>
     <div class="content" >
         <div class="row">
@@ -349,7 +349,7 @@
                             <div class="col-lg-3">
 
                                 <div id="imgAct" class="thumbnail">
-                                    <img src="pic_mountain.jpg" alt="Mountain View">
+                                    <img src="resources/assets/img/user2.png" alt="Mountain View">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -385,27 +385,48 @@
                 </div>
             </div>
 
-
-            <div class="row">
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
-                    <ul id="pagin" class = "pagination pagination-lg">
-                        <li><a href = "#">&laquo;</a></li>
-                        <li class="active"><a href = "#">1</a></li>
-                        <li><a href = "#">2</a></li>
-                        <li><a href = "#">3</a></li>
-                        <li><a href = "#">4</a></li>
-                        <li><a href = "#">5</a></li>
-                        <li><a href = "#">&raquo;</a></li>
-                    </ul>
-                </div>
-            </div>
-
+<%--<div>--%>
+            <%--<c:if test="${author == null}">--%>
+                <%--&lt;%&ndash;<a href="/activities?page=1">first</a>  |&ndash;%&gt;--%>
+                <%--<c:if test="${paginator.hasPrevious()}">--%>
+                    <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">previous</a>  |--%>
+                <%--</c:if>--%>
+                <%--current: ${paginator.getPageNumber()+1}  |--%>
+                <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">next</a>  |--%>
+                <%--&lt;%&ndash;<a href="/activities?page="></a>last&ndash;%&gt;--%>
+            <%--</c:if>--%>
+            <%--<c:if test="${author != null}">--%>
+                <%--<c:if test="${paginator.hasPrevious()}">--%>
+                    <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}&author=${author}">previous</a>  |--%>
+                <%--</c:if>--%>
+                <%--current: ${paginator.getPageNumber()+1}  |--%>
+                <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}&author=${author}">next</a>  |--%>
+            <%--</c:if>--%>
+<%--</div>>--%>
 
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-4">
+        <ul id="pagin" class = "pagination pagination-lg">
+            <li>
+                <a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">&laquo;</a></li>
+            <li class="active"><a href = "#">1</a></li>
+            <li><a href = "#">2</a></li>
+            <li><a href = "#">3</a></li>
+            <li><a href = "#">4</a></li>
+            <li><a href = "#">5</a></li>
+            <li>
+                <a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
+
+
             <div style="clear: both "></div>
 
             <div class="bottom">

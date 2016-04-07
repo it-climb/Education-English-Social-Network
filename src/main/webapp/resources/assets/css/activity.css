@@ -196,8 +196,8 @@ input.ng-invalid {
 #activity {
     margin: 10px;
     height: 150px;
-    background: #FFFAFA;
-    border: 2px solid #000000;
+    background: #F8F8F8;
+    border: 1px solid #E3E3E3;
 }
 
 #imgAct {
@@ -233,3 +233,36 @@ input.ng-invalid {
 #rait {
     margin-right: 10px;
 }
+
+#leftside {
+
+    margin-left: 30px;
+}
+
+.btn {
+    border-radius: 15px;
+}
+
+#sorting {
+
+    margin-top: 7px;
+}
+
+.heading {
+
+    margin-top: 15px;
+}
+/*#type {*/
+
+    /*pading-rigth: 0px;*/
+    /*pading-left: 2px;*/
+/*}*/
+
+#age {
+    margin-left: 15px;
+}
+
+/*#sorting {*/
+    /*pading-rigth: 0px;*/
+    /*pading-left: 2px;*/
+/*}*/
