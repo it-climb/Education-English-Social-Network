@@ -12,13 +12,13 @@ public class UserData extends BaseModel{
 
 
 
-    private String fullName;
+//    private String fullName;
 
 //    @NotEmpty(message = "Please, enter your first name")
-//    private String firstName;
+    private String firstName;
 //
 //    @NotEmpty(message = "Please, enter your second name")
-//    private String secondName;
+    private String secondName;
 //
 //    @NotNull(message = "Please, enter your age")
 //    private Integer age;
@@ -47,22 +47,22 @@ public class UserData extends BaseModel{
         this.user = user;
     }
 
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public String getSecondName() {
-//        return secondName;
-//    }
-//
-//    public void setSecondName(String secondName) {
-//        this.secondName = secondName;
-//    }
-//
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
 //    public Integer getAge() {
 //        return age;
 //    }
@@ -71,13 +71,13 @@ public class UserData extends BaseModel{
 //        this.age = age;
 //    }
 
-    public String getFullName() {
-        return fullName;
-    }
+//    public String getFullName() {
+//        return fullName;
+//    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
 
     public static Builder newBuilder() {
         return new UserData().new Builder();
@@ -92,15 +92,15 @@ public class UserData extends BaseModel{
             return this;
         }
 
-//        public Builder setFirstName(String name) {
-//            UserData.this.firstName = name;
-//            return this;
-//        }
-//
-//        public Builder setSecondName(String name) {
-//            UserData.this.secondName = name;
-//            return this;
-//        }
+        public Builder setFirstName(String name) {
+            UserData.this.firstName = name;
+            return this;
+        }
+
+        public Builder setSecondName(String name) {
+            UserData.this.secondName = name;
+            return this;
+        }
 //
 //        public Builder setAge(Integer age) {
 //            UserData.this.age = age;
@@ -112,10 +112,10 @@ public class UserData extends BaseModel{
             return this;
         }
 
-        public Builder setFullName(String name){
-            UserData.this.fullName = name;
-            return this;
-        }
+//        public Builder setFullName(String name){
+//            UserData.this.fullName = name;
+//            return this;
+//        }
 
 
         public UserData build() {

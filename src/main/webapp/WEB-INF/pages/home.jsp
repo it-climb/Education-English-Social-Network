@@ -192,7 +192,11 @@
         <form:form action="saveUser" modelAttribute="dto" name="myForm">
           <div class="input-group email-password">
             <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-            <input type="text" class="form-control"  placeholder="Full Name" value="${dto.fullName}" name="fullName" ng-model="fullName" ng-length="1" required>
+            <input type="text" class="form-control"  placeholder="First Name" value="${dto.firstName}" name="firstName" ng-model="firstName" ng-length="1" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control"  placeholder="Second Name" value="${dto.secondName}" name="secondName" ng-model="secondName" ng-length="1" required>
           </div>
           <div class="input-group email-password">
             <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </div>
@@ -202,7 +206,7 @@
             <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
             <input type="password" class="form-control"  placeholder="Password" name="password" ng-model="password" ng-minlength="3" value="${dto.password}" required>
           </div>
-          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.fullName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
+          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.firstName.$valid || !myForm.secondName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
         </form:form>
 
         <div class="checkbox">
@@ -238,22 +242,25 @@
         <div>
           <p class="bg-danger warning2">Incorrect <strong>Full Name</strong> format, <strong>Email</strong> or <strong>Password</strong></p>
         </div>
-      <form:form action="saveUser" modelAttribute="dto" name="myForm">
-
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-          <input type="text" class="form-control"  placeholder="Full Name" value="${dto.fullName}" name="fullName" ng-model="fullName" ng-length="1" required>
-        </div>
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </div>
-          <input type="email" class="form-control"  placeholder="Email" name="email" ng-model="email" value="${dto.email}" required>
-        </div>
-        <div class="input-group email-password">
-          <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
-          <input type="password" class="form-control"  placeholder="Password" name="password" ng-model="password" ng-minlength="3" value="${dto.password}" required>
-        </div>
-          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.fullName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
-      </form:form>
+        <form:form action="saveUser" modelAttribute="dto" name="myForm">
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control"  placeholder="First Name" value="${dto.firstName}" name="firstName" ng-model="firstName" ng-length="1" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+            <input type="text" class="form-control"  placeholder="Second Name" value="${dto.secondName}" name="secondName" ng-model="secondName" ng-length="1" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </div>
+            <input type="email" class="form-control"  placeholder="Email" name="email" ng-model="email" value="${dto.email}" required>
+          </div>
+          <div class="input-group email-password">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></div>
+            <input type="password" class="form-control"  placeholder="Password" name="password" ng-model="password" ng-minlength="3" value="${dto.password}" required>
+          </div>
+          <input role="button" type="submit" class="btn btn-primary  btn-block" value="Sign Up" ng-disabled="!myForm.firstName.$valid || !myForm.secondName.$valid || !myForm.email.$valid || !myForm.password.$valid"/>
+        </form:form>
         <div class="checkbox">
           <input type="checkbox">
           <div class="rm">Remember me</div>
