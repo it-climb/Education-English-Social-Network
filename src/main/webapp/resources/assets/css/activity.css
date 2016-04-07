@@ -1,0 +1,235 @@
+.menu {
+    float: left;
+}
+
+.box {
+    min-width: 1000px;
+    /*width: auto;*/
+}
+.subBox{
+    min-width: 12%;
+    margin: 0.06%;
+}
+
+.whisperF{
+    color: white;
+    background-color: purple;
+    border-radius: 10%;
+    padding: 2px;
+}
+
+.whisperT{
+    color: white;
+    background-color: peachpuff;
+    border-radius: 10%;
+    padding: 2px;
+}
+
+.chat{
+    float: right;
+    width: 30%;
+    height: 600px;
+    position: fixed;
+    left: 70%;
+}
+
+#containerChat {
+    min-height: 300px;
+    max-height: 600px;
+    overflow: auto;
+    position: relative;
+}
+
+.form-control:active {
+    color: #ddd;
+}
+.home-head {
+    margin: 0px;
+    padding: 0px;
+}
+
+.content {
+    /*margin-top: 20px;*/
+    margin-bottom: 100px;
+}
+.jumbotron{
+    background-image: url('/resources/assets/img/homepage_banner.jpg');
+    background-size: cover;
+    color: white;
+    height: 700px;
+}
+
+.brand{
+    margin-top: 100px;
+    color: darkgray;
+    font-size: 40px;
+
+}
+
+.footer-nav {
+    margin-top: 22px;
+    list-style: none;
+    font-size: 20px;
+
+}
+.footer-nav li {
+    display: inline;
+}
+
+.copy {
+    margin: 25px;
+    margin-left: 50px;
+}
+
+.one {
+    margin-top: 250px;
+}
+.header-search {
+    margin-top: 15px;
+}
+
+
+.img-circle {
+    width: 100%;
+    margin-left: 50px;
+
+}
+.reg {
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.bottom {
+    height: 70px;
+    background-color: #E3E3E3;
+
+}
+.title-content {
+    color: gray;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px;
+}
+
+.cap {
+    padding: 0px;
+}
+
+.thumbnail {
+    background-color: #E3E3E3;
+}
+
+/*.activity-content {*/
+/*width: 400px;*/
+/*}*/
+
+.rm {
+    padding-top: 5px;
+}
+
+.bg-danger {
+    color: red;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.warning2 {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+}
+.policy {
+    font-size: 9px;
+    color: lightgray;
+    text-align: center;
+}
+.fmp {
+    padding: 0px;
+    /*    padding-top: 15px;*/
+    text-align: center;
+}
+
+.email-password {
+    padding-bottom: 10px;
+}
+
+.modal-footer {
+    margin: 0px;
+    padding-top: 20px;
+    text-align: left;
+}
+.or {
+    text-align: center;
+    padding: 15px;
+}
+.modal-body {
+    padding: 0px;
+}
+
+.user-foto {
+    margin-top: 8px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+input.ng-invalid {
+    border: 1px solid red;
+}
+
+#sort {
+    margin: 8px 0px 0px 0px;
+}
+
+.content{
+    height: 75%;
+    width: 100%;
+}
+
+#subject {
+    height: 80px;
+}
+
+#activity {
+    margin: 10px;
+    height: 150px;
+    background: #FFFAFA;
+    border: 2px solid #000000;
+}
+
+#imgAct {
+    margin: 5%;
+}
+
+#text {
+    text-align: right;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 10pt;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+}
+
+#activities {
+    width: 100%;
+    height: 90%;
+}
+
+
+#rait {
+    margin-right: 10px;
+}

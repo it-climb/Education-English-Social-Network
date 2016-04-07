@@ -8,103 +8,9 @@
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="resources/assets/css/style.css" rel="stylesheet">
-    <style>
+    <link href="resources/assets/css/activity.css" rel="stylesheet">
 
-        /*html {*/
-            /*height: 100%;*/
-            /*width: 100%;*/
-        /*}*/
-
-        #sort {
-            margin: 8px 0px 0px 0px;
-        }
-
-        .content{
-            height: 75%;
-            width: 100%;
-        }
-
-        #subject {
-            height: 80px;
-        }
-
-        #activity {
-            margin: 10px;
-            height: 150px;
-            background: #FFFAFA;
-            border: 2px solid #000000;
-        }
-
-        #imgAct {
-            margin: 5%;
-        }
-
-        #text {
-            text-align: right;
-        }
-
-        .rating {
-            unicode-bidi: bidi-override;
-            direction: rtl;
-            font-size: 10pt;
-        }
-        .rating > span {
-            display: inline-block;
-            position: relative;
-            width: 1.1em;
-        }
-        .rating > span:hover:before,
-        .rating > span:hover ~ span:before {
-            content: "\2605";
-            position: absolute;
-        }
-
-        #activities {
-            width: 100%;
-            height: 90%;
-        }
-
-        /*html {*/
-            /*position: relative;*/
-            /*min-height: 100%;*/
-        /*}*/
-
-        /*body {*/
-            /*!* Margin bottom by footer height *!*/
-            /*margin-bottom: 80px;*/
-        /*}*/
-        /*.footer {*/
-            /*position: relative;*/
-            /*bottom: 0;*/
-            /*width: 1138px;*/
-            /*!* Set the fixed height of the footer here *!*/
-            /*height: 80px;*/
-
-        /*}*/
-        /*#foot {*/
-            /*height: 80px;*/
-            /*width: 1168px;*/
-            /*background: #FFFAFA;*/
-            /*border: 2px solid #000000;*/
-        /*}*/
-
-        #pagin {
-            align: right-side;
-        }
-
-        #rait {
-            margin-right: 10px;
-        }
-
-        .container{
-            height: 100%;
-            border: 2px solid #000000;
-        }
-
-    </style>
 </head>
-
 
 <body>
 <div>
@@ -368,9 +274,9 @@
                 Type:
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-sm">Watching</button>
-                    <button type="button" class="btn btn-primary btn-sm">Reading</button>
-                    <button type="button" class="btn btn-primary btn-sm">Typing</button>
+                    <button type="button" class="btn btn-primary btn-md">Watching</button>
+                    <button type="button" class="btn btn-primary btn-md">Reading</button>
+                    <button type="button" class="btn btn-primary btn-md">Typing</button>
                 </div>
 
             </div>
@@ -381,10 +287,10 @@
                 <div class="col-md-8">
                     <div class="col-sm-12">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-sm">6+</button>
-                            <button type="button" class="btn btn-primary btn-sm">12+</button>
-                            <button type="button" class="btn btn-primary btn-sm">16+</button>
-                            <button type="button" class="btn btn-primary btn-sm">18+</button>
+                            <button type="button" class="btn btn-primary btn-md">6+</button>
+                            <button type="button" class="btn btn-primary btn-md">12+</button>
+                            <button type="button" class="btn btn-primary btn-md">16+</button>
+                            <button type="button" class="btn btn-primary btn-md">18+</button>
                         </div>
                     </div>
                 </div>
@@ -396,7 +302,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="dropdown">
-                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">most rated first
+                        <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">most rated first
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#">most rated first</a></li>
@@ -411,21 +317,21 @@
         <div class="row">
             <div class="col-md-3">
                 <div id="leftside">
-                    <h4> Overlapping Subjects </h4>
+                    <h3> Overlapping Subjects </h3>
 
                     <c:forEach var="subject" items="${sub}">
                     <div id="subject">
                         <div>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="num" value="watch">${subject.name}</label><br>
+                                <label><input type="checkbox" name="num" value="watch"><h4>${subject.name}</h4></label><br>
                             </div>
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-10">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-sm">Easy</button>
-                                    <button type="button" class="btn btn-primary btn-sm">Normal</button>
-                                    <button type="button" class="btn btn-primary btn-sm">Hard</button>
+                                    <button type="button" class="btn btn-primary btn-md">Easy</button>
+                                    <button type="button" class="btn btn-primary btn-md">Normal</button>
+                                    <button type="button" class="btn btn-primary btn-md">Hard</button>
                                 </div>
                             </div>
                         </div>
@@ -447,9 +353,9 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <h4><a href="Activity.html">${activity.name}</a></h4>
-                                <button type="button" class="btn btn-danger btn-sm">watching</button>
-                                <button type="button" class="btn btn-success btn-sm">test</button><br>
+                                <h4><a href="Activity.html"><h4>${activity.name}</h4></a></h4>
+                                <button type="button" class="btn btn-danger btn-md">watching</button>
+                                <button type="button" class="btn btn-success btn-md">test</button><br>
 
                                 <c:forEach var="subject" items="${sub}">
                                     <c:if test="${activity.id == subject.activity.id}">
@@ -475,28 +381,31 @@
                             </div>
                         </div>
                     </div>
-                    </c:forEach>>
+                    </c:forEach>
                 </div>
             </div>
 
-    <div class="row">
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-4">
-            <ul id="pagin" class = "pagination">
-                <li><a href = "#">&laquo;</a></li>
-                <li class="active"><a href = "#">1</a></li>
-                <li><a href = "#">2</a></li>
-                <li><a href = "#">3</a></li>
-                <li><a href = "#">4</a></li>
-                <li><a href = "#">5</a></li>
-                <li><a href = "#">&raquo;</a></li>
-            </ul>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <ul id="pagin" class = "pagination pagination-lg">
+                        <li><a href = "#">&laquo;</a></li>
+                        <li class="active"><a href = "#">1</a></li>
+                        <li><a href = "#">2</a></li>
+                        <li><a href = "#">3</a></li>
+                        <li><a href = "#">4</a></li>
+                        <li><a href = "#">5</a></li>
+                        <li><a href = "#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
     </div>
-        </div>
-    </div>
-</div>>
+</div>
             <div style="clear: both "></div>
 
             <div class="bottom">
