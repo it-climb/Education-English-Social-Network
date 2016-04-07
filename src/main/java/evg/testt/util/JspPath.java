@@ -35,7 +35,7 @@ public class JspPath {
     public static final String WATCHING_ACTIVITY_ADD = "/watchingActivity/addWatchActivity";
     public static final String WATCHING_ACTIVITY_UPDATE = "/watchingActivity/updateWatchActivity";
 
-    public static final String ACTIVITIES_SHOW = "/activity/show";
+    public static final String ACTIVITIES_SHOW = "activity/show";
 
     public static final String DEFAULT_ERROR_VIEW = "error-404"; //page not found
     public static final String ISE_ERROR_VIEW = "ErrorNeedLogin"; //internal server error
