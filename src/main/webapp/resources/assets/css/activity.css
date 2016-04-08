@@ -185,43 +185,93 @@ input.ng-invalid {
 }
 
 .content{
-    height: 75%;
+    height: 0pt;
     width: 100%;
+    font-family: Helvetica;
+}
+
+
+#left-text{
+
+    margin-bottom: 12pt;
+
 }
 
 #subject {
+
+    margin-left: 15pt;
     height: 80px;
 }
 
 #activity {
     margin: 10px;
-    height: 150px;
+    width: 730pt;
+    height: 140pt;
     background: #F8F8F8;
     border: 1px solid #E3E3E3;
 }
 
-#imgAct {
-    margin: 5%;
+#name-activity{
+    font-size:  20pt;
 }
 
-#text {
+#subject-activity{
+    margin: 6px 10px -25px;
+    font-size:  14pt;
+}
+
+#img-activity{
+    height: 140pt;
+    width: 165pt;
+
+}
+
+#text-activity {
     text-align: right;
+    height: 140pt;
+    width: 185pt;
 }
 
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    font-size: 10pt;
+#center-activity {
+    margin: 0pt 7pt;
+    height: 140pt;
+    width: 382pt;
 }
-.rating > span {
-    display: inline-block;
-    position: relative;
-    width: 1.1em;
+
+
+
+#imgAct {
+    margin: 6% 5%;
+    height: 120pt;
+    width: 156pt;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-    content: "\2605";
-    position: absolute;
+
+#raiting-activity{
+
+    margin: 11px 0 0 7px;
+    height: 25pt;
+    width: 156pt;
+}
+
+
+#passed{
+
+    font-size: 11pt;
+}
+
+#age-activity{
+
+    margin: -19pt 0pt 2pt;
+}
+
+#date-activity{
+
+    margin: -15pt 0pt 0pt;
+}
+
+#autor-activity{
+
+
 }
 
 #activities {
@@ -240,7 +290,7 @@ input.ng-invalid {
 }
 
 .btn {
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 #sorting {
@@ -254,8 +304,8 @@ input.ng-invalid {
 }
 /*#type {*/
 
-    /*pading-rigth: 0px;*/
-    /*pading-left: 2px;*/
+/*pading-rigth: 0px;*/
+/*pading-left: 2px;*/
 /*}*/
 
 #age {
@@ -263,6 +313,44 @@ input.ng-invalid {
 }
 
 /*#sorting {*/
-    /*pading-rigth: 0px;*/
-    /*pading-left: 2px;*/
+/*pading-rigth: 0px;*/
+/*pading-left: 2px;*/
 /*}*/
+
+
+#difficult {
+
+    width: 50pt;
+}
+
+#btn-type{
+
+    width: 60pt;
+}
+
+#btn-activity{
+
+    width: 65pt;
+}
+
+#pagin {
+    margin-bottom: 0pt;
+
+}
+
+#pagin-prev{
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+}
+#pagin-next{
+
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+#diff{
+    margin-top: -8pt;
+}

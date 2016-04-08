@@ -3,11 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <title>All</title>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resources/assets/css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="resources/assets/js/star-rating.js" type="text/javascript"></script>
+
     <link href="resources/assets/css/activity.css" rel="stylesheet">
 
 </head>
@@ -269,73 +277,73 @@
             <div class="col-md-4">
             </div>
             <div id="type" class="col-md-8">
-            <form class="form-inline">
-                <div class="form-group">
+                <form class="form-inline">
+                    <div class="form-group">
 
-                    <label>Type:</label>
+                        <label>Type:</label>
 
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-md">Watching</button>
-                        <button type="button" class="btn btn-primary btn-md">Reading</button>
-                        <button type="button" class="btn btn-primary btn-md">Typing</button>
+                        <div class="btn-group">
+                            <button id="btn-type" type="button" class="btn btn-primary btn-md">Watching</button>
+                            <button id="btn-type" type="button" class="btn btn-primary btn-md">Reading</button>
+                            <button id="btn-type" type="button" class="btn btn-primary btn-md">Typing</button>
+                        </div>
                     </div>
-                </div>
 
-                <div id="age" class="form-group">
+                    <div id="age" class="form-group">
 
-                    <label>Target age:</label>
+                        <label>Target age:</label>
 
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-md">6+</button>
-                        <button type="button" class="btn btn-primary btn-md">12+</button>
-                        <button type="button" class="btn btn-primary btn-md">16+</button>
-                        <button type="button" class="btn btn-primary btn-md">18+</button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-md">6+</button>
+                            <button type="button" class="btn btn-primary btn-md">12+</button>
+                            <button type="button" class="btn btn-primary btn-md">16+</button>
+                            <button type="button" class="btn btn-primary btn-md">18+</button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div id="sorting" class="col-md-3">
-                    <label>Sorting:</label>
+                    <div class="form-group">
+                        <div id="sorting" class="col-md-3">
+                            <label>Sorting:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">most rated first
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">most rated first</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="dropdown">
-                        <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-toggle="dropdown">most rated first
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">most rated first</a></li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-            </form>
+                </form>
             </div>
 
-                </div>
-            </div>
+        </div>
+    </div>
 
     <div style="clear: both "></div>
     <div class="content" >
         <div class="row">
             <div class="col-md-3">
                 <div id="leftside">
-                    <h3> Overlapping Subjects </h3>
+                    <h3 id="left-text"> Overlapping Subjects </h3>
 
                     <c:forEach var="subject" items="${sub}">
-                    <div id="subject">
-                        <div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="num" value="watch"><h4>${subject.name}</h4></label><br>
-                            </div>
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-10">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-md">Easy</button>
-                                    <button type="button" class="btn btn-primary btn-md">Normal</button>
-                                    <button type="button" class="btn btn-primary btn-md">Hard</button>
+                        <div id="subject">
+                            <div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="num" value="watch"><h4>${subject.name}</h4></label><br>
+                                </div>
+                                <div class="col-sm-2">
+                                </div>
+                                <div id="diff" class="col-sm-10">
+                                    <div class="btn-group">
+                                        <button id="difficult" type="button" class="btn btn-primary btn-sm">Easy</button>
+                                        <button id="difficult" type="button" class="btn btn-primary btn-sm">Normal</button>
+                                        <button id="difficult" type="button" class="btn btn-primary btn-sm">Hard</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </c:forEach>>
                 </div>
 
@@ -344,84 +352,91 @@
             <div class="col-md-9">
                 <div id="activities">
                     <c:forEach var="activity" items="${activities}">
-                    <div id="activity">
-                        <div class="row">
-                            <div class="col-lg-3">
+                        <div id="activity">
+                            <div class="row">
+                                <div id="img-activity" class="col-lg-3">
 
-                                <div id="imgAct" class="thumbnail">
-                                    <img src="resources/assets/img/user2.png" alt="Mountain View">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h4><a href="Activity.html"><h4>${activity.name}</h4></a></h4>
-                                <button type="button" class="btn btn-danger btn-md">watching</button>
-                                <button type="button" class="btn btn-success btn-md">test</button><br>
-
-                                <c:forEach var="subject" items="${sub}">
-                                    <c:if test="${activity.id == subject.activity.id}">
-                                        ${subject.name}<br>
-                                    </c:if>
-                                </c:forEach>
-
-                            </div>
-
-
-                            <div id="text" class="col-md-4">
-                                <div id="rait">
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    <div id="imgAct" class="thumbnail">
+                                        <img src="resources/assets/img/pic_mountain.jpg" alt="Mountain View">
                                     </div>
-                                    <sub>passed 14,305 times</sub><br>
-                                    <br>
-                                    <b>${activity.targetAge}</b><br>
-                                    <br>
-                                    <b>20 sep 2009</b><br>
-                                    <b><a href="Autor.html">by ${activity.author.fullName}</a></b>
                                 </div>
+                                <div id="center-activity" class="col-md-5">
+                                    <h4><a id="name-activity" href="Activity.html">${activity.name}</a></h4>
+                                    <button id="btn-activity" type="button" class="btn btn-danger btn-sm">watching</button>
+                                    <button id="btn-activity" type="button" class="btn btn-success btn-sm">test</button><br>
+
+                                    <c:forEach var="subject" items="${sub}">
+                                        <c:if test="${activity.id == subject.activity.id}">
+                                            <p id="subject-activity">${subject.name}</p><br>
+                                        </c:if>
+                                    </c:forEach>
+
+                                </div>
+
+
+                                <div id="text-activity" class="col-md-4">
+                                    <div id="raiting-activity">
+                                        <form>
+                                            <input id="input-21e" value="0" class="rating hide" min="0" max="5" step="0.5" data-size="xs" type="number"></div>
+                                    </form>
+
+
+
+                                    <p id="passed">passed 14,305 times</p><br>
+                                    <br>
+                                    <p id="age-activity"><b>${activity.targetAge}</b></p><br>
+                                    <br>
+                                    <p id="date-activity">20 sep 2009</b><br>
+                                        <b><a href="Autor.html" id="autor-activity">by ${activity.author.fullName}</a></b>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
                     </c:forEach>
                 </div>
             </div>
 
-<%--<div>--%>
+            <%--<div>--%>
             <%--<c:if test="${author == null}">--%>
-                <%--&lt;%&ndash;<a href="/activities?page=1">first</a>  |&ndash;%&gt;--%>
-                <%--<c:if test="${paginator.hasPrevious()}">--%>
-                    <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">previous</a>  |--%>
-                <%--</c:if>--%>
-                <%--current: ${paginator.getPageNumber()+1}  |--%>
-                <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">next</a>  |--%>
-                <%--&lt;%&ndash;<a href="/activities?page="></a>last&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="/activities?page=1">first</a>  |&ndash;%&gt;--%>
+            <%--<c:if test="${paginator.hasPrevious()}">--%>
+            <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">previous</a>  |--%>
+            <%--</c:if>--%>
+            <%--current: ${paginator.getPageNumber()+1}  |--%>
+            <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">next</a>  |--%>
+            <%--&lt;%&ndash;<a href="/activities?page="></a>last&ndash;%&gt;--%>
             <%--</c:if>--%>
             <%--<c:if test="${author != null}">--%>
-                <%--<c:if test="${paginator.hasPrevious()}">--%>
-                    <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}&author=${author}">previous</a>  |--%>
-                <%--</c:if>--%>
-                <%--current: ${paginator.getPageNumber()+1}  |--%>
-                <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}&author=${author}">next</a>  |--%>
+            <%--<c:if test="${paginator.hasPrevious()}">--%>
+            <%--<a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}&author=${author}">previous</a>  |--%>
             <%--</c:if>--%>
-<%--</div>>--%>
+            <%--current: ${paginator.getPageNumber()+1}  |--%>
+            <%--<a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}&author=${author}">next</a>  |--%>
+            <%--</c:if>--%>
+            <%--</div>>--%>
 
         </div>
     </div>
 </div>
 
-<div class="row">
+<div id="pagin" class="row">
     <div class="col-md-8">
     </div>
     <div class="col-md-4">
-        <ul id="pagin" class = "pagination pagination-lg">
+        <ul class = "pagination pagination-md">
             <li>
-                <a href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">&laquo;</a></li>
+                <a  id="pagin-prev" href="/activities?page=${paginator.getPageNumber()-1}&number=${paginator.pageSize}">&laquo;</a></li>
             <li class="active"><a href = "#">1</a></li>
             <li><a href = "#">2</a></li>
             <li><a href = "#">3</a></li>
             <li><a href = "#">4</a></li>
             <li><a href = "#">5</a></li>
+            <li><a href = "#">6</a></li>
+            <li><a href = "#">7</a></li>
+            <li><a href = "#">8</a></li>
+            <li><a href = "#">9</a></li>
             <li>
-                <a href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">&raquo;</a></li>
+                <a id="pagin-next" href="/activities?page=${paginator.getPageNumber()+1}&number=${paginator.pageSize}">&raquo;</a></li>
         </ul>
     </div>
 </div>
