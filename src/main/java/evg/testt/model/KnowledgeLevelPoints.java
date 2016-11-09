@@ -24,6 +24,10 @@ public class KnowledgeLevelPoints extends BaseModel {
         this.knowledgeLevelPoints = knowledgeLevelPoints;
     }
 
+    /**
+     *<p>it allows to increase User knowledge level</p>
+     * @param increment
+     */
     public void increaseKnowledgeLevel(Integer increment) {
         knowledgeLevelPoints += increment;
     }
